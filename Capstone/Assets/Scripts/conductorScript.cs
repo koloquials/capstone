@@ -35,9 +35,6 @@ public class conductorScript : MonoBehaviour
     //next spawned note
     int nextIndex = 0;
 
-    //number of notes shown in advance
-    float beatsAdvance = 2;
-
     public GameObject notePrefab;
 
     // Start is called before the first frame update
@@ -67,13 +64,6 @@ public class conductorScript : MonoBehaviour
         //track beats
         //note !! beat starts at 0, so beats of songs will be one beat behind where they ought to
         songPosinBeats = songPos / secondsPerBeat;
-
-        //quiietLY CROSSES THIS OUT Bc......... am not making guitar hero,
-        ////time to spawn notes, baby
-        //if (nextIndex <notes.Length && notes[nextIndex] < songPosinBeats + beatsAdvance)
-        //{
-        //    Instantiate(notePrefab, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
-        //    nextIndex++;
-        //}
+        //Debug.Log (songPosinBeats);
     }
 }
