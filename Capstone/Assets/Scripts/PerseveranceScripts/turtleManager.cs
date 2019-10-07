@@ -10,12 +10,15 @@ public class turtleManager : MonoBehaviour
     public Text loseText;
     public Text winText;
     public Text startText;
+    public Text tries;
 
     bool active = false;
     bool start = false;
 
     GameObject[] turtles; //Player is turtle at index 16 (x = 15)
     int survivor;
+
+    int attempt = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,7 @@ public class turtleManager : MonoBehaviour
                 active = true;
                 start = true;
                 startText.gameObject.SetActive(false);
+                tries.gameObject.SetActive(true);
             }
         }
         else
@@ -83,5 +87,7 @@ public class turtleManager : MonoBehaviour
                 p = true;
             turtles[x].GetComponent<turtle>().initialize(d, p);
         }
+        attempt += 1;
+        tries.text = "Tries: " + attempt;
     }
 }
