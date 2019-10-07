@@ -39,17 +39,17 @@ public class turtle : MonoBehaviour
             {
                 if (player)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow) && leftActive)
+                    if (Input.GetKeyUp(KeyCode.LeftArrow) && leftActive)
                     {
                         leftActive = false;
                         rightActive = true;
-                        y += 3f * Time.deltaTime;
+                        y += 7f * Time.deltaTime;
                     }
-                    if (Input.GetKey(KeyCode.RightArrow) && rightActive)
+                    if (Input.GetKeyUp(KeyCode.RightArrow) && rightActive)
                     {
                         rightActive = false;
                         leftActive = true;
-                        y += 0.1f;
+                        y += 7f * Time.deltaTime;
                     }
                     turtleSprite.transform.position = new Vector2(x, y);
                 }
@@ -92,7 +92,7 @@ public class turtle : MonoBehaviour
                 stringCut = Random.Range(-4f, 3f);
         }
         player = p;
-        speed = Random.Range(1.5f, 2.5f);
+        speed = Random.Range(0.8f, 2f);
         active=true;
     }
 
