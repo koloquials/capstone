@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class conductorScript : MonoBehaviour
 {
+    //add feedback; circle as initial loop, break through & add score threshhold (in form of hp bar)
+
+
+
     public static conductorScript instance;
 
     //beats per minute
