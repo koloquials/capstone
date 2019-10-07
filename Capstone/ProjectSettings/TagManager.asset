@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+<<<<<<< HEAD
+  - beat
+=======
+  - Proto_Null
+  - Proto_Goal
+>>>>>>> master
   layers:
   - Default
   - TransparentFX
