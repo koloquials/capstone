@@ -41,6 +41,8 @@ public class conductorScript : MonoBehaviour
 
     public GameObject notePrefab;
 
+    bool playing = false; //Whether the song is playing
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,18 +51,16 @@ public class conductorScript : MonoBehaviour
         //calculate number of seconds per beat
         secondsPerBeat = 60f / sBPM;
 
-        //record time @ start
-        dspSongTime = (float)AudioSettings.dspTime;
-
-        //music start!!
-        music.Play();
+        //startMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
         //track seconds since song began
-        songPos = (float)(AudioSettings.dspTime - dspSongTime);
+        //songPos = (float)(AudioSettings.dspTime - dspSongTime);
+        if(playing)
+            songPos = (float)(Time.time - dspSongTime);
 
         //track seconds since song began + OFFSET
         //songPos = (float)(AudioSettings.dspTime - dspSongTime - offset);
@@ -69,5 +69,25 @@ public class conductorScript : MonoBehaviour
         //note !! beat starts at 0, so beats of songs will be one beat behind where they ought to
         songPosinBeats = songPos / secondsPerBeat;
         //Debug.Log (songPosinBeats);
+    }
+
+    public void startMusic() //Start the song
+    {
+
+        //record time @ start
+        //dspSongTime = (float)AudioSettings.dspTime;
+        dspSongTime = Time.time; //AudioSettings.dspTime did not work well with restarting the song, trying this instead
+
+        //music start!!
+        music.Play();
+        playing = true;
+    }
+
+    public void stopMusic() //Stop and reset the song
+    {
+        music.Stop();
+        songPosinBeats = 0;
+        songPos = 0;
+        playing = false;
     }
 }

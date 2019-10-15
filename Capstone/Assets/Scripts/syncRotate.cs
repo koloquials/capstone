@@ -17,6 +17,8 @@ public class syncRotate : MonoBehaviour
 
     public ParticleSystem party;
 
+    SpriteRenderer sr; //The sprite renderer for the note. Currently used to denote phase 3 health.
+
     private int score;
 
     public bool inZone = false; //Whether the note is in the zone
@@ -26,9 +28,14 @@ public class syncRotate : MonoBehaviour
     float cooldown = 0f; //The cooldown for inputting keys. Prevents the game from considering a hit to be wrong because the player doesn't release the keys frame-perfectly.
     float cN = 0.2f; //The cooldown amount. Put here for ease of testing.
 
+    bool hit = false; //If a note is hit this cycle
+    bool miss = false; //If a note is missed this tick
+
     public Text pressedKeyText; //Debug, what keys are being pressed
     public Text targetText; //Debug feature, what keys are correct
     public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
+    public Text phaseText; //Debug feature, what phase we're in
+    public Text scoreText; //Debug feature, score count
 
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
@@ -43,16 +50,31 @@ public class syncRotate : MonoBehaviour
     float primeCool = 0f; //How long you can keep one key pressed for before it registers an incorrect hit.
     float pcN = 0.1f; //Default value for pcN
 
+    int phase = 0; //Phase of the game. 0 waits for a single correct press, 1 is repeating the basic pattern, 2 expands to the bars with moving notes.
+    //Any miss during phases 0 or 1 resets to phase 0. Having a negative score in phase 2 resets to phase 0
+
+    bool pattern = true; //Whether the notes should be a preset pattern (true), or random (false)
+    string[] song1 = { "UU", "DD", "LL", "RR", "UD", "LR", "UU","DD","LL","RR"}; //For example
+    string[] song1direction = { "^ ^","v v","< <", "> >", "^ v", "< >", "^ ^", "v v", "< <", "> >" }; //Direction equivalent of the notes. Ideally find a way to automate making these.
+    int song1Max = 10; //How many notes are in this song.
+    int currentNote = 0; //Which note of the song is the active one. Once this is equal to the song max, should either reset to 0 or progress the phase.
+    //Nonrandom is on the to-do list.
+
     // Start is called before the first frame update
     void Start()
     {
         this.transform.position = Vector3.zero;
         score = 0;
+        sr = GetComponent<SpriteRenderer>();
+        setTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
+        miss = false;
+
+        
         float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
         //float angle = 0;
         this.transform.localPosition = PointOnCircle(angle, r);
@@ -175,19 +197,25 @@ public class syncRotate : MonoBehaviour
                 if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
                 {
                     score++;
-                    Debug.Log(score);
+                    //Debug.Log(score);
 
                     inZone = false;
                     fret.fretHit(true);
+                    hit = true;
+                    
                 }
                 else //Otherwise trigger negative feedback
                 {
                     fret.fretHit(false);
+                    score--;
+                    miss = true;
                 }
             }
             else //Timing incorrect, negative feedback
             {
                 fret.fretHit(false);
+                score--;
+                miss = true;
             }
             cooldown = cN;
             primed = false;
@@ -204,10 +232,14 @@ public class syncRotate : MonoBehaviour
                 fret.fretHit(false);
                 primed = false;
                 wasdK = "";
+                score--;
             }
             primeCool -= Time.deltaTime;
         }
 
+        phaseCheck();
+        phaseText.text = "Phase: " + phase;
+        scoreText.text = "Score: " + score;
     }
 
     Vector3 PointOnCircle(float angle, float radius)
@@ -230,7 +262,72 @@ public class syncRotate : MonoBehaviour
         if (other.gameObject.tag == "beat")
         {
             inZone = false;
+            if(!hit && cooldown <= 0)
+            {
+                score--;
+                miss = true;
+                fret.fretHit(false);
+                phaseCheck();
+            }
             setTarget(); //Find a new key to want to press
+            miss = false;
+            hit = false;
+        }
+    }
+
+    void phaseCheck() //Checks the result of misses and hits on the game's phases.
+    {
+        if (phase == 0) //Phase 0, the note stands still until you hit it, starting phase 1
+        {
+            if (miss)
+            {
+                score = 0;
+                currentNote = 0;
+                setTarget();
+            }
+            else if (hit)
+            {
+                phase = 1;
+                script.startMusic();
+            }
+        }
+        else if (phase == 1) //Phase 1, have to hit 10 notes in a row to go to phase 2
+        {
+            if (miss) //A miss in phase 1 resets to phase 0
+            {
+                script.stopMusic();
+                score = 0;
+                phase = 0;
+                currentNote = 0;
+                setTarget();
+            }
+            else if (hit && score >= 10)
+            {
+                phase = 2;
+                pattern = false;
+                sr.color = Color.blue;
+            }
+        }
+        else if (phase == 2) //Phase 2, keep score above 0
+        {
+            if (score <= 0)
+            {
+                sr.color = Color.gray;
+                script.stopMusic();
+                score = 0;
+                phase = 0;
+                pattern = true;
+                currentNote = 0;
+                setTarget();
+            }
+            else if(score >= 10)
+            {
+                sr.color = Color.blue;
+            }
+            else
+            {
+                sr.color = new Color(1f - (score / 10f), 0, 1f);
+            }
         }
     }
 
@@ -238,28 +335,39 @@ public class syncRotate : MonoBehaviour
     {
         target = ""; //Reset the old combination
         string uiT = "";
-        for (int y = 0; y < 2; y++) //Do this twice
+        if (pattern)
         {
-            int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
-            if (x == 0)
+            target = song1[currentNote];
+            uiT = song1direction[currentNote];
+            currentNote++;
+            if (currentNote >= song1Max)
+                currentNote = 0;
+        }
+        else
+        {
+            for (int y = 0; y < 2; y++) //Do this twice
             {
-                target += "U";
-                uiT += "^ ";
-            }
-            else if (x == 1)
-            {
-                target += "L";
-                uiT += "< ";
-            }
-            else if (x == 2)
-            {
-                target += "D";
-                uiT += "v ";
-            }
-            else if (x == 3)
-            {
-                target += "R";
-                uiT += "> ";
+                int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
+                if (x == 0)
+                {
+                    target += "U";
+                    uiT += "^ ";
+                }
+                else if (x == 1)
+                {
+                    target += "L";
+                    uiT += "< ";
+                }
+                else if (x == 2)
+                {
+                    target += "D";
+                    uiT += "v ";
+                }
+                else if (x == 3)
+                {
+                    target += "R";
+                    uiT += "> ";
+                }
             }
         }
         targetText.text = uiT; //Set debug direction indicator
