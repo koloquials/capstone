@@ -2332,16 +2332,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8043678850165392125, guid: aa3e0d345905042fa9418f353ac48210,
-        type: 3}
-      propertyPath: lineObj
-      value: 
-      objectReference: {fileID: 1227938058}
     - target: {fileID: 1511413747890710288, guid: aa3e0d345905042fa9418f353ac48210,
         type: 3}
       propertyPath: m_Name
       value: OG Line
       objectReference: {fileID: 0}
+    - target: {fileID: 8043678850165392125, guid: aa3e0d345905042fa9418f353ac48210,
+        type: 3}
+      propertyPath: lineObj
+      value: 
+      objectReference: {fileID: 1227938058}
     - target: {fileID: 4448103794921978595, guid: aa3e0d345905042fa9418f353ac48210,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3961,6 +3961,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Positions.Array.data[155].y
       value: -2.1779513
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950547129820585347, guid: aa3e0d345905042fa9418f353ac48210,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5129171930445833109, guid: aa3e0d345905042fa9418f353ac48210,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa3e0d345905042fa9418f353ac48210, type: 3}
