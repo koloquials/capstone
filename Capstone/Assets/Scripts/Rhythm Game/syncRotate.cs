@@ -6,9 +6,32 @@ using UnityEngine.UI;
 public class syncRotate : MonoBehaviour
 
 {
+    //FOR CLARIFICATION: This script goes on the smaller circle orbiting a point on the screen. The fret is the larger circle intersecting the smaller circle's orbit on the right side.
+
     public conductorScript script;
 
-    //tHTANK S YUO IAN
+    //Sprites representing the 16 possible note combinations
+    public Sprite UU;
+    public Sprite UD;
+    public Sprite UL;
+    public Sprite UR;
+    public Sprite DU;
+    public Sprite DD;
+    public Sprite DL;
+    public Sprite DR;
+    public Sprite LU;
+    public Sprite LD;
+    public Sprite LL;
+    public Sprite LR;
+    public Sprite RU;
+    public Sprite RD;
+    public Sprite RL;
+    public Sprite RR;
+
+    //The actual gameobjects for the notes
+    public note[] noteSprites; //Should be length 5.
+
+    //tHTANK S YUO IAN (Variables used to make orbits)
     public float theta;
     public float r = 1;
     public float speed = .1f;
@@ -40,13 +63,17 @@ public class syncRotate : MonoBehaviour
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
     string arrowK = ""; //Which arrow key
-    string target = "UR"; //What keys the game wants you to press. Currently randomly generated
+    string target = "UU"; //What keys the game wants you to press.
                           // Left is wasd, right is arrow keys
                           // U : up, D : down, L : left, r : right
                           // So the default here corresponds to w + right arrow
+    int nextNote = 0; //Which note is the next to hit the main.
+    string[] noteList = new string[5]; //List of the next five notes
 
     bool primed = false; //If one key is pressed. This way it only considers a keypress when you press the second key, in case you aren't pressing both on the same frame.
     bool keyed = false; //If both keys are pressed.
+    bool lk = false; //Left key pressed
+    bool rk = false; //Right key pressed
     float primeCool = 0f; //How long you can keep one key pressed for before it registers an incorrect hit.
     float pcN = 0.1f; //Default value for pcN
 
@@ -58,7 +85,7 @@ public class syncRotate : MonoBehaviour
     string[] song1direction = { "^ ^","v v","< <", "> >", "^ v", "< >", "^ ^", "v v", "< <", "> >" }; //Direction equivalent of the notes. Ideally find a way to automate making these.
     int song1Max = 10; //How many notes are in this song.
     int currentNote = 0; //Which note of the song is the active one. Once this is equal to the song max, should either reset to 0 or progress the phase.
-    //Nonrandom is on the to-do list.
+                         //Nonrandom is on the to-do list.
 
     // Start is called before the first frame update
     void Start()
@@ -66,7 +93,18 @@ public class syncRotate : MonoBehaviour
         this.transform.position = Vector3.zero;
         score = 0;
         sr = GetComponent<SpriteRenderer>();
-        setTarget();
+
+        for(int x = 0; x < noteSprites.Length; x++)
+        {
+            noteSprites[x].setBPM(script.sBPM);
+            noteSprites[x].setDestination(fret.transform.position);
+        }
+
+        for (int x = 0; x < 5; x++)
+        {
+            setTarget(false); //Set the first 5 notes
+        }
+        target = song1[0]; //Sets the target to the first note in the song. Has to be this way because of what I think was an issue with setting sprites in start. Also why the fret's default sprite should be the first note to press.
     }
 
     // Update is called once per frame
@@ -83,10 +121,11 @@ public class syncRotate : MonoBehaviour
         //Code for pressing keys
         if (Input.GetKeyDown(KeyCode.W)) //When a key is pressed
         {
-            wasdK += "U"; //Set which one was pressed
-            if(!primed) //If this is the first key pressed, note that one key has been pressed
+            wasdK = "U"; //Set which one was pressed
+            if(!rk) //If this is the first key pressed, note that one key has been pressed
             {
                 primed = true;
+                lk = true;
                 primeCool = pcN;
             }
             else //If this is the second key pressed, then confirm that a key combination has been entered
@@ -96,10 +135,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            wasdK += "L";
-            if (!primed)
+            wasdK = "L";
+            if (!rk)
             {
                 primed = true;
+                lk = true;
                 primeCool = pcN;
             }
             else
@@ -109,10 +149,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            wasdK += "D";
-            if (!primed)
+            wasdK = "D";
+            if (!rk)
             {
                 primed = true;
+                lk = true;
                 primeCool = pcN;
             }
             else
@@ -122,10 +163,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            wasdK += "R";
-            if (!primed)
+            wasdK = "R";
+            if (!rk)
             {
                 primed = true;
+                lk = true;
                 primeCool = pcN;
             }
             else
@@ -136,10 +178,11 @@ public class syncRotate : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            wasdK += "U";
-            if (!primed)
+            arrowK = "U";
+            if (!lk)
             {
                 primed = true;
+                rk = true;
                 primeCool = pcN;
             }
             else
@@ -149,10 +192,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            wasdK += "L";
-            if (!primed)
+            arrowK = "L";
+            if (!lk)
             {
                 primed = true;
+                rk = true;
                 primeCool = pcN;
             }
             else
@@ -162,10 +206,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            wasdK += "D";
-            if (!primed)
+            arrowK = "D";
+            if (!lk)
             {
                 primed = true;
+                rk = true;
                 primeCool = pcN;
             }
             else
@@ -175,10 +220,11 @@ public class syncRotate : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            wasdK += "R";
-            if (!primed)
+            arrowK = "R";
+            if (!lk)
             {
                 primed = true;
+                rk = true;
                 primeCool = pcN;
             }
             else
@@ -190,6 +236,8 @@ public class syncRotate : MonoBehaviour
         //A key is pressed
         if (keyed && cooldown <= 0)
         {
+            lk = false;
+            rk = false;
             keys = wasdK + arrowK;
             pressedKeyText.text = keys;
             if (inZone == true) //If the timing is correct
@@ -231,7 +279,10 @@ public class syncRotate : MonoBehaviour
             {
                 fret.fretHit(false);
                 primed = false;
+                lk = false;
+                rk = false;
                 wasdK = "";
+                arrowK = "";
                 score--;
             }
             primeCool -= Time.deltaTime;
@@ -269,7 +320,7 @@ public class syncRotate : MonoBehaviour
                 fret.fretHit(false);
                 phaseCheck();
             }
-            setTarget(); //Find a new key to want to press
+            setTarget(true); //Find a new key to want to press
             miss = false;
             hit = false;
         }
@@ -283,7 +334,10 @@ public class syncRotate : MonoBehaviour
             {
                 score = 0;
                 currentNote = 0;
-                setTarget();
+                pattern = true;
+                currentNote = 0;
+                for(int x = 0; x < 5; x++)
+                    setTarget(true);
             }
             else if (hit)
             {
@@ -299,10 +353,15 @@ public class syncRotate : MonoBehaviour
                 score = 0;
                 phase = 0;
                 currentNote = 0;
-                setTarget();
+                for (int x = 0; x < 5; x++)
+                    setTarget(true);
             }
             else if (hit && score >= 10)
             {
+                for (int x = 0; x < noteSprites.Length; x++)
+                {
+                    noteSprites[x].startMotion();
+                }
                 phase = 2;
                 pattern = false;
                 sr.color = Color.blue;
@@ -314,11 +373,17 @@ public class syncRotate : MonoBehaviour
             {
                 sr.color = Color.gray;
                 script.stopMusic();
+                for(int x=0; x<noteSprites.Length; x++)
+                {
+                    noteSprites[x].stopMotion();
+                }
                 score = 0;
                 phase = 0;
                 pattern = true;
                 currentNote = 0;
-                setTarget();
+                for (int x = 0; x < 5; x++)
+                    setTarget(true);
+                    setTarget(true);
             }
             else if(score >= 10)
             {
@@ -331,14 +396,14 @@ public class syncRotate : MonoBehaviour
         }
     }
 
-    void setTarget() //Set a new target key combination
+    void setTarget(bool a) //Set a new target key combination. Parameter is if this is being called from start, because of an error on the first time it's called.
     {
-        target = ""; //Reset the old combination
-        string uiT = "";
+        string next = ""; //Reset the old combination
+        //string uiT = "";
         if (pattern)
         {
-            target = song1[currentNote];
-            uiT = song1direction[currentNote];
+            next = song1[currentNote];
+            //uiT = song1direction[currentNote];
             currentNote++;
             if (currentNote >= song1Max)
                 currentNote = 0;
@@ -350,27 +415,108 @@ public class syncRotate : MonoBehaviour
                 int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
                 if (x == 0)
                 {
-                    target += "U";
-                    uiT += "^ ";
+                    next += "U";
+                    //uiT += "^ ";
                 }
                 else if (x == 1)
                 {
-                    target += "L";
-                    uiT += "< ";
+                    next += "L";
+                    //uiT += "< ";
                 }
                 else if (x == 2)
                 {
-                    target += "D";
-                    uiT += "v ";
+                    next += "D";
+                    //uiT += "v ";
                 }
                 else if (x == 3)
                 {
-                    target += "R";
-                    uiT += "> ";
+                    next += "R";
+                    //uiT += "> ";
                 }
             }
         }
-        targetText.text = uiT; //Set debug direction indicator
+
+        //There may be a better way to do this, but I'm not finding it. Sets the note generated.
+        noteList[nextNote] = next;
+        switch(next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
+        {
+            case "UU":
+                noteSprites[nextNote].setSprite(UU);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
+                break;
+            case "UR":
+                noteSprites[nextNote].setSprite(UR);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.27f));
+                break;
+            case "UL":
+                noteSprites[nextNote].setSprite(UL);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.22f));
+                break;
+            case "UD":
+                noteSprites[nextNote].setSprite(UD);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.17f));
+                break;
+            case "RU":
+                noteSprites[nextNote].setSprite(RU);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.12f));
+                break;
+            case "RR":
+                noteSprites[nextNote].setSprite(RR);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.07f));
+                break;
+            case "RL":
+                noteSprites[nextNote].setSprite(RL);
+                noteSprites[nextNote].setStart(new Vector2(14f, 0.02f));
+                break;
+            case "RD":
+                noteSprites[nextNote].setSprite(RD);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.03f));
+                break;
+            case "LU":
+                noteSprites[nextNote].setSprite(LU);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.08f));
+                break;
+            case "LR":
+                noteSprites[nextNote].setSprite(LR);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.13f));
+                break;
+            case "LL":
+                noteSprites[nextNote].setSprite(LL);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.18f));
+                break;
+            case "LD":
+                noteSprites[nextNote].setSprite(LD);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.23f));
+                break;
+            case "DU":
+                noteSprites[nextNote].setSprite(DU);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.28f));
+                break;
+            case "DR":
+                noteSprites[nextNote].setSprite(DR);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.33f));
+                break;
+            case "DL":
+                noteSprites[nextNote].setSprite(DL);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.38f));
+                break;
+            case "DD":
+                noteSprites[nextNote].setSprite(DD);
+                noteSprites[nextNote].setStart(new Vector2(14f, -0.43f));
+                break;
+        }
+        
+        nextNote += 1;
+        if (nextNote >= 5)
+            nextNote = 0;
+
+        if (a && noteSprites[nextNote].getSprite() != null)
+        {
+            target = noteList[nextNote];
+            fret.setSprite(noteSprites[nextNote].getSprite()); //Set the sprite of the fret based on noteList.[nextNote].getSprite()
+        }
+
+        //targetText.text = uiT; //Set debug direction indicator
         debugTargetText.text = target;
     }
         

@@ -1,0 +1,499 @@
+fileFormatVersion: 2
+guid: 704ba3e019a9ae447941f0a8f1312ade
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8222257428861897940
+    second: awwows_0
+  - first:
+      213: -3289130346622629159
+    second: awwows_1
+  - first:
+      213: 2518832074207046973
+    second: awwows_2
+  - first:
+      213: 1204171154885498536
+    second: awwows_3
+  - first:
+      213: -3019771889615248847
+    second: awwows_4
+  - first:
+      213: -6920566913003040957
+    second: awwows_5
+  - first:
+      213: -9162370127504587578
+    second: awwows_6
+  - first:
+      213: 1891283168732798387
+    second: awwows_7
+  - first:
+      213: -2369345772682830177
+    second: awwows_8
+  - first:
+      213: 7045376975022999946
+    second: awwows_9
+  - first:
+      213: -5227082222917989068
+    second: awwows_10
+  - first:
+      213: -5872608217444871084
+    second: awwows_11
+  - first:
+      213: -2161673223383289574
+    second: awwows_12
+  - first:
+      213: 3648420389755701224
+    second: awwows_13
+  - first:
+      213: -3912188507210349399
+    second: awwows_14
+  - first:
+      213: 4075531425138720280
+    second: awwows_15
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: awwows_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 281.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f5fe11895f0be74a861f0d196529d33
+      internalID: -8222257428861897940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_1
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 281.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789fff5e60d1adc4ab05de6eac5e6ce9
+      internalID: -3289130346622629159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 281.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ab8184762a6a645a1eccda4f4fafa6
+      internalID: 2518832074207046973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_3
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 281.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a725424ba981de46a41b69346102bd3
+      internalID: 1204171154885498536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 188.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6813953e35ec72943ae7757589798a2b
+      internalID: -3019771889615248847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_5
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 188.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7727a6bfd726ad47a34b742fbe82b1e
+      internalID: -6920566913003040957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 188.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eddb894ec8c95c74686b8dbd48028bfb
+      internalID: -9162370127504587578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_7
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 188.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46061082a36d79b47be06a0e6c8006df
+      internalID: 1891283168732798387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 95.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a092784d4d4737f4ca2c609cab844939
+      internalID: -2369345772682830177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_9
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 95.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3373948d5c8d8944e8db432ea571a8a4
+      internalID: 7045376975022999946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_10
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 95.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 692c5741b3a8d8b41a3713d04149a6c9
+      internalID: -5227082222917989068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_11
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 95.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669ff53d1561baa42b7ec4e7e864c451
+      internalID: -5872608217444871084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e12e18c688c7f43b6a12cee90097bf
+      internalID: -2161673223383289574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_13
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 2.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e61132ec711b8e47b8cfa62f32da58d
+      internalID: 3648420389755701224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_14
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 2.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd12f64fe7fbd7d4d851328e1c634711
+      internalID: -3912188507210349399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: awwows_15
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 2.25
+        width: 93.75
+        height: 93.75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2337cc70708714d9656fc0f4f1db36
+      internalID: 4075531425138720280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

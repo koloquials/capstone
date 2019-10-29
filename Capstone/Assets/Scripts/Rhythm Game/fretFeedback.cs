@@ -10,6 +10,7 @@ public class fretFeedback : MonoBehaviour
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
     float scaleMod = 1f; //Modifies the scale of the fret.
+    float sConstant = 2f; //The default scale
 
     Color fretCol = Color.white; //Color of the fret
     
@@ -22,7 +23,7 @@ public class fretFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localScale = new Vector2(scaleMod, scaleMod); //Set the scale of the fret
+        transform.localScale = new Vector2(scaleMod*sConstant, scaleMod*sConstant); //Set the scale of the fret
         if (scaleMod > 1.01f || scaleMod < 0.99f) //If the scaleMod isn't 1, return to 1
         {
             scaleMod = Mathf.Lerp(scaleMod, 1, .2f);
@@ -45,5 +46,13 @@ public class fretFeedback : MonoBehaviour
             sr.color = Color.red;
             scaleMod = 0.8f;
         }
+    }
+
+    public void setSprite(Sprite newSprite)
+    {
+        if(newSprite == null)
+            Debug.Log("This is null");
+        else
+            sr.sprite = newSprite;
     }
 }
