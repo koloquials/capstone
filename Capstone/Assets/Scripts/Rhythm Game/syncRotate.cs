@@ -98,6 +98,8 @@ public class syncRotate : MonoBehaviour
     int currentNote = 0; //Which note of the song is the active one. Once this is equal to the song max, should either reset to 0 or progress the phase.
                          //Nonrandom is on the to-do list.
 
+    int strikes = 0; //3 strikes, you're out. Used in Phase 2.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -304,15 +306,18 @@ public class syncRotate : MonoBehaviour
                     else //Otherwise trigger negative feedback
                     {
                         fret.fretHit(false);
-                        score--;
+                        //score--;
+                        strikes += 1;
+                        //
                         miss = true;
                     }
                 }
                 else //Timing incorrect, negative feedback
                 {
                     fret.fretHit(false);
-                    score--;
+                    //score--;
                     miss = true;
+                    strikes += 1;
                 }
                 cooldown = cN;
                 primed = false;
@@ -332,14 +337,18 @@ public class syncRotate : MonoBehaviour
                     rk = false;
                     wasdK = "";
                     arrowK = "";
-                    score--;
+                    //score--;
+                    strikes += 1;
                 }
                 primeCool -= Time.deltaTime;
             }
 
             phaseCheck();
             phaseText.text = "Phase: " + phase;
-            scoreText.text = "Score: " + score;
+            if (phase == 2)
+                scoreText.text = "Lives: " + (3 - strikes);
+            else
+                scoreText.text = "";
         }
     }
 
@@ -365,7 +374,8 @@ public class syncRotate : MonoBehaviour
             inZone = false;
             if(!hit && cooldown <= 0)
             {
-                score--;
+                //score--;
+                strikes += 1;
                 miss = true;
                 fret.fretHit(false);
                 phaseCheck();
@@ -419,7 +429,7 @@ public class syncRotate : MonoBehaviour
         }
         else if (phase == 2) //Phase 2, keep score above 0
         {
-            if (score <= 0)
+            if (strikes >= 3)
             {
                 sr.color = Color.gray;
                 script.stopMusic();
@@ -427,21 +437,22 @@ public class syncRotate : MonoBehaviour
                 {
                     noteSprites[x].stopMotion();
                 }
-                score = 0;
+                //score = 0;
+                strikes = 0;
                 phase = 0;
                 pattern = true;
                 currentNote = 0;
                 for (int x = 0; x < 5; x++)
                     setTarget(true);
             }
-            else if(score >= 10)
+            /*else if(score >= 10)
             {
                 sr.color = Color.blue;
             }
             else
             {
                 sr.color = new Color(1f - (score / 10f), 0, 1f);
-            }
+            }*/
         }
     }
 
@@ -571,6 +582,10 @@ public class syncRotate : MonoBehaviour
 
     public void begin() //Starts the rhythm game. This should ideally be called from a script handling dialogue.
     {
+        scoreText.gameObject.SetActive(true);
+        targetText.gameObject.SetActive(true);
+        phaseText.gameObject.SetActive(true);
+        pressedKeyText.gameObject.SetActive(true);
         Start();
         this.transform.localPosition = PointOnCircle(((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3)), r);
         starting = 1;
@@ -582,6 +597,11 @@ public class syncRotate : MonoBehaviour
     void end() //Exits the rhythm game and resets stats
     {
         fret.endReset();
+
+        scoreText.gameObject.SetActive(false);
+        targetText.gameObject.SetActive(false);
+        phaseText.gameObject.SetActive(false);
+        pressedKeyText.gameObject.SetActive(false);
 
         starting = 0;
         startScale = 0;
