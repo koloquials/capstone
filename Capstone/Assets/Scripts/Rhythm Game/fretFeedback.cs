@@ -9,28 +9,47 @@ public class fretFeedback : MonoBehaviour
 
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
-    float scaleMod = 1f; //Modifies the scale of the fret.
+    float scaleMod = 0f; //Modifies the scale of the fret.
     float sConstant = 2f; //The default scale
 
     Color fretCol = Color.white; //Color of the fret
+
+    bool startScale = false; //When starting, scale the thing up.
+    bool started = false; //When the rhythm game is actually running
     
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+
+        transform.localScale = Vector2.zero; //For the start animation
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localScale = new Vector2(scaleMod*sConstant, scaleMod*sConstant); //Set the scale of the fret
-        if (scaleMod > 1.01f || scaleMod < 0.99f) //If the scaleMod isn't 1, return to 1
+        if (startScale)
         {
-            scaleMod = Mathf.Lerp(scaleMod, 1, .2f);
+            scaleMod = Mathf.Lerp(scaleMod, sConstant, 0.04f);
+            if (scaleMod >= 1f)
+            {
+                scaleMod = 1;
+                startScale = false;
+                started = true;
+            }
+            transform.localScale = new Vector2(scaleMod*sConstant, scaleMod*sConstant);
         }
-        else //If the size is close to normal, reset the color
+        else if (started)
         {
-            sr.color = Color.white;
+            transform.localScale = new Vector2(scaleMod * sConstant, scaleMod * sConstant); //Set the scale of the fret
+            if (scaleMod > 1.01f || scaleMod < 0.99f) //If the scaleMod isn't 1, return to 1
+            {
+                scaleMod = Mathf.Lerp(scaleMod, 1, .2f);
+            }
+            else //If the size is close to normal, reset the color
+            {
+                sr.color = Color.white;
+            }
         }
     }
 
@@ -54,5 +73,20 @@ public class fretFeedback : MonoBehaviour
             Debug.Log("This is null");
         else
             sr.sprite = newSprite;
+    }
+
+    public void startingScaling()
+    {
+        startScale = true;
+        started = false;
+        sr.enabled = true;
+    }
+
+    public void endReset()
+    {
+        scaleMod = 0;
+        startScale = false;
+        sr.color = Color.white;
+        sr.enabled = false;
     }
 }
