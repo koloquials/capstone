@@ -18,6 +18,7 @@ public class syncRotate : MonoBehaviour
     public float maxScale = 0.5f; //Maximum scale of the rotating ball.
 
     float startTimer = 0f; //Used for the start animation.
+    float endTimer = 0f; //Used for the end
 
     Color defaultCol;
 
@@ -53,7 +54,9 @@ public class syncRotate : MonoBehaviour
 
     SpriteRenderer sr; //The sprite renderer for the note. Currently used to denote phase 3 health.
 
-    private int score;
+    public int score; //Currently used to denote how many notes have passed
+
+    private float songNoteLength; //Length of the song, in notes
 
     public bool inZone = false; //Whether the note is in the zone
 
@@ -89,7 +92,7 @@ public class syncRotate : MonoBehaviour
     float pcN = 0.1f; //Default value for pcN
 
     int phase = 0; //Phase of the game. 0 waits for a single correct press, 1 is repeating the basic pattern, 2 expands to the bars with moving notes.
-    //Any miss during phases 0 or 1 resets to phase 0. Having a negative score in phase 2 resets to phase 0
+    //Any miss during phases 0 or 1 resets to phase 0. Missing three times in phase 2 reverts to phase 0
 
     bool pattern = true; //Whether the notes should be a preset pattern (true), or random (false)
     string[] song1 = { "UU", "DD", "LL", "RR", "UD", "LR", "UU","DD","LL","RR"}; //For example
@@ -99,6 +102,10 @@ public class syncRotate : MonoBehaviour
                          //Nonrandom is on the to-do list.
 
     int strikes = 0; //3 strikes, you're out. Used in Phase 2.
+
+    public GameObject lifeSprite1; //Sprites for your three lives. Should start deactivated.
+    public GameObject lifeSprite2;
+    public GameObject lifeSprite3;
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +117,8 @@ public class syncRotate : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         defaultCol = sr.color;
+
+        songNoteLength = script.songLenghtinBeats / 3;
 
         for (int x = 0; x < noteSprites.Length; x++)
         {
@@ -295,7 +304,7 @@ public class syncRotate : MonoBehaviour
                 {
                     if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
                     {
-                        score++;
+                        //score++;
                         //Debug.Log(score);
 
                         inZone = false;
@@ -343,12 +352,43 @@ public class syncRotate : MonoBehaviour
                 primeCool -= Time.deltaTime;
             }
 
+            if(strikes > 0)
+            {
+                lifeSprite3.SetActive(false);
+            }
+            if(strikes > 1)
+            {
+                lifeSprite2.SetActive(false);
+            }
+            if(strikes > 2)
+            {
+                lifeSprite3.SetActive(false);
+            }
+
             phaseCheck();
             phaseText.text = "Phase: " + phase;
-            if (phase == 2)
-                scoreText.text = "Lives: " + (3 - strikes);
-            else
-                scoreText.text = "";
+            //if (phase == 2)
+            //scoreText.text = "Lives: " + (3 - strikes);
+            //else
+            //scoreText.text = ""+score;
+            //scoreText.text = "";
+            scoreText.text = "" + score + "/" + songNoteLength;
+
+            if(score >= songNoteLength)
+            {
+                //You win, pass a value to dialogue
+                starting = 3;
+                endTimer = 0;
+            }
+
+        }
+        if(starting == 3)
+        {
+            if (endTimer > 3)
+            {
+                end();
+            }
+            endTimer += Time.deltaTime;
         }
     }
 
@@ -383,6 +423,7 @@ public class syncRotate : MonoBehaviour
             setTarget(true); //Find a new key to want to press
             miss = false;
             hit = false;
+            score++;
         }
     }
 
@@ -425,6 +466,9 @@ public class syncRotate : MonoBehaviour
                 phase = 2;
                 pattern = false;
                 sr.color = Color.blue;
+                lifeSprite1.SetActive(true);
+                lifeSprite2.SetActive(true);
+                lifeSprite3.SetActive(true);
             }
         }
         else if (phase == 2) //Phase 2, keep score above 0
@@ -460,112 +504,119 @@ public class syncRotate : MonoBehaviour
     {
         string next = ""; //Reset the old combination
         //string uiT = "";
-        if (pattern)
+        if (score >= songNoteLength - 5)
         {
-            next = song1[currentNote];
-            //uiT = song1direction[currentNote];
-            currentNote++;
-            if (currentNote >= song1Max)
-                currentNote = 0;
+            noteSprites[nextNote].stopMotion();
         }
         else
         {
-            for (int y = 0; y < 2; y++) //Do this twice
+            if (pattern)
             {
-                int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
-                if (x == 0)
+                next = song1[currentNote];
+                //uiT = song1direction[currentNote];
+                currentNote++;
+                if (currentNote >= song1Max)
+                    currentNote = 0;
+            }
+            else
+            {
+                for (int y = 0; y < 2; y++) //Do this twice
                 {
-                    next += "U";
-                    //uiT += "^ ";
+                    int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
+                    if (x == 0)
+                    {
+                        next += "U";
+                        //uiT += "^ ";
+                    }
+                    else if (x == 1)
+                    {
+                        next += "L";
+                        //uiT += "< ";
+                    }
+                    else if (x == 2)
+                    {
+                        next += "D";
+                        //uiT += "v ";
+                    }
+                    else if (x == 3)
+                    {
+                        next += "R";
+                        //uiT += "> ";
+                    }
                 }
-                else if (x == 1)
-                {
-                    next += "L";
-                    //uiT += "< ";
-                }
-                else if (x == 2)
-                {
-                    next += "D";
-                    //uiT += "v ";
-                }
-                else if (x == 3)
-                {
-                    next += "R";
-                    //uiT += "> ";
-                }
+            }
+
+            //Sets the note generated.
+            noteList[nextNote] = next;
+            switch (next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
+            {
+                case "UU":
+                    noteSprites[nextNote].setSprite(UU);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
+                    break;
+                case "UR":
+                    noteSprites[nextNote].setSprite(UR);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.27f));
+                    break;
+                case "UL":
+                    noteSprites[nextNote].setSprite(UL);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.22f));
+                    break;
+                case "UD":
+                    noteSprites[nextNote].setSprite(UD);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.17f));
+                    break;
+                case "RU":
+                    noteSprites[nextNote].setSprite(RU);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.12f));
+                    break;
+                case "RR":
+                    noteSprites[nextNote].setSprite(RR);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.07f));
+                    break;
+                case "RL":
+                    noteSprites[nextNote].setSprite(RL);
+                    noteSprites[nextNote].setStart(new Vector2(14f, 0.02f));
+                    break;
+                case "RD":
+                    noteSprites[nextNote].setSprite(RD);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.03f));
+                    break;
+                case "LU":
+                    noteSprites[nextNote].setSprite(LU);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.08f));
+                    break;
+                case "LR":
+                    noteSprites[nextNote].setSprite(LR);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.13f));
+                    break;
+                case "LL":
+                    noteSprites[nextNote].setSprite(LL);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.18f));
+                    break;
+                case "LD":
+                    noteSprites[nextNote].setSprite(LD);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.23f));
+                    break;
+                case "DU":
+                    noteSprites[nextNote].setSprite(DU);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.28f));
+                    break;
+                case "DR":
+                    noteSprites[nextNote].setSprite(DR);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.33f));
+                    break;
+                case "DL":
+                    noteSprites[nextNote].setSprite(DL);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.38f));
+                    break;
+                case "DD":
+                    noteSprites[nextNote].setSprite(DD);
+                    noteSprites[nextNote].setStart(new Vector2(14f, -0.43f));
+                    break;
             }
         }
 
-        //There may be a better way to do this, but I'm not finding it. Sets the note generated.
-        noteList[nextNote] = next;
-        switch(next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
-        {
-            case "UU":
-                noteSprites[nextNote].setSprite(UU);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
-                break;
-            case "UR":
-                noteSprites[nextNote].setSprite(UR);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.27f));
-                break;
-            case "UL":
-                noteSprites[nextNote].setSprite(UL);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.22f));
-                break;
-            case "UD":
-                noteSprites[nextNote].setSprite(UD);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.17f));
-                break;
-            case "RU":
-                noteSprites[nextNote].setSprite(RU);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.12f));
-                break;
-            case "RR":
-                noteSprites[nextNote].setSprite(RR);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.07f));
-                break;
-            case "RL":
-                noteSprites[nextNote].setSprite(RL);
-                noteSprites[nextNote].setStart(new Vector2(14f, 0.02f));
-                break;
-            case "RD":
-                noteSprites[nextNote].setSprite(RD);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.03f));
-                break;
-            case "LU":
-                noteSprites[nextNote].setSprite(LU);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.08f));
-                break;
-            case "LR":
-                noteSprites[nextNote].setSprite(LR);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.13f));
-                break;
-            case "LL":
-                noteSprites[nextNote].setSprite(LL);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.18f));
-                break;
-            case "LD":
-                noteSprites[nextNote].setSprite(LD);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.23f));
-                break;
-            case "DU":
-                noteSprites[nextNote].setSprite(DU);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.28f));
-                break;
-            case "DR":
-                noteSprites[nextNote].setSprite(DR);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.33f));
-                break;
-            case "DL":
-                noteSprites[nextNote].setSprite(DL);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.38f));
-                break;
-            case "DD":
-                noteSprites[nextNote].setSprite(DD);
-                noteSprites[nextNote].setStart(new Vector2(14f, -0.43f));
-                break;
-        }
-        
         nextNote += 1;
         if (nextNote >= 5)
             nextNote = 0;
@@ -602,6 +653,10 @@ public class syncRotate : MonoBehaviour
         targetText.gameObject.SetActive(false);
         phaseText.gameObject.SetActive(false);
         pressedKeyText.gameObject.SetActive(false);
+
+        lifeSprite1.SetActive(false);
+        lifeSprite2.SetActive(false);
+        lifeSprite3.SetActive(false);
 
         starting = 0;
         startScale = 0;

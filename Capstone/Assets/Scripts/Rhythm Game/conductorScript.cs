@@ -26,6 +26,9 @@ public class conductorScript : MonoBehaviour
     //seconds passed since song began
     public float dspSongTime;
 
+    //length of the song in beats (wii shop has 97*3)
+    public float songLenghtinBeats;
+
     //musique,,,,,,
     public AudioSource music;
 
