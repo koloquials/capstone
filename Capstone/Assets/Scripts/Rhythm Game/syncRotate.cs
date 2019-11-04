@@ -464,6 +464,7 @@ public class syncRotate : MonoBehaviour
                     noteSprites[x].startMotion();
                 }
                 phase = 2;
+                strikes = 0;
                 pattern = false;
                 sr.color = Color.blue;
                 lifeSprite1.SetActive(true);
@@ -484,10 +485,14 @@ public class syncRotate : MonoBehaviour
                 //score = 0;
                 strikes = 0;
                 phase = 0;
+                score = 0;
                 pattern = true;
                 currentNote = 0;
                 for (int x = 0; x < 5; x++)
                     setTarget(true);
+                lifeSprite1.SetActive(false);
+                lifeSprite2.SetActive(false);
+                lifeSprite3.SetActive(false);
             }
             /*else if(score >= 10)
             {
