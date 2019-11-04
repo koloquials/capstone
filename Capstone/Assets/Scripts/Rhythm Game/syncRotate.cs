@@ -68,9 +68,9 @@ public class syncRotate : MonoBehaviour
     bool hit = false; //If a note is hit this cycle
     bool miss = false; //If a note is missed this tick
 
-    public Text pressedKeyText; //Debug, what keys are being pressed
-    public Text targetText; //Debug feature, what keys are correct
-    public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
+    //public Text pressedKeyText; //Debug, what keys are being pressed
+    //public Text targetText; //Debug feature, what keys are correct
+    //public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
     public Text phaseText; //Debug feature, what phase we're in
     public Text scoreText; //Debug feature, score count
 
@@ -138,10 +138,10 @@ public class syncRotate : MonoBehaviour
     {
         if (starting == 0)
         {
-            if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
-            {
-                begin();
-            }
+            //if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
+            //{
+                //begin();
+            //}
         }
         if (starting == 1)
         {
@@ -299,7 +299,7 @@ public class syncRotate : MonoBehaviour
                 lk = false;
                 rk = false;
                 keys = wasdK + arrowK;
-                pressedKeyText.text = keys;
+                //pressedKeyText.text = keys;
                 if (inZone == true) //If the timing is correct
                 {
                     if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
@@ -633,15 +633,15 @@ public class syncRotate : MonoBehaviour
         }
 
         //targetText.text = uiT; //Set debug direction indicator
-        debugTargetText.text = target;
+        //debugTargetText.text = target;
     }
 
     public void begin() //Starts the rhythm game. This should ideally be called from a script handling dialogue.
     {
         scoreText.gameObject.SetActive(true);
-        targetText.gameObject.SetActive(true);
+        //targetText.gameObject.SetActive(true);
         phaseText.gameObject.SetActive(true);
-        pressedKeyText.gameObject.SetActive(true);
+        //pressedKeyText.gameObject.SetActive(true);
         Start();
         this.transform.localPosition = PointOnCircle(((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3)), r);
         starting = 1;
@@ -655,9 +655,9 @@ public class syncRotate : MonoBehaviour
         fret.endReset();
 
         scoreText.gameObject.SetActive(false);
-        targetText.gameObject.SetActive(false);
+        //targetText.gameObject.SetActive(false);
         phaseText.gameObject.SetActive(false);
-        pressedKeyText.gameObject.SetActive(false);
+        //pressedKeyText.gameObject.SetActive(false);
 
         lifeSprite1.SetActive(false);
         lifeSprite2.SetActive(false);

@@ -1,0 +1,26 @@
+﻿title: startRhythm
+---
+BOX FIDEL!:Alright, good luck.
+<<RhythmStart RhythmLink>>
+===
+
+title: terminusEst
+---
+BOX FIDEL!: *Fidel would be sad if they weren't a box*
+===
+
+title: boxFidel
+tags: 
+colorID: 0
+position: 721,130
+---
+<<if visited("startRhythm") is true>>
+	BOX FIDEL!:Hey! PLACEHOLDER_PLAYER! Did you win? Did the game tell you why you're a box?
+<<else>>
+	BOX FIDEL!:Hey! PLAYER_NAME! Why are you a box?
+<<endif>>
+
+[[Please stop calling me that.|terminusEst]]
+[[Can you start the rhythm game?|startRhythm]]
+[[You're a box too.|terminusEst]]
+===
