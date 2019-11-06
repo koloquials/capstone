@@ -1,12 +1,12 @@
 ﻿title: startRhythm
 ---
-BOX FIDEL!:Alright, good luck.
-<<RhythmStart RhythmLink>>
+Fidel?: Alright, good luck.
+<<RhythmStart notePrefab>>
 ===
 
 title: terminusEst
 ---
-BOX FIDEL!: *Fidel would be sad if they weren't a box*
+Fidel?: Until next time, placeholder player
 ===
 
 title: boxFidel
@@ -15,12 +15,32 @@ colorID: 0
 position: 721,130
 ---
 <<if visited("startRhythm") is true>>
-	BOX FIDEL!:Hey! PLACEHOLDER_PLAYER! Did you win? Did the game tell you why you're a box?
+	Fidel?: Hey! How'd it go?
+	[[It went pretty great.|demoGood]]
+	[[It sucked.|demoBad]]
+	[[Let me try again.|startRhythm]]
 <<else>>
-	BOX FIDEL!:Hey! PLAYER_NAME! Why are you a box?
+	Fidel?: Hey! Welcome to the demo.
+	[[Can you start the rhythm game?|startRhythm]]
+	[[Why are we boxes?|selfAwareness]]
+	[[Bye.|terminusEst]]
 <<endif>>
 
-[[Please stop calling me that.|terminusEst]]
+===
+
+title: selfAwareness
+---
+Fidel?: We're placeholders. It's only temporary.
 [[Can you start the rhythm game?|startRhythm]]
-[[You're a box too.|terminusEst]]
+[[Bye.|terminusEst]]
+===
+
+title: demoGood
+---
+Fidel?: That's good news, for once.
+===
+
+title: demoBad
+---
+Fidel?: Well, it's a work in progress.
 ===

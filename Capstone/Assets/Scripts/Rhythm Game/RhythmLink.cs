@@ -29,8 +29,7 @@ using System.Collections;
 /// Attach sprite renderer to game object
 namespace Yarn.Unity.Example
 {
-
-    [RequireComponent(typeof(SpriteRenderer))]
+    
     /// Attach SpriteSwitcher to game object
     public class RhythmLink : MonoBehaviour
     {
@@ -38,7 +37,7 @@ namespace Yarn.Unity.Example
 
         /// Create a command to use on a sprite
         [YarnCommand("RhythmStart")]
-        public void UseSprite(string spriteName)
+        public void startGame()
         {
             sync.begin();
         }

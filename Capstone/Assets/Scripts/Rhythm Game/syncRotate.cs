@@ -11,6 +11,8 @@ public class syncRotate : MonoBehaviour
 
     public conductorScript script;
 
+    public Yarn.Unity.Example.PlayerCharacter pc; //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
+
     int starting = 0; //Handles entering the rhythm game. 0 is not started, 1 is the little intro animation, 2 is ready to go.
 
     float startScale = 0f; //Scale of the rotating ball at the start. Used for the intro animation.
@@ -648,6 +650,7 @@ public class syncRotate : MonoBehaviour
         sr.enabled = true;
         startTimer = 0;
         startScale = 0;
+        pc.motionControl(false);
     }
 
     void end() //Exits the rhythm game and resets stats
@@ -694,6 +697,8 @@ public class syncRotate : MonoBehaviour
         currentNote = 0;
 
         sr.enabled = false;
+
+        pc.motionControl(true);
     }
 
 
