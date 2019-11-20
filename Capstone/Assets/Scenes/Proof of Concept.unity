@@ -210,8 +210,18 @@ PrefabInstance:
     - target: {fileID: 982109736365544062, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
         type: 3}
       propertyPath: songLenghtinBeats
-      value: 291
+      value: 305
       objectReference: {fileID: 0}
+    - target: {fileID: 982109736365544062, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: sBPM
+      value: 138
+      objectReference: {fileID: 0}
+    - target: {fileID: 982109736365544049, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4597196f14412404887593403299955f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30d1ee53e4cd85d499fe8335ca1efb6c, type: 3}
 --- !u!1 &47717064 stripped

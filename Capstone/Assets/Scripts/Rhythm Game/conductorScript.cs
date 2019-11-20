@@ -27,7 +27,7 @@ public class conductorScript : MonoBehaviour
     public float dspSongTime;
 
     //length of the song in beats (wii shop has 97*3)
-    public float songLenghtinBeats;
+    public int songLenghtinBeats;
 
     //musique,,,,,,
     public AudioSource music;
@@ -58,7 +58,7 @@ public class conductorScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //track seconds since song began
         //songPos = (float)(AudioSettings.dspTime - dspSongTime);
