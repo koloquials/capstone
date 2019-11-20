@@ -48,18 +48,33 @@ namespace Yarn.Unity.Example {
         /// Movement speed of camera
         public float moveSpeed = 1.0f;
 
+        public bool inGame = false; //Whether or not the rhythm game is active.
+
         // Update is called once per frame
         void Update () {
-            if (target == null) {
-                return;
+            if (inGame)
+            {
+                transform.position = new Vector3(0f, 0f, -10f); //NOTE! At current, the entire scene is structured around the rhythm game being at the origin.
             }
-            var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
+            else
+            {
+                if (target == null)
+                {
+                    return;
+                }
+                var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
-            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
-            newPosition.y = transform.position.y;
-            newPosition.z = transform.position.z;
+                newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+                newPosition.y = transform.position.y;
+                newPosition.z = transform.position.z;
 
-            transform.position = newPosition;
+                transform.position = newPosition;
+            }
+        }
+
+        public void setGame(bool g)
+        {
+            inGame = g;
         }
     }
 }

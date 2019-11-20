@@ -14,12 +14,28 @@ tags:
 colorID: 0
 position: 721,130
 ---
-<<if visited("startRhythm") is true>>
+<<if $waypoint = null>>
+	Fidel?:I'm going to move like 4 times to test NPC motion.
+	<<set $waypoint to 2>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 2>>
+	Fidel?:And again!
+	<<set $waypoint to 3>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 3>>
+	Fidel?:Once more!
+	<<set $waypoint to 4>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 4>>
+	Fidel?:And once again!
+	<<set $waypoint to 5>>
+	<<moveNPC Fidel>>
+<<elseif visited("startRhythm") is true>>
 	Fidel?: Hey! How'd it go?
 	[[It went pretty great.|demoGood]]
 	[[It sucked.|demoBad]]
 	[[Let me try again.|startRhythm]]
-<<else>>
+<<elseif $waypoint is 5>>
 	Fidel?: Hey! Welcome to the demo.
 	[[Can you start the rhythm game?|startRhythm]]
 	[[Why are we boxes?|selfAwareness]]
@@ -27,7 +43,6 @@ position: 721,130
 <<endif>>
 
 ===
-
 title: selfAwareness
 ---
 Fidel?: We're placeholders. It's only temporary.

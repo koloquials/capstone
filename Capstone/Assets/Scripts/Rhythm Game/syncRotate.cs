@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class syncRotate : MonoBehaviour
 
 {
+    //IMPORTANT! The scene should be set up such that the rhythm game part should be at the origin of the scene's worldspace.
     //FOR CLARIFICATION: This script goes on the smaller circle orbiting a point on the screen. The fret is the larger circle intersecting the smaller circle's orbit on the right side, which should have the fretFeedback script.
     //The spriterenderer of both this and the fret should start disabled.
 
@@ -50,7 +51,7 @@ public class syncRotate : MonoBehaviour
     public float r = 1;
     public float speed = .1f;
 
-    public Camera cam;
+    public Yarn.Unity.Example.CameraFollow cam; //Camerafollow script, should be attached to the camera.
 
     public ParticleSystem party;
 
@@ -662,6 +663,7 @@ public class syncRotate : MonoBehaviour
 
     public void begin() //Starts the rhythm game. This should ideally be called from a script handling dialogue.
     {
+        cam.setGame(true);
         scoreText.gameObject.SetActive(true);
         //targetText.gameObject.SetActive(true);
         phaseText.gameObject.SetActive(true);
@@ -721,6 +723,7 @@ public class syncRotate : MonoBehaviour
         sr.enabled = false;
 
         pc.motionControl(true);
+        cam.setGame(false);
     }
 
 

@@ -34,6 +34,7 @@ namespace Yarn.Unity.Example
     public class RhythmLink : MonoBehaviour
     {
         public syncRotate sync;
+        public npcMotion npc;
 
         /// Create a command to use on a sprite
         [YarnCommand("RhythmStart")]

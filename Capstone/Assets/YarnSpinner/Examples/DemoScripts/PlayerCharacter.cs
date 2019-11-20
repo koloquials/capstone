@@ -90,7 +90,8 @@ namespace Yarn.Unity.Example {
             var target = allParticipants.Find (delegate (NPC p) {
                 return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
                 (p.transform.position - this.transform.position)// is in range?
-                .magnitude <= interactionRadius;
+                .magnitude <= interactionRadius
+                && !p.moving;
             });
             if (target != null) {
                 // Kick off the dialogue at this node.
