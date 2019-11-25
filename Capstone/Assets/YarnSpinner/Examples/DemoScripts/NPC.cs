@@ -40,6 +40,8 @@ namespace Yarn.Unity.Example {
         [Header("Optional")]
         public TextAsset scriptToLoad;
 
+        public bool moving = false;
+
         // Use this for initialization
         void Start () {
             if (scriptToLoad != null) {
@@ -51,6 +53,11 @@ namespace Yarn.Unity.Example {
         // Update is called once per frame
         void Update () {
 
+        }
+
+        public void setMotion(bool m)
+        {
+            moving = m;
         }
     }
 
