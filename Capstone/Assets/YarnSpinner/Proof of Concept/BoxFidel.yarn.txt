@@ -15,11 +15,11 @@ colorID: 0
 position: 721,130
 ---
 <<if $waypoint = null>>
-	Fidel?:I'm going to move like 4 times to test NPC motion.
+	Fidel?:I'm going to move like 4 <i>times to test</i> NPC motion. OOOOOOOOOOOOOOOOOOOOOOOOO.
 	<<set $waypoint to 2>>
 	<<moveNPC Fidel>>
 <<elseif $waypoint is 2>>
-	Fidel?:And again!
+	Fidel?:And <i>again!</i>
 	<<set $waypoint to 3>>
 	<<moveNPC Fidel>>
 <<elseif $waypoint is 3>>
