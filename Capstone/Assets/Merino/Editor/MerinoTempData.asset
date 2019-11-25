@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13981b66f67204744891820795ef4230, type: 3}
   m_Name: MerinoTempData
   m_EditorClassIdentifier: 
-  editedID: 2
-  timestamp: 8218.3544077
+  editedID: 5
+  timestamp: 2176.490685157
   viewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 03000000
-    m_LastClickedID: 2
-    m_ExpandedIDs: 0000000001000000
+    m_SelectedIDs: 05000000
+    m_LastClickedID: 5
+    m_ExpandedIDs: 000000000100000004000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -37,8 +37,10 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
   currentFiles:
-  - {fileID: 4900000, guid: fc7b50386f57fee4abfe763e05a4c6e6, type: 3}
-  dirtyFiles: []
+  - {fileID: 4900000, guid: c89822fbbb466493cbd9c336ba1f03d2, type: 3}
+  - {fileID: 4900000, guid: 5e0fead0f5ba2ac4eb77c32c5da15381, type: 3}
+  dirtyFiles:
+  - {fileID: 4900000, guid: c89822fbbb466493cbd9c336ba1f03d2, type: 3}
   treeElements:
   - m_ID: 0
     m_Name: Root
@@ -50,7 +52,7 @@ MonoBehaviour:
     cachedParentID: -1
     cachedSize: 0
   - m_ID: 1
-    m_Name: NewYarnFile.yarn
+    m_Name: Fidel Demo Scene.yarn
     m_Depth: 0
     nodeTags: 
     nodeBody: 
@@ -62,31 +64,159 @@ MonoBehaviour:
     m_Name: Start
     m_Depth: 1
     nodeTags: 
-    nodeBody: 'This is the Start node. Write the beginning of your Yarn story here.
-
-      // You can make comments with ''//'' and the player won''t see it.
-
-
-      // There''s two ways to do choices in Yarn. The most basic way is to link to
-      other nodes like this:
-
-      [[Go see more examples|Start_MoreExamples]]
-
-      [[Actually, let''s restart this node again|Start]]
-
-
-      Does this work OK? OK
-
-
-      // IMPORTANT: node options are only offered at the end of the passage
-
-      Do you want to read more about Yarn features?'
+    nodeBody: "//start of the Fidel Tour Scene (demo)\n<<Act @ Fidel, fidel_happy,
+      0.5, 0.5, #226677>>\n-and that\u2019s my theory on how all seagulls are just
+      acoustic pelicans.\nOh, just in time. Here we are\u2026 our first stop!\nYou
+      can open your eyes now.  \n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5,
+      #6764f7>>\n\u2018kay.\n\n[[Scene1]]"
     leafType: 0
-    nodePosition: {x: -65, y: -550}
+    nodePosition: {x: -21, y: 45}
     cachedParentID: 1
-    cachedSize: 100
+    cachedSize: 0
   - m_ID: 3
-    m_Name: Start_MoreExamples
+    m_Name: Scene1
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//blur into view. standing in shitty mall clothing section\n<<Act @
+      Fidel, fidel_wry, 0.5, 0.5, #226677>>\nThanks for deciding to trust, heh, a
+      stranger like me with taking you around town. \nFor starters, this is my humble
+      abode! Welcome.\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\u2026\nThis
+      is\u2014 \nWe\u2019re in an old mall.\n<<HideAll @>>\n<<Act @ Fidel, fidel_happy>>\nSure
+      are!\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nYou live here.\nIn the clothing
+      aisle?\n<<HideAll @>>\n<<Act @ Fidel, fidel_happy>>\nWell, you know what they
+      say, one animal\u2019s trash is another one\u2019s beautiful home.\n-> Do they,
+      now?\n\t<<HideAll @>>\n\t<<Act @ ?, player_joke>>\n\tDo they, now?\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tYeah, and it\u2019s *this* trash animal\u2019s
+      crib, heh! \n-> It\u2019s nice.\n\t<<HideAll @>>\n\t<<Act @ ?, player_pleasant>>\n\tIt\u2019s
+      nice.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tAw, thanks. I don\u2019t
+      really decorate or anything.\n\tIntentionally, anyways.\n<<Act @ Fidel, fidel_concern>>\nHmm.\nIs
+      that all it is to you? Just an old mall?\n-> Should it be more?\n\t<<HideAll
+      @>>\n\t<<Act @ ?, player_concern>>\n\tShould it be more?\n\t<<HideAll @>>\n\t<<Act
+      @ Fidel, fidel_disappointed>>\n\tAh\u2026 I guess not. It\u2019s not important,
+      don\u2019t worry about it.\n-> Doesn\u2019t ring any bells, sorry.\n\t<<HideAll
+      @>>\n\t<<Act @ ?, player_sorry>>\n\tDoesn\u2019t ring any bells, sorry.\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_disappointed>>\n\tThat\u2019s okay. I\u2019m sorry,
+      that must\u2019ve sounded like a weird question. \n<<Act @ Fidel, fidel_happy>>\nBut
+      that\u2019s enough of that. Alrighty, camera crew, lemme hit you with the tour.\n<<HideAll
+      @>>\n<<Act @ ?, player_neutral>>\nI don\u2019t have a camera.\n<<HideAll @>>\n<<Act
+      @ Fidel, fidel_hah>>\n\u2026It was a joke! C\u2019mon, stick with it!\n<<HideAll
+      @>>\n<<Act @ ?, player_neutral>>\nI don\u2019t\u2014 okay. Let\u2019s go.  \n<<HideAll
+      @>>\n<<Act @ Fidel, fidel_woah>>\nWoah there, chief. Try not to get *too* excited.
+      \n<<HideAll @>>\n<<Act @ ?, player_neutral>>\n\u2026\n<<HideAll @>>\n<<Act @
+      Fidel, fidel_disappointed>>\n\u2026\nShit, dude. Zero out of two. We\u2019re
+      gonna get tomatoed right off the stage.\n\n[[Scene2]]"
+    leafType: 0
+    nodePosition: {x: -138, y: -49}
+    cachedParentID: 1
+    cachedSize: 0
+  - m_ID: 4
+    m_Name: Scene2
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//they walk a little bit and get into a more desolate part of the mall\n<<Act
+      @ Fidel, fidel_neutral, 0.5, 0.5, #226677>>\nAnywho, this is sorta just my usual
+      stompin grounds.\nI hang out here and have fun!\nMind the murals and, uh, wire
+      sculptures. I like to consider myself an artistic soul.\n...and the broken glass.
+      I was just tossing rocks once. I\u2014 I dunno. I was vibing. \n//he walks forward
+      some more\n<<HideAll @>>\n<<Act @ Fidel, fidel_thinking, 0.5, 0.5, #226677>>\nHmmm\u2026
+      what else, what else? Oh!\nIt\u2019s a \u2018lil early for this, b-but I want
+      you to meet my other friends!\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5,
+      0.5, #6764f7>>\nWhy are you blushing?\nYour other friends are here?\n<<HideAll
+      @>>\n<<Act @ Fidel, fidel_happy>>\nJust stay right there, I\u2019ll go get them!\n//they
+      run off, retrieve two rat mannequins. they resemble the player and mara a little.\n<<HideAll
+      @>>\n<<Act @ Fidel, fidel_happy>>\nHere they are\u2014 my besties! \n-> Nice
+      to meet you.\n\t<<HideAll @>>\n\t<<Act @ ?, player_pleasant>>\n\tNice to meet
+      you.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tSo polite!\n\tThanks
+      for being kind to them. Some people are so rude, y\u2019know?\n\t<<HideAll @>>\n\t<<Act
+      @ ?, player_concern>>\n\t...Yeah.\n-> Huh.\n\t<<HideAll @>>\n\t<<Act @ ?, player_neutral>>\n\tHuh.\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tHey, don\u2019t be rude. I want my friends
+      to get along!\n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\tAre we friends?\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_disappointed>>\n\tOkay, point. \n<<HideAll @>>\n<<Act
+      @ Fidel, fidel_happy>>\nWe\u2019ve been through thick and thin together; we\u2019ve
+      been friends forever!\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nThe\u2014
+      them? They look like you\u2026 found them yesterday. That\u2019s\u2026 surprising.\n<<HideAll
+      @>>\n<<Act @ Fidel, fidel_neutral>>\nThat they don\u2019t look older? Oh yeah,
+      like I said earlier, weird time bubble.\nEverything\u2019s\u2026 frozen. I guess
+      that\u2019s the best way to explain it. \nYou don\u2019t have to think too hard
+      about it.\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 1
+    cachedSize: 0
+  - m_ID: 5
+    m_Name: Scene3
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//there's a beat. and then they continue on their way\n<<Act @ Fidel,
+      fidel_neutral, 0.5, 0.5, #226677>>\nAnyways, you hungry?\n-> Yeah, I\u2019m
+      peckish.\n\t<<HideAll @>>\n\t<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\tYeah,
+      I\u2019m peckish.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_hah>>\n\tCool! Just
+      don\u2019t peck at me, yeah? Hah! \n-> Not really.\n\t<<HideAll @>>\n\t<<Act
+      @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\tNot really.\n\t<<HideAll @>>\n\t<<Act
+      @ Fidel, fidel_hah>>\n\tMe neither, but that\u2019s where this path of debris
+      leads, so we gotta blast!\nTo the food court! \n//fidel runs ahead and the player
+      follows. they fuck around at a food court\nOkay, okay. Don\u2019t mind if I
+      do! \n//they get to a counter and dive behind it\nWelcome to Grilli\u2019s,
+      how can I help you?\n-> Are you going to take my order?\n\t<<HideAll @>>\n\t<<Act
+      @ ?, player_concern>>\n\tAre you going to take my order?\n\t<<HideAll @>>\n\t<<Act
+      @ Fidel, fidel_hah>>\n\tHeh, absolutely not. I can\u2019t help you at all! Who
+      do you think I am?\n\tBut I do have a very *un*helpful thing for you.\n-> Cheeseburger.\n\t<<HideAll
+      @>>\n\t<<Act @ ?, player_neutral>>\n\tCheeseburger.\n\t<<HideAll @>>\n\t<<Act
+      @ Fidel, fidel_hah>>\n\tThat\u2019s not even on the menu. Get outta here, you
+      heathen! Scram!\n...Now come back. I have something real special to ask you.
+      \   \n[PLAYER], do you...\nDo you wanna see me eat seventy chicken nuggets?\n->
+      No.\n\t<<HideAll @>>\n\t<<Act @ ?, player_mad>>\n\tNo.\n-> Absolutely not.\n\t<<HideAll
+      @>>\n\t<<Act @ ?, player_mad>>\n\tAbsolutely not.\n//automatically dismisses
+      this in 0.2 seconds so it looks like they don\u2019t get a choice\n<<HideAll
+      @>>\n<<Act @ Fidel, fidel_hah>>\nWell, we can\u2019t always have what we want,
+      buddy.\nOh no, I dropped one. Ah beans, there it goes... down the drain. \nNow
+      I have exactly one fewer than seventy.\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nWhat
+      drain? We\u2019re in a food court.\nI just watched you very deliberately open
+      a carton and drop a nugget to the floor.\n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nHaha,
+      yeah. It\u2019s gone forever. Goodbye.\nSo good of this fast food place to offer
+      their nuggets in increments of seven like this.\nAlso they\u2019re, like, technically
+      ten years old, so I don\u2019t actually want any of \u2018em.\n<<HideAll @>>\n<<Act
+      @ ?, player_concern>>\nThey look fine to me. Is this the same deal as before?
+      Another time bubble\u2026 thing? \n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nYou\u2019re
+      learning! Yeah, it\u2019s another one of those frozen magic deals.\nPhysically
+      they\u2019ve remained just a few hours old. The world hasn\u2019t moved at all.\nSo
+      they\u2019re safe to eat! But it still feels icky. It\u2019s, like, the principle
+      of the matter. \nMnm.\n//fidel eats one anyways\n<<HideAll @>>\n<<Act @ ?, player_concern>>\n\u2026
+      \n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nYeah, my body doesn\u2019t remember
+      what food is, so it\u2019s disagreeing with everything.\n<<HideAll @>>\n<<Act
+      @ ?, player_concern>>\nWhy are you like this? \n<<HideAll @>>\n<<Act @ Fidel,
+      fidel_hah>>\nYou know me!\nOr I guess you don\u2019t. \n//wistful silence\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 1
+    cachedSize: 0
+  - m_ID: 6
+    m_Name: Scene4
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//more wistful silence as we disconnect from the scene\n<<Act @ Fidel,
+      fidel_neutral, 0.5, 0.5, #226677>>\nSo\u2026 you really don\u2019t remember
+      anything, huh?\nI hoped coming here would jog your memory. But it was just that.
+      \nWishful thinking.\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\nI'm.
+      Really sorry.\n<<HideAll @>>\n<<Act @ Fidel, fidel_neutral>>\nDon't be.\nThis.
+      This has been fun. I\u2019m glad you\u2019re back. I am. \nI know it doesn\u2019t
+      mean anything to you, but it was good to see you again. \nIt\u2019s just been
+      so long. I didn\u2019t think it was possible, I didn\u2019t think things would
+      ever be different.\n-> \u2026 \n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\t\u2026\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_neutral>>\n\tI just can\u2019t do this.\n-> Fidel\u2026
+      \n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\tFidel\u2026\n\t<<HideAll
+      @>>\n\t<<Act @ Fidel, fidel_sad>>\n\tI just can\u2019t do this, [PLAYER].\nWe\u2019ve
+      been living like this for so long. I thought it was okay, for things to just
+      be this way.\nFor me to be alone out here.\nFor the world to be in a standstill.\nAnd
+      for me to just. Get by.\n<<HideAll @>>\n<<Act @ ?, player_neutral>>\nHey.\nI\u2019m
+      going to try something, okay?\n//some sick entering fidel\u2019s soul animation.
+      music gameplay begins.\n\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 1
+    cachedSize: 0
+  - m_ID: 7
+    m_Name: MoreExamples
     m_Depth: 1
     nodeTags: 
     nodeBody: "This node is called Start_MoreExamples.\nThe second way to do choices
@@ -97,19 +227,46 @@ MonoBehaviour:
       chose option 2!\n<<else>>\nI can't detect a variable $didOption2, so that means
       you chose option 1\n<<endif>>\n\nDo you want to go back to Start now?\n-> Yes,
       send me back to Start.\n\t[[Start]]\n-> No thanks, I want to stop.\n\nOk here's
-      the end, good luck!\n[[Go to NewNode4|NewNode4]]"
+      the end, good luck!\n[[Go to NewNode4|NewNode4]]\n[[Go to Scene1|Scene1]]\n\n[[Go
+      see more examples|Start_MoreExamples]]\n[[Actually, let's restart this node
+      again|Start]]\n\n// IMPORTANT: node options are only offered at the end of the
+      passage\nDo you want to read more about Yarn features?"
     leafType: 0
-    nodePosition: {x: 300, y: -593}
+    nodePosition: {x: 28, y: -178}
     cachedParentID: 1
-    cachedSize: 125
-  - m_ID: 4
-    m_Name: NewNode4
+    cachedSize: 0
+  - m_ID: 8
+    m_Name: BoxFidel.yarn
+    m_Depth: 0
+    nodeTags: 
+    nodeBody: 
+    leafType: 1
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: -1
+    cachedSize: 0
+  - m_ID: 9
+    m_Name: Scene2
     m_Depth: 1
     nodeTags: 
-    nodeBody: 'Write here.
-
-'
+    nodeBody: "FIDEL: Anywho, this is sorta just my usual stompin grounds.\nFIDEL:
+      I hang out here and have fun!\nFIDEL: Mind the murals and, uh, wire sculptures.
+      I like to consider myself an artistic soul.\nFIDEL: ...and the broken glass.
+      I was just tossing rocks once. I\u2014 I dunno. I was vibing. \nFIDEL: Hmmm\u2026
+      what else, what else? Oh!\nFIDEL: It\u2019s a \u2018lil early for this, b-but
+      I want you to meet my other friends!\nPLAYER: Why are you blushing?\nPLAYER:
+      Your other friends are here?\nFIDEL: Just stay right there, I\u2019ll go get
+      them!\n\n\n[they run off, retrieve two rat mannequins. they resemble the player
+      and mara a little.]\nFIDEL: Here they are\u2014 my besties! \nPLAYER: Nice to
+      meet you. | Huh.\n> FIDEL: So polite!\n   FIDEL: Thanks for being kind to them.
+      Some people are so rude, y\u2019know?\n   PLAYER: ...Yeah.\n> FIDEL: Hey, don\u2019t
+      be rude. I want my friends to get along!\n   PLAYER: Are we friends?\n   FIDEL:
+      Okay, point. \nFIDEL: We\u2019ve been through thick and thin together; we\u2019ve
+      been friends forever!\nPLAYER: The\u2014 them? They look like you\u2026 found
+      them yesterday. That\u2019s\u2026 surprising.\nFIDEL: That they don\u2019t look
+      older? Oh yeah, like I said earlier, weird time bubble.\nFIDEL: Everything\u2019s\u2026
+      frozen. I guess that\u2019s the best way to explain it. \nFIDEL: You don\u2019t
+      have to think too hard about it.\n"
     leafType: 0
-    nodePosition: {x: 134, y: -420}
-    cachedParentID: 1
-    cachedSize: 100
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 8
+    cachedSize: 0

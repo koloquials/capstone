@@ -1,46 +1,34 @@
-﻿title: startRhythm
----
-Fidel?: Alright, good luck.
-<<RhythmStart notePrefab>>
-===
 
-title: terminusEst
----
-Fidel?: Until next time, placeholder player
-===
-
-title: boxFidel
+title: Scene2_2
 tags: 
 colorID: 0
-position: 721,130
+position: 0,0
+parent: 
 ---
-<<if visited("startRhythm") is true>>
-	Fidel?: Hey! How'd it go?
-	[[It went pretty great.|demoGood]]
-	[[It sucked.|demoBad]]
-	[[Let me try again.|startRhythm]]
-<<else>>
-	Fidel?: Hey! Welcome to the demo.
-	[[Can you start the rhythm game?|startRhythm]]
-	[[Why are we boxes?|selfAwareness]]
-	[[Bye.|terminusEst]]
-<<endif>>
+FIDEL: Anywho, this is sorta just my usual stompin grounds.
+FIDEL: I hang out here and have fun!
+FIDEL: Mind the murals and, uh, wire sculptures. I like to consider myself an artistic soul.
+FIDEL: ...and the broken glass. I was just tossing rocks once. I— I dunno. I was vibing. 
+FIDEL: Hmmm… what else, what else? Oh!
+FIDEL: It’s a ‘lil early for this, b-but I want you to meet my other friends!
+PLAYER: Why are you blushing?
+PLAYER: Your other friends are here?
+FIDEL: Just stay right there, I’ll go get them!
 
-===
 
-title: selfAwareness
----
-Fidel?: We're placeholders. It's only temporary.
-[[Can you start the rhythm game?|startRhythm]]
-[[Bye.|terminusEst]]
-===
+[they run off, retrieve two rat mannequins. they resemble the player and mara a little.]
+FIDEL: Here they are— my besties! 
+PLAYER: Nice to meet you. | Huh.
+> FIDEL: So polite!
+   FIDEL: Thanks for being kind to them. Some people are so rude, y’know?
+   PLAYER: ...Yeah.
+> FIDEL: Hey, don’t be rude. I want my friends to get along!
+   PLAYER: Are we friends?
+   FIDEL: Okay, point. 
+FIDEL: We’ve been through thick and thin together; we’ve been friends forever!
+PLAYER: The— them? They look like you… found them yesterday. That’s… surprising.
+FIDEL: That they don’t look older? Oh yeah, like I said earlier, weird time bubble.
+FIDEL: Everything’s… frozen. I guess that’s the best way to explain it. 
+FIDEL: You don’t have to think too hard about it.
 
-title: demoGood
----
-Fidel?: That's good news, for once.
-===
-
-title: demoBad
----
-Fidel?: Well, it's a work in progress.
 ===
