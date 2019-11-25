@@ -54,13 +54,13 @@ public class note : MonoBehaviour
     {
         moving = false;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
-        transform.localScale = Vector2.zero;
-        scale = 0;
     }
 
     public void startMotion()
     {
         moving = true;
+        transform.localScale = Vector2.zero;
+        scale = 0;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
     }
 

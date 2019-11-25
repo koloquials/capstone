@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class syncRotate : MonoBehaviour
 
 {
+    //IMPORTANT! The scene should be set up such that the rhythm game part should be at the origin of the scene's worldspace.
     //FOR CLARIFICATION: This script goes on the smaller circle orbiting a point on the screen. The fret is the larger circle intersecting the smaller circle's orbit on the right side, which should have the fretFeedback script.
     //The spriterenderer of both this and the fret should start disabled.
 
     public conductorScript script;
+
+    public Yarn.Unity.Example.PlayerCharacter pc; //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
 
     int starting = 0; //Handles entering the rhythm game. 0 is not started, 1 is the little intro animation, 2 is ready to go.
 
@@ -48,7 +51,7 @@ public class syncRotate : MonoBehaviour
     public float r = 1;
     public float speed = .1f;
 
-    public Camera cam;
+    public Yarn.Unity.Example.CameraFollow cam; //Camerafollow script, should be attached to the camera.
 
     public ParticleSystem party;
 
@@ -56,7 +59,7 @@ public class syncRotate : MonoBehaviour
 
     public int score; //Currently used to denote how many notes have passed
 
-    private float songNoteLength; //Length of the song, in notes
+    private int songNoteLength; //Length of the song, in notes
 
     public bool inZone = false; //Whether the note is in the zone
 
@@ -68,9 +71,9 @@ public class syncRotate : MonoBehaviour
     bool hit = false; //If a note is hit this cycle
     bool miss = false; //If a note is missed this tick
 
-    public Text pressedKeyText; //Debug, what keys are being pressed
-    public Text targetText; //Debug feature, what keys are correct
-    public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
+    //public Text pressedKeyText; //Debug, what keys are being pressed
+    //public Text targetText; //Debug feature, what keys are correct
+    //public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
     public Text phaseText; //Debug feature, what phase we're in
     public Text scoreText; //Debug feature, score count
 
@@ -118,7 +121,7 @@ public class syncRotate : MonoBehaviour
 
         defaultCol = sr.color;
 
-        songNoteLength = script.songLenghtinBeats / 3;
+        songNoteLength = (script.songLenghtinBeats) / 3;
 
         for (int x = 0; x < noteSprites.Length; x++)
         {
@@ -138,10 +141,10 @@ public class syncRotate : MonoBehaviour
     {
         if (starting == 0)
         {
-            if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
-            {
-                begin();
-            }
+            //if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
+            //{
+                //begin();
+            //}
         }
         if (starting == 1)
         {
@@ -299,7 +302,7 @@ public class syncRotate : MonoBehaviour
                 lk = false;
                 rk = false;
                 keys = wasdK + arrowK;
-                pressedKeyText.text = keys;
+                //pressedKeyText.text = keys;
                 if (inZone == true) //If the timing is correct
                 {
                     if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
@@ -382,17 +385,34 @@ public class syncRotate : MonoBehaviour
             }
 
         }
-        if(starting == 3)
+        if(starting == 3) //The end, wait 3 seconds before closing to give the song time to close out.
         {
+            this.transform.position = PointOnCircle(0, r);
             if (endTimer > 3)
             {
                 end();
+            }
+            else if(endTimer > 1)
+            {
+                if (endTimer < 1.1f)
+                {
+                    lifeSprite1.SetActive(false);
+                    lifeSprite2.SetActive(false);
+                    lifeSprite3.SetActive(false);
+                    fret.endingScaling(); //The fret handles it's own scaling process, just has to be told to start scaling down
+                }
+                startScale = Mathf.Lerp(startScale, 0, 0.1f);
+                if (startScale < 0.1f)
+                {
+                    startScale = 0;
+                }
+                transform.localScale = new Vector2(startScale, startScale);
             }
             endTimer += Time.deltaTime;
         }
     }
 
-    Vector3 PointOnCircle(float angle, float radius)
+    Vector3 PointOnCircle(float angle, float radius) //Used to move the beat indicator in a circle.
     {
         return new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), 0);
     }
@@ -429,220 +449,232 @@ public class syncRotate : MonoBehaviour
 
     void phaseCheck() //Checks the result of misses and hits on the game's phases.
     {
-        if (phase == 0) //Phase 0, the note stands still until you hit it, starting phase 1
+        if (starting < 3)
         {
-            if (miss)
+            if (phase == 0) //Phase 0, the note stands still until you hit it, starting phase 1
             {
-                score = 0;
-                currentNote = 0;
-                pattern = true;
-                currentNote = 0;
-                for(int x = 0; x < 5; x++)
-                    setTarget(true);
-            }
-            else if (hit)
-            {
-                phase = 1;
-                script.startMusic();
-            }
-        }
-        else if (phase == 1) //Phase 1, have to hit 10 notes in a row to go to phase 2
-        {
-            if (miss) //A miss in phase 1 resets to phase 0
-            {
-                script.stopMusic();
-                score = 0;
-                phase = 0;
-                currentNote = 0;
-                for (int x = 0; x < 5; x++)
-                    setTarget(true);
-            }
-            else if (hit && score >= 10)
-            {
-                for (int x = 0; x < noteSprites.Length; x++)
+                if (miss)
                 {
-                    noteSprites[x].startMotion();
+                    score = 0;
+                    pattern = true;
+                    currentNote = 0;
+                    for (int x = 0; x < 5; x++)
+                        setTarget(true);
                 }
-                phase = 2;
-                pattern = false;
-                sr.color = Color.blue;
-                lifeSprite1.SetActive(true);
-                lifeSprite2.SetActive(true);
-                lifeSprite3.SetActive(true);
-            }
-        }
-        else if (phase == 2) //Phase 2, keep score above 0
-        {
-            if (strikes >= 3)
-            {
-                sr.color = Color.gray;
-                script.stopMusic();
-                for(int x=0; x<noteSprites.Length; x++)
+                else if (hit)
                 {
-                    noteSprites[x].stopMotion();
+                    phase = 1;
+                    script.startMusic();
                 }
-                //score = 0;
-                strikes = 0;
-                phase = 0;
-                pattern = true;
-                currentNote = 0;
-                for (int x = 0; x < 5; x++)
-                    setTarget(true);
             }
-            /*else if(score >= 10)
+            else if (phase == 1) //Phase 1, have to hit 10 notes in a row to go to phase 2
             {
-                sr.color = Color.blue;
+                if (miss) //A miss in phase 1 resets to phase 0
+                {
+                    script.stopMusic();
+                    score = 0;
+                    phase = 0;
+                    currentNote = 0;
+                    for (int x = 0; x < 5; x++)
+                        setTarget(true);
+                }
+                else if (hit && score >= 10)
+                {
+                    for (int x = 0; x < noteSprites.Length; x++)
+                    {
+                        noteSprites[x].startMotion();
+                    }
+                    phase = 2;
+                    strikes = 0;
+                    pattern = false;
+                    sr.color = Color.blue;
+                    lifeSprite1.SetActive(true);
+                    lifeSprite2.SetActive(true);
+                    lifeSprite3.SetActive(true);
+                }
             }
-            else
+            else if (phase == 2) //Phase 2, keep score above 0
             {
-                sr.color = new Color(1f - (score / 10f), 0, 1f);
-            }*/
+                if (strikes >= 3)
+                {
+                    sr.color = Color.gray;
+                    script.stopMusic();
+                    for (int x = 0; x < noteSprites.Length; x++)
+                    {
+                        noteSprites[x].stopMotion();
+                    }
+                    //score = 0;
+                    strikes = 0;
+                    phase = 0;
+                    score = 0;
+                    pattern = true;
+                    currentNote = 0;
+                    for (int x = 0; x < 5; x++)
+                        setTarget(true);
+                    lifeSprite1.SetActive(false);
+                    lifeSprite2.SetActive(false);
+                    lifeSprite3.SetActive(false);
+                }
+                /*else if(score >= 10)
+                {
+                    sr.color = Color.blue;
+                }
+                else
+                {
+                    sr.color = new Color(1f - (score / 10f), 0, 1f);
+                }*/
+            }
         }
     }
 
     void setTarget(bool a) //Set a new target key combination. Parameter is if this is being called from start, because of an error on the first time it's called.
     {
-        string next = ""; //Reset the old combination
-        //string uiT = "";
-        if (score >= songNoteLength - 5)
+        if (starting < 3)
         {
-            noteSprites[nextNote].stopMotion();
-        }
-        else
-        {
-            if (pattern)
+            string next = ""; //Reset the old combination
+                              //string uiT = "";
+            if (score >= songNoteLength - 5)
             {
-                next = song1[currentNote];
-                //uiT = song1direction[currentNote];
-                currentNote++;
-                if (currentNote >= song1Max)
-                    currentNote = 0;
+                noteSprites[nextNote].stopMotion();
             }
             else
             {
-                for (int y = 0; y < 2; y++) //Do this twice
+                if (pattern)
                 {
-                    int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
-                    if (x == 0)
+                    next = song1[currentNote];
+                    //uiT = song1direction[currentNote];
+                    currentNote++;
+                    if (currentNote >= song1Max)
+                        currentNote = 0;
+                }
+                else
+                {
+                    for (int y = 0; y < 2; y++) //Do this twice
                     {
-                        next += "U";
-                        //uiT += "^ ";
+                        int x = Random.Range(0, 4); //Randomly assign up, down, left, or right
+                        if (x == 0)
+                        {
+                            next += "U";
+                            //uiT += "^ ";
+                        }
+                        else if (x == 1)
+                        {
+                            next += "L";
+                            //uiT += "< ";
+                        }
+                        else if (x == 2)
+                        {
+                            next += "D";
+                            //uiT += "v ";
+                        }
+                        else if (x == 3)
+                        {
+                            next += "R";
+                            //uiT += "> ";
+                        }
                     }
-                    else if (x == 1)
-                    {
-                        next += "L";
-                        //uiT += "< ";
-                    }
-                    else if (x == 2)
-                    {
-                        next += "D";
-                        //uiT += "v ";
-                    }
-                    else if (x == 3)
-                    {
-                        next += "R";
-                        //uiT += "> ";
-                    }
+                }
+
+                //Sets the note generated.
+                noteList[nextNote] = next;
+                switch (next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
+                {
+                    case "UU":
+                        noteSprites[nextNote].setSprite(UU);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
+                        break;
+                    case "UR":
+                        noteSprites[nextNote].setSprite(UR);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.27f));
+                        break;
+                    case "UL":
+                        noteSprites[nextNote].setSprite(UL);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.22f));
+                        break;
+                    case "UD":
+                        noteSprites[nextNote].setSprite(UD);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.17f));
+                        break;
+                    case "RU":
+                        noteSprites[nextNote].setSprite(RU);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.12f));
+                        break;
+                    case "RR":
+                        noteSprites[nextNote].setSprite(RR);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.07f));
+                        break;
+                    case "RL":
+                        noteSprites[nextNote].setSprite(RL);
+                        noteSprites[nextNote].setStart(new Vector2(14f, 0.02f));
+                        break;
+                    case "RD":
+                        noteSprites[nextNote].setSprite(RD);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.03f));
+                        break;
+                    case "LU":
+                        noteSprites[nextNote].setSprite(LU);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.08f));
+                        break;
+                    case "LR":
+                        noteSprites[nextNote].setSprite(LR);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.13f));
+                        break;
+                    case "LL":
+                        noteSprites[nextNote].setSprite(LL);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.18f));
+                        break;
+                    case "LD":
+                        noteSprites[nextNote].setSprite(LD);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.23f));
+                        break;
+                    case "DU":
+                        noteSprites[nextNote].setSprite(DU);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.28f));
+                        break;
+                    case "DR":
+                        noteSprites[nextNote].setSprite(DR);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.33f));
+                        break;
+                    case "DL":
+                        noteSprites[nextNote].setSprite(DL);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.38f));
+                        break;
+                    case "DD":
+                        noteSprites[nextNote].setSprite(DD);
+                        noteSprites[nextNote].setStart(new Vector2(14f, -0.43f));
+                        break;
                 }
             }
 
-            //Sets the note generated.
-            noteList[nextNote] = next;
-            switch (next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
+            nextNote += 1;
+            if (nextNote >= 5)
+                nextNote = 0;
+
+            if (a && noteSprites[nextNote].getSprite() != null && score < songNoteLength-1) //That last bit prevents the fret being changed as the song ends.
             {
-                case "UU":
-                    noteSprites[nextNote].setSprite(UU);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
-                    break;
-                case "UR":
-                    noteSprites[nextNote].setSprite(UR);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.27f));
-                    break;
-                case "UL":
-                    noteSprites[nextNote].setSprite(UL);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.22f));
-                    break;
-                case "UD":
-                    noteSprites[nextNote].setSprite(UD);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.17f));
-                    break;
-                case "RU":
-                    noteSprites[nextNote].setSprite(RU);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.12f));
-                    break;
-                case "RR":
-                    noteSprites[nextNote].setSprite(RR);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.07f));
-                    break;
-                case "RL":
-                    noteSprites[nextNote].setSprite(RL);
-                    noteSprites[nextNote].setStart(new Vector2(14f, 0.02f));
-                    break;
-                case "RD":
-                    noteSprites[nextNote].setSprite(RD);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.03f));
-                    break;
-                case "LU":
-                    noteSprites[nextNote].setSprite(LU);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.08f));
-                    break;
-                case "LR":
-                    noteSprites[nextNote].setSprite(LR);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.13f));
-                    break;
-                case "LL":
-                    noteSprites[nextNote].setSprite(LL);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.18f));
-                    break;
-                case "LD":
-                    noteSprites[nextNote].setSprite(LD);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.23f));
-                    break;
-                case "DU":
-                    noteSprites[nextNote].setSprite(DU);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.28f));
-                    break;
-                case "DR":
-                    noteSprites[nextNote].setSprite(DR);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.33f));
-                    break;
-                case "DL":
-                    noteSprites[nextNote].setSprite(DL);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.38f));
-                    break;
-                case "DD":
-                    noteSprites[nextNote].setSprite(DD);
-                    noteSprites[nextNote].setStart(new Vector2(14f, -0.43f));
-                    break;
+                target = noteList[nextNote];
+                fret.setSprite(noteSprites[nextNote].getSprite()); //Set the sprite of the fret based on noteList.[nextNote].getSprite()
             }
+
+            //targetText.text = uiT; //Set debug direction indicator
+            //debugTargetText.text = target;
         }
-
-        nextNote += 1;
-        if (nextNote >= 5)
-            nextNote = 0;
-
-        if (a && noteSprites[nextNote].getSprite() != null)
-        {
-            target = noteList[nextNote];
-            fret.setSprite(noteSprites[nextNote].getSprite()); //Set the sprite of the fret based on noteList.[nextNote].getSprite()
-        }
-
-        //targetText.text = uiT; //Set debug direction indicator
-        debugTargetText.text = target;
     }
 
     public void begin() //Starts the rhythm game. This should ideally be called from a script handling dialogue.
     {
+        cam.setGame(true);
         scoreText.gameObject.SetActive(true);
-        targetText.gameObject.SetActive(true);
+        //targetText.gameObject.SetActive(true);
         phaseText.gameObject.SetActive(true);
-        pressedKeyText.gameObject.SetActive(true);
+        //pressedKeyText.gameObject.SetActive(true);
         Start();
         this.transform.localPosition = PointOnCircle(((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3)), r);
         starting = 1;
         sr.enabled = true;
         startTimer = 0;
         startScale = 0;
+        pc.motionControl(false);
     }
 
     void end() //Exits the rhythm game and resets stats
@@ -650,9 +682,9 @@ public class syncRotate : MonoBehaviour
         fret.endReset();
 
         scoreText.gameObject.SetActive(false);
-        targetText.gameObject.SetActive(false);
+        //targetText.gameObject.SetActive(false);
         phaseText.gameObject.SetActive(false);
-        pressedKeyText.gameObject.SetActive(false);
+        //pressedKeyText.gameObject.SetActive(false);
 
         lifeSprite1.SetActive(false);
         lifeSprite2.SetActive(false);
@@ -689,6 +721,9 @@ public class syncRotate : MonoBehaviour
         currentNote = 0;
 
         sr.enabled = false;
+
+        pc.motionControl(true);
+        cam.setGame(false);
     }
 
 

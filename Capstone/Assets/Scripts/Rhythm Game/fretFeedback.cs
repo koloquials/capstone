@@ -15,6 +15,7 @@ public class fretFeedback : MonoBehaviour
     Color fretCol = Color.white; //Color of the fret
 
     bool startScale = false; //When starting, scale the thing up.
+    bool endScale = false; //When ending, scale down.
     bool started = false; //When the rhythm game is actually running
     
     // Start is called before the first frame update
@@ -39,6 +40,15 @@ public class fretFeedback : MonoBehaviour
             }
             transform.localScale = new Vector2(scaleMod*sConstant, scaleMod*sConstant);
         }
+        else if (endScale)
+        {
+            scaleMod = Mathf.Lerp(scaleMod, 0, 0.06f);
+            if (scaleMod < 0.1f)
+            {
+                scaleMod = 0;
+            }
+            transform.localScale = new Vector2(scaleMod * sConstant, scaleMod * sConstant);
+        }
         else if (started)
         {
             transform.localScale = new Vector2(scaleMod * sConstant, scaleMod * sConstant); //Set the scale of the fret
@@ -55,15 +65,18 @@ public class fretFeedback : MonoBehaviour
 
     public void fretHit(bool h) //Whenever the fret gets hit. Pass a bool for if the hit was accurate
     {
-        if(h) //If it hits, set the color and increase the scale
+        if (!endScale)
         {
-            sr.color = Color.blue; //May change this and the miss color once our palette is finalized.
-            scaleMod = 1.4f;
-        }
-        else //On a miss, set the color and decrease the scale
-        {
-            sr.color = Color.red;
-            scaleMod = 0.8f;
+            if (h) //If it hits, set the color and increase the scale
+            {
+                sr.color = Color.blue; //May change this and the miss color once our palette is finalized.
+                scaleMod = 1.4f;
+            }
+            else //On a miss, set the color and decrease the scale
+            {
+                sr.color = Color.red;
+                scaleMod = 0.8f;
+            }
         }
     }
 
@@ -80,6 +93,11 @@ public class fretFeedback : MonoBehaviour
         startScale = true;
         started = false;
         sr.enabled = true;
+    }
+
+    public void endingScaling()
+    {
+        endScale = true;
     }
 
     public void endReset()

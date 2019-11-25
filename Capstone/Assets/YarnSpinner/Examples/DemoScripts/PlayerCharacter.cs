@@ -40,6 +40,8 @@ namespace Yarn.Unity.Example {
 
         public float movementFromButtons {get;set;}
 
+        bool motion = true;
+
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected() {
             Gizmos.color = Color.blue;
@@ -55,7 +57,8 @@ namespace Yarn.Unity.Example {
         void Update () {
 
             // Remove all player control when we're in dialogue
-            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true) {
+            // Edited to also remove player control when in the rhythm game.
+            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {
                 return;
             }
 
@@ -87,12 +90,18 @@ namespace Yarn.Unity.Example {
             var target = allParticipants.Find (delegate (NPC p) {
                 return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
                 (p.transform.position - this.transform.position)// is in range?
-                .magnitude <= interactionRadius;
+                .magnitude <= interactionRadius
+                && !p.moving;
             });
             if (target != null) {
                 // Kick off the dialogue at this node.
                 FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
             }
+        }
+
+        public void motionControl(bool m)
+        {
+            motion = m;
         }
     }
 }
