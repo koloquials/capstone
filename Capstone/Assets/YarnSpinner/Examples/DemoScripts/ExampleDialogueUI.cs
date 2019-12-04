@@ -96,12 +96,47 @@ namespace Yarn.Unity.Example {
             if (textSpeed > 0.0f) {
                 // Display the line one character at a time
                 var stringBuilder = new StringBuilder ();
+                bool informat = false; //If the text being parsed is formatting text
+                bool formatPrimed = false; //If the text being parsed has passed the first > in the formatted block
+
+                /*while (lineText.text != line.text)
+                {
+                    stringBuilder.Append(line.text.Substring(0, lineText.text.Length + 1));
+                    lineText.text = stringBuilder.ToString();
+
+                    if (lineText.text[lineText.text.Length - 1] == '<')
+                    {
+                        while (lineText.text[lineText.text.Length - 1] != '>')
+                            lineText.text = line.text.Substring(0, lineText.text.Length + 1);
+                    }
+                    yield return new WaitForSeconds(textSpeed);
+                }*/
 
                 foreach (char c in line.text) {
-                    stringBuilder.Append (c);
-                    lineText.text = stringBuilder.ToString ();
-                    yield return new WaitForSeconds (textSpeed);
+                    if(c.Equals('<') && !informat) //Checks for open format marks, if so, display all the formatted text at once to avoid showing format marks.
+                    {
+                        informat = true;
+                        formatPrimed = false;
+                    }
+
+                    stringBuilder.Append(c);
+
+                    if (!informat)
+                    {
+                        lineText.text = stringBuilder.ToString();
+                        yield return new WaitForSeconds(textSpeed);
+                    }
+
+                    if(c.Equals('>'))
+                    {
+                        if (formatPrimed)
+                            informat = false;
+                        else
+                            formatPrimed = true;
+                    }
+                    
                 }
+                lineText.text = line.text;
             } else {
                 // Display the line immediately if textSpeed == 0
                 lineText.text = line.text;

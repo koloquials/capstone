@@ -1,7 +1,9 @@
-title: Start
+
+title: Start_2
 tags: 
 colorID: 0
 position: 0,0
+parent: 
 ---
 
 <<Fade @ black, 0.0, 1.0, 1.0>>
@@ -33,12 +35,11 @@ Adam: Whatever this is about, can we make this quick?
 [[Eve: (take it even slower)|History]]
 
 ===
-
-
 title: History
 tags: 
 colorID: 0
 position: 10,0
+parent: 
 ---
 
 Eve: Tell me Adam, how long have you been working with us here at RPT Studios?
@@ -54,12 +55,11 @@ Adam: But ever since I went in on that great two bedroom with Steve, it's been g
 [[Gay]]
 
 ===
-
-
 title: FiredSlow
 tags: 
 colorID: 0
 position: 20,0
+parent: 
 ---
 
 Eve: Close the door and take a seat, please.
@@ -78,13 +78,11 @@ Adam: Oh shit. Is this about the e-mail? Steve wrote it and told me to send it! 
 [[Gay]]
 
 ===
-
-
-
 title: FiredNow
 tags: 
 colorID: 0
 position: 30,30
+parent: 
 ---
 
 <<StopAudioAll @>>
@@ -231,11 +229,11 @@ Eve: Um, good luck.
 (SAD END)
 
 ===
-
 title: TrueEnding
 tags: 
 colorID: 0
 position: 40,40
+parent: 
 ---
 
 Eve: Remember that e-mail?
@@ -302,12 +300,11 @@ But we know in our hearts that it was Adam and Eve, gay anti-capitalist vigilant
 (TRUE END)
 
 ===
-
-
 title: Gay
 tags: 
 colorID: 0
 position: 40,20
+parent: 
 ---
 
 Eve: How would you characterize your relationship with Steve?

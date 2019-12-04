@@ -1,0 +1,56 @@
+
+title: terminusEst
+---
+Fidel?: Until next time, placeholder player
+===
+
+title: boxFidel
+tags: 
+colorID: 0
+position: 721,130
+---
+<<if $waypoint = null>>
+	Fidel?:I'm going to move like 4 <i>times to test</i> NPC motion. OOOOOOOOOOOOOOOOOOOOOOOOO.
+	<<set $waypoint to 2>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 2>>
+	Fidel?:And <i>again!</i>
+	<<set $waypoint to 3>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 3>>
+	Fidel?:Once more!
+	<<set $waypoint to 4>>
+	<<moveNPC Fidel>>
+<<elseif $waypoint is 4>>
+	Fidel?:And once again!
+	<<set $waypoint to 5>>
+	<<moveNPC Fidel>>
+<<elseif visited("startRhythm") is true>>
+	Fidel?: Hey! How'd it go?
+	[[It went pretty great.|demoGood]]
+	[[It sucked.|demoBad]]
+	[[Let me try again.|startRhythm]]
+<<elseif $waypoint is 5>>
+	Fidel?: Hey! Welcome to the demo.
+	[[Can you start the rhythm game?|startRhythm]]
+	[[Why are we boxes?|selfAwareness]]
+	[[Bye.|terminusEst]]
+<<endif>>
+
+===
+title: selfAwareness
+---
+Fidel?: We're placeholders. It's only temporary.
+[[Can you start the rhythm game?|startRhythm]]
+[[Bye.|terminusEst]]
+===
+
+title: demoGood
+---
+Fidel?: That's good news, for once.
+===
+
+title: demoBad
+---
+Fidel?: Well, it's a work in progress.
+===
