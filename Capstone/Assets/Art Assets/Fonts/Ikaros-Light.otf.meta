@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ab37bf9a79077494485e58e9e8360b8a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Ikaros Sans
+  fontNames:
+  - Ikaros Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5c0ead43cc1734e68b705d797716b2a8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
