@@ -1,0 +1,286 @@
+
+title: Start
+tags: 
+colorID: 0
+position: -21,45
+parent: 
+---
+//start of the Fidel Tour Scene (demo)
+<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
+//<<Act @ Eve, cool-girl, left, center, green>>
+Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
+Fidel: Oh, just in time. Here we are… our first stop!
+Fidel: You can open your eyes now.  
+//<<HideAll @>>
+<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+Piper: ‘kay.
+
+[[Scene1]]
+===
+title: Scene1
+tags: 
+colorID: 0
+position: -138,-49
+parent: 
+---
+//blur into view. standing in shitty mall clothing section
+<<Act @ Fidel, fidel_wry>>
+Fidel: Thanks for deciding to trust, heh, a stranger like me with taking you around town. 
+Fidel: For starters, this is my humble abode! Welcome.
+//<<HideAll @>>
+<<Act @ Piper, player_neutral>>
+Piper: …
+Piper: This is— 
+Piper: We’re in an old mall.
+<<Act @ Fidel, fidel_happy>>
+Fidel: Sure are!
+<<Act @ Piper, player_concern>>
+Piper: You live here.
+Piper: In the clothing aisle?
+<<Act @ Fidel, fidel_happy>>
+Fidel: Well, you know what they say, one animal’s trash is another one’s beautiful home.
+-> Do they, now?
+	<<Act @ Piper, player_joke>>
+	Piper Do they, now?
+	<<Act @ Fidel, fidel_happy>>
+	Fidel: Yeah, and it’s *this* trash animal’s crib, heh! 
+-> It’s nice.
+	<<Act @ Piper, player_pleasant>>
+	Piper: It’s nice.
+	<<Act @ Fidel, fidel_happy>>
+	Fidel: Aw, thanks. I don’t really decorate or anything.
+	Fidel: Intentionally, anyways.
+<<Act @ Fidel, fidel_disappointed>>
+Fidel: Hmm.
+Fidel: Is that all it is to you? Just an old mall?
+-> Should it be more?
+	<<Act @ Piper, player_concern>>
+	Piper: Should it be more?
+	<<Act @ Fidel, fidel_disappointed>>
+	Fidel: Ah… I guess not. It’s not important, don’t worry about it.
+-> Doesn’t ring any bells, sorry.
+	<<Act @ Piper, player_sorry>>
+	Piper: Doesn’t ring any bells, sorry.
+	<<Act @ Fidel, fidel_disappointed>>
+	Fidel: That’s okay. I’m sorry, that must’ve sounded like a weird question. 
+<<Act @ Fidel, fidel_happy>>
+Fidel: But that’s enough of that. Alrighty, camera crew, lemme hit you with the tour.
+<<Act @ Piper, player_neutral>>
+Piper: I don’t have a camera.
+<<Act @ Fidel, fidel_hah>>
+Fidel: …It was a joke! C’mon, stick with it!
+<<Act @ Piper, player_neutral>>
+Piper: I don’t— okay. Let’s go.  
+<<Act @ Fidel, fidel_woah>>
+Fidel: Woah there, chief. Try not to get *too* excited. 
+<<Act @ Piper, player_neutral>>
+Piper: …
+<<Act @ Fidel, fidel_disappointed>>
+Fidel: …
+Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the stage.
+
+[[Scene2]]
+===
+title: Scene2
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
+//they walk a little bit and get into a more desolate part of the mall
+<<Act @ Fidel, fidel_neutral>>
+Fidel: Anywho, this is sorta just my usual stompin grounds.
+Fidel: I hang out here and have fun!
+Fidel: Mind the murals and, uh, wire sculptures. I like to consider myself an artistic soul.
+Fidel: ...and the broken glass. I was just tossing rocks once. I— I dunno. I was vibing. 
+//he walks forward some more
+<<Act @ Fidel, fidel_thinking>>
+Fidel: Hmmm… what else, what else? Oh!
+Fidel: It’s a ‘lil early for this, b-but I want you to meet my other friends!
+<<Act @ Piper, player_neutral>>
+Piper: Why are you blushing?
+Piper: Your other friends are here?
+<<Act @ Fidel, fidel_happy>>
+Fidel: Just stay right there, I’ll go get them!
+//they run off, retrieve two rat mannequins. they resemble the player and mara a little.
+<<Act @ Fidel, fidel_happy>>
+Fidel: Here they are— my besties! 
+-> Nice to meet you.
+	<<Act @ Piper, player_pleasant>>
+	Piper: Nice to meet you.
+	<<Act @ Fidel, fidel_happy>>
+	Fidel: So polite!
+	Fidel: Thanks for being kind to them. Some people are so rude, y’know?
+	<<Act @ Piper, player_concern>>
+	Piper: ...Yeah.
+-> Huh.
+	<<Act @ Piper, player_neutral>>
+	Piper: Huh.
+	<<Act @ Fidel, fidel_happy>>
+	Fidel: Hey, don’t be rude. I want my friends to get along!
+	<<Act @ Piper, player_concern>>
+	Piper: Are we friends?
+	<<Act @ Fidel, fidel_disappointed>>
+	Fidel: Okay, point. 
+<<Act @ Fidel, fidel_happy>>
+Fidel: We’ve been through thick and thin together; we’ve been friends forever!
+<<Act @ Piper, player_concern>>
+Piper: The— them? They look like you… found them yesterday. That’s… surprising.
+<<Act @ Fidel, fidel_neutral>>
+Fidel: That they don’t look older? Oh yeah, like I said earlier, weird time bubble.
+Fidel: Everything’s… frozen. I guess that’s the best way to explain it. 
+Fidel: You don’t have to think too hard about it.
+
+===
+title: Scene3
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
+//there's a beat. and then they continue on their way
+<<Act @ Fidel, fidel_neutral, 0.5, 0.5, #226677>>
+Fidel: Anyways, you hungry?
+-> Yeah, I’m peckish.
+	<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	Piper: Yeah, I’m peckish.
+	<<Act @ Fidel, fidel_hah>>
+	Fidel: Cool! Just don’t peck at me, yeah? Hah! 
+-> Not really.
+	<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	Piper: Not really.
+	<<Act @ Fidel, fidel_hah>>
+	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
+Fidel: To the food court! 
+//fidel runs ahead and the player follows. they fuck around at a food court
+Fidel: Okay, okay. Don’t mind if I do! 
+//they get to a counter and dive behind it
+Fidel: Welcome to Grilli’s, how can I help you?
+-> Are you going to take my order?
+	<<Act @ Piper, player_concern>>
+	Piper: Are you going to take my order?
+	<<Act @ Fidel, fidel_hah>>
+	Fidel: Heh, absolutely not. I can’t help you at all! Who do you think I am?
+	Fidel: But I do have a very *un*helpful thing for you.
+-> Cheeseburger.
+	<<Act @ Piper, player_neutral>>
+	Piper: Cheeseburger.
+	<<Act @ Fidel, fidel_hah>>
+	Fidel: That’s not even on the menu. Get outta here, you heathen! Scram!
+Fidel: ...Now come back. I have something real special to ask you.    
+Fidel: Piper, do you...
+Fidel: Do you wanna see me eat seventy chicken nuggets?
+-> No.
+	<<Act @ Piper, player_mad>>
+	Piper: No.
+-> Absolutely not.
+	<<Act @ Piper, player_mad>>
+	Piper: Absolutely not.
+//automatically dismisses this in 0.2 seconds so it looks like they don’t get a choice
+<<Act @ Fidel, fidel_hah>>
+Fidel: Well, we can’t always have what we want, buddy.
+Fidel: Oh no, I dropped one. Ah beans, there it goes... down the drain. 
+Fidel: Now I have exactly one fewer than seventy.
+<<Act @ Piper, player_concern>>
+Piper: What drain? We’re in a food court.
+Piper: I just watched you very deliberately open a carton and drop a nugget to the floor.
+<<Act @ Fidel, fidel_hah>>
+Fidel: Haha, yeah. It’s gone forever. Goodbye.
+Fidel: So good of this fast food place to offer their nuggets in increments of seven like this.
+Fidel: Also they’re, like, technically ten years old, so I don’t actually want any of ‘em.
+<<Act @ Piper, player_concern>>
+Piper: They look fine to me. Is this the same deal as before? Another time bubble… thing? 
+<<Act @ Fidel, fidel_hah>>
+Fidel: You’re learning! Yeah, it’s another one of those frozen magic deals.
+Fidel: Physically they’ve remained just a few hours old. The world hasn’t moved at all.
+Fidel: So they’re safe to eat! But it still feels icky. It’s, like, the principle of the matter. 
+Fidel: Mnm.
+//fidel eats one anyways
+<<Act @ Piper, player_concern>>
+Piper: … 
+<<Act @ Fidel, fidel_hah>>
+Fidel: Yeah, my body doesn’t remember what food is, so it’s disagreeing with everything.
+<<Act @ Piper, player_concern>>
+Piper: Why are you like this? 
+<<Act @ Fidel, fidel_hah>>
+Fidel: You know me!
+Fidel: Or I guess you don’t. 
+//wistful silence
+
+===
+title: Scene4
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
+//more wistful silence as we disconnect from the scene
+<<Act @ Fidel, fidel_neutral>>
+Fidel: So… you really don’t remember anything, huh?
+Fidel: I hoped coming here would jog your memory. But it was just that. 
+Fidel: Wishful thinking.
+<<Act @ Piper, player_neutral>>
+Piper: I'm. Really sorry.
+<<Act @ Fidel, fidel_neutral>>
+Fidel: Don't be.
+Fidel: This. This has been fun. I’m glad you’re back. I am. 
+Fidel: I know it doesn’t mean anything to you, but it was good to see you again. 
+Fidel: It’s just been so long. I didn’t think it was possible, I didn’t think things would ever be different.
+-> … 
+	<<Act @ Piper, player_concern>>
+	Piper: …
+	<<Act @ Fidel, fidel_neutral>>
+	Fidel: I just can’t do this.
+-> Fidel… 
+	<<Act @ Piper, player_concern>>
+	Piper: Fidel…
+	<<Act @ Fidel, fidel_sad>>
+	Fidel: I just can’t do this, Piper.
+Fidel: We’ve been living like this for so long. I thought it was okay, for things to just be this way.
+Fidel: For me to be alone out here.
+Fidel: For the world to be in a standstill.
+Fidel: And for me to just. Get by.
+<<Act @ Piper, player_neutral>>
+Piper: Hey.
+Piper: I’m going to try something, okay?
+//some sick entering fidel’s soul animation. music gameplay begins.
+
+
+===
+title: MoreExamples
+tags: 
+colorID: 0
+position: 28,-178
+parent: 
+---
+This node is called Start_MoreExamples.
+The second way to do choices in Yarn is with 'shortcut options' like this:
+
+->This is option 1
+	You selected option 1.
+->This is option 2
+	You selected option 2.
+	<<set $didOption2 to true>>
+
+Based on choices, you can set variables, and then check those variables later.
+<<if $didOption2 is true>>
+By checking $didOption2, I remember you chose option 2!
+<<else>>
+I can't detect a variable $didOption2, so that means you chose option 1
+<<endif>>
+
+Do you want to go back to Start now?
+-> Yes, send me back to Start.
+	[[Start]]
+-> No thanks, I want to stop.
+
+Ok here's the end, good luck!
+[[Go to NewNode4|NewNode4]]
+[[Go to Scene1|Scene1]]
+
+[[Go see more examples|Start_MoreExamples]]
+[[Actually, let's restart this node again|Start]]
+
+// IMPORTANT: node options are only offered at the end of the passage
+Do you want to read more about Yarn features?
+===

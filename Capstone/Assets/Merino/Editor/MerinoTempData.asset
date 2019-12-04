@@ -12,35 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13981b66f67204744891820795ef4230, type: 3}
   m_Name: MerinoTempData
   m_EditorClassIdentifier: 
-  editedID: 5
-  timestamp: 2176.490685157
+  editedID: 8
+  timestamp: 924.952738333
   viewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 05000000
-    m_LastClickedID: 5
-    m_ExpandedIDs: 000000000100000004000000
+    m_SelectedIDs: 08000000
+    m_LastClickedID: 8
+    m_ExpandedIDs: 000000000100000003000000040000000a000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Scene1
+      m_OriginalName: Scene1
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 5
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
   currentFiles:
   - {fileID: 4900000, guid: c89822fbbb466493cbd9c336ba1f03d2, type: 3}
   - {fileID: 4900000, guid: 5e0fead0f5ba2ac4eb77c32c5da15381, type: 3}
-  dirtyFiles:
-  - {fileID: 4900000, guid: c89822fbbb466493cbd9c336ba1f03d2, type: 3}
+  - {fileID: 4900000, guid: 72730132a8fef4e5aad336d08c5e94de, type: 3}
+  - {fileID: 4900000, guid: 11cb79c79787a8546b031e3594777314, type: 3}
+  dirtyFiles: []
   treeElements:
   - m_ID: 0
     m_Name: Root
@@ -61,161 +62,179 @@ MonoBehaviour:
     cachedParentID: -1
     cachedSize: 0
   - m_ID: 2
+    m_Name: BoxFidel.yarn
+    m_Depth: 0
+    nodeTags: 
+    nodeBody: 
+    leafType: 1
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: -1
+    cachedSize: 0
+  - m_ID: 3
+    m_Name: Fidel Demo Scene copy.yarn
+    m_Depth: 0
+    nodeTags: 
+    nodeBody: 
+    leafType: 1
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: -1
+    cachedSize: 0
+  - m_ID: 4
     m_Name: Start
     m_Depth: 1
     nodeTags: 
     nodeBody: "//start of the Fidel Tour Scene (demo)\n<<Act @ Fidel, fidel_happy,
-      0.5, 0.5, #226677>>\n-and that\u2019s my theory on how all seagulls are just
-      acoustic pelicans.\nOh, just in time. Here we are\u2026 our first stop!\nYou
-      can open your eyes now.  \n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5,
-      #6764f7>>\n\u2018kay.\n\n[[Scene1]]"
+      0.5, 0.5, #226677>>\n//<<Act @ Eve, cool-girl, left, center, green>>\nFidel:
+      -and that\u2019s my theory on how all seagulls are just acoustic pelicans.\nFidel:
+      Oh, just in time. Here we are\u2026 our first stop!\nFidel: You can open your
+      eyes now.  \n//<<HideAll @>>\n<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>\nPiper:
+      \u2018kay.\n\n[[Scene1]]"
     leafType: 0
     nodePosition: {x: -21, y: 45}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 3
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 5
     m_Name: Scene1
     m_Depth: 1
     nodeTags: 
     nodeBody: "//blur into view. standing in shitty mall clothing section\n<<Act @
-      Fidel, fidel_wry, 0.5, 0.5, #226677>>\nThanks for deciding to trust, heh, a
-      stranger like me with taking you around town. \nFor starters, this is my humble
-      abode! Welcome.\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\u2026\nThis
-      is\u2014 \nWe\u2019re in an old mall.\n<<HideAll @>>\n<<Act @ Fidel, fidel_happy>>\nSure
-      are!\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nYou live here.\nIn the clothing
-      aisle?\n<<HideAll @>>\n<<Act @ Fidel, fidel_happy>>\nWell, you know what they
-      say, one animal\u2019s trash is another one\u2019s beautiful home.\n-> Do they,
-      now?\n\t<<HideAll @>>\n\t<<Act @ ?, player_joke>>\n\tDo they, now?\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tYeah, and it\u2019s *this* trash animal\u2019s
-      crib, heh! \n-> It\u2019s nice.\n\t<<HideAll @>>\n\t<<Act @ ?, player_pleasant>>\n\tIt\u2019s
-      nice.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tAw, thanks. I don\u2019t
-      really decorate or anything.\n\tIntentionally, anyways.\n<<Act @ Fidel, fidel_concern>>\nHmm.\nIs
-      that all it is to you? Just an old mall?\n-> Should it be more?\n\t<<HideAll
-      @>>\n\t<<Act @ ?, player_concern>>\n\tShould it be more?\n\t<<HideAll @>>\n\t<<Act
-      @ Fidel, fidel_disappointed>>\n\tAh\u2026 I guess not. It\u2019s not important,
-      don\u2019t worry about it.\n-> Doesn\u2019t ring any bells, sorry.\n\t<<HideAll
-      @>>\n\t<<Act @ ?, player_sorry>>\n\tDoesn\u2019t ring any bells, sorry.\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_disappointed>>\n\tThat\u2019s okay. I\u2019m sorry,
-      that must\u2019ve sounded like a weird question. \n<<Act @ Fidel, fidel_happy>>\nBut
-      that\u2019s enough of that. Alrighty, camera crew, lemme hit you with the tour.\n<<HideAll
-      @>>\n<<Act @ ?, player_neutral>>\nI don\u2019t have a camera.\n<<HideAll @>>\n<<Act
-      @ Fidel, fidel_hah>>\n\u2026It was a joke! C\u2019mon, stick with it!\n<<HideAll
-      @>>\n<<Act @ ?, player_neutral>>\nI don\u2019t\u2014 okay. Let\u2019s go.  \n<<HideAll
-      @>>\n<<Act @ Fidel, fidel_woah>>\nWoah there, chief. Try not to get *too* excited.
-      \n<<HideAll @>>\n<<Act @ ?, player_neutral>>\n\u2026\n<<HideAll @>>\n<<Act @
-      Fidel, fidel_disappointed>>\n\u2026\nShit, dude. Zero out of two. We\u2019re
-      gonna get tomatoed right off the stage.\n\n[[Scene2]]"
+      Fidel, fidel_wry>>\nFidel: Thanks for deciding to trust, heh, a stranger like
+      me with taking you around town. \nFidel: For starters, this is my humble abode!
+      Welcome.\n//<<HideAll @>>\n<<Act @ Piper, player_neutral>>\nPiper: \u2026\nPiper:
+      This is\u2014 \nPiper: We\u2019re in an old mall.\n<<Act @ Fidel, fidel_happy>>\nFidel:
+      Sure are!\n<<Act @ Piper, player_concern>>\nPiper: You live here.\nPiper: In
+      the clothing aisle?\n<<Act @ Fidel, fidel_happy>>\nFidel: Well, you know what
+      they say, one animal\u2019s trash is another one\u2019s beautiful home.\n->
+      Do they, now?\n\t<<Act @ Piper, player_joke>>\n\tPiper Do they, now?\n\t<<Act
+      @ Fidel, fidel_happy>>\n\tFidel: Yeah, and it\u2019s *this* trash animal\u2019s
+      crib, heh! \n-> It\u2019s nice.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper:
+      It\u2019s nice.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: Aw, thanks. I don\u2019t
+      really decorate or anything.\n\tFidel: Intentionally, anyways.\n<<Act @ Fidel,
+      fidel_disappointed>>\nFidel: Hmm.\nFidel: Is that all it is to you? Just an
+      old mall?\n-> Should it be more?\n\t<<Act @ Piper, player_concern>>\n\tPiper:
+      Should it be more?\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: Ah\u2026
+      I guess not. It\u2019s not important, don\u2019t worry about it.\n-> Doesn\u2019t
+      ring any bells, sorry.\n\t<<Act @ Piper, player_sorry>>\n\tPiper: Doesn\u2019t
+      ring any bells, sorry.\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: That\u2019s
+      okay. I\u2019m sorry, that must\u2019ve sounded like a weird question. \n<<Act
+      @ Fidel, fidel_happy>>\nFidel: But that\u2019s enough of that. Alrighty, camera
+      crew, lemme hit you with the tour.\n<<Act @ Piper, player_neutral>>\nPiper:
+      I don\u2019t have a camera.\n<<Act @ Fidel, fidel_hah>>\nFidel: \u2026It was
+      a joke! C\u2019mon, stick with it!\n<<Act @ Piper, player_neutral>>\nPiper:
+      I don\u2019t\u2014 okay. Let\u2019s go.  \n<<Act @ Fidel, fidel_woah>>\nFidel:
+      Woah there, chief. Try not to get *too* excited. \n<<Act @ Piper, player_neutral>>\nPiper:
+      \u2026\n<<Act @ Fidel, fidel_disappointed>>\nFidel: \u2026\nFidel: Shit, dude.
+      Zero out of two. We\u2019re gonna get tomatoed right off the stage.\n\n[[Scene2]]"
     leafType: 0
     nodePosition: {x: -138, y: -49}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 4
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 6
     m_Name: Scene2
     m_Depth: 1
     nodeTags: 
     nodeBody: "//they walk a little bit and get into a more desolate part of the mall\n<<Act
-      @ Fidel, fidel_neutral, 0.5, 0.5, #226677>>\nAnywho, this is sorta just my usual
-      stompin grounds.\nI hang out here and have fun!\nMind the murals and, uh, wire
-      sculptures. I like to consider myself an artistic soul.\n...and the broken glass.
-      I was just tossing rocks once. I\u2014 I dunno. I was vibing. \n//he walks forward
-      some more\n<<HideAll @>>\n<<Act @ Fidel, fidel_thinking, 0.5, 0.5, #226677>>\nHmmm\u2026
-      what else, what else? Oh!\nIt\u2019s a \u2018lil early for this, b-but I want
-      you to meet my other friends!\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5,
-      0.5, #6764f7>>\nWhy are you blushing?\nYour other friends are here?\n<<HideAll
-      @>>\n<<Act @ Fidel, fidel_happy>>\nJust stay right there, I\u2019ll go get them!\n//they
-      run off, retrieve two rat mannequins. they resemble the player and mara a little.\n<<HideAll
-      @>>\n<<Act @ Fidel, fidel_happy>>\nHere they are\u2014 my besties! \n-> Nice
-      to meet you.\n\t<<HideAll @>>\n\t<<Act @ ?, player_pleasant>>\n\tNice to meet
-      you.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tSo polite!\n\tThanks
-      for being kind to them. Some people are so rude, y\u2019know?\n\t<<HideAll @>>\n\t<<Act
-      @ ?, player_concern>>\n\t...Yeah.\n-> Huh.\n\t<<HideAll @>>\n\t<<Act @ ?, player_neutral>>\n\tHuh.\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_happy>>\n\tHey, don\u2019t be rude. I want my friends
-      to get along!\n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\tAre we friends?\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_disappointed>>\n\tOkay, point. \n<<HideAll @>>\n<<Act
-      @ Fidel, fidel_happy>>\nWe\u2019ve been through thick and thin together; we\u2019ve
-      been friends forever!\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nThe\u2014
-      them? They look like you\u2026 found them yesterday. That\u2019s\u2026 surprising.\n<<HideAll
-      @>>\n<<Act @ Fidel, fidel_neutral>>\nThat they don\u2019t look older? Oh yeah,
-      like I said earlier, weird time bubble.\nEverything\u2019s\u2026 frozen. I guess
-      that\u2019s the best way to explain it. \nYou don\u2019t have to think too hard
-      about it.\n"
+      @ Fidel, fidel_neutral>>\nFidel: Anywho, this is sorta just my usual stompin
+      grounds.\nFidel: I hang out here and have fun!\nFidel: Mind the murals and,
+      uh, wire sculptures. I like to consider myself an artistic soul.\nFidel: ...and
+      the broken glass. I was just tossing rocks once. I\u2014 I dunno. I was vibing.
+      \n//he walks forward some more\n<<Act @ Fidel, fidel_thinking>>\nFidel: Hmmm\u2026
+      what else, what else? Oh!\nFidel: It\u2019s a \u2018lil early for this, b-but
+      I want you to meet my other friends!\n<<Act @ Piper, player_neutral>>\nPiper:
+      Why are you blushing?\nPiper: Your other friends are here?\n<<Act @ Fidel, fidel_happy>>\nFidel:
+      Just stay right there, I\u2019ll go get them!\n//they run off, retrieve two
+      rat mannequins. they resemble the player and mara a little.\n<<Act @ Fidel,
+      fidel_happy>>\nFidel: Here they are\u2014 my besties! \n-> Nice to meet you.\n\t<<Act
+      @ Piper, player_pleasant>>\n\tPiper: Nice to meet you.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel:
+      So polite!\n\tFidel: Thanks for being kind to them. Some people are so rude,
+      y\u2019know?\n\t<<Act @ Piper, player_concern>>\n\tPiper: ...Yeah.\n-> Huh.\n\t<<Act
+      @ Piper, player_neutral>>\n\tPiper: Huh.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel:
+      Hey, don\u2019t be rude. I want my friends to get along!\n\t<<Act @ Piper, player_concern>>\n\tPiper:
+      Are we friends?\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: Okay, point.
+      \n<<Act @ Fidel, fidel_happy>>\nFidel: We\u2019ve been through thick and thin
+      together; we\u2019ve been friends forever!\n<<Act @ Piper, player_concern>>\nPiper:
+      The\u2014 them? They look like you\u2026 found them yesterday. That\u2019s\u2026
+      surprising.\n<<Act @ Fidel, fidel_neutral>>\nFidel: That they don\u2019t look
+      older? Oh yeah, like I said earlier, weird time bubble.\nFidel: Everything\u2019s\u2026
+      frozen. I guess that\u2019s the best way to explain it. \nFidel: You don\u2019t
+      have to think too hard about it.\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 5
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 7
     m_Name: Scene3
     m_Depth: 1
     nodeTags: 
     nodeBody: "//there's a beat. and then they continue on their way\n<<Act @ Fidel,
-      fidel_neutral, 0.5, 0.5, #226677>>\nAnyways, you hungry?\n-> Yeah, I\u2019m
-      peckish.\n\t<<HideAll @>>\n\t<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\tYeah,
-      I\u2019m peckish.\n\t<<HideAll @>>\n\t<<Act @ Fidel, fidel_hah>>\n\tCool! Just
-      don\u2019t peck at me, yeah? Hah! \n-> Not really.\n\t<<HideAll @>>\n\t<<Act
-      @ ?, player_neutral, 0.5, 0.5, #6764f7>>\n\tNot really.\n\t<<HideAll @>>\n\t<<Act
-      @ Fidel, fidel_hah>>\n\tMe neither, but that\u2019s where this path of debris
-      leads, so we gotta blast!\nTo the food court! \n//fidel runs ahead and the player
-      follows. they fuck around at a food court\nOkay, okay. Don\u2019t mind if I
-      do! \n//they get to a counter and dive behind it\nWelcome to Grilli\u2019s,
-      how can I help you?\n-> Are you going to take my order?\n\t<<HideAll @>>\n\t<<Act
-      @ ?, player_concern>>\n\tAre you going to take my order?\n\t<<HideAll @>>\n\t<<Act
-      @ Fidel, fidel_hah>>\n\tHeh, absolutely not. I can\u2019t help you at all! Who
-      do you think I am?\n\tBut I do have a very *un*helpful thing for you.\n-> Cheeseburger.\n\t<<HideAll
-      @>>\n\t<<Act @ ?, player_neutral>>\n\tCheeseburger.\n\t<<HideAll @>>\n\t<<Act
-      @ Fidel, fidel_hah>>\n\tThat\u2019s not even on the menu. Get outta here, you
-      heathen! Scram!\n...Now come back. I have something real special to ask you.
-      \   \n[PLAYER], do you...\nDo you wanna see me eat seventy chicken nuggets?\n->
-      No.\n\t<<HideAll @>>\n\t<<Act @ ?, player_mad>>\n\tNo.\n-> Absolutely not.\n\t<<HideAll
-      @>>\n\t<<Act @ ?, player_mad>>\n\tAbsolutely not.\n//automatically dismisses
-      this in 0.2 seconds so it looks like they don\u2019t get a choice\n<<HideAll
-      @>>\n<<Act @ Fidel, fidel_hah>>\nWell, we can\u2019t always have what we want,
-      buddy.\nOh no, I dropped one. Ah beans, there it goes... down the drain. \nNow
-      I have exactly one fewer than seventy.\n<<HideAll @>>\n<<Act @ ?, player_concern>>\nWhat
-      drain? We\u2019re in a food court.\nI just watched you very deliberately open
-      a carton and drop a nugget to the floor.\n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nHaha,
-      yeah. It\u2019s gone forever. Goodbye.\nSo good of this fast food place to offer
-      their nuggets in increments of seven like this.\nAlso they\u2019re, like, technically
-      ten years old, so I don\u2019t actually want any of \u2018em.\n<<HideAll @>>\n<<Act
-      @ ?, player_concern>>\nThey look fine to me. Is this the same deal as before?
-      Another time bubble\u2026 thing? \n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nYou\u2019re
-      learning! Yeah, it\u2019s another one of those frozen magic deals.\nPhysically
-      they\u2019ve remained just a few hours old. The world hasn\u2019t moved at all.\nSo
-      they\u2019re safe to eat! But it still feels icky. It\u2019s, like, the principle
-      of the matter. \nMnm.\n//fidel eats one anyways\n<<HideAll @>>\n<<Act @ ?, player_concern>>\n\u2026
-      \n<<HideAll @>>\n<<Act @ Fidel, fidel_hah>>\nYeah, my body doesn\u2019t remember
-      what food is, so it\u2019s disagreeing with everything.\n<<HideAll @>>\n<<Act
-      @ ?, player_concern>>\nWhy are you like this? \n<<HideAll @>>\n<<Act @ Fidel,
-      fidel_hah>>\nYou know me!\nOr I guess you don\u2019t. \n//wistful silence\n"
+      fidel_neutral, 0.5, 0.5, #226677>>\nFidel: Anyways, you hungry?\n-> Yeah, I\u2019m
+      peckish.\n\t<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>\n\tPiper: Yeah,
+      I\u2019m peckish.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel: Cool! Just don\u2019t
+      peck at me, yeah? Hah! \n-> Not really.\n\t<<Act @ Piper, player_neutral, 0.5,
+      0.5, #6764f7>>\n\tPiper: Not really.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel:
+      Me neither, but that\u2019s where this path of debris leads, so we gotta blast!\nFidel:
+      To the food court! \n//fidel runs ahead and the player follows. they fuck around
+      at a food court\nFidel: Okay, okay. Don\u2019t mind if I do! \n//they get to
+      a counter and dive behind it\nFidel: Welcome to Grilli\u2019s, how can I help
+      you?\n-> Are you going to take my order?\n\t<<Act @ Piper, player_concern>>\n\tPiper:
+      Are you going to take my order?\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel: Heh,
+      absolutely not. I can\u2019t help you at all! Who do you think I am?\n\tFidel:
+      But I do have a very *un*helpful thing for you.\n-> Cheeseburger.\n\t<<Act @
+      Piper, player_neutral>>\n\tPiper: Cheeseburger.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel:
+      That\u2019s not even on the menu. Get outta here, you heathen! Scram!\nFidel:
+      ...Now come back. I have something real special to ask you.    \nFidel: Piper,
+      do you...\nFidel: Do you wanna see me eat seventy chicken nuggets?\n-> No.\n\t<<Act
+      @ Piper, player_mad>>\n\tPiper: No.\n-> Absolutely not.\n\t<<Act @ Piper, player_mad>>\n\tPiper:
+      Absolutely not.\n//automatically dismisses this in 0.2 seconds so it looks like
+      they don\u2019t get a choice\n<<Act @ Fidel, fidel_hah>>\nFidel: Well, we can\u2019t
+      always have what we want, buddy.\nFidel: Oh no, I dropped one. Ah beans, there
+      it goes... down the drain. \nFidel: Now I have exactly one fewer than seventy.\n<<Act
+      @ Piper, player_concern>>\nPiper: What drain? We\u2019re in a food court.\nPiper:
+      I just watched you very deliberately open a carton and drop a nugget to the
+      floor.\n<<Act @ Fidel, fidel_hah>>\nFidel: Haha, yeah. It\u2019s gone forever.
+      Goodbye.\nFidel: So good of this fast food place to offer their nuggets in increments
+      of seven like this.\nFidel: Also they\u2019re, like, technically ten years old,
+      so I don\u2019t actually want any of \u2018em.\n<<Act @ Piper, player_concern>>\nPiper:
+      They look fine to me. Is this the same deal as before? Another time bubble\u2026
+      thing? \n<<Act @ Fidel, fidel_hah>>\nFidel: You\u2019re learning! Yeah, it\u2019s
+      another one of those frozen magic deals.\nFidel: Physically they\u2019ve remained
+      just a few hours old. The world hasn\u2019t moved at all.\nFidel: So they\u2019re
+      safe to eat! But it still feels icky. It\u2019s, like, the principle of the
+      matter. \nFidel: Mnm.\n//fidel eats one anyways\n<<Act @ Piper, player_concern>>\nPiper:
+      \u2026 \n<<Act @ Fidel, fidel_hah>>\nFidel: Yeah, my body doesn\u2019t remember
+      what food is, so it\u2019s disagreeing with everything.\n<<Act @ Piper, player_concern>>\nPiper:
+      Why are you like this? \n<<Act @ Fidel, fidel_hah>>\nFidel: You know me!\nFidel:
+      Or I guess you don\u2019t. \n//wistful silence\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 6
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 8
     m_Name: Scene4
     m_Depth: 1
     nodeTags: 
     nodeBody: "//more wistful silence as we disconnect from the scene\n<<Act @ Fidel,
-      fidel_neutral, 0.5, 0.5, #226677>>\nSo\u2026 you really don\u2019t remember
-      anything, huh?\nI hoped coming here would jog your memory. But it was just that.
-      \nWishful thinking.\n<<HideAll @>>\n<<Act @ ?, player_neutral, 0.5, 0.5, #6764f7>>\nI'm.
-      Really sorry.\n<<HideAll @>>\n<<Act @ Fidel, fidel_neutral>>\nDon't be.\nThis.
-      This has been fun. I\u2019m glad you\u2019re back. I am. \nI know it doesn\u2019t
-      mean anything to you, but it was good to see you again. \nIt\u2019s just been
-      so long. I didn\u2019t think it was possible, I didn\u2019t think things would
-      ever be different.\n-> \u2026 \n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\t\u2026\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_neutral>>\n\tI just can\u2019t do this.\n-> Fidel\u2026
-      \n\t<<HideAll @>>\n\t<<Act @ ?, player_concern>>\n\tFidel\u2026\n\t<<HideAll
-      @>>\n\t<<Act @ Fidel, fidel_sad>>\n\tI just can\u2019t do this, [PLAYER].\nWe\u2019ve
-      been living like this for so long. I thought it was okay, for things to just
-      be this way.\nFor me to be alone out here.\nFor the world to be in a standstill.\nAnd
-      for me to just. Get by.\n<<HideAll @>>\n<<Act @ ?, player_neutral>>\nHey.\nI\u2019m
-      going to try something, okay?\n//some sick entering fidel\u2019s soul animation.
-      music gameplay begins.\n\n"
+      fidel_neutral>>\nFidel: So\u2026 you really don\u2019t remember anything, huh?\nFidel:
+      I hoped coming here would jog your memory. But it was just that. \nFidel: Wishful
+      thinking.\n<<Act @ Piper, player_neutral>>\nPiper: I'm. Really sorry.\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: Don't be.\nFidel: This. This has been fun.
+      I\u2019m glad you\u2019re back. I am. \nFidel: I know it doesn\u2019t mean anything
+      to you, but it was good to see you again. \nFidel: It\u2019s just been so long.
+      I didn\u2019t think it was possible, I didn\u2019t think things would ever be
+      different.\n-> \u2026 \n\t<<Act @ Piper, player_concern>>\n\tPiper: \u2026\n\t<<Act
+      @ Fidel, fidel_neutral>>\n\tFidel: I just can\u2019t do this.\n-> Fidel\u2026
+      \n\t<<Act @ Piper, player_concern>>\n\tPiper: Fidel\u2026\n\t<<Act @ Fidel,
+      fidel_sad>>\n\tFidel: I just can\u2019t do this, Piper.\nFidel: We\u2019ve been
+      living like this for so long. I thought it was okay, for things to just be this
+      way.\nFidel: For me to be alone out here.\nFidel: For the world to be in a standstill.\nFidel:
+      And for me to just. Get by.\n<<Act @ Piper, player_neutral>>\nPiper: Hey.\nPiper:
+      I\u2019m going to try something, okay?\n//some sick entering fidel\u2019s soul
+      animation. music gameplay begins.\n\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 7
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 9
     m_Name: MoreExamples
     m_Depth: 1
     nodeTags: 
@@ -233,10 +252,10 @@ MonoBehaviour:
       passage\nDo you want to read more about Yarn features?"
     leafType: 0
     nodePosition: {x: 28, y: -178}
-    cachedParentID: 1
-    cachedSize: 0
-  - m_ID: 8
-    m_Name: BoxFidel.yarn
+    cachedParentID: 3
+    cachedSize: 100
+  - m_ID: 10
+    m_Name: RopeworkComplexExample.yarn
     m_Depth: 0
     nodeTags: 
     nodeBody: 
@@ -244,29 +263,258 @@ MonoBehaviour:
     nodePosition: {x: 0, y: 0}
     cachedParentID: -1
     cachedSize: 0
-  - m_ID: 9
-    m_Name: Scene2
+  - m_ID: 11
+    m_Name: Start_2
     m_Depth: 1
     nodeTags: 
-    nodeBody: "FIDEL: Anywho, this is sorta just my usual stompin grounds.\nFIDEL:
-      I hang out here and have fun!\nFIDEL: Mind the murals and, uh, wire sculptures.
-      I like to consider myself an artistic soul.\nFIDEL: ...and the broken glass.
-      I was just tossing rocks once. I\u2014 I dunno. I was vibing. \nFIDEL: Hmmm\u2026
-      what else, what else? Oh!\nFIDEL: It\u2019s a \u2018lil early for this, b-but
-      I want you to meet my other friends!\nPLAYER: Why are you blushing?\nPLAYER:
-      Your other friends are here?\nFIDEL: Just stay right there, I\u2019ll go get
-      them!\n\n\n[they run off, retrieve two rat mannequins. they resemble the player
-      and mara a little.]\nFIDEL: Here they are\u2014 my besties! \nPLAYER: Nice to
-      meet you. | Huh.\n> FIDEL: So polite!\n   FIDEL: Thanks for being kind to them.
-      Some people are so rude, y\u2019know?\n   PLAYER: ...Yeah.\n> FIDEL: Hey, don\u2019t
-      be rude. I want my friends to get along!\n   PLAYER: Are we friends?\n   FIDEL:
-      Okay, point. \nFIDEL: We\u2019ve been through thick and thin together; we\u2019ve
-      been friends forever!\nPLAYER: The\u2014 them? They look like you\u2026 found
-      them yesterday. That\u2019s\u2026 surprising.\nFIDEL: That they don\u2019t look
-      older? Oh yeah, like I said earlier, weird time bubble.\nFIDEL: Everything\u2019s\u2026
-      frozen. I guess that\u2019s the best way to explain it. \nFIDEL: You don\u2019t
-      have to think too hard about it.\n"
+    nodeBody: '
+
+      <<Fade @ black, 0.0, 1.0, 1.0>>
+
+
+      // example scene
+
+      SETTING AN EXAMPLE, a short visual novel by Robert Yang
+
+
+      <<Fade @ white, 1.0, 1.0, 1.0>>
+
+      <<PlayAudio @ ambient_birds, 0.5>>
+
+      RPT Studios; Hoboken, New Jersey, USA
+
+
+      // setup scene
+
+      <<Scene @ bg_office>>
+
+      <<FadeIn @ 1.0>>
+
+      <<Act @ Eve, cool-girl, left, center, green>>
+
+      <<Act @ Adam, biz-guy, right, center, #226677>>
+
+      <<Flip @ Eve>>
+
+      <<Flip @ Adam>>
+
+      <<PlayAudio @ music_funny, 1.0, loop>>
+
+
+      // Eve trying to fire Adam
+
+      Eve: Hey Adam, thanks for coming in.
+
+      Adam: Ok yeah, listen, Steve needs the prototype done by Thursday, and I''m
+      bustin'' my fuckin'' balls trying to get the demon boss encounter implemented
+      in time for the milestone.
+
+      <<Flip @ Adam>>
+
+      Adam: Whatever this is about, can we make this quick?
+
+
+      [[Eve: (ok, fine: you''re fired)|FiredNow]]
+
+      [[Eve: (slowly, or else he''ll cause a scene)|FiredSlow]]
+
+      [[Eve: (take it even slower)|History]]
+
+'
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 8
+    cachedParentID: 10
+    cachedSize: 0
+  - m_ID: 12
+    m_Name: History
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\nEve: Tell me Adam, how long have you been working with us here at
+      RPT Studios?\nAdam: This is my second year as a coder here, I think.\nAdam:
+      ...\n<<Flip @ Adam>>\nAdam: Is that it? Can't this wait until later?\n<<Flip
+      @ Adam>>\nAdam: Some of us have games to make, you know.\nEve: And would you
+      say that you're doing good work? Without any distractions? Is everything OK
+      at home?\nAdam: Well it was shaky at first, with the big move from Nebraska,
+      and getting used to the city and all. \nAdam: But ever since I went in on that
+      great two bedroom with Steve, it's been great.\n[[Gay]]\n"
+    leafType: 0
+    nodePosition: {x: 10, y: 0}
+    cachedParentID: 10
+    cachedSize: 0
+  - m_ID: 13
+    m_Name: FiredSlow
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\nEve: Close the door and take a seat, please.\n<<Shake @ Adam>>\nAdam:
+      Oh shit. Is this about the e-mail? Steve wrote it and told me to send it! It
+      wasn't me!\n\n<<set $betray to true>>\n\n-> Eve: About that e-mail.\n\tEve:
+      Well, about that e-mail.\n\tEve: You sent it to every department. From your
+      work e-mail address. And it's somehow Steve's fault?\n\tAdam: Steve messaged
+      it to me, said it was funny, and said everyone else would think it's funny too.\n->
+      Eve: Speaking of Steve...\n\tEve: Actually, speaking of Steve...\n\n[[Gay]]\n"
+    leafType: 0
+    nodePosition: {x: 20, y: 0}
+    cachedParentID: 10
+    cachedSize: 0
+  - m_ID: 14
+    m_Name: FiredNow
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\n<<StopAudioAll @>>\nEve: ... You're fired.\n<<Shake @ Adam>>\nAdam:
+      ...\nAdam: I'm... fired?...\nEve: That's what I said.\n<<Shake @ Adam>>\n<<PlayAudio
+      @ music_funny, 1.0, loop>>\nAdam: ... Ha!\nEve: ...\n<<Shake @ Adam, 1.0>>\nAdam:
+      HahahaHAHAHA!\n<<Flip @ Adam>>\nAdam: Oh man, I almost believed you!\n\n<<if
+      $gay is true>>\nAdam: It's so great how us gays can share jokes like this now.
+      The straights will never understand. We're practically like sisters.\n-> Eve:
+      Um, you are NOT my sister.\n\tEve: Um, you are NOT my sister.\n-> Eve: A minute
+      ago you were telling me you're straight\n\tEve: A minute ago you were telling
+      me you're straight.\n-> Eve: Sometimes sisters get into shit tho.\n\tEve: Sometimes
+      sisters get into shit tho.\n<<else>>\nAdam: Did Steve put you up to this? What
+      a jokester. What a legend, what a pal. I love that sonuvabitch. Best prank ever.\n<<endif>>\n\nAdam:
+      Anyway, good hustle there, really believable and really funny.\n<<Flip @ Adam>>\nAdam:
+      Imagine, firing me... I guess you really do have a sense of humor.\n<<Flip @
+      Adam>>\nAdam: Well, this was fun, but I really gotta get back to work now.\n<<Move
+      @ Adam, 1.25, 0.5, 0.5>>\n\n<<if $gay is true>>\n-> Eve: Sit your fabulous ass
+      down. Now.\n\tEve: Get back here, girl. And sit your firm fabulous gym-toned
+      ass down. Now.\n-> Eve: I'm sorry, Adam.\n\tEve: I'm sorry, Adam.\n<<else>>\n->
+      Eve: Sit your ass down. Now.\n\tEve: Sit your ass down. Now.\n-> Eve: I'm sorry,
+      Adam.\n\tEve: This isn't a joke. Sorry, dude.\n-> Eve: You deserve it though.\n\tEve:
+      While I pity the breathtaking depth of your denial, it's also kind of hilarious.\n<<endif>>\n\n<<Move
+      @ Adam, right, middle, 1.0>>\nAdam: ...\nAdam: ... Oh my god. This is real?
+      RPT is letting me go?\n<<Move @ Adam, right, bottom, 1.0>>\n\n// if Adam hasn't
+      confessed, then you're meaner\n<<if $gay != true>>\nEve: We prefer the word
+      \"termination\".\n<<endif>>\n\nAdam: Geezus. I can't believe... after three
+      years...\nEve: (cough) Two years.\n<<Shake @ Adam, 1.0>>\nAdam: After two long
+      years of faithful service...\nAdam: ... this is how you repay me?! \n<<Move
+      @ Adam, right, middle, 0.1>>\nAdam: I MOVED ACROSS THE COUNTRY FOR THIS!\nEve:
+      Oh, come on. Nebraska's only halfway.\n<<Shake @ Adam, 1.0>>\nAdam: This company
+      is nothing without me! Nothing, you hear me?\nEve: I'm glad you're taking this
+      so well.\n<<Shake @ Adam, 1.0>>\nAdam: You'll rue this day. Ohhhh you'll regret
+      crossing Adam H. Pickles, if it's the last thing I do, I swear it...\n<<Flip
+      @ Adam>>\nAdam: You can take away my job, but you'll NEVER take away my dignity!\n<<Move
+      @ Adam, 1.25, 0.5, 1.0>>\n<<Move @ Eve, center, 0.5, 0.5>>\nEve: ...\nEve: Well,
+      at least I never took away his dignity.\n<<Move @ Adam, right, 0.5, 0.25>>\n<<Move
+      @ Eve, left, 0.5, 0.25>>\nAdam: PLEASE TAKE ME BACK PLEASE\n<<Shake @ Adam,
+      1.0>>\nAdam: I HAVE NOWHERE ELSE TO GO\n<<Shake @ Adam, 1.0>>\nAdam: I'M NOTHING
+      WITHOUT THIS JOB\n<<Shake @ Adam, 1.0>>\nAdam: WHAT WILL STEVE THINK OF ME\n<<StopAudioAll
+      @>>\nEve: Umm, about that. Steve was...\n\n-> Eve: You should ask Steve at home.
+      <<if $gay is true>>\n\t<<Move @ Eve, center, center, 1.0>>\n\tEve: Maybe you
+      should just ask Steve about it.\n\tEve: Go home, pour yourself a nice whisky,
+      get real fucking drunk...\n\t<<Move @ Eve, left, center, 1.0>>\n\t<<Flip @ Eve>>\n\tEve:
+      ... and then ask your boyfriend why you don't have a job anymore.\n\t<<Flip
+      @ Eve>>\n-> Eve: Steve's the one who got you fired.\n\tEve: Steve was kind of,
+      well, he had a role, he maybe said a thing...\n\n<<PlayAudio @ music_romantic,
+      1.0, loop>>\n\nAdam: ...\nAdam: What are you saying?\nEve: I shouldn't be telling
+      you this, but Steve's been giving you bad performance reviews each quarter.\nAdam:
+      No. No he's not.\n<<Flip @ Eve>>\nEve: I'm sorry.\n\n<<if $betray is true>>\nEve:
+      Remember that e-mail he told you to send?\nAdam: That was just a mistake, he
+      had no way of knowing... He didn't plan that on purpose.\n<<endif>>\n\nEve:
+      Now, uh, it's company policy for you to leave the premises immediately. We'll
+      ship your things to the address we have on file.\n<<if $gay != true>>\nAdam:
+      But he's my roommate. I can't go back there.\n<<else>>\nAdam: But I live with
+      him. I can't go back there.\n<<endif>>\n<<Flip @ Adam>>\nAdam: What am I supposed
+      to do?\n\n-> Eve: Not my problem.\n\tEve: That's not my problem.\n-> Eve: I
+      can't help.\n\tEve: My hands are tied. I can't do anything for you. I wasn't
+      even supposed to tell you about Steve.\n\tAdam: I wish you didn't. I wish everything
+      could go back the way it was.\n\tEve: It can't. It doesn't work like that.\n\tAdam:
+      ...\n-> Eve: (fix broken white boy) <<if $gay is true and $betray is true>>\n\tEve:
+      Well, OK, there's one possibility.\n\tAdam: ...\n\t[[TrueEnding]]\n\nEve: I'll
+      try to give you a recommendation for your next thing.\nAdam: ...\nEve: Um, good
+      luck.\n<<Move @ Eve, -0.25, 0.5, 2.0>>\n\n<<Fade @ black>>\n(SAD END)\n"
+    leafType: 0
+    nodePosition: {x: 30, y: 30}
+    cachedParentID: 10
+    cachedSize: 0
+  - m_ID: 15
+    m_Name: TrueEnding
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\nEve: Remember that e-mail?\n<<Shake @ Adam>>\nAdam: Yeah, alright
+      already, I know I shouldn't have sent it, I screwed up, OK!\nAdam: He said he
+      wanted me to have the credit for such a funny joke. He said everyone would like
+      me more.\nEve: And you just wanted to be liked.\n<<Shake @ Adam>>\nAdam: WHO
+      DOESN'T WANT TO BE LIKED???\n-> Eve: I don't. Not anymore.\n\tEve: I don't care
+      about being liked.\n\tEve: Ever try being the one black woman in a game company?\n\tEve:
+      So I decided, fine, OK, I'll play the cold hard bitch in HR.\n\tAdam: Ah no,
+      you're not that cold.\n\t-> Eve: Be quiet when a grown-up is talking.\n-> Eve:
+      How old are you again?\n\tEve: How old are you again?\n\tAdam: 22.\n\tEve: Are
+      you sure you're not a 12 year old in a big boy body? Like that Tom Hanks movie.\n\tAdam:
+      You mean \"Big\"?\n\tEve: No I meant Road To Perdition, you little fucking baby
+      -- of course I mean Big.\n\nEve: Anyway, I bring up the e-mail because I remember
+      it too.\nEve: The CEO was furious.\nEve: ... But I convinced management to give
+      you one last chance.\nAdam: Really? I thought you hated me.\nEve: Honey, if
+      I hated every single entitled man-child prick in this company, I'd... I guess
+      I'd...\nEve: ...\nEve: Why the fuck am I still working in a company that burns
+      me out every day?\nAdam: Because you want to sacrifice an entire lifetime of
+      well-being to help the game industry brand itself as mildly progressive?\nEve:
+      Fuck games. I'm done with this shit.\nEve: I'm quitting. \nEve: But first...\nEve:
+      (on loudspeaker) Attention, all RPT employees: you have 1 minute to evacuate
+      the building. This is not a drill.\nAdam: What the hell?\nEve: Instead of burning
+      out people, we're going to burn out the industry. We're going to burn this whole
+      motherfucker down.\n-> Adam: I thought you had a plan to get me my job back?\n\tEve:
+      Oh, no, I was just fucking with you. You were basically fired two months ago
+      already, it's way too late to do anything about it now.\n-> Adam: I'm... going
+      to go now.\n\tAdam: I changed my mind. I'll just quietly leave the premises
+      now, and wait for my possessions to be shipped to the address on file...\n\tAdam:
+      Actually, let's just forget we ever had this conversation. Bye now.\n\tEve:
+      Sit your ass down, Adam H. Pickles.\n\tEve: We're in this together now.\n\tEve:
+      They fired you after two long years of loyal service.\n\t<<if $gay is true>>\n\tEve:
+      Your boyfriend betrayed you to get ahead.\n\t<<endif>>\n\tEve: You don't owe
+      them anything except... revenge.\n-> Adam: Right on, my sapphic sister! <<if
+      $gay is true>>\n\tAdam: In gay solidarity! Right on, my sapphic sister!\n\tEve:
+      ...\n\tEve: I'll let that slide this time, but the next time those words leave
+      your mouth, I'm killing you.\n\nAdam: Ok.\nAdam: ...\nAdam: Burn it all!!!\nEve:
+      Burn!!!\n\n<<HideAll @>>\n<<Fade @ orange,0.0,1.0,0.5>>\n\nThey never did find
+      out who exactly burned down RPT Studios that day, or who scrambled countless
+      Steam datacenters, or who emptied the bank accounts of numerous EA and Ubisoft
+      executives...\nBut we know in our hearts that it was Adam and Eve, gay anti-capitalist
+      vigilantes, setting an example for us all.\n(TRUE END)\n"
+    leafType: 0
+    nodePosition: {x: 40, y: 40}
+    cachedParentID: 10
+    cachedSize: 0
+  - m_ID: 16
+    m_Name: Gay
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\nEve: How would you characterize your relationship with Steve?\nAdam:
+      Huh? Why? You think we're gay or something?\n\n-> Eve: No, I mean your professional
+      relationship.\n\tEve: ... Uh, what?\n\tEve: No, I'm talking about your professional
+      relationship.\n\tAdam: But come to think of it, I've been thinking about Steve
+      a lot lately...\n\tEve: That's nice, but about your work --\n\tAdam: His eyes
+      are like a... \n\tEve: ... like a tiger in the moonlight?\n\tAdam: Yeah! And
+      his ass is like an 18-wheeler lost in a sewer. \n\tEve: You're on your own with
+      that one.\n\tAdam: Oh my god, maybe I really am gay. This meeting's been a real
+      eye-opener.\n\t<<Shake @ Adam, 0.5>>\n\tAdam: Look at us! Crying together!\n\tEve:
+      I'm not crying.\n\t<<Shake @ Adam, 0.5>>\n\tAdam: Real human tears! Wow...\n->
+      Eve: Gayer than a brunch in July.\n\tEve: Gayer than a brunch in July.\n\tAdam:
+      Oh my god. Is it that obvious?\n\t-> Eve: Duh.\n\t-> Eve: No, not at all!\n\tEve:
+      Don't worry about it.\n\tEve: Besides, you and Steve look cute together, always
+      blowing kisses at each other when you think no one's watching.\n\tAdam: You
+      knew about that?\n\tEve: And the whole office knows it was you two who broke
+      the table in the breakroom.\n\tAdam: What kind of table can't withstand a few
+      thrusting motions? \n\tAdam: ... It was ugly anyway.\n\tEve: The table.\n\tAdam:
+      Yes, the table.\n-> Eve: Maybe it really was Adam and Steve.\n\tEve: Hey, what
+      Adam and Steve do in their two bedroom condo is none of my business.\n\tAdam:
+      Damn straight.\n\tAdam: ... I mean, I am. Straight. That is.\n\tEve: Understood.\n\tAdam:
+      Completely. Heterosexual. No gay thoughts here.\n\tEve: Right.\n\tAdam: I saw
+      a boob once --\n\nEve: Hey! This isn't about you being gay! I'm gay too! I don't
+      care!\nAdam: Are you gay like a brunch in July?\n-> Eve: Gay like a tiger in
+      the moonlight.\n\t<<Fade @ black, 0.0, 0.3, 2.0>>\n\t<<Move @ Eve, 0.5, 0.5,
+      2.0>>\n\t<<StopAudioAll @>>\n\tEve: I'm gay like a tiger in the moonlight.\n\t<<Flip
+      @ Eve>>\n\tEve: Maybe I'm gay like silence, gay like the shadow.\n-> Eve: ...
+      like an 18-wheeler lost in a sewer.\n\t<<Fade @ black, 0.0, 0.3, 2.0>>\t\n\t<<Move
+      @ Eve, 0.5, 0.5, 2.0>>\n\t<<StopAudioAll @>>\n\tEve: I'm gay like an 18-wheeler
+      lost in a sewer.\n\t<<Flip @ Eve>>\n\tEve: Or I'm gay like muscle cramps, gay
+      like a hangnail.\n-> Eve: ... like revenge, dripping from a tree.\n\t<<Fade
+      @ black, 0.0, 0.3, 2.0>>\n\t<<Move @ Eve, 0.5, 0.5, 2.0>>\n\t<<StopAudioAll
+      @>>\n\tEve: I'm gay like revenge, dripping down from a tree.\n\t<<Flip @ Eve>>\n\tEve:
+      I'm gay like a fury tamed only by gravity.\nAdam: You know, historically, I've
+      always been a really strong ally for the lesbian community.\n<<PlayAudio @ music_funny,
+      1.0, true>>\n<<FadeIn @ 0.5>>\n<<Move @ Eve, left, 0.5, 1.0>>\n<<Flip @ Eve>>\nEve:
+      ...\n<<set $gay to true>>\nEve: By the way, on a completely unrelated note,
+      the purpose of this meeting is to inform you that...\n[[FiredNow]]\n"
+    leafType: 0
+    nodePosition: {x: 40, y: 20}
+    cachedParentID: 10
     cachedSize: 0
