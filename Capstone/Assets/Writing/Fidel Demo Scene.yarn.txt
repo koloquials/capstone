@@ -6,13 +6,15 @@ position: -21,45
 parent: 
 ---
 //start of the Fidel Tour Scene (demo)
-<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
+<<Act @ Fidel, fidel_happy>>
+//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
 //<<Act @ Eve, cool-girl, left, center, green>>
 Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
 Fidel: Oh, just in time. Here we are… our first stop!
 Fidel: You can open your eyes now.  
 //<<HideAll @>>
-<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+<<Act @ Piper, player_neutral>>
 Piper: ‘kay.
 
 [[Scene1]]
@@ -131,6 +133,7 @@ Fidel: That they don’t look older? Oh yeah, like I said earlier, weird time bu
 Fidel: Everything’s… frozen. I guess that’s the best way to explain it. 
 Fidel: You don’t have to think too hard about it.
 
+[[Scene3]]
 ===
 title: Scene3
 tags: 
@@ -207,6 +210,7 @@ Fidel: You know me!
 Fidel: Or I guess you don’t. 
 //wistful silence
 
+[[Scene4]]
 ===
 title: Scene4
 tags: 
@@ -244,6 +248,8 @@ Fidel: And for me to just. Get by.
 Piper: Hey.
 Piper: I’m going to try something, okay?
 //some sick entering fidel’s soul animation. music gameplay begins.
+//<<HideAll @>>
+<<RhythmStart notePrefab>>
 
 
 ===

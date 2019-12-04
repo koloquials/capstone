@@ -361,14 +361,20 @@ namespace Ropework {
 			while ( t < 1f ) {
 				t += Time.deltaTime / 2f;
 				foreach ( var spr in sprites ) {
-					Vector3 regularScalePreserveXFlip = new Vector3( Mathf.Sign(spr.transform.localScale.x), 1f, 1f);
-					if ( spr != highlightedSprite) { // set back to normal
-						spr.transform.localScale = Vector3.MoveTowards( spr.transform.localScale, regularScalePreserveXFlip, Time.deltaTime );
-						spr.color = Color.Lerp( spr.color, defaultTint, Time.deltaTime * 5f );
-					} else { // a little bit bigger / brighter
-						spr.transform.localScale = Vector3.MoveTowards( spr.transform.localScale, regularScalePreserveXFlip * 1.05f, Time.deltaTime );
-						spr.color = Color.Lerp( spr.color, highlightTint, Time.deltaTime * 5f );
-					}
+                    if (spr != null) //Made to prevent an error. Delete if it causes issues.
+                    {
+                        Vector3 regularScalePreserveXFlip = new Vector3(Mathf.Sign(spr.transform.localScale.x), 1f, 1f);
+                        if (spr != highlightedSprite)
+                        { // set back to normal
+                            spr.transform.localScale = Vector3.MoveTowards(spr.transform.localScale, regularScalePreserveXFlip, Time.deltaTime);
+                            spr.color = Color.Lerp(spr.color, defaultTint, Time.deltaTime * 5f);
+                        }
+                        else
+                        { // a little bit bigger / brighter
+                            spr.transform.localScale = Vector3.MoveTowards(spr.transform.localScale, regularScalePreserveXFlip * 1.05f, Time.deltaTime);
+                            spr.color = Color.Lerp(spr.color, highlightTint, Time.deltaTime * 5f);
+                        }
+                    }
 				}
 				yield return 0;
 			}
