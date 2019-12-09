@@ -71,3 +71,5 @@ Capstone/Library/
 Capstone/Temp/
 
 Capstone/obj/
+
+Capstone/Assets/Scripts/Rhythm Game/syncRotate.cs
