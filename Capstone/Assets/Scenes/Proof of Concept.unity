@@ -502,6 +502,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 9f55558d20a7f492f859172689fd08e0,
         type: 3}
+    - target: {fileID: 114570167265781804, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: defaultVariables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570167265781804, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: defaultVariables.Array.data[0].name
+      value: $completedRhythm
+      objectReference: {fileID: 0}
+    - target: {fileID: 114570167265781804, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: defaultVariables.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e0841b82a4ebcd438730d23886e17e6, type: 3}
 --- !u!1001 &47717063
@@ -591,6 +606,11 @@ PrefabInstance:
       propertyPath: pc
       value: 
       objectReference: {fileID: 1100603061}
+    - target: {fileID: 3485680221299460030, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: varStor
+      value: 
+      objectReference: {fileID: 2128679516}
     - target: {fileID: 982109736365544062, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
         type: 3}
       propertyPath: songLenghtinBeats
@@ -777,7 +797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133296669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -65.78, y: -3.82, z: 0}
+  m_LocalPosition: {x: 6.3, y: -3.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1185,7 +1205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100603060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.49, y: -3.87, z: 0}
+  m_LocalPosition: {x: -0.3, y: -3.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1449,7 +1469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778579287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69.82, y: 0, z: -10}
+  m_LocalPosition: {x: -0.6, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1582,3 +1602,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2128679516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114570167265781804, guid: 9e0841b82a4ebcd438730d23886e17e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 15763993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 610c541718d694070a21327d1ae62e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

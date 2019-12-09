@@ -10,6 +10,8 @@ public class syncRotate : MonoBehaviour
     //FOR CLARIFICATION: This script goes on the smaller circle orbiting a point on the screen. The fret is the larger circle intersecting the smaller circle's orbit on the right side, which should have the fretFeedback script.
     //The spriterenderer of both this and the fret should start disabled.
 
+    public ExampleVariableStorage varStor; //The example variable storage for the yarn system. Used to tell dialogue when you've won.
+
     public conductorScript script;
 
     public Yarn.Unity.Example.PlayerCharacter pc; //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
@@ -110,6 +112,7 @@ public class syncRotate : MonoBehaviour
     public GameObject lifeSprite2;
     public GameObject lifeSprite3;
 
+    public bool debugMode = false; //Debug mode, currently just lets you start the game with spacebar. Set this in the inspector on a per-scene basis.
 
     // Start is called before the first frame update
     void Start()
@@ -142,10 +145,10 @@ public class syncRotate : MonoBehaviour
     {
         if (starting == 0)
         {
-            //if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
-            //{
-                //begin();
-            //}
+            if(debugMode && Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
+            {
+                begin();
+            }
         }
         if (starting == 1)
         {
@@ -381,6 +384,7 @@ public class syncRotate : MonoBehaviour
             if(score >= songNoteLength)
             {
                 //You win, pass a value to dialogue
+                varStor.SetValue("$completedRhythm", new Yarn.Value(1));
                 starting = 3;
                 endTimer = 0;
             }

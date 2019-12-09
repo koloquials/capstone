@@ -104,8 +104,10 @@ namespace Ropework {
 			}
 
 			// save actor data
-			actors.Add( actorName, newActor );
-			actorColors.Add( actorName, actorColor );
+            if(!actors.ContainsKey(actorName))
+			    actors.Add( actorName, newActor );
+            if(!actorColors.ContainsKey(actorName))
+			    actorColors.Add( actorName, actorColor );
 		}
 
 		// SetSprite(spriteName,positionX,positionY)
@@ -363,7 +365,7 @@ namespace Ropework {
 				foreach ( var spr in sprites ) {
                     if (spr != null) //Made to prevent an error. Delete if it causes issues.
                     {
-                        Vector3 regularScalePreserveXFlip = new Vector3(Mathf.Sign(spr.transform.localScale.x), 1f, 1f);
+                        Vector3 regularScalePreserveXFlip = new Vector3(Mathf.Sign(spr.transform.localScale.x), 1f, 1f); //Looks like this is where that little bump happens
                         if (spr != highlightedSprite)
                         { // set back to normal
                             spr.transform.localScale = Vector3.MoveTowards(spr.transform.localScale, regularScalePreserveXFlip, Time.deltaTime);

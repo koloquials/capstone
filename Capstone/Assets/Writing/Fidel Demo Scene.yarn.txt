@@ -5,19 +5,39 @@ colorID: 0
 position: -21,45
 parent: 
 ---
-//start of the Fidel Tour Scene (demo)
-<<Act @ Fidel, fidel_happy>>
-//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
-//<<Act @ Eve, cool-girl, left, center, green>>
-Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
-Fidel: Oh, just in time. Here we are… our first stop!
-Fidel: You can open your eyes now.  
-//<<HideAll @>>
-//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
-<<Act @ Piper, player_neutral>>
-Piper: ‘kay.
 
-[[Scene1]]
+//<<if $startedRhythm is 1>>
+<<if visited("Scene4")>>
+	<<if $completedRhythm is 0>>
+		<<Act @ Fidel, fidel_neutral>>
+		Fidel: You want to try that again?
+		<<Act @ Piper, player_neutral>>
+		Piper: Yeah
+		<<Hide @ Fidel>>
+		<<Hide @ Piper>>
+		<<RhythmStart notePrefab>>
+	<<endif>>
+	<<if $completedRhythm is 1>>
+		[[EndScene]]
+	<<endif>>
+<<endif>>
+<<if not visited("Scene4")>>
+	//start of the Fidel Tour Scene (demo)
+	<<Act @ Fidel, fidel_happy>>
+	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
+	//<<Act @ Eve, cool-girl, left, center, green>>
+	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
+	Fidel: Oh, just in time. Here we are… our first stop!
+	Fidel: You can open your eyes now.  
+	//<<HideAll @>>
+	//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	<<Act @ Piper, player_neutral>>
+	Piper: ‘kay.
+
+	[[Scene1]]
+	//[[Scene4]]
+<<endif>>
+
 ===
 title: Scene1
 tags: 
@@ -249,8 +269,29 @@ Piper: Hey.
 Piper: I’m going to try something, okay?
 //some sick entering fidel’s soul animation. music gameplay begins.
 //<<HideAll @>>
+<<Hide @ Fidel>>
+<<Hide @ Piper>>
+<<Set $startedRhythm to 1>>
+<<Set $completeRhythm to 0>>
 <<RhythmStart notePrefab>>
 
+
+===
+title: EndScene
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
+
+<<Act @ Fidel, fidel_happy>>
+Fidel: You did it!
+<<Act @ Fidel, fidel_neutral>>
+Fidel: I think. What exactly did you do?
+<<Act @ Piper, player_neutral>>
+Piper: ...
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
 
 ===
 title: MoreExamples
