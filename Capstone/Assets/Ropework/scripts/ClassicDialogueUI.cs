@@ -250,10 +250,19 @@ namespace Yarn.Unity.Example {
                 {
                     if(x == highlightOption)
                     {
+                        //optionButtons[x].image.color = new Color(143, 128, 236);
+                        ColorBlock cb = optionButtons[x].colors;
+                        cb.normalColor = new Color(0.56078f, 0.50196f, 0.92549f  );
+                        //cb.normalColor = Color.red;
+                        optionButtons[x].colors = cb;
                         buttonText[x].color = Color.white;
                     }
                     else
                     {
+                        //optionButtons[x].image.color = Color.white;
+                        ColorBlock cb = optionButtons[x].colors;
+                        cb.normalColor = Color.white;
+                        optionButtons[x].colors = cb;
                         buttonText[x].color = Color.black;
                     }
                 }
