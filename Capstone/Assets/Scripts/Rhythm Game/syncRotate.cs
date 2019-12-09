@@ -142,10 +142,10 @@ public class syncRotate : MonoBehaviour
     {
         if (starting == 0)
         {
-            //if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
-            //{
-                //begin();
-            //}
+            if(Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
+            {
+                begin();
+            }
         }
         if (starting == 1)
         {
