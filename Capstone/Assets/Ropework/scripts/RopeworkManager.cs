@@ -120,6 +120,8 @@ namespace Ropework {
 			var spriteName = par[0];
 
 			// position sprite
+            //editing numbers changes where it goes
+            //lower goes bottom left
 			var pos = new Vector2(0.5f, 0.5f);
 			if ( par.Length > 1 ) {
 				pos.x = ConvertCoordinates(par[1]);
