@@ -10,7 +10,7 @@ TextureImporter:
     second: player_concern
   - first:
       213: 6757282713640645180
-    second: player_pleased
+    second: player_pleasant
   - first:
       213: -6781412095145881161
     second: player_joke
@@ -146,9 +146,9 @@ TextureImporter:
       name: player_concern
       rect:
         serializedVersion: 2
-        x: 360
+        x: 355
         y: 720
-        width: 360.25
+        width: 360
         height: 360
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_pleased
+      name: player_pleasant
       rect:
         serializedVersion: 2
         x: 720

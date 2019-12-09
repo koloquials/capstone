@@ -70,6 +70,8 @@ namespace Yarn.Unity.Example {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
+        public List<Text> buttonText;
+
         public Image highlight;
 
         int highlightOption = 0;
@@ -244,6 +246,17 @@ namespace Yarn.Unity.Example {
                     accidentPrevention += Time.deltaTime;
                 }
                 highlight.transform.position = optionButtons[highlightOption].transform.position;
+                for(int x = 0; x < buttonText.Count; x++)
+                {
+                    if(x == highlightOption)
+                    {
+                        buttonText[x].color = Color.white;
+                    }
+                    else
+                    {
+                        buttonText[x].color = Color.black;
+                    }
+                }
                 highlight.gameObject.SetActive(true);
                 yield return null;
             }
