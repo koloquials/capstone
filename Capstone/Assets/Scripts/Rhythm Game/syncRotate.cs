@@ -110,6 +110,7 @@ public class syncRotate : MonoBehaviour
     public GameObject lifeSprite2;
     public GameObject lifeSprite3;
 
+
     // Start is called before the first frame update
     void Start()
     {

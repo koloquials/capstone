@@ -38,6 +38,13 @@ position: 721,130
 <<endif>>
 
 ===
+
+title: startRhythm
+---
+Fidel?: You got it.
+<<RhythmStart notePrefab>>
+===
+
 title: selfAwareness
 ---
 Fidel?: We're placeholders. It's only temporary.

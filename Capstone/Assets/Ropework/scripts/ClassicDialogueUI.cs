@@ -69,9 +69,18 @@ namespace Yarn.Unity.Example {
         /// The buttons that let the user choose an option
         public List<Button> optionButtons;
 
+        public Image highlight;
+
+        int highlightOption = 0;
+
+        float accidentPrevention = 0; //Stops options from being selected accidentally
+
         /// Make it possible to temporarily disable the controls when
         /// dialogue is active and to restore them when dialogue ends
         public RectTransform gameControlsContainer;
+
+        bool openToOptions = false; //Whether or not the program is waiting on an option to be selected.
+        int optionCount = 0;
 
         void Awake ()
         {
@@ -83,7 +92,7 @@ namespace Yarn.Unity.Example {
                 dialogueContainer.SetActive(false);
 
             lineText.gameObject.SetActive (false);
-
+            highlight.gameObject.SetActive(false);
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
@@ -131,10 +140,35 @@ namespace Yarn.Unity.Example {
 
                 bool earlyOut = false;
                 yield return 0; // give time for previous Input.anyKeyDown event to become false
+
+                bool informat = false; //If the text being parsed is formatting text
+                bool formatPrimed = false; //If the text being parsed has passed the first > in the formatted block
+
                 foreach (char c in lineTextDisplay) {
+
+                    if (c.Equals('<') && !informat) //Checks for open format marks, if so, display all the formatted text at once to avoid showing format marks.
+                    {
+                        informat = true;
+                        formatPrimed = false;
+                    }
+
+                    stringBuilder.Append(c);
+
+                    if (!informat)
+                    {
+                        lineText.text = stringBuilder.ToString();
+                        yield return new WaitForSeconds(textSpeed);
+                    }
+
+                    if (c.Equals('>'))
+                    {
+                        if (formatPrimed)
+                            informat = false;
+                        else
+                            formatPrimed = true;
+                    }
+
                     float timeWaited = 0f;
-                    stringBuilder.Append (c);
-                    lineText.text = stringBuilder.ToString ();
                     while ( timeWaited < textSpeed ) {
                         timeWaited += Time.deltaTime;
                         // early out / skip ahead
@@ -145,6 +179,7 @@ namespace Yarn.Unity.Example {
                         yield return 0;
                     }
                     if ( earlyOut ) { break; }
+
                 }
             } else {
                 // Display the line immediately if textSpeed == 0
@@ -179,22 +214,37 @@ namespace Yarn.Unity.Example {
             }
 
             // Display each option in a button, and make it visible
+            openToOptions = true;
+            //highlight.gameObject.SetActive(true);
+            highlightOption = 0;
+            accidentPrevention = 0;
             int i = 0;
             foreach (var optionString in optionsCollection.options) {
                 optionButtons [i].gameObject.SetActive (true);
                 optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
                 i++;
             }
+            optionCount = i;
 
             // Record that we're using it
             SetSelectedOption = optionChooser;
 
+            //highlight.transform.position = optionButtons[highlightOption].transform.position;
+
             // Wait until the chooser has been used and then removed (see SetOption below)
             while (SetSelectedOption != null) {
+                if (accidentPrevention < 0.5f)
+                {
+                    accidentPrevention += Time.deltaTime;
+                }
+                highlight.transform.position = optionButtons[highlightOption].transform.position;
+                highlight.gameObject.SetActive(true);
                 yield return null;
             }
 
             // Hide all the buttons
+            openToOptions = false;
+            highlight.gameObject.SetActive(false);
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
@@ -203,13 +253,47 @@ namespace Yarn.Unity.Example {
         /// Called by buttons to make a selection.
         public void SetOption (int selectedOption)
         {
+            if (openToOptions)
+            {
+                // Call the delegate to tell the dialogue system that we've
+                // selected an option.
+                SetSelectedOption(selectedOption);
 
-            // Call the delegate to tell the dialogue system that we've
-            // selected an option.
-            SetSelectedOption (selectedOption);
+                // Now remove the delegate so that the loop in RunOptions will exit
+                SetSelectedOption = null;
+            }
+        }
 
-            // Now remove the delegate so that the loop in RunOptions will exit
-            SetSelectedOption = null; 
+        public void ScrollOption (int scroll)
+        {
+            if (openToOptions)
+            {
+                if (accidentPrevention > 0.4f)
+                {
+                    if (scroll == 0)
+                    {
+                        // Call the delegate to tell the dialogue system that we've
+                        // selected an option.
+                        SetSelectedOption(highlightOption);
+
+                        // Now remove the delegate so that the loop in RunOptions will exit
+                        SetSelectedOption = null;
+                    }
+                    else
+                    {
+                        highlightOption += scroll;
+                        if (highlightOption >= optionCount)
+                        {
+                            highlightOption = 0;
+                        }
+                        else if (highlightOption < 0)
+                        {
+                            highlightOption = optionCount - 1;
+                        }
+                        highlight.transform.position = optionButtons[highlightOption].transform.position;
+                    }
+                }
+            }
         }
 
         /// Run an internal command.
@@ -253,6 +337,11 @@ namespace Yarn.Unity.Example {
             }
 
             yield break;
+        }
+
+        public void closePortraits()
+        {
+
         }
 
     }

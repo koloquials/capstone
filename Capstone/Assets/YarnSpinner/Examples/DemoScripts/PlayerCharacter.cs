@@ -58,7 +58,35 @@ namespace Yarn.Unity.Example {
 
             // Remove all player control when we're in dialogue
             // Edited to also remove player control when in the rhythm game.
-            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {
+            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {  
+                    if (Input.GetKey(KeyCode.Alpha1))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().SetOption(0);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha2))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().SetOption(1);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha3))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().SetOption(2);
+                    }
+                    else if (Input.GetKey(KeyCode.Alpha4))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().SetOption(3);
+                    }
+                    if (Input.GetKeyUp(KeyCode.UpArrow))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(-1);
+                    }
+                    else if (Input.GetKeyUp(KeyCode.DownArrow))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(1);
+                    }
+                    if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space))
+                    {
+                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(0);
+                    }
                 return;
             }
 
