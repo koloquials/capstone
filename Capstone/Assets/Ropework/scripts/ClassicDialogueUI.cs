@@ -56,6 +56,7 @@ namespace Yarn.Unity.Example {
 
         /// A UI element that appears after lines have finished appearing
         public GameObject continuePrompt;
+        ContinueBump bump;
 
         /// A delegate (ie a function-stored-in-a-variable) that
         /// we call to tell the dialogue system about what option
@@ -84,6 +85,8 @@ namespace Yarn.Unity.Example {
 
         void Awake ()
         {
+            bump = continuePrompt.GetComponent<ContinueBump>();
+
             // if Ropework manager is null, then find it
             if ( ropework == null ) { ropework = FindObjectOfType<Ropework.RopeworkManager>(); }
 
@@ -188,7 +191,10 @@ namespace Yarn.Unity.Example {
 
             // Show the 'press any key' prompt when done, if we have one
             if (continuePrompt != null)
-                continuePrompt.SetActive (true);
+            {
+                continuePrompt.SetActive(true);
+                bump.bump();
+            }
 
             // Wait for any user input
             while (Input.anyKeyDown == false) {
