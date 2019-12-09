@@ -72,7 +72,7 @@ namespace Yarn.Unity.Example {
 
         public List<Text> buttonText;
 
-        public Image highlight;
+        //public Image highlight;
 
         int highlightOption = 0;
 
@@ -97,7 +97,7 @@ namespace Yarn.Unity.Example {
                 dialogueContainer.SetActive(false);
 
             lineText.gameObject.SetActive (false);
-            highlight.gameObject.SetActive(false);
+            //highlight.gameObject.SetActive(false);
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
@@ -245,14 +245,14 @@ namespace Yarn.Unity.Example {
                 {
                     accidentPrevention += Time.deltaTime;
                 }
-                highlight.transform.position = optionButtons[highlightOption].transform.position;
+                //highlight.transform.position = optionButtons[highlightOption].transform.position;
                 for(int x = 0; x < buttonText.Count; x++)
                 {
                     if(x == highlightOption)
                     {
-                        //optionButtons[x].image.color = new Color(143, 128, 236);
+                        //optionButtons[x].image.color = new Color(0.56078f, 0.50196f, 0.92549f);
                         ColorBlock cb = optionButtons[x].colors;
-                        cb.normalColor = new Color(0.56078f, 0.50196f, 0.92549f  );
+                        cb.normalColor = new Color(0.1553724f, 0.137104f, 0.745283f);
                         //cb.normalColor = Color.red;
                         optionButtons[x].colors = cb;
                         buttonText[x].color = Color.white;
@@ -266,13 +266,13 @@ namespace Yarn.Unity.Example {
                         buttonText[x].color = Color.black;
                     }
                 }
-                highlight.gameObject.SetActive(true);
+                //highlight.gameObject.SetActive(true);
                 yield return null;
             }
 
             // Hide all the buttons
             openToOptions = false;
-            highlight.gameObject.SetActive(false);
+            //highlight.gameObject.SetActive(false);
             foreach (var button in optionButtons) {
                 button.gameObject.SetActive (false);
             }
@@ -318,7 +318,7 @@ namespace Yarn.Unity.Example {
                         {
                             highlightOption = optionCount - 1;
                         }
-                        highlight.transform.position = optionButtons[highlightOption].transform.position;
+                        //highlight.transform.position = optionButtons[highlightOption].transform.position;
                     }
                 }
             }
