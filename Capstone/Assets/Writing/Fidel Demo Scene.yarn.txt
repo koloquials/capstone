@@ -3,8 +3,14 @@ title: Start
 tags: 
 colorID: 0
 position: -21,45
-parent: 
 ---
+<<if $waypoint is 2>>
+	[[Scene2]]
+<<elseif $waypoint is 3>>
+	[[Scene3]]
+<<elseif $waypoint is 4 and not visited("Scene4")>>
+	[[Scene3b]]
+<<endif>>
 
 //<<if $startedRhythm is 1>>
 <<if visited("Scene4")>>
@@ -12,7 +18,7 @@ parent:
 		<<Act @ Fidel, fidel_disappointed>>
 		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
-		<<Hide @ Piper>>
+		//<<Hide @ Piper>>
 		<<RhythmStart notePrefab>>
 	<<endif>>
 	<<if $completedRhythm is 1>>
@@ -100,7 +106,12 @@ Piper: …
 Fidel: …
 Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the stage.
 
-[[Scene2]]
+<<set $waypoint to 2>>
+<<moveNPC Fidel>>
+//[[Scene2]]
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
+
 ===
 title: Scene2
 tags: 
@@ -152,7 +163,12 @@ Fidel: That they don’t look older? Oh yeah, like I said earlier, weird time bu
 Fidel: Everything’s… frozen. I guess that’s the best way to explain it. 
 Fidel: You don’t have to think too hard about it.
 
-[[Scene3]]
+//[[Scene3]]
+<<set $waypoint to 3>>
+<<moveNPC Fidel>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
+
 ===
 title: Scene3
 tags: 
@@ -174,7 +190,20 @@ Fidel: Anyways, you hungry?
 	<<Act @ Fidel, fidel_hah>>
 	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
 Fidel: To the food court! 
+<<set $waypoint to 4>>
+<<moveNPC Fidel>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
+
+===
+title: Scene3b
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
 //fidel runs ahead and the player follows. they fuck around at a food court
+<<Act @ Fidel, fidel_happy>>
 Fidel: Okay, okay. Don’t mind if I do! 
 //they get to a counter and dive behind it
 Fidel: Welcome to Grilli’s, how can I help you?
