@@ -63,7 +63,7 @@ Piper: We’re in an old mall.
 Fidel: Sure are!
 <<Act @ Piper, player_concern>>
 Piper: You live here.
-Piper: In the clothing aisle?
+Piper: In the clothing department?
 <<Act @ Fidel, fidel_happy>>
 Fidel: Well, you know what they say, one animal’s trash is another one’s beautiful home.
 -> Do they, now?
