@@ -161,15 +161,15 @@ position: 0,0
 parent: 
 ---
 //there's a beat. and then they continue on their way
-<<Act @ Fidel, fidel_neutral, 0.5, 0.5, #226677>>
+<<Act @ Fidel, fidel_neutral>>
 Fidel: Anyways, you hungry?
 -> Yeah, I’m peckish.
-	<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	<<Act @ Piper, player_neutral>>
 	Piper: Yeah, I’m peckish.
 	<<Act @ Fidel, fidel_hah>>
 	Fidel: Cool! Just don’t peck at me, yeah? Hah! 
 -> Not really.
-	<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	<<Act @ Piper, player_neutral>>
 	Piper: Not really.
 	<<Act @ Fidel, fidel_hah>>
 	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
