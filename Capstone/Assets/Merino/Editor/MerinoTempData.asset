@@ -16,28 +16,27 @@ MonoBehaviour:
   timestamp: 924.952738333
   viewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 08000000
-    m_LastClickedID: 8
-    m_ExpandedIDs: 000000000100000003000000040000000a000000
+    m_SelectedIDs: 07000000
+    m_LastClickedID: 7
+    m_ExpandedIDs: 00000000010000000200000003000000040000000a000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Scene1
-      m_OriginalName: Scene1
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 5
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
   currentFiles:
-  - {fileID: 4900000, guid: c89822fbbb466493cbd9c336ba1f03d2, type: 3}
   - {fileID: 4900000, guid: 5e0fead0f5ba2ac4eb77c32c5da15381, type: 3}
   - {fileID: 4900000, guid: 72730132a8fef4e5aad336d08c5e94de, type: 3}
   - {fileID: 4900000, guid: 11cb79c79787a8546b031e3594777314, type: 3}
@@ -53,15 +52,6 @@ MonoBehaviour:
     cachedParentID: -1
     cachedSize: 0
   - m_ID: 1
-    m_Name: Fidel Demo Scene.yarn
-    m_Depth: 0
-    nodeTags: 
-    nodeBody: 
-    leafType: 1
-    nodePosition: {x: 0, y: 0}
-    cachedParentID: -1
-    cachedSize: 0
-  - m_ID: 2
     m_Name: BoxFidel.yarn
     m_Depth: 0
     nodeTags: 
@@ -70,8 +60,8 @@ MonoBehaviour:
     nodePosition: {x: 0, y: 0}
     cachedParentID: -1
     cachedSize: 0
-  - m_ID: 3
-    m_Name: Fidel Demo Scene copy.yarn
+  - m_ID: 2
+    m_Name: Fidel Demo Scene.yarn
     m_Depth: 0
     nodeTags: 
     nodeBody: 
@@ -79,7 +69,7 @@ MonoBehaviour:
     nodePosition: {x: 0, y: 0}
     cachedParentID: -1
     cachedSize: 0
-  - m_ID: 4
+  - m_ID: 3
     m_Name: Start
     m_Depth: 1
     nodeTags: 
@@ -91,9 +81,9 @@ MonoBehaviour:
       \u2018kay.\n\n[[Scene1]]"
     leafType: 0
     nodePosition: {x: -21, y: 45}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 5
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 4
     m_Name: Scene1
     m_Depth: 1
     nodeTags: 
@@ -127,9 +117,9 @@ MonoBehaviour:
       Zero out of two. We\u2019re gonna get tomatoed right off the stage.\n\n[[Scene2]]"
     leafType: 0
     nodePosition: {x: -138, y: -49}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 6
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 5
     m_Name: Scene2
     m_Depth: 1
     nodeTags: 
@@ -160,9 +150,9 @@ MonoBehaviour:
       have to think too hard about it.\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 7
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 6
     m_Name: Scene3
     m_Depth: 1
     nodeTags: 
@@ -207,9 +197,9 @@ MonoBehaviour:
       Or I guess you don\u2019t. \n//wistful silence\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 8
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 7
     m_Name: Scene4
     m_Depth: 1
     nodeTags: 
@@ -232,9 +222,9 @@ MonoBehaviour:
       animation. music gameplay begins.\n\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 9
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 8
     m_Name: MoreExamples
     m_Depth: 1
     nodeTags: 
@@ -252,9 +242,9 @@ MonoBehaviour:
       passage\nDo you want to read more about Yarn features?"
     leafType: 0
     nodePosition: {x: 28, y: -178}
-    cachedParentID: 3
-    cachedSize: 100
-  - m_ID: 10
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 9
     m_Name: RopeworkComplexExample.yarn
     m_Depth: 0
     nodeTags: 
@@ -263,7 +253,7 @@ MonoBehaviour:
     nodePosition: {x: 0, y: 0}
     cachedParentID: -1
     cachedSize: 0
-  - m_ID: 11
+  - m_ID: 10
     m_Name: Start_2
     m_Depth: 1
     nodeTags: 
@@ -323,9 +313,9 @@ MonoBehaviour:
 '
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
-  - m_ID: 12
+  - m_ID: 11
     m_Name: History
     m_Depth: 1
     nodeTags: 
@@ -339,9 +329,9 @@ MonoBehaviour:
       great two bedroom with Steve, it's been great.\n[[Gay]]\n"
     leafType: 0
     nodePosition: {x: 10, y: 0}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
-  - m_ID: 13
+  - m_ID: 12
     m_Name: FiredSlow
     m_Depth: 1
     nodeTags: 
@@ -354,9 +344,9 @@ MonoBehaviour:
       Eve: Speaking of Steve...\n\tEve: Actually, speaking of Steve...\n\n[[Gay]]\n"
     leafType: 0
     nodePosition: {x: 20, y: 0}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
-  - m_ID: 14
+  - m_ID: 13
     m_Name: FiredNow
     m_Depth: 1
     nodeTags: 
@@ -423,9 +413,9 @@ MonoBehaviour:
       luck.\n<<Move @ Eve, -0.25, 0.5, 2.0>>\n\n<<Fade @ black>>\n(SAD END)\n"
     leafType: 0
     nodePosition: {x: 30, y: 30}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
-  - m_ID: 15
+  - m_ID: 14
     m_Name: TrueEnding
     m_Depth: 1
     nodeTags: 
@@ -471,9 +461,9 @@ MonoBehaviour:
       vigilantes, setting an example for us all.\n(TRUE END)\n"
     leafType: 0
     nodePosition: {x: 40, y: 40}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
-  - m_ID: 16
+  - m_ID: 15
     m_Name: Gay
     m_Depth: 1
     nodeTags: 
@@ -516,5 +506,5 @@ MonoBehaviour:
       the purpose of this meeting is to inform you that...\n[[FiredNow]]\n"
     leafType: 0
     nodePosition: {x: 40, y: 20}
-    cachedParentID: 10
+    cachedParentID: 9
     cachedSize: 0
