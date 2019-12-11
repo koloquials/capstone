@@ -492,7 +492,7 @@ public class syncRotate : MonoBehaviour
                     phase = 2;
                     strikes = 0;
                     pattern = false;
-                    sr.color = Color.blue;
+                    //sr.color = Color.blue;
                     lifeSprite1.SetActive(true);
                     lifeSprite2.SetActive(true);
                     lifeSprite3.SetActive(true);
@@ -502,7 +502,7 @@ public class syncRotate : MonoBehaviour
             {
                 if (strikes >= 3)
                 {
-                    sr.color = Color.gray;
+                    //sr.color = Color.gray;
                     script.stopMusic();
                     for (int x = 0; x < noteSprites.Length; x++)
                     {

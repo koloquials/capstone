@@ -69,12 +69,12 @@ public class fretFeedback : MonoBehaviour
         {
             if (h) //If it hits, set the color and increase the scale
             {
-                sr.color = Color.blue; //May change this and the miss color once our palette is finalized.
+                sr.color = new Color(0.26667f, 0.49020f, 0.85490f, 0.5f); //May change this and the miss color once our palette is finalized.
                 scaleMod = 1.4f;
             }
             else //On a miss, set the color and decrease the scale
             {
-                sr.color = Color.red;
+                sr.color = new Color(0.96078f, 0.43922f, 0.53333f, 0.8f);
                 scaleMod = 0.8f;
             }
         }

@@ -127,9 +127,9 @@ namespace Yarn.Unity.Example {
                 // change dialog nameplate text and, if applicable the BG color
                 nameText.transform.parent.gameObject.SetActive(true);
                 nameText.text = speakerName;
-                if ( ropework.actorColors.ContainsKey(speakerName) ) {
-                    nameText.transform.parent.GetComponent<Image>().color = ropework.actorColors[speakerName];
-                }
+                //if ( ropework.actorColors.ContainsKey(speakerName) ) {
+                    //nameText.transform.parent.GetComponent<Image>().color = ropework.actorColors[speakerName];
+               // }
                 // Highlight actor's sprite (if on-screen) using RopeworkManager
                 if ( ropework.actors.ContainsKey(speakerName) ) {
                     ropework.HighlightSprite( ropework.actors[speakerName] );
