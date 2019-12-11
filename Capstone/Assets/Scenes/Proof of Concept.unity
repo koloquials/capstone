@@ -792,33 +792,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.3
       objectReference: {fileID: 0}
-    - target: {fileID: 114119970328648168, guid: 9e0841b82a4ebcd438730d23886e17e6,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ab37bf9a79077494485e58e9e8360b8a,
-        type: 3}
-    - target: {fileID: 114119970328648168, guid: 9e0841b82a4ebcd438730d23886e17e6,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114843936717870862, guid: 9e0841b82a4ebcd438730d23886e17e6,
-        type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ab37bf9a79077494485e58e9e8360b8a,
-        type: 3}
-    - target: {fileID: 114843936717870862, guid: 9e0841b82a4ebcd438730d23886e17e6,
-        type: 3}
-      propertyPath: m_FontData.m_FontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114519708122230586, guid: 9e0841b82a4ebcd438730d23886e17e6,
-        type: 3}
-      propertyPath: m_Spacing
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 114716998665554330, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: m_Color.r
@@ -847,6 +820,28 @@ PrefabInstance:
     - target: {fileID: 114323225113321106, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114119970328648168, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ab37bf9a79077494485e58e9e8360b8a,
+        type: 3}
+    - target: {fileID: 114119970328648168, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114843936717870862, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ab37bf9a79077494485e58e9e8360b8a,
+        type: 3}
+    - target: {fileID: 114843936717870862, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224967017462668890, guid: 9e0841b82a4ebcd438730d23886e17e6,
@@ -868,6 +863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114519708122230586, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: m_Spacing
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114107440089284736, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
@@ -1036,6 +1036,21 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4597196f14412404887593403299955f, type: 3}
+    - target: {fileID: 982109736138518819, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982109736138518819, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982109736138518819, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30d1ee53e4cd85d499fe8335ca1efb6c, type: 3}
 --- !u!1 &47717064 stripped
@@ -1207,7 +1222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133296669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3, y: -3.82, z: 0}
+  m_LocalPosition: {x: -46.15, y: -3.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1237,7 +1252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260523196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.82, y: -3.8, z: -257.37265}
+  m_LocalPosition: {x: -46.87, y: -3.8, z: -257.37265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1344,7 +1359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673382505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.72, y: -3.8, z: -257.37265}
+  m_LocalPosition: {x: -19.8, y: -3.8, z: -257.37265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1535,7 +1550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072900644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.1, y: -3.8, z: -257.37265}
+  m_LocalPosition: {x: -32.84, y: -3.8, z: -257.37265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1633,7 +1648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100603060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: -3.82, z: 0}
+  m_LocalPosition: {x: -52.02, y: -3.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1801,7 +1816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256794907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.63, y: -3.8, z: -257.37265}
+  m_LocalPosition: {x: 6.36, y: -3.8, z: -257.37265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1897,7 +1912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778579287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 0, z: -10}
+  m_LocalPosition: {x: -49.22, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
