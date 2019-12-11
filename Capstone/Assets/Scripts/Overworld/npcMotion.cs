@@ -18,9 +18,15 @@ namespace Yarn.Unity.Example
 
         Vector2 startPos;
 
+        SpriteRenderer sr;
+
+        public Sprite standingSprite;
+        public Sprite motionSprite;
+
         // Start is called before the first frame update
         void Start()
         {
+            sr = this.GetComponent<SpriteRenderer>();
             npc = this.GetComponent<NPC>();
         }
 
@@ -38,6 +44,10 @@ namespace Yarn.Unity.Example
                 {
                     moving = false;
                     npc.setMotion(false);
+                    if(standingSprite != null)
+                    {
+                        sr.sprite = standingSprite;
+                    }
                 }
             }
         }
@@ -47,6 +57,10 @@ namespace Yarn.Unity.Example
         {
             if (point < waypoints.Length - 1)
             {
+                if(motionSprite != null)
+                {
+                    sr.sprite = motionSprite;
+                }
                 point += 1;
                 moving = true;
                 motionTimer = 0;
@@ -57,6 +71,12 @@ namespace Yarn.Unity.Example
             {
                 Debug.Log("Not enough waypoints");
             }
+        }
+
+        [YarnCommand("showNPC")]
+        public void appear() //Used for npcs or other overworld elements that are not present at start. These objects should have their sprite color set to transparent
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
         }
     }
 }

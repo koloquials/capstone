@@ -135,6 +135,7 @@ Piper: Your other friends are here?
 <<Act @ Fidel, fidel_happy>>
 Fidel: Just stay right there, I’ll go get them!
 //they run off, retrieve two rat mannequins. they resemble the player and mara a little.
+<<showNPC micequinns>>
 <<Act @ Fidel, fidel_happy>>
 Fidel: Here they are— my besties! 
 -> Nice to meet you.

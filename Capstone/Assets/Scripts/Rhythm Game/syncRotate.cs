@@ -112,6 +112,8 @@ public class syncRotate : MonoBehaviour
     public GameObject lifeSprite2;
     public GameObject lifeSprite3;
 
+    public GameObject background; //Sprite that covers the overworld while the game is up
+
     public bool debugMode = false; //Debug mode, currently just lets you start the game with spacebar. Set this in the inspector on a per-scene basis.
 
     // Start is called before the first frame update
@@ -668,6 +670,7 @@ public class syncRotate : MonoBehaviour
 
     public void begin() //Starts the rhythm game. This should ideally be called from a script handling dialogue.
     {
+        background.SetActive(true);
         cam.setGame(true);
         scoreText.gameObject.SetActive(true);
         //targetText.gameObject.SetActive(true);
@@ -684,6 +687,9 @@ public class syncRotate : MonoBehaviour
 
     void end() //Exits the rhythm game and resets stats
     {
+
+        background.SetActive(false);
+
         fret.endReset();
 
         scoreText.gameObject.SetActive(false);
