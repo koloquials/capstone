@@ -4,7 +4,6 @@ tags:
 colorID: 0
 position: -21,45
 ---
-
 <<if $waypoint is 2>>
 	[[Scene2]]
 <<elseif $waypoint is 3>>
@@ -19,7 +18,7 @@ position: -21,45
 		<<Act @ Fidel, fidel_disappointed>>
 		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
-		<<Hide @ Piper>>
+		//<<Hide @ Piper>>
 		<<RhythmStart notePrefab>>
 	<<endif>>
 	<<if $completedRhythm is 1>>

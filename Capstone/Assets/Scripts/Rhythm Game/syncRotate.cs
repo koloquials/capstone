@@ -73,8 +73,8 @@ public class syncRotate : MonoBehaviour
     bool hit = false; //If a note is hit this cycle
     bool miss = false; //If a note is missed this tick
 
-    //public Text pressedKeyText; //Debug, what keys are being pressed
-    //public Text targetText; //Debug feature, what keys are correct
+    public Text pressedKeyText; //Debug, what keys are being pressed
+    public Text targetText; //Debug feature, what keys are correct
     //public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
     public Text phaseText; //Debug feature, what phase we're in
     public Text scoreText; //Debug feature, score count
@@ -82,7 +82,7 @@ public class syncRotate : MonoBehaviour
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
     string arrowK = ""; //Which arrow key
-    string target = "UU"; //What keys the game wants you to press.
+    public string target = "UU"; //What keys the game wants you to press.
                           // Left is wasd, right is arrow keys
                           // U : up, D : down, L : left, r : right
                           // So the default here corresponds to w + right arrow
@@ -306,7 +306,7 @@ public class syncRotate : MonoBehaviour
                 lk = false;
                 rk = false;
                 keys = wasdK + arrowK;
-                //pressedKeyText.text = keys;
+                pressedKeyText.text = keys;
                 if (inZone == true) //If the timing is correct
                 {
                     if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
@@ -661,7 +661,7 @@ public class syncRotate : MonoBehaviour
                 fret.setSprite(noteSprites[nextNote].getSprite()); //Set the sprite of the fret based on noteList.[nextNote].getSprite()
             }
 
-            //targetText.text = uiT; //Set debug direction indicator
+            targetText.text = target; //Set debug direction indicator
             //debugTargetText.text = target;
         }
     }
@@ -697,15 +697,15 @@ public class syncRotate : MonoBehaviour
 
         starting = 0;
         startScale = 0;
+        score = 0;
 
         r = 1;
         speed = .1f;
         nextNote = 0;
         primed = false;
         keyed = false;
-        primeCool = 0;
-        pcN = 0;
-        cooldown = 0;
+        primeCool = pcN;
+        cooldown = cN;
         inZone = false;
         hit = false;
         miss = false;
@@ -713,7 +713,9 @@ public class syncRotate : MonoBehaviour
         keys = "";
         wasdK = "";
         arrowK = "";
-        target = song1[0];
+        target = "UU";
+        noteSprites[nextNote].setSprite(UU);
+        fret.setSprite(noteSprites[nextNote].getSprite());
 
         sr.color = defaultCol;
         script.stopMusic();
