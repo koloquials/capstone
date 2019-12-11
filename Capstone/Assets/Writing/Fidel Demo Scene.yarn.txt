@@ -9,10 +9,8 @@ parent:
 //<<if $startedRhythm is 1>>
 <<if visited("Scene4")>>
 	<<if $completedRhythm is 0>>
-		<<Act @ Fidel, fidel_neutral>>
-		Fidel: You want to try that again?
-		<<Act @ Piper, player_neutral>>
-		Piper: Yeah
+		<<Act @ Fidel, fidel_disappointed>>
+		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
 		<<Hide @ Piper>>
 		<<RhythmStart notePrefab>>
@@ -36,6 +34,7 @@ parent:
 
 	[[Scene1]]
 	//[[Scene4]]
+	//[[EndScene]]
 <<endif>>
 
 ===
@@ -284,12 +283,23 @@ position: 0,0
 parent: 
 ---
 
-<<Act @ Fidel, fidel_happy>>
-Fidel: You did it!
-<<Act @ Fidel, fidel_neutral>>
-Fidel: I think. What exactly did you do?
 <<Act @ Piper, player_neutral>>
-Piper: ...
+Piper: We can do it, together.
+Piper: We can ask for life to be better.
+Piper: We can move towards that difference.
+Piper: I may not remember anything, but I’m back, aren’t I? 
+<<Act @ Fidel, fidel_neutral>>
+Fidel: Yeah, you are.
+<<Act @ Piper, player_neutral>>
+Piper: My memories might never come back. Maybe I’ll never be the person you want in your life.
+Piper: Is that okay?
+<<Act @ Fidel, fidel_neutral>>
+Fidel: Honestly, it stings. But. Yeah, yeah.
+Fidel: I’ll count my blessings.
+Fidel: I’m not really sure how or why you’re here. Or what you’ve done.
+Fidel: But I’m glad you’re here. I’m glad we’re here, together.
+<<Act @ Piper, player_pleasant>>
+Piper: Then let’s consider this the first step.
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
 
