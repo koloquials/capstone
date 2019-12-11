@@ -38,8 +38,8 @@ position: -21,45
 	<<Act @ Piper, player_neutral>>
 	Piper: ‘kay.
 
-	//[[Scene1]]
-	[[Scene4]]
+	[[Scene1]]
+	//[[Scene4]]
 	//[[EndScene]]
 <<endif>>
 
