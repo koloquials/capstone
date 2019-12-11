@@ -331,6 +331,7 @@ MonoBehaviour:
   songPos: 0
   songPosinBeats: 0
   dspSongTime: 0
+  songLenghtinBeats: 0
   music: {fileID: 982109736365544049}
   notes:
   - 0
@@ -1197,6 +1198,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1009926615276084347, guid: bcb256961ff4749a5a8d95036f79135b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009926615276084347, guid: bcb256961ff4749a5a8d95036f79135b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.18039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009926615276084347, guid: bcb256961ff4749a5a8d95036f79135b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009926615276084347, guid: bcb256961ff4749a5a8d95036f79135b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.96862745
+      objectReference: {fileID: 0}
     - target: {fileID: 4467210377012520698, guid: bcb256961ff4749a5a8d95036f79135b,
         type: 3}
       propertyPath: noteSprites.Array.size
@@ -1383,11 +1404,6 @@ PrefabInstance:
       propertyPath: lifeSprite3
       value: 
       objectReference: {fileID: 982109736660136043}
-    - target: {fileID: 1009926615276084347, guid: bcb256961ff4749a5a8d95036f79135b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcb256961ff4749a5a8d95036f79135b, type: 3}
 --- !u!4 &6021991927309725078 stripped
