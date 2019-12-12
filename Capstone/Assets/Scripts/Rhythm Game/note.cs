@@ -6,8 +6,8 @@ public class note : MonoBehaviour
 {
     SpriteRenderer sr;
 
-    Vector2 destination;
-    Vector2 start;
+    Vector3 destination;
+    Vector3 start;
     bool moving = false; //Currently actually means if the note is visible
     float motionTimer = 0;
 
@@ -28,7 +28,7 @@ public class note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector2(Mathf.Lerp(start.x, destination.x, motionTimer/((60/BPM)*15)), transform.position.y);
+        transform.position = new Vector3(Mathf.Lerp(start.x, destination.x, motionTimer/((60/BPM)*15)), transform.position.y, transform.position.z);
         motionTimer += Time.deltaTime;
 
         if(moving)
@@ -71,14 +71,14 @@ public class note : MonoBehaviour
 
     public void setStart(Vector2 s)
     {
-        start = s;
+        start = new Vector3(s.x, s.y, transform.position.z);
         transform.position = start;
         motionTimer = 0;
     }
 
     public void setDestination(Vector2 d)
     {
-        destination = d;
+        destination = new Vector3(d.x, d.y, transform.position.z);
     }
 
     public Sprite getSprite()

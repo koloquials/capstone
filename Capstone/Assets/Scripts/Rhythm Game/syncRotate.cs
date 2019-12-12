@@ -121,7 +121,7 @@ public class syncRotate : MonoBehaviour
     {
         transform.localScale = Vector2.zero; //For the start animation
 
-        this.transform.position = Vector3.zero;
+        this.transform.position = new Vector3(0,0,transform.position.z);
         score = 0;
         sr = GetComponent<SpriteRenderer>();
 
@@ -421,7 +421,7 @@ public class syncRotate : MonoBehaviour
 
     Vector3 PointOnCircle(float angle, float radius) //Used to move the beat indicator in a circle.
     {
-        return new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), 0);
+        return new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), -0.3f);
     }
 
     void OnTriggerEnter2D(Collider2D other)

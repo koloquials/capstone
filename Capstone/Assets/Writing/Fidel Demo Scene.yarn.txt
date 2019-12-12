@@ -8,7 +8,7 @@ position: -21,45
 	[[Scene2]]
 <<elseif $waypoint is 3>>
 	[[Scene3]]
-<<elseif $waypoint is 4 and not visited("Scene4")>>
+<<elseif $waypoint is 4 and $stardedRhythm is 0>>
 	[[Scene3b]]
 <<endif>>
 
