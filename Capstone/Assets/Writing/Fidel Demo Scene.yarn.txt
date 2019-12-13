@@ -8,9 +8,20 @@ position: -21,45
 	[[Scene2]]
 <<elseif $waypoint is 3>>
 	[[Scene3]]
-<<elseif $waypoint is 4 and $stardedRhythm is 0>>
+<<elseif $waypoint is 4 and $completedRhythm is 0>>
 	[[Scene3b]]
+//<<elseif $waypoint is 5>>
+	//<<if $completedRhythm is 0>>
+		//<<Act @ Fidel, fidel_disappointed>>
+		//Fidel: Am I really worth it to you?
+		//<<Hide @ Fidel>>
+		//<<RhythmStart notePrefab>>
+	//<<endif>>
+	//<<if $completedRhythm is 1>>
+		//[[EndScene]]
+	//<<endif>>
 <<endif>>
+
 
 //<<if $startedRhythm is 1>>
 <<if visited("Scene4")>>
@@ -18,7 +29,6 @@ position: -21,45
 		<<Act @ Fidel, fidel_disappointed>>
 		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
-		//<<Hide @ Piper>>
 		<<RhythmStart notePrefab>>
 	<<endif>>
 	<<if $completedRhythm is 1>>
@@ -107,6 +117,7 @@ Fidel: …
 Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the stage.
 
 <<set $waypoint to 2>>
+//<<set $waypoint to 5>>
 <<moveNPC Fidel>>
 //[[Scene2]]
 <<Hide @ Piper>>
@@ -301,6 +312,7 @@ Piper: I’m going to try something, okay?
 <<Hide @ Fidel>>
 <<Hide @ Piper>>
 <<Set $startedRhythm to 1>>
+<<Set $waypoint to 5>>
 <<Set $completeRhythm to 0>>
 <<RhythmStart notePrefab>>
 
