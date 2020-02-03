@@ -106,11 +106,17 @@ public class syncRotate : MonoBehaviour
     int currentNote = 0; //Which note of the song is the active one. Once this is equal to the song max, should either reset to 0 or progress the phase.
                          //Nonrandom is on the to-do list.
 
-    int strikes = 0; //3 strikes, you're out. Used in Phase 2.
+    int strikes = 0; //5 strikes, you're out. Used in Phase 2.
 
     public GameObject lifeSprite1; //Sprites for your three lives. Should start deactivated.
     public GameObject lifeSprite2;
     public GameObject lifeSprite3;
+    public GameObject lifeSprite4;
+    public GameObject lifeSprite5;
+
+    private GameObject[] lifeSprites;
+
+
 
     public GameObject background; //Sprite that covers the overworld while the game is up
 
@@ -119,6 +125,7 @@ public class syncRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
         transform.localScale = Vector2.zero; //For the start animation
 
         this.transform.position = new Vector3(0,0,transform.position.z);
@@ -363,15 +370,21 @@ public class syncRotate : MonoBehaviour
 
             if(strikes > 0)
             {
-                lifeSprite3.SetActive(false);
+                lifeSprite5.SetActive(false);
             }
             if(strikes > 1)
             {
-                lifeSprite2.SetActive(false);
+                lifeSprite4.SetActive(false);
             }
             if(strikes > 2)
             {
                 lifeSprite3.SetActive(false);
+            }
+            if(strikes > 3) {
+                lifeSprite2.SetActive(false);
+            }
+            if(strikes > 4) {
+                lifeSprite1.SetActive(false);
             }
 
             phaseCheck();
@@ -403,9 +416,9 @@ public class syncRotate : MonoBehaviour
             {
                 if (endTimer < 1.1f)
                 {
-                    lifeSprite1.SetActive(false);
-                    lifeSprite2.SetActive(false);
-                    lifeSprite3.SetActive(false);
+                    foreach (GameObject lifeSprite in lifeSprites) {
+                        lifeSprite.SetActive(false);
+                    }
                     fret.endingScaling(); //The fret handles it's own scaling process, just has to be told to start scaling down
                 }
                 startScale = Mathf.Lerp(startScale, 0, 0.1f);
@@ -495,14 +508,14 @@ public class syncRotate : MonoBehaviour
                     strikes = 0;
                     pattern = false;
                     //sr.color = Color.blue;
-                    lifeSprite1.SetActive(true);
-                    lifeSprite2.SetActive(true);
-                    lifeSprite3.SetActive(true);
+                    foreach (GameObject lifeSprite in lifeSprites) {
+                        lifeSprite.SetActive(true);
+                    }
                 }
             }
             else if (phase == 2) //Phase 2, keep score above 0
             {
-                if (strikes >= 3)
+                if (strikes >= 5)
                 {
                     //sr.color = Color.gray;
                     script.stopMusic();
@@ -516,11 +529,13 @@ public class syncRotate : MonoBehaviour
                     score = 0;
                     pattern = true;
                     currentNote = 0;
-                    for (int x = 0; x < 5; x++)
+                    for (int x = 0; x < 5; x++) {
                         setTarget(true);
-                    lifeSprite1.SetActive(false);
-                    lifeSprite2.SetActive(false);
-                    lifeSprite3.SetActive(false);
+                    }
+                    
+                    foreach (GameObject lifeSprite in lifeSprites) {
+                        lifeSprite.SetActive(false);
+                    }
                 }
                 /*else if(score >= 10)
                 {
@@ -697,9 +712,9 @@ public class syncRotate : MonoBehaviour
         phaseText.gameObject.SetActive(false);
         //pressedKeyText.gameObject.SetActive(false);
 
-        lifeSprite1.SetActive(false);
-        lifeSprite2.SetActive(false);
-        lifeSprite3.SetActive(false);
+        foreach (GameObject lifeSprite in lifeSprites) {
+            lifeSprite.SetActive(false);
+        }
 
         starting = 0;
         startScale = 0;
