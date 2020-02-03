@@ -330,13 +330,13 @@ public class syncRotate : MonoBehaviour
                         miss = true;
                     }
                 }
-                else //Timing incorrect, negative feedback
-                {
-                    fret.fretHit(false);
-                    //score--;
-                    miss = true;
-                    strikes += 1;
-                }
+                // else //Timing incorrect, negative feedback
+                // {
+                //     fret.fretHit(false);
+                //     //score--;
+                //     miss = true;
+                //     strikes += 1;
+                // }
                 cooldown = cN;
                 primed = false;
                 keyed = false;
@@ -345,7 +345,7 @@ public class syncRotate : MonoBehaviour
 
             cooldown -= Time.deltaTime;
 
-            if (primed) //If one note has been pressed, trigger a miss if no other note is pressed within 0.1 seconds
+            if (primed && inZone) //If one note has been pressed, trigger a miss if no other note is pressed within 0.1 seconds
             {
                 if (primeCool <= 0)
                 {
