@@ -7,6 +7,8 @@ public class fretFeedback : MonoBehaviour
 
     SpriteRenderer sr;
 
+    public GameObject rippleSprite;
+
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
     float scaleMod = 0f; //Modifies the scale of the fret.
@@ -29,6 +31,11 @@ public class fretFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.T)) {
+            noteRipple();
+        }
+
         if (startScale)
         {
             scaleMod = Mathf.Lerp(scaleMod, sConstant, 0.04f);
@@ -78,6 +85,11 @@ public class fretFeedback : MonoBehaviour
                 scaleMod = 0.8f;
             }
         }
+    }
+
+    public void noteRipple() {
+        Debug.Log("Instantiating a ripple");
+        GameObject thisRipple = Instantiate(rippleSprite, this.transform);
     }
 
     public void setSprite(Sprite newSprite)

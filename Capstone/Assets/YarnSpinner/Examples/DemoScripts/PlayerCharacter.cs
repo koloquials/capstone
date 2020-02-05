@@ -42,6 +42,12 @@ namespace Yarn.Unity.Example {
 
         bool motion = true;
 
+        
+        public float speed = 5f;
+        private Vector3 mousePosition;
+        private Vector3 targetPosition;
+        private bool isMoving;
+
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected() {
             Gizmos.color = Color.blue;
@@ -55,7 +61,6 @@ namespace Yarn.Unity.Example {
 
         /// Update is called once per frame
         void Update () {
-
             // Remove all player control when we're in dialogue
             // Edited to also remove player control when in the rhythm game.
             if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {  
@@ -90,24 +95,65 @@ namespace Yarn.Unity.Example {
                 return;
             }
 
+
             // Move the player, clamping them to within the boundaries 
             // of the level.
-            var movement = Input.GetAxis("Horizontal");
-            movement += movementFromButtons;
-            movement *= (moveSpeed * Time.deltaTime);
 
-            var newPosition = transform.position;
-            newPosition.x += movement;
-            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+            //check if the mouse was pressed
+            // if (Input.GetMouseButtonDown(0)) {
+            //     Vector3 newPosition = transform.position;
+            //     Debug.Log("Mouse clicked");
+            //     Clicked(newPosition);
+            // }
+            // var movement = Input.GetAxis("Horizontal");
+            // movement += movementFromButtons;
+            // movement *= (moveSpeed * Time.deltaTime);
 
-            transform.position = newPosition;
+            // var newPosition = transform.position;
+            // newPosition.x += movement;
+            // 
+
+            // transform.position = newPosition;
 
             // Detect if we want to start a conversation
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetMouseButtonDown(0)) {
                 CheckForNearbyNPC ();
+            }
+
+            if (Input.GetMouseButtonUp(0)) {
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                targetPosition.z = transform.position.z;
+                targetPosition.y = transform.position.y;
+                targetPosition.x = mousePosition.x;
+
+                if (!isMoving) {
+                    isMoving = true;
+                }
+            }
+        
+            if (isMoving) {
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
+            }
+            
+            if (targetPosition == transform.position) {
+                isMoving = false;
             }
         }
 
+        public void Clicked(Vector3 newPosition) {
+            Debug.Log("Entering clicked");
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            RaycastHit hit = new RaycastHit();
+            
+            if (Physics.Raycast (ray, out hit)) {
+                Debug.Log(hit.collider.gameObject.name);
+                newPosition = hit.point;
+                transform.position = newPosition;
+                Debug.Log("Tried to move the player");
+            }
+        }
         /// Find all DialogueParticipants
         /** Filter them to those that have a Yarn start node and are in range; 
          * then start a conversation with the first one

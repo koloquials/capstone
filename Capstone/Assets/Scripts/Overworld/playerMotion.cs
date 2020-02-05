@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class playerMotion : MonoBehaviour
 {
-
     //Apply to player, lets them move
     //Player must have a 2d rigidbody, a 2d collider for main collision, and a 2d trigger collider around their feet. 
 
