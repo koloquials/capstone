@@ -31,11 +31,6 @@ public class fretFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.T)) {
-            noteRipple();
-        }
-
         if (startScale)
         {
             scaleMod = Mathf.Lerp(scaleMod, sConstant, 0.04f);
@@ -89,7 +84,10 @@ public class fretFeedback : MonoBehaviour
 
     public void noteRipple() {
         Debug.Log("Instantiating a ripple");
-        GameObject thisRipple = Instantiate(rippleSprite, this.transform);
+        //with this method it will add the position on the prefab to the thing instantiating it, so to instantiate
+        //at the same place as the thing making it, reset position to 0,0,0
+        //GameObject thisRipple = Instantiate(rippleSprite, this.transform);
+        GameObject thisRipple = Instantiate(rippleSprite, this.transform.position, Quaternion.identity);
     }
 
     public void setSprite(Sprite newSprite)
