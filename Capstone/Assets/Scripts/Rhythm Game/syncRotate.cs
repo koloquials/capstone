@@ -327,15 +327,15 @@ public class syncRotate : MonoBehaviour
                         inZone = false;
                         fret.fretHit(true);
                         hit = true;
-
+                        //fret.noteRipple(true);
                     }
                     else //Otherwise trigger negative feedback
                     {
                         fret.fretHit(false);
                         //score--;
                         strikes += 1;
-                        //
                         miss = true;
+                        //fret.noteRipple(false);
                     }
                 }
                 // else //Timing incorrect, negative feedback

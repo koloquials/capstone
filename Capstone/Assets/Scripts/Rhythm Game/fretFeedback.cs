@@ -88,6 +88,7 @@ public class fretFeedback : MonoBehaviour
         //at the same place as the thing making it, reset position to 0,0,0
         //GameObject thisRipple = Instantiate(rippleSprite, this.transform);
         GameObject thisRipple = Instantiate(rippleSprite, this.transform.position, Quaternion.identity);
+        //thisRipple.gameObject.GetComponent<rippleEffect>().correct = correct;
     }
 
     public void setSprite(Sprite newSprite)
