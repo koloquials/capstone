@@ -123,8 +123,7 @@ public class syncRotate : MonoBehaviour
     public bool debugMode = false; //Debug mode, currently just lets you start the game with spacebar. Set this in the inspector on a per-scene basis.
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
         transform.localScale = Vector2.zero; //For the start animation
 
@@ -357,6 +356,7 @@ public class syncRotate : MonoBehaviour
             {
                 if (primeCool <= 0)
                 {
+                    Debug.Log("Decrementing the score within primed");
                     fret.fretHit(false);
                     primed = false;
                     lk = false;
@@ -364,7 +364,8 @@ public class syncRotate : MonoBehaviour
                     wasdK = "";
                     arrowK = "";
                     //score--;
-                    strikes += 1;
+                    //strikes += 1;
+                    hit = false;
                 }
                 primeCool -= Time.deltaTime;
             }
@@ -455,6 +456,7 @@ public class syncRotate : MonoBehaviour
             inZone = false;
             if(!hit && cooldown <= 0)
             {
+                Debug.Log("Decrementing the score within trigger check");
                 //score--;
                 strikes += 1;
                 miss = true;

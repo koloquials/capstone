@@ -6,6 +6,7 @@ using UnityEngine;
 //usage: put this on a interactable 2D Sprite
 //intent: feedback purposes--this script is used to make characters that can be interacted with
 //highlighted when moused over to indicate that they are interactable 
+
 public class interactableHighlight : MonoBehaviour
 {
     private Color originalColour;
