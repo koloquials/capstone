@@ -48,7 +48,7 @@ namespace Yarn.Unity.Example {
         bool motion = true;
 
         
-        public float speed = 5f;
+        private float speed = 2f;
         private Vector3 mousePosition;
         private Vector3 targetPosition;
         private bool isMoving;
@@ -150,11 +150,12 @@ namespace Yarn.Unity.Example {
             if (isMoving) {
                 mySpriteRenderer.sprite = p_walk1;
                 SetDirection();
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
             
             if (targetPosition == transform.position) {
+                CheckForNearbyNPC();
                 mySpriteRenderer.sprite = p_stand2;
                 isMoving = false;
             }
@@ -180,7 +181,6 @@ namespace Yarn.Unity.Example {
                 Debug.Log(hit.collider.gameObject.name);
                 newPosition = hit.point;
                 transform.position = newPosition;
-                Debug.Log("Tried to move the player");
             }
         }
         /// Find all DialogueParticipants

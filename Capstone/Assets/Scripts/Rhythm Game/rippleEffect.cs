@@ -8,11 +8,14 @@ using UnityEngine;
 //will pulse blue 
 //it only generates a pulse if there was a combination pressed whilst the note was within range with the fret.
 
-public class rippleEffect : MonoBehaviour
-{
+public class rippleEffect : MonoBehaviour {
+
     private SpriteRenderer mySpriteRenderer; 
     private Color spriteColour;
     public bool correct; 
+
+    //instantiate multiple ripples per note 
+    private float multiRippleTimer = 3f;
 
     void Start() {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -37,8 +40,14 @@ public class rippleEffect : MonoBehaviour
             yield return null;
             currTime += Time.deltaTime;
         } while (currTime <= time);
+        // for (int i = 0; i < 3; i++) {
+        //     gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
+        //     spriteColour.a = 1 - (currTime / time);
+        //     mySpriteRenderer.color = spriteColour;
+        //     yield return null;
+        // }
          
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
     // private Color SetColour(bool correct) {
