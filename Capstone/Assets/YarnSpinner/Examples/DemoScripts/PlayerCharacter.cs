@@ -31,6 +31,11 @@ using System.Collections.Generic;
 namespace Yarn.Unity.Example {
     public class PlayerCharacter : MonoBehaviour {
 
+        //sprites 
+        [HideInInspector]public SpriteRenderer mySpriteRenderer;
+        public Sprite p_stand2;
+        public Sprite p_walk1;
+
         public float minPosition = -5.3f;
         public float maxPosition = 5.3f;
 
@@ -42,6 +47,16 @@ namespace Yarn.Unity.Example {
 
         bool motion = true;
 
+        
+        private float speed = 2f;
+        private Vector3 mousePosition;
+        private Vector3 targetPosition;
+        private bool isMoving;
+        private bool facingRight = true;
+
+        void Start() {
+            mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        }
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected() {
             Gizmos.color = Color.blue;
@@ -55,7 +70,6 @@ namespace Yarn.Unity.Example {
 
         /// Update is called once per frame
         void Update () {
-
             // Remove all player control when we're in dialogue
             // Edited to also remove player control when in the rhythm game.
             if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {  
@@ -90,24 +104,85 @@ namespace Yarn.Unity.Example {
                 return;
             }
 
+
             // Move the player, clamping them to within the boundaries 
             // of the level.
-            var movement = Input.GetAxis("Horizontal");
-            movement += movementFromButtons;
-            movement *= (moveSpeed * Time.deltaTime);
 
-            var newPosition = transform.position;
-            newPosition.x += movement;
-            newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
+            // var movement = Input.GetAxis("Horizontal");
+            // movement += movementFromButtons;
+            // movement *= (moveSpeed * Time.deltaTime);
 
-            transform.position = newPosition;
+            // var newPosition = transform.position;
+            // newPosition.x += movement;
+            // 
+
+            // transform.position = newPosition;
 
             // Detect if we want to start a conversation
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetMouseButtonDown(0)) {
                 CheckForNearbyNPC ();
+            }
+            DetectMovement();
+        }
+
+        //detect if the player pressed the mouse to move the character and move the character accordingly
+        public void DetectMovement() {
+            if (Input.GetMouseButtonUp(0)) {
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                targetPosition.z = transform.position.z;
+                targetPosition.y = transform.position.y;
+                targetPosition.x = mousePosition.x;
+
+                //check whether the player is moving toward the right or left (on the screen) of where character
+                //currently is 
+                if (targetPosition.x >= transform.position.x) {
+                    facingRight = true;
+                }
+                else {
+                    facingRight = false;
+                }
+
+                if (!isMoving) {
+                    isMoving = true;
+                }
+            }
+        
+            if (isMoving) {
+                mySpriteRenderer.sprite = p_walk1;
+                SetDirection();
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime);
+                targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
+            }
+            
+            if (targetPosition == transform.position) {
+                CheckForNearbyNPC();
+                mySpriteRenderer.sprite = p_stand2;
+                isMoving = false;
             }
         }
 
+        //check which side character is walking towards to flip the sprite accordingly 
+        public void SetDirection() {
+            if (!facingRight) {
+                mySpriteRenderer.flipX = true;
+            }
+            else {
+                mySpriteRenderer.flipX = false;
+            }
+        }
+
+        public void Clicked(Vector3 newPosition) {
+            Debug.Log("Entering clicked");
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            RaycastHit hit = new RaycastHit();
+            
+            if (Physics.Raycast (ray, out hit)) {
+                Debug.Log(hit.collider.gameObject.name);
+                newPosition = hit.point;
+                transform.position = newPosition;
+            }
+        }
         /// Find all DialogueParticipants
         /** Filter them to those that have a Yarn start node and are in range; 
          * then start a conversation with the first one
