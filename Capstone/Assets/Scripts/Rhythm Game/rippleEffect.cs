@@ -14,17 +14,26 @@ public class rippleEffect : MonoBehaviour {
     private Color spriteColour;
     public bool correct; 
 
+    private int coroutineCounter = 2;
+
     //instantiate multiple ripples per note 
     private float multiRippleTimer = 3f;
 
     void Start() {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         //spriteColour = SetColour(correct);
-        
-        StartCoroutine(ScaleOverTime(1f));
+        StartCoroutine(Ripple(1f));
     }
 
-    IEnumerator ScaleOverTime(float time) {
+    // IEnumerator RippleManager() {
+    //     StartCoroutine(Ripple(1f));
+    //     yield return new WaitForSeconds(0.3f);
+    //     StartCoroutine(Ripple(1f));
+    //     yield return new WaitForSeconds(0.3f);
+    //     StartCoroutine(Ripple(1f));
+    // }
+
+    IEnumerator Ripple(float time) {
         Debug.Log("Trying to make the object pulse");
         Vector3 originalScale = gameObject.transform.localScale;
         Vector3 destinationScale = new Vector3 (3.0f, 3.0f, 3.0f);
@@ -47,7 +56,7 @@ public class rippleEffect : MonoBehaviour {
         //     yield return null;
         // }
          
-        // Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     // private Color SetColour(bool correct) {

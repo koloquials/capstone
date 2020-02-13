@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class fretFeedback : MonoBehaviour
 {
 
     SpriteRenderer sr;
 
     public GameObject rippleSprite;
+    public ParticleSystem rippleParticles;
+
 
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
@@ -89,6 +92,10 @@ public class fretFeedback : MonoBehaviour
         //GameObject thisRipple = Instantiate(rippleSprite, this.transform);
         GameObject thisRipple = Instantiate(rippleSprite, this.transform.position, Quaternion.identity);
         //thisRipple.gameObject.GetComponent<rippleEffect>().correct = correct;
+    }
+
+    public void noteRippleParticles() {
+        rippleParticles.Play();
     }
 
     public void setSprite(Sprite newSprite)

@@ -317,7 +317,8 @@ public class syncRotate : MonoBehaviour
                 pressedKeyText.text = keys;
                 if (inZone == true) //If the timing is correct
                 {
-                    fret.noteRipple();
+                    //fret.noteRipple();
+                    fret.noteRippleParticles();
                     if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
                     {
                         //score++;
