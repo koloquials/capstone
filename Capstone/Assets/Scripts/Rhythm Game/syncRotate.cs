@@ -185,7 +185,8 @@ public class syncRotate : MonoBehaviour
             {
                 end();
             }
-            miss = false;
+            //miss = false;
+            // hit = true;
 
 
             float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
@@ -334,7 +335,8 @@ public class syncRotate : MonoBehaviour
                         fret.fretHit(false);
                         //score--;
                         strikes += 1;
-                        miss = true;
+                        hit = false;
+                        //miss = true;
                         //fret.noteRipple(false);
                     }
                 }
@@ -357,46 +359,23 @@ public class syncRotate : MonoBehaviour
             {
                 if (primeCool <= 0)
                 {
-                    Debug.Log("Decrementing the score within primed");
                     fret.fretHit(false);
                     primed = false;
                     lk = false;
                     rk = false;
                     wasdK = "";
                     arrowK = "";
-                    //score--;
-                    //strikes += 1;
                     hit = false;
                 }
                 primeCool -= Time.deltaTime;
             }
 
-            if(strikes > 0)
-            {
-                lifeSprite5.SetActive(false);
-            }
-            if(strikes > 1)
-            {
-                lifeSprite4.SetActive(false);
-            }
-            if(strikes > 2)
-            {
-                lifeSprite3.SetActive(false);
-            }
-            if(strikes > 3) {
-                lifeSprite2.SetActive(false);
-            }
-            if(strikes > 4) {
-                lifeSprite1.SetActive(false);
-            }
-
+            //rhythm game utilities
+            StrikeCheck();
             phaseCheck();
+
             phaseText.text = "Phase: " + phase;
-            //if (phase == 2)
-            //scoreText.text = "Lives: " + (3 - strikes);
-            //else
-            //scoreText.text = ""+score;
-            //scoreText.text = "";
+
             scoreText.text = "" + score + "/" + songNoteLength;
 
             if(score >= songNoteLength)
@@ -452,22 +431,50 @@ public class syncRotate : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         //nop
+        Debug.Log("Exiting");
         if (other.gameObject.tag == "beat")
         {
+            Debug.Log("I'm restarting the game");
             inZone = false;
             if(!hit && cooldown <= 0)
             {
-                Debug.Log("Decrementing the score within trigger check");
+                Debug.Log("restarting");
                 //score--;
                 strikes += 1;
-                miss = true;
+                //miss = true;
                 fret.fretHit(false);
                 phaseCheck();
             }
             setTarget(true); //Find a new key to want to press
-            miss = false;
+            //miss = false;
+            phaseCheck();
             hit = false;
             score++;
+        }
+    }
+
+    //show number of strikes 
+    public void StrikeCheck()
+    {
+        if (strikes > 0)
+        {
+            lifeSprite5.SetActive(false);
+        }
+        if (strikes > 1)
+        {
+            lifeSprite4.SetActive(false);
+        }
+        if (strikes > 2)
+        {
+            lifeSprite3.SetActive(false);
+        }
+        if (strikes > 3)
+        {
+            lifeSprite2.SetActive(false);
+        }
+        if (strikes > 4)
+        {
+            lifeSprite1.SetActive(false);
         }
     }
 
@@ -477,23 +484,36 @@ public class syncRotate : MonoBehaviour
         {
             if (phase == 0) //Phase 0, the note stands still until you hit it, starting phase 1
             {
-                if (miss)
-                {
-                    score = 0;
-                    pattern = true;
-                    currentNote = 0;
-                    for (int x = 0; x < 5; x++)
-                        setTarget(true);
-                }
-                else if (hit)
-                {
+                if (hit) {
                     phase = 1;
                     script.startMusic();
                 }
+                else {
+                    score = 0; 
+                    pattern = true;
+                    currentNote = 0;
+                    for (int i = 0; i < 5; i++) {
+                        setTarget(true);
+                    }
+                }
+                // if (miss)
+                // {
+                //     score = 0;
+                //     pattern = true;
+                //     currentNote = 0;
+                //     for (int x = 0; x < 5; x++)
+                //         setTarget(true);
+                // }
+                // else if (hit)
+                // {
+                //     phase = 1;
+                //     script.startMusic();
+                // }
             }
             else if (phase == 1) //Phase 1, have to hit 10 notes in a row to go to phase 2
             {
-                if (miss) //A miss in phase 1 resets to phase 0
+                if (!hit) 
+                //if (miss) //A miss in phase 1 resets to phase 0
                 {
                     script.stopMusic();
                     score = 0;
@@ -502,6 +522,7 @@ public class syncRotate : MonoBehaviour
                     for (int x = 0; x < 5; x++)
                         setTarget(true);
                 }
+                //hitting the first 10 notes and moving on to phase 2
                 else if (hit && score >= 10)
                 {
                     for (int x = 0; x < noteSprites.Length; x++)
@@ -733,7 +754,7 @@ public class syncRotate : MonoBehaviour
         cooldown = cN;
         inZone = false;
         hit = false;
-        miss = false;
+        //miss = false;
 
         keys = "";
         wasdK = "";
