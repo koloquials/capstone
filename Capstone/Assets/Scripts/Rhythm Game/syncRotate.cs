@@ -83,9 +83,9 @@ public class syncRotate : MonoBehaviour
     string wasdK = ""; //Which wasd key
     string arrowK = ""; //Which arrow key
     public string target = "UU"; //What keys the game wants you to press.
-                          // Left is wasd, right is arrow keys
-                          // U : up, D : down, L : left, r : right
-                          // So the default here corresponds to w + right arrow
+                                 // Left is wasd, right is arrow keys
+                                 // U : up, D : down, L : left, r : right
+                                 // So the default here corresponds to w + right arrow
     int nextNote = 0; //Which note is the next to hit the main.
     string[] noteList = new string[5]; //List of the next five notes
 
@@ -100,8 +100,8 @@ public class syncRotate : MonoBehaviour
     //Any miss during phases 0 or 1 resets to phase 0. Missing three times in phase 2 reverts to phase 0
 
     bool pattern = true; //Whether the notes should be a preset pattern (true), or random (false)
-    string[] song1 = { "UU", "DD", "LL", "RR", "UD", "LR", "UU","DD","LL","RR"}; //For example
-    string[] song1direction = { "^ ^","v v","< <", "> >", "^ v", "< >", "^ ^", "v v", "< <", "> >" }; //Direction equivalent of the notes. Ideally find a way to automate making these.
+    string[] song1 = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD", "LL", "RR" }; //For example
+    string[] song1direction = { "^ ^", "v v", "< <", "> >", "^ v", "< >", "^ ^", "v v", "< <", "> >" }; //Direction equivalent of the notes. Ideally find a way to automate making these.
     int song1Max = 10; //How many notes are in this song.
     int currentNote = 0; //Which note of the song is the active one. Once this is equal to the song max, should either reset to 0 or progress the phase.
                          //Nonrandom is on the to-do list.
@@ -123,11 +123,12 @@ public class syncRotate : MonoBehaviour
     public bool debugMode = false; //Debug mode, currently just lets you start the game with spacebar. Set this in the inspector on a per-scene basis.
 
     // Start is called before the first frame update
-    void Start() {
-        lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
+    void Start()
+    {
+        lifeSprites = new GameObject[] { lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5 };
         transform.localScale = Vector2.zero; //For the start animation
 
-        this.transform.position = new Vector3(0,0,transform.position.z);
+        this.transform.position = new Vector3(0, 0, transform.position.z);
         score = 0;
         sr = GetComponent<SpriteRenderer>();
 
@@ -153,7 +154,7 @@ public class syncRotate : MonoBehaviour
     {
         if (starting == 0)
         {
-            if(debugMode && Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
+            if (debugMode && Input.GetKey(KeyCode.Space)) //Debug Feature, starts the rhythm game. In the future, the rhythm game should be started based on the dialogue script.
             {
                 begin();
             }
@@ -170,23 +171,22 @@ public class syncRotate : MonoBehaviour
                 }
                 transform.localScale = new Vector2(startScale, startScale);
             }
-            if(startTimer > 2 && startTimer < 2.1f)
+            if (startTimer > 2 && startTimer < 2.1f)
             {
                 fret.startingScaling();
             }
-            if(startTimer > 3)
+            if (startTimer > 3)
             {
                 starting = 2;
             }
         }
         else if (starting == 2)
         {
-            if(Input.GetKey(KeyCode.Escape)) //Closes the rhythm game. In the future, this could also pass a value to the dialog manager so characters can comment on how you quit.
+            if (Input.GetKey(KeyCode.Escape)) //Closes the rhythm game. In the future, this could also pass a value to the dialog manager so characters can comment on how you quit.
             {
                 end();
             }
-            //miss = false;
-            // hit = true;
+            miss = false;
 
 
             float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
@@ -194,191 +194,20 @@ public class syncRotate : MonoBehaviour
             this.transform.localPosition = PointOnCircle(angle, r);
             //Debug.Log(angle);
 
-            //Code for pressing keys
-            if (Input.GetKeyDown(KeyCode.W)) //When a key is pressed
-            {
-                wasdK = "U"; //Set which one was pressed
-                if (!rk) //If this is the first key pressed, note that one key has been pressed
-                {
-                    primed = true;
-                    lk = true;
-                    primeCool = pcN;
-                }
-                else //If this is the second key pressed, then confirm that a key combination has been entered
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                wasdK = "L";
-                if (!rk)
-                {
-                    primed = true;
-                    lk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                wasdK = "D";
-                if (!rk)
-                {
-                    primed = true;
-                    lk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                wasdK = "R";
-                if (!rk)
-                {
-                    primed = true;
-                    lk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                arrowK = "U";
-                if (!lk)
-                {
-                    primed = true;
-                    rk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                arrowK = "L";
-                if (!lk)
-                {
-                    primed = true;
-                    rk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                arrowK = "D";
-                if (!lk)
-                {
-                    primed = true;
-                    rk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                arrowK = "R";
-                if (!lk)
-                {
-                    primed = true;
-                    rk = true;
-                    primeCool = pcN;
-                }
-                else
-                {
-                    keyed = true;
-                }
-            }
-
-            //A key is pressed
-            if (keyed && cooldown <= 0)
-            {
-                lk = false;
-                rk = false;
-                keys = wasdK + arrowK;
-                pressedKeyText.text = keys;
-                if (inZone == true) //If the timing is correct
-                {
-                    //fret.noteRipple();
-                    fret.noteRippleParticles();
-                    if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
-                    {
-                        //score++;
-                        //Debug.Log(score);
-
-                        inZone = false;
-                        fret.fretHit(true);
-                        hit = true;
-                        //fret.noteRipple(true);
-                    }
-                    else //Otherwise trigger negative feedback
-                    {
-                        fret.fretHit(false);
-                        //score--;
-                        strikes += 1;
-                        hit = false;
-                        //miss = true;
-                        //fret.noteRipple(false);
-                    }
-                }
-                // else //Timing incorrect, negative feedback
-                // {
-                //     fret.fretHit(false);
-                //     //score--;
-                //     miss = true;
-                //     strikes += 1;
-                // }
-                cooldown = cN;
-                primed = false;
-                keyed = false;
-                wasdK = "";
-            }
-
-            cooldown -= Time.deltaTime;
-
-            if (primed && inZone) //If one note has been pressed, trigger a miss if no other note is pressed within 0.1 seconds
-            {
-                if (primeCool <= 0)
-                {
-                    fret.fretHit(false);
-                    primed = false;
-                    lk = false;
-                    rk = false;
-                    wasdK = "";
-                    arrowK = "";
-                    hit = false;
-                }
-                primeCool -= Time.deltaTime;
-            }
-
-            //rhythm game utilities
+            PressedKeyCheck();
+            CombinationCheck();
             StrikeCheck();
+
             phaseCheck();
-
             phaseText.text = "Phase: " + phase;
-
+            //if (phase == 2)
+            //scoreText.text = "Lives: " + (3 - strikes);
+            //else
+            //scoreText.text = ""+score;
+            //scoreText.text = "";
             scoreText.text = "" + score + "/" + songNoteLength;
 
-            if(score >= songNoteLength)
+            if (score >= songNoteLength)
             {
                 //You win, pass a value to dialogue
                 varStor.SetValue("$completedRhythm", new Yarn.Value(1));
@@ -387,18 +216,19 @@ public class syncRotate : MonoBehaviour
             }
 
         }
-        if(starting == 3) //The end, wait 3 seconds before closing to give the song time to close out.
+        if (starting == 3) //The end, wait 3 seconds before closing to give the song time to close out.
         {
             this.transform.position = PointOnCircle(0, r);
             if (endTimer > 3)
             {
                 end();
             }
-            else if(endTimer > 1)
+            else if (endTimer > 1)
             {
                 if (endTimer < 1.1f)
                 {
-                    foreach (GameObject lifeSprite in lifeSprites) {
+                    foreach (GameObject lifeSprite in lifeSprites)
+                    {
                         lifeSprite.SetActive(false);
                     }
                     fret.endingScaling(); //The fret handles it's own scaling process, just has to be told to start scaling down
@@ -421,7 +251,6 @@ public class syncRotate : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //twue..............
         if (other.gameObject.tag == "beat")
         {
             inZone = true;
@@ -431,30 +260,202 @@ public class syncRotate : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         //nop
-        Debug.Log("Exiting");
         if (other.gameObject.tag == "beat")
         {
-            Debug.Log("I'm restarting the game");
             inZone = false;
-            if(!hit && cooldown <= 0)
+            if (!hit && cooldown <= 0)
             {
-                Debug.Log("restarting");
+                Debug.Log("Decrementing the score within trigger check");
                 //score--;
                 strikes += 1;
-                //miss = true;
+                miss = true;
                 fret.fretHit(false);
                 phaseCheck();
             }
             setTarget(true); //Find a new key to want to press
-            //miss = false;
-            phaseCheck();
+            miss = false;
             hit = false;
             score++;
         }
     }
 
-    //show number of strikes 
-    public void StrikeCheck()
+    void PressedKeyCheck()
+    {
+        //Code for pressing keys
+        if (Input.GetKeyDown(KeyCode.W)) //When a key is pressed
+        {
+            wasdK = "U"; //Set which one was pressed
+            if (!rk) //If this is the first key pressed, note that one key has been pressed
+            {
+                primed = true;
+                lk = true;
+                primeCool = pcN;
+            }
+            else //If this is the second key pressed, then confirm that a key combination has been entered
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            wasdK = "L";
+            if (!rk)
+            {
+                primed = true;
+                lk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            wasdK = "D";
+            if (!rk)
+            {
+                primed = true;
+                lk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            wasdK = "R";
+            if (!rk)
+            {
+                primed = true;
+                lk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            arrowK = "U";
+            if (!lk)
+            {
+                primed = true;
+                rk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            arrowK = "L";
+            if (!lk)
+            {
+                primed = true;
+                rk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            arrowK = "D";
+            if (!lk)
+            {
+                primed = true;
+                rk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            arrowK = "R";
+            if (!lk)
+            {
+                primed = true;
+                rk = true;
+                primeCool = pcN;
+            }
+            else
+            {
+                keyed = true;
+            }
+        }
+    }
+
+    void CombinationCheck()
+    {
+        if (keyed && cooldown <= 0)
+        {
+            lk = false;
+            rk = false;
+            keys = wasdK + arrowK;
+            pressedKeyText.text = keys;
+            if (inZone == true) //If the timing is correct
+            {
+                //fret.noteRipple();
+                fret.noteRippleParticles();
+                if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
+                {
+                    //score++;
+                    //Debug.Log(score);
+
+                    inZone = false;
+                    fret.fretHit(true);
+                    hit = true;
+                    //fret.noteRipple(true);
+                }
+                else //Otherwise trigger negative feedback
+                {
+                    fret.fretHit(false);
+                    //score--;
+                    strikes += 1;
+                    miss = true;
+                    //fret.noteRipple(false);
+                }
+            }
+            cooldown = cN;
+            primed = false;
+            keyed = false;
+            wasdK = "";
+        }
+
+        cooldown -= Time.deltaTime;
+
+        if (primed && inZone) //If one note has been pressed, trigger a miss if no other note is pressed within 0.1 seconds
+        {
+            if (primeCool <= 0)
+            {
+                Debug.Log("Decrementing the score within primed");
+                fret.fretHit(false);
+                primed = false;
+                lk = false;
+                rk = false;
+                wasdK = "";
+                arrowK = "";
+                //score--;
+                //strikes += 1;
+                hit = false;
+            }
+            primeCool -= Time.deltaTime;
+        }
+    }
+
+    void StrikeCheck()
     {
         if (strikes > 0)
         {
@@ -484,36 +485,23 @@ public class syncRotate : MonoBehaviour
         {
             if (phase == 0) //Phase 0, the note stands still until you hit it, starting phase 1
             {
-                if (hit) {
+                if (miss)
+                {
+                    score = 0;
+                    pattern = true;
+                    currentNote = 0;
+                    for (int x = 0; x < 5; x++)
+                        setTarget(true);
+                }
+                else if (hit)
+                {
                     phase = 1;
                     script.startMusic();
                 }
-                else {
-                    score = 0; 
-                    pattern = true;
-                    currentNote = 0;
-                    for (int i = 0; i < 5; i++) {
-                        setTarget(true);
-                    }
-                }
-                // if (miss)
-                // {
-                //     score = 0;
-                //     pattern = true;
-                //     currentNote = 0;
-                //     for (int x = 0; x < 5; x++)
-                //         setTarget(true);
-                // }
-                // else if (hit)
-                // {
-                //     phase = 1;
-                //     script.startMusic();
-                // }
             }
             else if (phase == 1) //Phase 1, have to hit 10 notes in a row to go to phase 2
             {
-                if (!hit) 
-                //if (miss) //A miss in phase 1 resets to phase 0
+                if (miss) //A miss in phase 1 resets to phase 0
                 {
                     script.stopMusic();
                     score = 0;
@@ -522,7 +510,6 @@ public class syncRotate : MonoBehaviour
                     for (int x = 0; x < 5; x++)
                         setTarget(true);
                 }
-                //hitting the first 10 notes and moving on to phase 2
                 else if (hit && score >= 10)
                 {
                     for (int x = 0; x < noteSprites.Length; x++)
@@ -533,7 +520,8 @@ public class syncRotate : MonoBehaviour
                     strikes = 0;
                     pattern = false;
                     //sr.color = Color.blue;
-                    foreach (GameObject lifeSprite in lifeSprites) {
+                    foreach (GameObject lifeSprite in lifeSprites)
+                    {
                         lifeSprite.SetActive(true);
                     }
                 }
@@ -554,11 +542,13 @@ public class syncRotate : MonoBehaviour
                     score = 0;
                     pattern = true;
                     currentNote = 0;
-                    for (int x = 0; x < 5; x++) {
+                    for (int x = 0; x < 5; x++)
+                    {
                         setTarget(true);
                     }
-                    
-                    foreach (GameObject lifeSprite in lifeSprites) {
+
+                    foreach (GameObject lifeSprite in lifeSprites)
+                    {
                         lifeSprite.SetActive(false);
                     }
                 }
@@ -697,7 +687,7 @@ public class syncRotate : MonoBehaviour
             if (nextNote >= 5)
                 nextNote = 0;
 
-            if (a && noteSprites[nextNote].getSprite() != null && score < songNoteLength-1) //That last bit prevents the fret being changed as the song ends.
+            if (a && noteSprites[nextNote].getSprite() != null && score < songNoteLength - 1) //That last bit prevents the fret being changed as the song ends.
             {
                 target = noteList[nextNote];
                 fret.setSprite(noteSprites[nextNote].getSprite()); //Set the sprite of the fret based on noteList.[nextNote].getSprite()
@@ -737,7 +727,8 @@ public class syncRotate : MonoBehaviour
         phaseText.gameObject.SetActive(false);
         //pressedKeyText.gameObject.SetActive(false);
 
-        foreach (GameObject lifeSprite in lifeSprites) {
+        foreach (GameObject lifeSprite in lifeSprites)
+        {
             lifeSprite.SetActive(false);
         }
 
@@ -754,7 +745,7 @@ public class syncRotate : MonoBehaviour
         cooldown = cN;
         inZone = false;
         hit = false;
-        //miss = false;
+        miss = false;
 
         keys = "";
         wasdK = "";
@@ -788,7 +779,6 @@ public class syncRotate : MonoBehaviour
                 {
                     score++;
                     Debug.Log(score);
-
                     inZone = false;
                     fret.fretHit(true);
                     cooldown = cN;

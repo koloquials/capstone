@@ -15,7 +15,7 @@ public class fretFeedback : MonoBehaviour
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
     float scaleMod = 0f; //Modifies the scale of the fret.
-    float sConstant = 2f; //The default scale
+    float sConstant = 1f; //The default scale
 
     Color fretCol = Color.white; //Color of the fret
 
@@ -83,15 +83,6 @@ public class fretFeedback : MonoBehaviour
                 scaleMod = 0.8f;
             }
         }
-    }
-
-    public void noteRipple() {
-        Debug.Log("Instantiating a ripple");
-        //with this method it will add the position on the prefab to the thing instantiating it, so to instantiate
-        //at the same place as the thing making it, reset position to 0,0,0
-        //GameObject thisRipple = Instantiate(rippleSprite, this.transform);
-        GameObject thisRipple = Instantiate(rippleSprite, this.transform.position, Quaternion.identity);
-        //thisRipple.gameObject.GetComponent<rippleEffect>().correct = correct;
     }
 
     public void noteRippleParticles() {
