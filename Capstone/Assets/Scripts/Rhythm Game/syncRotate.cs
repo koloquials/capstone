@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class syncRotate : MonoBehaviour
 
@@ -78,6 +79,7 @@ public class syncRotate : MonoBehaviour
     //public Text debugTargetText; //Debug feature, what keys are correct in the format of pressedKeyText
     public Text phaseText; //Debug feature, what phase we're in
     public Text scoreText; //Debug feature, score count
+    public TextMeshProUGUI hitMissText;
 
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
@@ -263,20 +265,27 @@ public class syncRotate : MonoBehaviour
         if (other.gameObject.tag == "beat")
         {
             inZone = false;
-            if (!hit && cooldown <= 0)
+            if (!hit) 
             {
-                Debug.Log("Decrementing the score within trigger check");
+                hitMissText.text = "Miss";
                 //score--;
                 strikes += 1;
                 miss = true;
                 fret.fretHit(false);
                 phaseCheck();
             }
+
+            StartCoroutine(ResetHitMissText());
             setTarget(true); //Find a new key to want to press
             miss = false;
             hit = false;
             score++;
         }
+    }
+
+    IEnumerator ResetHitMissText() {
+        yield return new WaitForSeconds(0.6f);
+        hitMissText.text = "";
     }
 
     void PressedKeyCheck()
@@ -405,29 +414,28 @@ public class syncRotate : MonoBehaviour
             rk = false;
             keys = wasdK + arrowK;
             pressedKeyText.text = keys;
-            if (inZone == true) //If the timing is correct
+            if (inZone) //If the timing is correct
             {
-                //fret.noteRipple();
                 fret.noteRippleParticles();
                 if (keys.Equals(target)) //If the note is correct, add score and trigger feedback
                 {
-                    //score++;
-                    //Debug.Log(score);
-
+                    hitMissText.text = "Hit!";
                     inZone = false;
                     fret.fretHit(true);
                     hit = true;
                     //fret.noteRipple(true);
                 }
-                else //Otherwise trigger negative feedback
-                {
+                else {
+                    hitMissText.text = "Miss";
                     fret.fretHit(false);
                     //score--;
-                    strikes += 1;
+                    Debug.Log("Strikes as from keyed && cooldown " + strikes);
                     miss = true;
                     //fret.noteRipple(false);
                 }
             }
+            
+            
             cooldown = cN;
             primed = false;
             keyed = false;
@@ -447,8 +455,6 @@ public class syncRotate : MonoBehaviour
                 rk = false;
                 wasdK = "";
                 arrowK = "";
-                //score--;
-                //strikes += 1;
                 hit = false;
             }
             primeCool -= Time.deltaTime;
@@ -769,27 +775,4 @@ public class syncRotate : MonoBehaviour
         pc.motionControl(true);
         cam.setGame(false);
     }
-
-
-    //Older code, from a simpler time
-    //Keeping it in case we need it
-    /*if (inZone == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    score++;
-                    Debug.Log(score);
-                    inZone = false;
-                    fret.fretHit(true);
-                    cooldown = cN;
-                }
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    fret.fretHit(false);
-                    cooldown = cN;
-                }
-            }*/
 }
