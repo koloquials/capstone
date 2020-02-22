@@ -22,10 +22,13 @@ public class fretFeedback : MonoBehaviour
     bool startScale = false; //When starting, scale the thing up.
     bool endScale = false; //When ending, scale down.
     bool started = false; //When the rhythm game is actually running
+
+    AudioSource tambourineSoundSrc;
     
     // Start is called before the first frame update
     void Start()
     {
+        tambourineSoundSrc = gameObject.GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
 
         transform.localScale = Vector2.zero; //For the start animation
@@ -87,6 +90,10 @@ public class fretFeedback : MonoBehaviour
 
     public void noteRippleParticles() {
         rippleParticles.Play();
+    }
+
+    public void PlayTambourineSound() {
+        tambourineSoundSrc.Play();
     }
 
     public void setSprite(Sprite newSprite)

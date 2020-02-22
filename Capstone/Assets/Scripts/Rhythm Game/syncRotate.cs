@@ -80,6 +80,10 @@ public class syncRotate : MonoBehaviour
     public Text phaseText; //Debug feature, what phase we're in
     public Text scoreText; //Debug feature, score count
     public TextMeshProUGUI hitMissText;
+    public TextMeshProUGUI comboText;
+    public TextMeshProUGUI startGameTimerText;
+
+    private int comboCounter = 0;
 
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
@@ -127,6 +131,10 @@ public class syncRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitMissText.text = "";
+        comboText.text = "";
+        startGameTimerText.text = "";
+
         lifeSprites = new GameObject[] { lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5 };
         transform.localScale = Vector2.zero; //For the start animation
 
@@ -163,27 +171,11 @@ public class syncRotate : MonoBehaviour
         }
         if (starting == 1)
         {
-            startTimer += Time.deltaTime;
-            if (startTimer > 1)
-            {
-                startScale = Mathf.Lerp(startScale, maxScale, 0.1f);
-                if (startScale > maxScale + 0.1f)
-                {
-                    startScale = maxScale;
-                }
-                transform.localScale = new Vector2(startScale, startScale);
-            }
-            if (startTimer > 2 && startTimer < 2.1f)
-            {
-                fret.startingScaling();
-            }
-            if (startTimer > 3)
-            {
-                starting = 2;
-            }
+            EnterGameAnimation();
         }
         else if (starting == 2)
         {
+            startGameTimerText.text = "";
             if (Input.GetKey(KeyCode.Escape)) //Closes the rhythm game. In the future, this could also pass a value to the dialog manager so characters can comment on how you quit.
             {
                 end();
@@ -195,18 +187,15 @@ public class syncRotate : MonoBehaviour
             //float angle = 0;
             this.transform.localPosition = PointOnCircle(angle, r);
             //Debug.Log(angle);
-
-            PressedKeyCheck();
-            CombinationCheck();
-            StrikeCheck();
+            if (inZone)
+            {
+                PressedKeyCheck();
+                CombinationCheck();
+                StrikeCheck();
+            }
 
             phaseCheck();
             phaseText.text = "Phase: " + phase;
-            //if (phase == 2)
-            //scoreText.text = "Lives: " + (3 - strikes);
-            //else
-            //scoreText.text = ""+score;
-            //scoreText.text = "";
             scoreText.text = "" + score + "/" + songNoteLength;
 
             if (score >= songNoteLength)
@@ -261,11 +250,10 @@ public class syncRotate : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        //nop
         if (other.gameObject.tag == "beat")
         {
             inZone = false;
-            if (!hit) 
+            if (!hit)
             {
                 hitMissText.text = "Miss";
                 //score--;
@@ -273,6 +261,7 @@ public class syncRotate : MonoBehaviour
                 miss = true;
                 fret.fretHit(false);
                 phaseCheck();
+                ShowCombo(false);
             }
 
             StartCoroutine(ResetHitMissText());
@@ -283,9 +272,34 @@ public class syncRotate : MonoBehaviour
         }
     }
 
-    IEnumerator ResetHitMissText() {
+    IEnumerator ResetHitMissText()
+    {
         yield return new WaitForSeconds(0.6f);
         hitMissText.text = "";
+    }
+
+    void EnterGameAnimation()
+    {
+        startGameTimerText.text = ((int)startTimer + 1).ToString();
+        startTimer += Time.deltaTime;
+        if (startTimer > 1)
+        {
+            startScale = Mathf.Lerp(startScale, maxScale, 0.1f);
+            if (startScale > maxScale + 0.1f)
+            {
+                startScale = maxScale;
+            }
+            transform.localScale = new Vector2(startScale, startScale);
+        }
+        if (startTimer > 2 && startTimer < 2.1f)
+        {
+            fret.startingScaling();
+        }
+        if (startTimer > 3)
+        {
+            startGameTimerText.text = "Begin";
+            starting = 2;
+        }
     }
 
     void PressedKeyCheck()
@@ -408,7 +422,7 @@ public class syncRotate : MonoBehaviour
 
     void CombinationCheck()
     {
-        if (keyed && cooldown <= 0)
+        if (keyed && cooldown <= 0 && primed)
         {
             lk = false;
             rk = false;
@@ -423,9 +437,10 @@ public class syncRotate : MonoBehaviour
                     inZone = false;
                     fret.fretHit(true);
                     hit = true;
-                    //fret.noteRipple(true);
+                    ShowCombo(true);
                 }
-                else {
+                else
+                {
                     hitMissText.text = "Miss";
                     fret.fretHit(false);
                     //score--;
@@ -434,8 +449,8 @@ public class syncRotate : MonoBehaviour
                     //fret.noteRipple(false);
                 }
             }
-            
-            
+
+
             cooldown = cN;
             primed = false;
             keyed = false;
@@ -446,6 +461,7 @@ public class syncRotate : MonoBehaviour
 
         if (primed && inZone) //If one note has been pressed, trigger a miss if no other note is pressed within 0.1 seconds
         {
+            fret.PlayTambourineSound();
             if (primeCool <= 0)
             {
                 Debug.Log("Decrementing the score within primed");
@@ -485,6 +501,16 @@ public class syncRotate : MonoBehaviour
         }
     }
 
+    void ShowCombo(bool success)
+    {
+        if (success)
+            comboCounter++;
+        else
+            comboCounter = 0;
+
+        comboText.text = "Combo " + comboCounter;
+    }
+
     void phaseCheck() //Checks the result of misses and hits on the game's phases.
     {
         if (starting < 3)
@@ -512,6 +538,7 @@ public class syncRotate : MonoBehaviour
                     script.stopMusic();
                     score = 0;
                     phase = 0;
+                    comboCounter = 0;
                     currentNote = 0;
                     for (int x = 0; x < 5; x++)
                         setTarget(true);
@@ -598,30 +625,26 @@ public class syncRotate : MonoBehaviour
                         if (x == 0)
                         {
                             next += "U";
-                            //uiT += "^ ";
                         }
                         else if (x == 1)
                         {
                             next += "L";
-                            //uiT += "< ";
                         }
                         else if (x == 2)
                         {
                             next += "D";
-                            //uiT += "v ";
                         }
                         else if (x == 3)
                         {
                             next += "R";
-                            //uiT += "> ";
                         }
                     }
                 }
 
                 //Sets the note generated.
                 noteList[nextNote] = next;
-                switch (next) //I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
-                {
+                switch (next)
+                {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
                     case "UU":
                         noteSprites[nextNote].setSprite(UU);
                         noteSprites[nextNote].setStart(new Vector2(14f, 0.32f));
