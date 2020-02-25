@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpriteGlow;
 
 public class note : MonoBehaviour
 {
@@ -17,17 +18,22 @@ public class note : MonoBehaviour
 
     float scale = 0f;
 
+    SpriteGlowEffect spriteGlowScript;
+
 
     // Start is called before the first frame update
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        spriteGlowScript = gameObject.GetComponent<SpriteGlowEffect>();
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        IncreaseBrightness();
+
         transform.position = new Vector3(Mathf.Lerp(start.x, destination.x, motionTimer/((60/BPM)*15)), transform.position.y, transform.position.z);
         motionTimer += Time.deltaTime;
 
@@ -43,6 +49,10 @@ public class note : MonoBehaviour
                 transform.localScale = new Vector2(scale, scale);
             }
         }
+    }
+
+    public void IncreaseBrightness() {
+        spriteGlowScript.GlowBrightness = Mathf.Lerp(1.5f, 3f, (Vector2.Distance(transform.position, destination)));
     }
 
     public void setSprite(Sprite s)
@@ -84,5 +94,9 @@ public class note : MonoBehaviour
     public Sprite getSprite()
     {
         return sr.sprite;
+    }
+
+    public void Pressed() {
+        spriteGlowScript.GlowBrightness += 1f;
     }
 }

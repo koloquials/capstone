@@ -585,14 +585,6 @@ public class syncRotate : MonoBehaviour
                         lifeSprite.SetActive(false);
                     }
                 }
-                /*else if(score >= 10)
-                {
-                    sr.color = Color.blue;
-                }
-                else
-                {
-                    sr.color = new Color(1f - (score / 10f), 0, 1f);
-                }*/
             }
         }
     }
