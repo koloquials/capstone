@@ -59,12 +59,14 @@ public class OverworldRhythm : MonoBehaviour
 
     List<NoteLock> localLocks;
     List<NoteBlock> localBlocks;
+    List<NoteSpinner> localSpinners;
 
     // Start is called before the first frame update
     void Start()
     {
         localLocks = new List<NoteLock>();
         localBlocks = new List<NoteBlock>();
+        localSpinners = new List<NoteSpinner>();
         invis = new Color(1, 1, 1, 0);
         vis = new Color(1, 1, 1, 1);
         sr = GetComponent<SpriteRenderer>();
@@ -98,6 +100,15 @@ public class OverworldRhythm : MonoBehaviour
                     n.inRange(true);
                 }
             }
+            foreach (NoteSpinner n in ec.spinnerList)
+            {
+                if (Vector3.Distance(transform.position, n.transform.position) < 10) //If the note is within a certain range. May wish to edit this to get a good range.
+                {
+                    localSpinners.Add(n);
+                    //n.inRange(true);
+                    //Right now there isn't a highlight for spinners in range
+                }
+            }
         }
 
         if (active)
@@ -119,6 +130,8 @@ public class OverworldRhythm : MonoBehaviour
                     n.inRange(false);
                 }
                 localLocks.Clear();
+                localBlocks.Clear();
+                localSpinners.Clear();
             }
 
             //Code for pressing keys
@@ -341,6 +354,17 @@ public class OverworldRhythm : MonoBehaviour
         if (localBlocks != null)
         {
             foreach(NoteBlock n in localBlocks)
+            {
+                if(keys.Equals(n.getCode()))
+                {
+                    n.keyed();
+                }
+            }
+        }
+        
+        if(localSpinners != null)
+        {
+            foreach(NoteSpinner n in localSpinners)
             {
                 if(keys.Equals(n.getCode()))
                 {

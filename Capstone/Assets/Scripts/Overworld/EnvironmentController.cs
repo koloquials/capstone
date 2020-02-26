@@ -8,8 +8,8 @@ public class EnvironmentController : MonoBehaviour
 
     public NoteLock[] lockList; //List of all locks
     public NoteBlock[] blockList; //List of all blocks
-
-    //List of all individual note blocks
+    public NoteSpinner[] spinnerList; //List of all spinners
+    //I regret not using abstracts
 
 
     // Start is called before the first frame update
