@@ -183,9 +183,9 @@ public class syncRotate : MonoBehaviour
             miss = false;
 
 
-            float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
-            //float angle = 0;
-            this.transform.localPosition = PointOnCircle(angle, r);
+            // float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
+            // //float angle = 0;
+            // this.transform.localPosition = PointOnCircle(angle, r);
             //Debug.Log(angle);
             if (inZone)
             {

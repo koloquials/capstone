@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public enum TickValue
 {
+
+    //tick vs. beat
+    //smallest increment of time
+    //tick is how many units inside of an 8th note 
+
     ThirtySecond = 12,
     SixteenthTriplet = 16,
     Sixteenth = 24,
@@ -111,9 +116,12 @@ public class SimpleClock : MonoBehaviour
 {
     private static SimpleClock _instance;
     public static SimpleClock Instance { get { return _instance; } }
+
+    private AudioSource songSource;
     
     private void Awake()
     {
+        songSource = gameObject.GetComponent<AudioSource>();
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -352,6 +360,9 @@ public class SimpleClock : MonoBehaviour
     void FirstBeat()
     {
         double startTick = AudioSettings.dspTime + StartDelay;
+        songSource.PlayScheduled(startTick);
+
+
         _nextTick = startTick * _sampleRate + SamplesPerTick; //_tickLength;
         _nextThirtySecond = startTick + _thirtySecondLength;
         _nextSixteenthTriplet = startTick + _sixteenthTripletLength;
