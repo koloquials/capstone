@@ -82,116 +82,50 @@ public class note : MonoBehaviour
         spriteGlowScript.GlowBrightness = Mathf.Lerp(1.5f, 3f, (Vector2.Distance(transform.position, destination)));
     }
 
-    public void setSprite(string thisNotesCombo)
+    public void setSprite(Sprite newSprite) {
+        sr.sprite = newSprite;
+    }
+
+    public void stopMotion() //THE NAMES ARE MISLEADING: The notes work better if they're always moving but invisible when you're not supposed to see them. Currently changes sprite alpha.
     {
-        switch (thisNotesCombo)
-        {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
-            case "UU":
-                sr.sprite = UU;
-                setStart(new Vector2(14f, 0.32f));
-                break;
-            case "UR":
-                sr.sprite = UR;
-                setStart(new Vector2(14f, 0.27f));
-                break;
-            case "UL":
-                sr.sprite = UL;
-                setStart(new Vector2(14f, 0.22f));
-                break;
-            case "UD":
-                sr.sprite = UD;
-                setStart(new Vector2(14f, 0.17f));
-                break;
-            case "RU":
-                sr.sprite = RU;
-                setStart(new Vector2(14f, 0.12f));
-                break;
-            case "RR":
-                sr.sprite = RR;
-                setStart(new Vector2(14f, 0.07f));
-                break;
-            case "RL":
-                sr.sprite = RL;
-                setStart(new Vector2(14f, 0.02f));
-                break;
-            case "RD":
-                sr.sprite = RD;
-                setStart(new Vector2(14f, -0.03f));
-                break;
-            case "LU":
-                sr.sprite = LU;
-                setStart(new Vector2(14f, -0.08f));
-                break;
-            case "LR":
-                sr.sprite = LR;
-                setStart(new Vector2(14f, -0.13f));
-                break;
-            case "LL":
-                sr.sprite = LL;
-                setStart(new Vector2(14f, -0.18f));
-                break;
-            case "LD":
-                sr.sprite = LD;
-                setStart(new Vector2(14f, -0.23f));
-                break;
-            case "DU":
-                sr.sprite = DU;
-                setStart(new Vector2(14f, -0.28f));
-                break;
-            case "DR":
-                sr.sprite = DR;
-                setStart(new Vector2(14f, -0.33f));
-                break;
-            case "DL":
-                sr.sprite = DL;
-                setStart(new Vector2(14f, -0.38f));
-                break;
-            case "DD":
-                sr.sprite = DD;
-                setStart(new Vector2(14f, -0.43f));
-                break;
-        }
+        moving = false;
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+    }
+
+    public void startMotion()
+    {
+        moving = true;
+        transform.localScale = Vector2.zero;
+        scale = 0;
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+    }
+
+    public void setBPM(float bpm)
+    {
+        BPM = bpm;
+    }
+
+    public void setStart(Vector2 s)
+    {
+        start = new Vector3(s.x, s.y, transform.position.z);
+        transform.position = start;
+        motionTimer = 0;
+    }
+
+    public void setDestination(Vector2 d)
+    {
+        destination = new Vector3(d.x, d.y, transform.position.z);
+    }
+
+    public Sprite getSprite()
+    {
+        return sr.sprite;
+    }
+
+    public void Pressed()
+    {
+        spriteGlowScript.GlowBrightness += 1f;
     }
 }
 
-public void stopMotion() //THE NAMES ARE MISLEADING: The notes work better if they're always moving but invisible when you're not supposed to see them. Currently changes sprite alpha.
-{
-    moving = false;
-    sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
-}
 
-public void startMotion()
-{
-    moving = true;
-    transform.localScale = Vector2.zero;
-    scale = 0;
-    sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
-}
-
-public void setBPM(float bpm)
-{
-    BPM = bpm;
-}
-
-public void setStart(Vector2 s)
-{
-    start = new Vector3(s.x, s.y, transform.position.z);
-    transform.position = start;
-    motionTimer = 0;
-}
-
-public void setDestination(Vector2 d)
-{
-    destination = new Vector3(d.x, d.y, transform.position.z);
-}
-
-public Sprite getSprite()
-{
-    return sr.sprite;
-}
-
-public void Pressed()
-{
-    spriteGlowScript.GlowBrightness += 1f;
-}
-}

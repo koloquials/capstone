@@ -124,6 +124,7 @@ public class SimpleClock : MonoBehaviour
         songSource = gameObject.GetComponent<AudioSource>();
         if (_instance != null && _instance != this)
         {
+            Debug.Log("Destroying"); 
             Destroy(this.gameObject);
         }
         else
