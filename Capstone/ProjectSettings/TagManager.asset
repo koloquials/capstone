@@ -6,6 +6,7 @@ TagManager:
   tags:
   - beat
   - environmentNote
+  - environmentBall
   layers:
   - Default
   - TransparentFX

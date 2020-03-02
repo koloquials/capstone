@@ -15,17 +15,20 @@ public class fretFeedback : MonoBehaviour
     //A script for the fret, the circle that the notes line up with. Mostly for feedback.
 
     float scaleMod = 0f; //Modifies the scale of the fret.
-    float sConstant = 2f; //The default scale
+    float sConstant = 1f; //The default scale
 
     Color fretCol = Color.white; //Color of the fret
 
     bool startScale = false; //When starting, scale the thing up.
     bool endScale = false; //When ending, scale down.
     bool started = false; //When the rhythm game is actually running
+
+    AudioSource tambourineSoundSrc;
     
     // Start is called before the first frame update
     void Start()
     {
+        tambourineSoundSrc = gameObject.GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
 
         transform.localScale = Vector2.zero; //For the start animation
@@ -85,17 +88,12 @@ public class fretFeedback : MonoBehaviour
         }
     }
 
-    public void noteRipple() {
-        Debug.Log("Instantiating a ripple");
-        //with this method it will add the position on the prefab to the thing instantiating it, so to instantiate
-        //at the same place as the thing making it, reset position to 0,0,0
-        //GameObject thisRipple = Instantiate(rippleSprite, this.transform);
-        GameObject thisRipple = Instantiate(rippleSprite, this.transform.position, Quaternion.identity);
-        //thisRipple.gameObject.GetComponent<rippleEffect>().correct = correct;
-    }
-
     public void noteRippleParticles() {
         rippleParticles.Play();
+    }
+
+    public void PlayTambourineSound() {
+        tambourineSoundSrc.Play();
     }
 
     public void setSprite(Sprite newSprite)

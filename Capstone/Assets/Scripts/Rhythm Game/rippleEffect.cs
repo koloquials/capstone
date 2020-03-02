@@ -25,14 +25,6 @@ public class rippleEffect : MonoBehaviour {
         StartCoroutine(Ripple(1f));
     }
 
-    // IEnumerator RippleManager() {
-    //     StartCoroutine(Ripple(1f));
-    //     yield return new WaitForSeconds(0.3f);
-    //     StartCoroutine(Ripple(1f));
-    //     yield return new WaitForSeconds(0.3f);
-    //     StartCoroutine(Ripple(1f));
-    // }
-
     IEnumerator Ripple(float time) {
         Debug.Log("Trying to make the object pulse");
         Vector3 originalScale = gameObject.transform.localScale;
@@ -49,25 +41,7 @@ public class rippleEffect : MonoBehaviour {
             yield return null;
             currTime += Time.deltaTime;
         } while (currTime <= time);
-        // for (int i = 0; i < 3; i++) {
-        //     gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
-        //     spriteColour.a = 1 - (currTime / time);
-        //     mySpriteRenderer.color = spriteColour;
-        //     yield return null;
-        // }
          
         Destroy(gameObject);
     }
-
-    // private Color SetColour(bool correct) {
-    //     //if the player entered the right combination, this function should be fed true and will
-    //     //use the default colour for the sprite
-    //     Debug.Log("status of correct bool: " + correct);
-    //     if (correct) {
-    //         return mySpriteRenderer.color;
-    //     }
-    //     else {
-    //         return Color.yellow;
-    //     }
-    // }
 }

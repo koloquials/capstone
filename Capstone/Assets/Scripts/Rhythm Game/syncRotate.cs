@@ -767,7 +767,6 @@ public class syncRotate : MonoBehaviour
                 {
                     score++;
                     Debug.Log(score);
-
                     inZone = false;
                     fret.fretHit(true);
                     cooldown = cN;
