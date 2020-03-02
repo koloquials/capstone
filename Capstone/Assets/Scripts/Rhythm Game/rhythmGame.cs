@@ -91,23 +91,49 @@ public class RhythmGame : MonoBehaviour
             measureVal = i % 4;
             newNoteScript.SetMeasure(measureVal);
 
-            Debug.Log(thisNotesCombo);
             //set the combination sprite
-            newNoteScript.SetSprite(thisNotesCombo);
+            newNoteScript.SetSprite(thisNotesCombo, transform.position);
 
             //set the starting position
 
             //add the note to the note list, the combination to the correct combination list
             thisSongsNotes[i] = newNote;
             thisSongsKeyCombos[i] = thisNotesCombo;
+
+            thisNotesCombo = "";
         }
+
+        StartCoroutine(StartNoteMovement());
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if (Input.GetKeyDown(KeyCode.T)) {
+        //     foreach (GameObject note in thisSongsNotes) {
+        //         StartCoroutine(note.gameObject.GetComponent<NewNote>().WaitAndMove(1f));
+        //     }
+        // }
 
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     for (int i = 0; i < thisSongsNotes.Length; i++)
+        //     {
+        //         StartCoroutine(thisSongsNotes[i].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+        //     }
+        // }
     }
+
+    IEnumerator StartNoteMovement()
+    {
+        for (int i = 0; i < thisSongsNotes.Length; i++)
+        {
+            StartCoroutine(thisSongsNotes[i].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+
+            yield return new WaitForSeconds(3f);
+        }
+    }
+
     void PressedKeyCheck()
     {
         //Code for pressing keys

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11849,7 +11849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949923092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.947113, y: 0.5044415, z: -4.615128}
+  m_LocalPosition: {x: 27.8, y: 0.5044415, z: -4.615128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -11889,7 +11889,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8006af5ba79ef4a5dbff76bb66be739b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -13781,6 +13781,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
+      propertyPath: glowColor.r
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
+      propertyPath: glowColor.g
+      value: 0.5712887
+      objectReference: {fileID: 0}
+    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
+      propertyPath: glowColor.b
+      value: 0.68742234
+      objectReference: {fileID: 0}
     - target: {fileID: 1990880561357486149, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}
       propertyPath: m_Name
@@ -13794,7 +13810,7 @@ PrefabInstance:
     - target: {fileID: 1990880561357486150, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8153403
+      value: 7.66
       objectReference: {fileID: 0}
     - target: {fileID: 1990880561357486150, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}
@@ -13840,6 +13856,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796850260619751041, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}

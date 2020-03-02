@@ -9,9 +9,7 @@ public class NewNote : MonoBehaviour
     [HideInInspector] public int measure;
     [HideInInspector] public int beat;
 
-    private bool moving = false;
-
-    private float motionTimer = 0;
+    private bool moving = true;
 
     private int BPM = 138;
 
@@ -35,9 +33,14 @@ public class NewNote : MonoBehaviour
     public Sprite RL;
     public Sprite RR;
 
+    public float delayTime = 3f;
+    private float timeToMove = 5f;
+    private float currTime = 0f;
+
     void Awake()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        destinationPos = new Vector3(0f, transform.position.y, 0f);
     }
 
     // Update is called once per frame
@@ -56,96 +59,119 @@ public class NewNote : MonoBehaviour
         //     }
         // }
 
-        if (moving)
-        {
-            Move();
+        // if (moving)
+        // {
+        //     Move();
+        // }
+    }
+
+    public IEnumerator WaitAndMove(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime); // start at time X
+        while (currTime < timeToMove)
+        { // until one second passed
+        currTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, destinationPos, currTime/timeToMove); // lerp from A to B in one second
+            yield return 1; // wait for next frame
         }
     }
 
-    void Move()
-    {
-        transform.position = new Vector3(Mathf.Lerp(startPos.x, destinationPos.x, motionTimer / ((60 / BPM) * 15)), transform.position.y, transform.position.z);
-        motionTimer += Time.deltaTime;
-    }
-
-    public void SetSprite(string thisNotesCombo)
+    public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
     {
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
             case "UU":
                 mySpriteRenderer.sprite = UU;
-                SetStart(new Vector2(14f, 0.32f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.32f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.32f));
                 break;
             case "UR":
                 mySpriteRenderer.sprite = UR;
-                SetStart(new Vector2(14f, 0.27f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.27f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.27f));
                 break;
             case "UL":
                 mySpriteRenderer.sprite = UL;
-                SetStart(new Vector2(14f, 0.22f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.22f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.22f));
                 break;
             case "UD":
                 mySpriteRenderer.sprite = UD;
-                SetStart(new Vector2(14f, 0.17f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.17f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.17f));
                 break;
             case "RU":
                 mySpriteRenderer.sprite = RU;
-                SetStart(new Vector2(14f, 0.12f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.12f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.12f));
                 break;
             case "RR":
                 mySpriteRenderer.sprite = RR;
-                SetStart(new Vector2(14f, 0.07f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.07f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.07f));
                 break;
             case "RL":
                 mySpriteRenderer.sprite = RL;
-                SetStart(new Vector2(14f, 0.02f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.02f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.02f));
                 break;
             case "RD":
                 mySpriteRenderer.sprite = RD;
-                SetStart(new Vector2(14f, -0.03f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.03f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.03f));
                 break;
             case "LU":
                 mySpriteRenderer.sprite = LU;
-                SetStart(new Vector2(14f, -0.08f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.08f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y -0.08f));
                 break;
             case "LR":
                 mySpriteRenderer.sprite = LR;
-                SetStart(new Vector2(14f, -0.13f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.13f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.13f));
                 break;
             case "LL":
                 mySpriteRenderer.sprite = LL;
-                SetStart(new Vector2(14f, -0.18f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.18f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y -0.18f));
                 break;
             case "LD":
                 mySpriteRenderer.sprite = LD;
-                SetStart(new Vector2(14f, -0.23f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.23f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.23f));
                 break;
             case "DU":
                 mySpriteRenderer.sprite = DU;
-                SetStart(new Vector2(14f, -0.28f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.28f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.28f));
                 break;
             case "DR":
                 mySpriteRenderer.sprite = DR;
-                SetStart(new Vector2(14f, -0.33f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.33f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.33f));
                 break;
             case "DL":
                 mySpriteRenderer.sprite = DL;
-                SetStart(new Vector2(14f, -0.38f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.38f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.38f));
                 break;
             case "DD":
                 mySpriteRenderer.sprite = DD;
-                SetStart(new Vector2(14f, -0.43f));
+                SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.43f));
+                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.43f));
                 break;
         }
     }
 
-    public void SetStart(Vector2 s)
+    public void SetStartPos(Vector2 startPos)
     {
-        startPos = new Vector3(s.x, s.y, transform.position.z);
+        this.startPos = new Vector3(startPos.x, startPos.y, 0f);
         transform.position = startPos;
-        motionTimer = 0;
     }
 
+    public void SetDestinationPos(Vector2 destinationPos) {
+        this.destinationPos = new Vector3(destinationPos.x, destinationPos.y, 0f);
+    }
     //set this note's measure in the entire song
     public void SetMeasure(int measure)
     {
