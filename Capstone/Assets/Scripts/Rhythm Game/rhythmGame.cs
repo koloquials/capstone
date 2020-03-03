@@ -48,12 +48,14 @@ public class RhythmGame : MonoBehaviour
     string expectedCombo;
     bool combinationCheck;
 
+    IEnumerator noteLaunchCoroutine;
+
     void Start()
     {
         simpleClockScript = gameObject.GetComponent<SimpleClock>();
         GetNotes();
 
-        StartCoroutine(StartNoteMovement());
+        noteLaunchCoroutine = StartNoteMovement();
     }
 
     // Update is called once per frame
@@ -61,6 +63,14 @@ public class RhythmGame : MonoBehaviour
     {
         PressedKeyCheck();
         expectedCombo = ExpectedCombination();
+
+        Phase1();
+
+        if (Input.GetKeyDown(KeyCode.T)) {
+            Debug.Log("Restarting rhythm game");
+            RestartRhythmGame();
+        }
+
         //combinationCheck = CombinationCheck(keys, expectedCombo);
     }
 
@@ -275,11 +285,11 @@ public class RhythmGame : MonoBehaviour
         int currMeasure = simpleClockScript.Measures;
         int currBeat = simpleClockScript.Beats;
 
-        Debug.Log("Curr measure: " + currMeasure + "curr beat: " + currBeat);
+        //Debug.Log("Curr measure: " + currMeasure + "curr beat: " + currBeat);
 
         //this is causing some kind of out of bounds error? 
         //GameObject posInSong = thisSong[currMeasure, currBeat];
-        
+
         // if (posInSong != null) {
         //     expectedCombo = posInSong.gameObject.GetComponent<NewNote>().GetCombination();
         // }
@@ -287,18 +297,43 @@ public class RhythmGame : MonoBehaviour
         return expectedCombo;
     }
 
-    private bool CombinationCheck(string pressedKeys, string expectedCombo) {
-        if (pressedKeys.Equals(expectedCombo)) 
+    //check if the keys the player pressed match what the expected combination at the given moment is
+    private bool CombinationCheck(string pressedKeys, string expectedCombo)
+    {
+        if (pressedKeys.Equals(expectedCombo))
             return true;
-        else 
+        else
             return false;
+    }
+
+
+    //utility functions for handling the present state of the rhythm game 
+
+    public void RestartRhythmGame() {
+        //notes are not destroyed when they reach the goal, they just turn invisible and
+        // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
+        StopAllCoroutines();
+
+        for (int i = 0; i < thisSong.GetLength(0); i++) {
+            for (int j = 0; j < thisSong.GetLength(1); j++) {
+                //index out of bounds exception somewhere :'( 
+                if (thisSong[i, j] != null) {
+                    NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
+                    thisNoteScript.ResetNote(thisNoteScript.GetCombination(), transform.position, false);
+                }
+            }
+        }
     }
 
     //first phase of the rhythm game--the notes are not moving, just pressing the correct combination
     //as it appears on the fret
     public void Phase1()
     {
-
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            Debug.Log("Entering phase one, calling coroutine");
+            
+            StartCoroutine(noteLaunchCoroutine);
+        }
     }
 
     //second phase of the rhythm game--notes start moving in from off-screen
@@ -308,13 +343,15 @@ public class RhythmGame : MonoBehaviour
     // }
 
 
-
     //miscellaneous debugging functions! 
 
     //Debug function to see what is populating the 2D array
-    void Print2DArray() {
-        for (int i = 0; i < thisSong.GetLength(0); i++) {
-            for (int j = 0; j < thisSong.GetLength(1); j++) {
+    void Print2DArray()
+    {
+        for (int i = 0; i < thisSong.GetLength(0); i++)
+        {
+            for (int j = 0; j < thisSong.GetLength(1); j++)
+            {
                 Debug.Log("measure: " + i + " beat: " + thisSong[i, j]);
             }
         }

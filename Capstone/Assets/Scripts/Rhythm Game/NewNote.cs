@@ -50,34 +50,14 @@ public class NewNote : MonoBehaviour
     }
 
     void Start() {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // if (moving)
-        // {
-        //     if (scale < 1)
-        //     {
-        //         scale = Mathf.Lerp(scale, 1, 0.05f);
-        //         if (scale > 0.98f)
-        //         {
-        //             scale = 1f;
-        //         }
-        //         transform.localScale = new Vector2(scale, scale);
-        //     }
-        // }
-
-        // if (moving)
-        // {
-        //     Move();
-        // }
+        SetVisibility(false);
     }
 
     public IEnumerator WaitAndMove(float delayTime)
     {
-        SetMaterial();
+        SetMaterial(true);
+        SetVisibility(true);
+
         yield return new WaitForSeconds(delayTime); // start at time X
         while (currTime < timeToMove)
         { // until one second passed
@@ -85,100 +65,130 @@ public class NewNote : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, destinationPos, currTime/timeToMove); // lerp from A to B in one second
             yield return 1; // wait for next frame
         }
+        
+        //make a note invisible once it has reached its destination
+        SetVisibility(false);
     }
 
-    private void SetMaterial() {
-        glowScript.enabled = true;
+    //function for resetting all properties of the note that are mutable as the game is played. 
+    public void ResetNote(string thisNotesCombo, Vector3 parentTransform, bool enabled) {
+        SetSprite(thisNotesCombo, parentTransform);
+        SetMaterial(enabled);
+        SetVisibility(enabled);
     }
 
+    private void SetMaterial(bool enabled) {
+        glowScript.enabled = enabled;
+    }
+
+    private void SetVisibility(bool visible) {
+        mySpriteRenderer.enabled = visible;
+    }
 
     public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
     {
+        Debug.Log(thisNotesCombo);
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
             case "UU":
                 mySpriteRenderer.sprite = UU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.32f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.32f));
+                SetCombination(thisNotesCombo);
                 break;
             case "UR":
                 mySpriteRenderer.sprite = UR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.27f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.27f));
+                SetCombination(thisNotesCombo);
                 break;
             case "UL":
                 mySpriteRenderer.sprite = UL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.22f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.22f));
+                SetCombination(thisNotesCombo);
                 break;
             case "UD":
                 mySpriteRenderer.sprite = UD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.17f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.17f));
+                SetCombination(thisNotesCombo);
                 break;
             case "RU":
                 mySpriteRenderer.sprite = RU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.12f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.12f));
+                SetCombination(thisNotesCombo);
                 break;
             case "RR":
                 mySpriteRenderer.sprite = RR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.07f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.07f));
+                SetCombination(thisNotesCombo);
                 break;
             case "RL":
                 mySpriteRenderer.sprite = RL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.02f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y + 0.02f));
+                SetCombination(thisNotesCombo);
                 break;
             case "RD":
                 mySpriteRenderer.sprite = RD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.03f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.03f));
+                SetCombination(thisNotesCombo);
                 break;
             case "LU":
                 mySpriteRenderer.sprite = LU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.08f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y -0.08f));
+                SetCombination(thisNotesCombo);
                 break;
             case "LR":
                 mySpriteRenderer.sprite = LR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.13f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.13f));
+                SetCombination(thisNotesCombo);
                 break;
             case "LL":
                 mySpriteRenderer.sprite = LL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.18f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y -0.18f));
+                SetCombination(thisNotesCombo);
                 break;
             case "LD":
                 mySpriteRenderer.sprite = LD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.23f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.23f));
+                SetCombination(thisNotesCombo);
                 break;
             case "DU":
                 mySpriteRenderer.sprite = DU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.28f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.28f));
+                SetCombination(thisNotesCombo);
                 break;
             case "DR":
                 mySpriteRenderer.sprite = DR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.33f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.33f));
+                SetCombination(thisNotesCombo);
                 break;
             case "DL":
                 mySpriteRenderer.sprite = DL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.38f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.38f));
+                SetCombination(thisNotesCombo);
                 break;
             case "DD":
                 mySpriteRenderer.sprite = DD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.43f));
                 SetDestinationPos(new Vector2(0f, parentTransform.y - 0.43f));
+                SetCombination(thisNotesCombo);
                 break;
         }
     }
-
+    
     public void SetStartPos(Vector2 startPos)
     {
         this.startPos = new Vector3(startPos.x, startPos.y, 0f);
@@ -188,6 +198,9 @@ public class NewNote : MonoBehaviour
     public void SetDestinationPos(Vector2 destinationPos) {
         this.destinationPos = new Vector3(destinationPos.x, destinationPos.y, 0f);
     }
+
+
+    //Setters for IMMUTABLE properties of each note. 
     //set this note's measure in the entire song
     public void SetMeasure(int measure)
     {
@@ -200,23 +213,8 @@ public class NewNote : MonoBehaviour
         this.beat = beat;
     }
 
-    public void SetMoving()
-    {
-        moving = true;
-    }
-
-    public void stopMotion() //THE NAMES ARE MISLEADING: The notes work better if they're always moving but invisible when you're not supposed to see them. Currently changes sprite alpha.
-    {
-        moving = false;
-        mySpriteRenderer.color = new Color(mySpriteRenderer.color.r, mySpriteRenderer.color.g, mySpriteRenderer.color.b, 0);
-    }
-
-    public void startMotion()
-    {
-        moving = true;
-        transform.localScale = Vector2.zero;
-        //scale = 0;
-        mySpriteRenderer.color = new Color(mySpriteRenderer.color.r, mySpriteRenderer.color.g, mySpriteRenderer.color.b, 1);
+    public void SetCombination(string myCombination) {
+        this.myCombination = myCombination;
     }
 
     public string GetCombination() {
