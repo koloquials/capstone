@@ -1197,6 +1197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RhythmGame
       objectReference: {fileID: 0}
+    - target: {fileID: 8052616467671417307, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8590418091736728552, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6668,8 +6673,8 @@ GameObject:
   m_Component:
   - component: {fileID: 430224948}
   - component: {fileID: 430224947}
-  - component: {fileID: 430224946}
   - component: {fileID: 430224945}
+  - component: {fileID: 430224946}
   m_Layer: 0
   m_Name: FretSprite
   m_TagString: Untagged
@@ -6782,12 +6787,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 430224944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e8716efa9a8404794c7f80dcc27d74, type: 3}
+  m_Script: {fileID: 11500000, guid: 70ba0a3777f4c470888eab33455a1935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rippleSprite: {fileID: 4621185762310200499, guid: ff721d2b07dc046dabc1cd07ca563340,
-    type: 3}
-  rippleParticles: {fileID: 172101441}
 --- !u!212 &430224947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6847,7 +6849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430224944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.8, y: -0.5844415, z: 2.615128}
+  m_LocalPosition: {x: -25.01, y: -0.5844415, z: 2.615128}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 949923093}
@@ -12029,6 +12031,8 @@ GameObject:
   - component: {fileID: 949923095}
   - component: {fileID: 949923094}
   - component: {fileID: 949923096}
+  - component: {fileID: 949923097}
+  - component: {fileID: 949923098}
   m_Layer: 0
   m_Name: RhythmGameController
   m_TagString: Untagged
@@ -12180,13 +12184,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 949923092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c304b2b7d60794c06a5200f504d1b4e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 10826e69a03b94396ad2668807f88fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   notePrefab: {fileID: 1990880561357486149, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
     type: 3}
+  UU: {fileID: -3912188507210349399, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UD: {fileID: -2369345772682830177, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UL: {fileID: 1891283168732798387, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UR: {fileID: -8222257428861897940, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DU: {fileID: -5227082222917989068, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DD: {fileID: -2161673223383289574, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DL: {fileID: 2518832074207046973, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DR: {fileID: -6920566913003040957, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LU: {fileID: 1204171154885498536, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LD: {fileID: -9162370127504587578, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LL: {fileID: 3648420389755701224, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LR: {fileID: -5872608217444871084, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RU: {fileID: -3019771889615248847, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RD: {fileID: -3289130346622629159, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   simpleClockScript: {fileID: 0}
   target: UU
+--- !u!114 &949923097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949923092}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fee021da3a946f7a4e6a53a764b3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &949923098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949923092}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a270094caac354a43b262f1989a54fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018475572
 GameObject:
   m_ObjectHideFlags: 0

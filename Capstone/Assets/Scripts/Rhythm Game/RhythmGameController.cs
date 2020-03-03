@@ -12,15 +12,7 @@ public class RhythmGameController : MonoBehaviour
     //SimpleClock is a SINGLETON.
     //this script monitors events (keys pressed), generating all of the notes
 
-    //enum to handle the phases of the rhythm game
-    public enum Phase
-    {
-        IntroAnimation,
-        Phase1,
-        Phase2,
-        ClosingAnimation,
-        RestartAnimation,
-    }
+    FiniteStateMachine<RhythmGameController> rhythmGameStateMachine;
 
     //the song will be represented in a 2D array. The outer array representing the measure and the inner array 
     //representing the four beats. 
@@ -30,6 +22,24 @@ public class RhythmGameController : MonoBehaviour
 
     //the first x# of notes for any song will be scripted
     string[] scriptedNotes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
+
+
+    public Sprite UU;
+    public Sprite UD;
+    public Sprite UL;
+    public Sprite UR;
+    public Sprite DU;
+    public Sprite DD;
+    public Sprite DL;
+    public Sprite DR;
+    public Sprite LU;
+    public Sprite LD;
+    public Sprite LL;
+    public Sprite LR;
+    public Sprite RU;
+    public Sprite RD;
+    public Sprite RL;
+    public Sprite RR;
 
     public SimpleClock simpleClockScript;   //another script that is attached to the same object (not a child)
                                             //SimpleClock manages the song itself (beats, measures, playing it, etc...)
@@ -52,20 +62,22 @@ public class RhythmGameController : MonoBehaviour
     string expectedCombo;   //what the correct combination for any given beat in a song is
     bool combinationCheck;  //manage if the keys input by the player match the expectedCombo
 
-    IEnumerator noteLaunchCoroutine;
-
     GameObject fret;    //fret feedback object
-
-    private Phase currPhase;    //enum to manage the states of the rhythm game
 
     void Start()
     {
-        currPhase = Phase.IntroAnimation;
+        rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController>(this);
+        rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
 
         simpleClockScript = gameObject.GetComponent<SimpleClock>();
+        //phase2Script = gameObject.GetComponent<Phase2>();
+
+
         GetNotes();
 
-        noteLaunchCoroutine = StartNoteMovement();
+        //phase2Script.thisSong = this.thisSong;
+
+        //noteLaunchCoroutine = StartNoteMovement();
 
         fret = transform.GetChild(0).gameObject;
     }
@@ -73,14 +85,17 @@ public class RhythmGameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currPhase == Phase.IntroAnimation)
-        {
-            IntroAnimation();
-        }
-        else if (currPhase == Phase.Phase1)
-        {
-            Phase1();
-        }
+        rhythmGameStateMachine.Update();
+
+        // if (currPhase == Phase.IntroAnimation)
+        // {
+        //     IntroAnimation();
+        // }
+        // else if (currPhase == Phase.Phase2)
+        // {
+        //     Debug.Log("intro animation completed, moving onto phase2");
+        //     phase2Script.enabled = true;
+        // }
 
         Test();
 
@@ -155,18 +170,18 @@ public class RhythmGameController : MonoBehaviour
     }
 
     //Coroutine for telling each note when it's time to start moving! 
-    IEnumerator StartNoteMovement()
-    {
-        for (int i = 0; i < thisSong.GetLength(0); i++)
-        {
-            for (int j = 0; j < thisSong.GetLength(1); i++)
-            {
-                StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+    // IEnumerator StartNoteMovement()
+    // {
+    //     for (int i = 0; i < thisSong.GetLength(0); i++)
+    //     {
+    //         for (int j = 0; j < thisSong.GetLength(1); i++)
+    //         {
+    //             StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
 
-                yield return new WaitForSeconds(3f);
-            }
-        }
-    }
+    //             yield return new WaitForSeconds(3f);
+    //         }
+    //     }
+    // }
 
     //check input from the player
     void PressedKeyCheck()
@@ -345,31 +360,89 @@ public class RhythmGameController : MonoBehaviour
         }
     }
 
-    public void IntroAnimation()
+    public IEnumerator StartNoteMovement()
     {
-        Debug.Log("Scaling the fret");
-        fret.gameObject.GetComponent<fretFeedback>();
+        for (int i = 0; i < thisSong.GetLength(0); i++)
+        {
+            for (int j = 0; j < thisSong.GetLength(1); i++)
+            {
+                StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+
+                yield return new WaitForSeconds(3f);
+            }
+        }
     }
 
-    //first phase of the rhythm game--the notes are not moving, just pressing the correct combination
-    //as it appears on the fret
-    public void Phase1()
+    //the fret will also be changing its sprite as the rhythm game goes
+    //string[] scriptedNotes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
+    public IEnumerator SetFret()
     {
+        for (int i = 0; i < scriptedNotes.Length; i++)
+        {
+            //Debug.Log(scriptedNotes[i]);
 
+            fret.gameObject.GetComponent<NewFretFeedback>().SetSprite(GetSprite(scriptedNotes[i]));
+
+            yield return new WaitForSeconds(2f);
+        }
     }
 
-    public void Phase2()
+    private Sprite GetSprite(string combination)
     {
+        switch (combination)
+        {
+            case "UU":
+                return UU;
+                break;
+            case "UR":
+                return UR;
+                break;
+            case "UL":
+                return UL;
+                break;
+            case "UD":
+                return UD;
+                break;
+            case "RU":
+                return RU;
+                break;
+            case "RR":
+                return RR;
+                break;
+            case "RL":
+                return RL;
+                break;
+            case "RD":
+                return RD;
+                break;
+            case "LU":
+                return LU;
+                break;
+            case "LR":
+                return LR;
+                break;
+            case "LL":
+                return LL;
+                break;
+            case "LD":
+                return LD;
+                break;
+            case "DU":
+                return DU;
+                break;
+            case "DR":
+                return DR;
+                break;
+            case "DL":
+                return DL;
+                break;
+            case "DD":
+                return DD;
+                break;
+        }
 
+        return null;
     }
-
-    public void ClosingAnimation() {
-
-    }
-
-
-
-
 
     //miscellaneous debugging functions! 
 
@@ -392,7 +465,118 @@ public class RhythmGameController : MonoBehaviour
         {
             Debug.Log("Entering phase one, calling coroutine");
 
-            StartCoroutine(noteLaunchCoroutine);
+            //StartCoroutine(noteLaunchCoroutine);
+        }
+    }
+
+
+
+
+
+
+    //State machine
+    //before the rhythm game. This is preparation for loading up the rhythm game and leading into the animation      
+    private class LoadRhythmGame : FiniteStateMachine<RhythmGameController>.State
+    {
+        public override void OnEnter()
+        {
+            //accessing variables that are part of rhythm game controller
+            //Context.thisSong;
+            Debug.Log("Entering LoadRhythmGame state");
+        }
+
+        public override void Update()
+        {
+            //call transitionto, then onExit will run, then onenter for whatever transitionto will be run
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TransitionTo<IntroAnimation>();
+            }
+        }
+
+        public override void OnExit()
+        {
+
+        }
+    }
+
+    //intro animation for the rhythm game. Player input cannot be taken.
+    private class IntroAnimation : FiniteStateMachine<RhythmGameController>.State
+    {
+        public override void OnEnter()
+        {
+            Debug.Log("Scaling the fret");
+            Context.StartCoroutine(Context.fret.gameObject.GetComponent<NewFretFeedback>().ScaleFret(3f));
+        }
+
+        public override void Update()
+        {
+            //TransitionTo<Phase2>();
+            TransitionTo<Phase1>();
+        }
+
+        public override void OnExit()
+        {
+
+        }
+    }
+
+    //phase 1 of rhythm game--press an x# of notes 
+    private class Phase1 : FiniteStateMachine<RhythmGameController>.State
+    {
+        public override void OnEnter()
+        {
+            Debug.Log("Entering phase 1");
+            Context.StartCoroutine(Context.SetFret());
+        }   
+
+        public override void Update()
+        {
+            TransitionTo<Phase2>();
+        }
+
+        public override void OnExit()
+        {
+
+        }
+    }
+
+    //phase 2--notes will move across the screen and player has to hit them at the right time.
+    private class Phase2 : FiniteStateMachine<RhythmGameController>.State
+    {
+        public override void OnEnter()
+        {
+            Debug.Log("Entering phase2 state");
+            Context.StartCoroutine(Context.StartNoteMovement());
+        }
+
+        public override void Update()
+        {
+
+        }
+
+        public override void OnExit()
+        {
+
+        }
+    }
+
+    private class ClosingAnimation : FiniteStateMachine<RhythmGameController>.State
+    {
+        public override void OnEnter()
+        {
+            Debug.Log("Start of Phase2 script, launching the note movements)");
+        }
+        public override void Update()
+        {
+
+        }
+
+        public override void OnExit()
+        {
+
         }
     }
 }
+
+
