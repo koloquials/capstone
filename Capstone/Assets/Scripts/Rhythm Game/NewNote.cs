@@ -87,7 +87,6 @@ public class NewNote : MonoBehaviour
 
     public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
     {
-        Debug.Log(thisNotesCombo);
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
             case "UU":
@@ -188,7 +187,7 @@ public class NewNote : MonoBehaviour
                 break;
         }
     }
-    
+
     public void SetStartPos(Vector2 startPos)
     {
         this.startPos = new Vector3(startPos.x, startPos.y, 0f);

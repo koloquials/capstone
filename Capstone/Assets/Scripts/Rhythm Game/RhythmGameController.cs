@@ -6,15 +6,21 @@ using UnityEngine;
 /// this script will control the entire rhythm game: it takes care of key input, checking if a combination was correct, 
 /// 
 /// </summary>
-public class RhythmGame : MonoBehaviour
+public class RhythmGameController : MonoBehaviour
 {
     //the rhythmGame script goes on an empty gameObject that also has the SimpleClock on it.
     //SimpleClock is a SINGLETON.
     //this script monitors events (keys pressed), generating all of the notes
 
-    //total number of notes to press in this song
-    GameObject[] thisSongsNotes = new GameObject[93];
-    string[] thisSongsKeyCombos = new string[93];
+    //enum to handle the phases of the rhythm game
+    public enum Phase
+    {
+        IntroAnimation,
+        Phase1,
+        Phase2,
+        ClosingAnimation,
+        RestartAnimation,
+    }
 
     //the song will be represented in a 2D array. The outer array representing the measure and the inner array 
     //representing the four beats. 
@@ -22,13 +28,11 @@ public class RhythmGame : MonoBehaviour
 
     public GameObject notePrefab;
 
-    string[] first8Notes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
+    //the first x# of notes for any song will be scripted
+    string[] scriptedNotes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
 
-    public SimpleClock simpleClockScript;
-
-    private int beatVal;
-    private int measureVal;
-
+    public SimpleClock simpleClockScript;   //another script that is attached to the same object (not a child)
+                                            //SimpleClock manages the song itself (beats, measures, playing it, etc...)
 
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
@@ -45,28 +49,46 @@ public class RhythmGame : MonoBehaviour
     float primeCool = 0f; //How long you can keep one key pressed for before it registers an incorrect hit.
     float pcN = 0.1f; //Default value for pcN
 
-    string expectedCombo;
-    bool combinationCheck;
+    string expectedCombo;   //what the correct combination for any given beat in a song is
+    bool combinationCheck;  //manage if the keys input by the player match the expectedCombo
 
     IEnumerator noteLaunchCoroutine;
 
+    GameObject fret;    //fret feedback object
+
+    private Phase currPhase;    //enum to manage the states of the rhythm game
+
     void Start()
     {
+        currPhase = Phase.IntroAnimation;
+
         simpleClockScript = gameObject.GetComponent<SimpleClock>();
         GetNotes();
 
         noteLaunchCoroutine = StartNoteMovement();
+
+        fret = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currPhase == Phase.IntroAnimation)
+        {
+            IntroAnimation();
+        }
+        else if (currPhase == Phase.Phase1)
+        {
+            Phase1();
+        }
+
+        Test();
+
         PressedKeyCheck();
-        expectedCombo = ExpectedCombination();
+        expectedCombo = GetExpectedCombination();
 
-        Phase1();
-
-        if (Input.GetKeyDown(KeyCode.T)) {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
             Debug.Log("Restarting rhythm game");
             RestartRhythmGame();
         }
@@ -74,6 +96,8 @@ public class RhythmGame : MonoBehaviour
         //combinationCheck = CombinationCheck(keys, expectedCombo);
     }
 
+    //initialisation function--all notes for a song are generated at the beginning as to improve
+    //performance of the rhythm game as it runs
     private void GetNotes()
     {
         string thisNotesCombo = "";
@@ -82,10 +106,13 @@ public class RhythmGame : MonoBehaviour
         {
             for (int j = 0; j < thisSong.GetLength(1); j++)
             {
+                //Starting index 0, we will not be pressing anything anything on the second and fourth beats
+                //of a measure, so just put null at that space
                 if (j == 1 || j == 3)
                 {
                     thisSong[i, j] = null;
                 }
+                //we only care about the first and third beats of a measure.
                 else
                 {
                     GameObject newNote = Instantiate(notePrefab);
@@ -113,27 +140,11 @@ public class RhythmGame : MonoBehaviour
                     }
 
                     //set the properties of each note 
-                    //set the beat
-                    //each note will either be the first or third beat in a given measure, so there are only 
-                    //two cases that need to be taken care of. 
-                    //all even indices in the array are the first beat, all odd are the third beat.
-
                     newNoteScript.SetBeat(j);
-
-                    //set which beat in the measure it was
-                    //at the moment, we are only considering the first and third beat in each measure
-
-
-                    //set the measure
-                    measureVal = i;
-                    newNoteScript.SetMeasure(measureVal);
-
-                    //set the combination sprite
+                    newNoteScript.SetMeasure(i);
                     newNoteScript.SetSprite(thisNotesCombo, transform.position);
 
-                    //set the starting position
-
-                    //add the note to the note list, the combination to the correct combination list
+                    //add the note to the 2D array, the combination to the correct combination list
                     thisSong[i, j] = newNote;
                     //thisSongsKeyCombos[i] = thisNotesCombo;
 
@@ -278,7 +289,7 @@ public class RhythmGame : MonoBehaviour
 
     //have a function that looks at current beat and measure and returns the expected key combination
     //then have another function that checks if it was correct or not 
-    private string ExpectedCombination()
+    private string GetExpectedCombination()
     {
         string expectedCombo = "";
 
@@ -287,12 +298,18 @@ public class RhythmGame : MonoBehaviour
 
         //Debug.Log("Curr measure: " + currMeasure + "curr beat: " + currBeat);
 
-        //this is causing some kind of out of bounds error? 
-        //GameObject posInSong = thisSong[currMeasure, currBeat];
+        //this if statement is because sometimes SimpleClock returns a fifth beat and that was breaking everything
+        //also, measures start counting at 2. 0 Measures is the song has not started playing yet. 
+        if (currBeat < 5 && currMeasure > 0)
+        {
+            GameObject posInSong = thisSong[currMeasure, currBeat - 1];
 
-        // if (posInSong != null) {
-        //     expectedCombo = posInSong.gameObject.GetComponent<NewNote>().GetCombination();
-        // }
+            if (posInSong != null)
+            {
+                expectedCombo = posInSong.gameObject.GetComponent<NewNote>().GetCombination();
+                //Debug.Log(expectedCombo);
+            }
+        }
 
         return expectedCombo;
     }
@@ -308,16 +325,19 @@ public class RhythmGame : MonoBehaviour
 
 
     //utility functions for handling the present state of the rhythm game 
-
-    public void RestartRhythmGame() {
+    public void RestartRhythmGame()
+    {
         //notes are not destroyed when they reach the goal, they just turn invisible and
         // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
         StopAllCoroutines();
 
-        for (int i = 0; i < thisSong.GetLength(0); i++) {
-            for (int j = 0; j < thisSong.GetLength(1); j++) {
+        for (int i = 0; i < thisSong.GetLength(0); i++)
+        {
+            for (int j = 0; j < thisSong.GetLength(1); j++)
+            {
                 //index out of bounds exception somewhere :'( 
-                if (thisSong[i, j] != null) {
+                if (thisSong[i, j] != null)
+                {
                     NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
                     thisNoteScript.ResetNote(thisNoteScript.GetCombination(), transform.position, false);
                 }
@@ -325,22 +345,30 @@ public class RhythmGame : MonoBehaviour
         }
     }
 
+    public void IntroAnimation()
+    {
+        Debug.Log("Scaling the fret");
+        fret.gameObject.GetComponent<fretFeedback>();
+    }
+
     //first phase of the rhythm game--the notes are not moving, just pressing the correct combination
     //as it appears on the fret
     public void Phase1()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            Debug.Log("Entering phase one, calling coroutine");
-            
-            StartCoroutine(noteLaunchCoroutine);
-        }
+
     }
 
-    //second phase of the rhythm game--notes start moving in from off-screen
-    // public void Phase2()
-    // {
-    //     StartCoroutine(StartNoteMovement);
-    // }
+    public void Phase2()
+    {
+
+    }
+
+    public void ClosingAnimation() {
+
+    }
+
+
+
 
 
     //miscellaneous debugging functions! 
@@ -354,6 +382,17 @@ public class RhythmGame : MonoBehaviour
             {
                 Debug.Log("measure: " + i + " beat: " + thisSong[i, j]);
             }
+        }
+    }
+
+    //debugging function to test starting note movement
+    public void Test()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Entering phase one, calling coroutine");
+
+            StartCoroutine(noteLaunchCoroutine);
         }
     }
 }
