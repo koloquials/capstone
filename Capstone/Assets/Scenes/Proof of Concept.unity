@@ -1020,7 +1020,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4597196f14412404887593403299955f, type: 3}
+      objectReference: {fileID: 8300000, guid: 8006af5ba79ef4a5dbff76bb66be739b, type: 3}
     - target: {fileID: 982109736365544062, guid: 30d1ee53e4cd85d499fe8335ca1efb6c,
         type: 3}
       propertyPath: songLenghtinBeats
@@ -11867,7 +11867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a5acb0a6e2f45068748b164c188b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartDelay: 0
+  StartDelay: 5
   Measures: 0
   Beats: 0
   Ticks: 0
@@ -13781,22 +13781,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
-      propertyPath: glowColor.r
-      value: 0.9245283
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
-      propertyPath: glowColor.g
-      value: 0.5712887
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711065385, guid: a1de72314b9704c2eaf5c1bc7f0ad233, type: 3}
-      propertyPath: glowColor.b
-      value: 0.68742234
-      objectReference: {fileID: 0}
     - target: {fileID: 1990880561357486149, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}
       propertyPath: m_Name

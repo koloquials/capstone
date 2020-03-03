@@ -136,9 +136,13 @@ public class SimpleClock : MonoBehaviour
 
     public double StartDelay;
 
-    [Header("M:B:T")] [SerializeField] private int Measures; //for display purposes in unity editor
-    [SerializeField] private int Beats;
-    [SerializeField] private int Ticks;
+    [Header("M:B:T")] 
+    // [SerializeField] private int Measures; //for display purposes in unity editor
+    // [SerializeField] private int Beats;
+    // [SerializeField] private int Ticks;
+    public int Measures;
+    public int Beats;
+    public int Ticks;
 
     [Header("Tempo")] public double BPM;
 

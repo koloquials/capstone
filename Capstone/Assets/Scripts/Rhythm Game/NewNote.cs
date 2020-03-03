@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpriteGlow;
 
 public class NewNote : MonoBehaviour
 {
@@ -37,10 +38,19 @@ public class NewNote : MonoBehaviour
     private float timeToMove = 5f;
     private float currTime = 0f;
 
+    private SpriteGlowEffect glowScript;
+
+    [HideInInspector] public string myCombination;
+
     void Awake()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         destinationPos = new Vector3(0f, transform.position.y, 0f);
+        glowScript = gameObject.GetComponent<SpriteGlowEffect>();
+    }
+
+    void Start() {
+        
     }
 
     // Update is called once per frame
@@ -67,6 +77,7 @@ public class NewNote : MonoBehaviour
 
     public IEnumerator WaitAndMove(float delayTime)
     {
+        SetMaterial();
         yield return new WaitForSeconds(delayTime); // start at time X
         while (currTime < timeToMove)
         { // until one second passed
@@ -75,6 +86,11 @@ public class NewNote : MonoBehaviour
             yield return 1; // wait for next frame
         }
     }
+
+    private void SetMaterial() {
+        glowScript.enabled = true;
+    }
+
 
     public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
     {
@@ -201,5 +217,9 @@ public class NewNote : MonoBehaviour
         transform.localScale = Vector2.zero;
         //scale = 0;
         mySpriteRenderer.color = new Color(mySpriteRenderer.color.r, mySpriteRenderer.color.g, mySpriteRenderer.color.b, 1);
+    }
+
+    public string GetCombination() {
+        return myCombination;
     }
 }
