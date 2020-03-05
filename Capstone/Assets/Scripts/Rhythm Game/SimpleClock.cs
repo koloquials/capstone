@@ -336,7 +336,7 @@ public class SimpleClock : MonoBehaviour
         _tickCounter = _ticksPerMeasure;
         SetLengths();
         BuildTickMaskArray();
-        FirstBeat();
+        //FirstBeat();
     }
 
     /// <summary>
@@ -362,10 +362,11 @@ public class SimpleClock : MonoBehaviour
     /// <summary>
     /// Internal function, sets timings for next beats
     /// </summary>
-    void FirstBeat()
+    public void FirstBeat()
     {
         double startTick = AudioSettings.dspTime + StartDelay;
-        songSource.PlayScheduled(startTick);
+        //songSource.PlayScheduled(startTick);
+        songSource.Play();
 
 
         _nextTick = startTick * _sampleRate + SamplesPerTick; //_tickLength;

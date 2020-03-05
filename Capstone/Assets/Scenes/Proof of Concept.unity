@@ -6790,6 +6790,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ba0a3777f4c470888eab33455a1935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UU: {fileID: -3912188507210349399, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UD: {fileID: -2369345772682830177, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UL: {fileID: 1891283168732798387, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  UR: {fileID: -8222257428861897940, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DU: {fileID: -5227082222917989068, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DD: {fileID: -2161673223383289574, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DL: {fileID: 2518832074207046973, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  DR: {fileID: -6920566913003040957, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LU: {fileID: 1204171154885498536, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LD: {fileID: -9162370127504587578, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LL: {fileID: 3648420389755701224, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  LR: {fileID: -5872608217444871084, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RU: {fileID: -3019771889615248847, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RD: {fileID: -3289130346622629159, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
 --- !u!212 &430224947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12067,7 +12083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a5acb0a6e2f45068748b164c188b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartDelay: 5
+  StartDelay: 0
   Measures: 0
   Beats: 0
   Ticks: 0
@@ -12205,8 +12221,12 @@ MonoBehaviour:
   RD: {fileID: -3289130346622629159, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
-  simpleClockScript: {fileID: 0}
   target: UU
+  simpleClockScript: {fileID: 0}
+  currMeasure: 0
+  currBeat: 0
+  currTick: 0
+  fretFeedbackScript: {fileID: 0}
 --- !u!114 &949923097
 MonoBehaviour:
   m_ObjectHideFlags: 0

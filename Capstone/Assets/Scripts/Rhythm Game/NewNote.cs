@@ -35,7 +35,7 @@ public class NewNote : MonoBehaviour
     public Sprite RR;
 
     public float delayTime = 3f;
-    private float timeToMove = 5f;
+   // private float SimpleClock.Instance.quarter = 5f;
     private float currTime = 0f;
 
     private SpriteGlowEffect glowScript;
@@ -55,14 +55,16 @@ public class NewNote : MonoBehaviour
 
     public IEnumerator WaitAndMove(float delayTime)
     {
+        currTime = 0f;
+
         SetMaterial(true);
         SetVisibility(true);
 
         yield return new WaitForSeconds(delayTime); // start at time X
-        while (currTime < timeToMove)
+        while (currTime < (SimpleClock.MeasureLength() * 4))
         { // until one second passed
         currTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, destinationPos, currTime/timeToMove); // lerp from A to B in one second
+            transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in one second
             yield return 1; // wait for next frame
         }
         

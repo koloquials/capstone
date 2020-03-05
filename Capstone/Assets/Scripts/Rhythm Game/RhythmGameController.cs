@@ -21,8 +21,9 @@ public class RhythmGameController : MonoBehaviour
     public GameObject notePrefab;
 
     //the first x# of notes for any song will be scripted
-    string[] scriptedNotes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
-
+    List<string> phase1Notes = new List<string>() { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
+    List<string> phase2Notes = new List<string>();
+    string[] thisSongSequence;
 
     public Sprite UU;
     public Sprite UD;
@@ -40,9 +41,6 @@ public class RhythmGameController : MonoBehaviour
     public Sprite RD;
     public Sprite RL;
     public Sprite RR;
-
-    public SimpleClock simpleClockScript;   //another script that is attached to the same object (not a child)
-                                            //SimpleClock manages the song itself (beats, measures, playing it, etc...)
 
     string keys = ""; //What keys are being pressed
     string wasdK = ""; //Which wasd key
@@ -64,42 +62,56 @@ public class RhythmGameController : MonoBehaviour
 
     GameObject fret;    //fret feedback object
 
+    //booleans to control moving between states of the rhythm game
+    bool inPhase1 = false;
+    bool inPhase2 = false;
+
+    private bool inWindow = true;
+    private bool justLeftWindow = false;
+    private bool correct = false;
+
+
+    public SimpleClock simpleClockScript;   //another script that is attached to the same object (not a child)
+                                            //SimpleClock manages the song itself (beats, measures, playing it, etc...)
+
+
+    public int currMeasure;
+    public int currBeat;
+    public int currTick;
+
+    public NewFretFeedback fretFeedbackScript;
+
     void Start()
     {
         rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController>(this);
         rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
 
         simpleClockScript = gameObject.GetComponent<SimpleClock>();
-        //phase2Script = gameObject.GetComponent<Phase2>();
-
 
         GetNotes();
-
-        //phase2Script.thisSong = this.thisSong;
-
-        //noteLaunchCoroutine = StartNoteMovement();
+        SetThisSongSequence(phase1Notes, phase2Notes);
 
         fret = transform.GetChild(0).gameObject;
+        fretFeedbackScript = fret.gameObject.GetComponent<NewFretFeedback>();
+
+        fretFeedbackScript.SetPhase1Sequence(phase1Notes);
+        fretFeedbackScript.SetPhase2Sequence(phase2Notes);
+
+        fretFeedbackScript.SetSong(phase1Notes, phase2Notes);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //have to constantly know what measure, beat and tick we're on
+        currMeasure = simpleClockScript.Measures;
+        currBeat = simpleClockScript.Beats;
+        currTick = simpleClockScript.Ticks;
+
+        //this will call the Update function of whatever state it is in. 
         rhythmGameStateMachine.Update();
 
-        // if (currPhase == Phase.IntroAnimation)
-        // {
-        //     IntroAnimation();
-        // }
-        // else if (currPhase == Phase.Phase2)
-        // {
-        //     Debug.Log("intro animation completed, moving onto phase2");
-        //     phase2Script.enabled = true;
-        // }
-
-        Test();
-
-        PressedKeyCheck();
+        //PressedKeyCheck();
         expectedCombo = GetExpectedCombination();
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -154,6 +166,8 @@ public class RhythmGameController : MonoBehaviour
                         }
                     }
 
+                    phase2Notes.Add(thisNotesCombo);
+
                     //set the properties of each note 
                     newNoteScript.SetBeat(j);
                     newNoteScript.SetMeasure(i);
@@ -163,143 +177,130 @@ public class RhythmGameController : MonoBehaviour
                     thisSong[i, j] = newNote;
                     //thisSongsKeyCombos[i] = thisNotesCombo;
 
+
                     thisNotesCombo = "";
                 }
             }
         }
     }
 
-    //Coroutine for telling each note when it's time to start moving! 
-    // IEnumerator StartNoteMovement()
-    // {
-    //     for (int i = 0; i < thisSong.GetLength(0); i++)
-    //     {
-    //         for (int j = 0; j < thisSong.GetLength(1); i++)
-    //         {
-    //             StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+    void SetThisSongSequence(List<string> phase1Notes, List<string> phase2Notes)
+    {
 
-    //             yield return new WaitForSeconds(3f);
-    //         }
-    //     }
-    // }
+        phase1Notes.AddRange(phase2Notes);
+        this.thisSongSequence = phase1Notes.ToArray();
 
-    //check input from the player
-    void PressedKeyCheck()
+        // foreach (string combination in thisSongSequence)
+        //     Debug.Log("Setting the song sequence: " + combination);
+    }
+
+    //pass function as parameter to this.
+    void RhythmGameEventHandler()
+    {
+        inWindow = CheckWindow();
+        string pressedCombo = GetArrowKeys() + GetWASD();
+        string expectedCombo = GetExpectedCombination();
+
+        if (inWindow)
+        {
+            //if the user hit two keys, they are forced out of the window.
+            if (pressedCombo.Length == 2)
+            {
+                inWindow = false;
+            }
+        }
+        else if (!inWindow && justLeftWindow)
+        {
+            Debug.Log("just exited window, processing");
+            //register a miss. In phase 1 this means restarting the entire rhythm game
+            //                 In phase 2 this means losing a life
+        }
+        else if (!inWindow)
+        {
+            correct = CombinationCheck(pressedCombo, expectedCombo);
+        }
+    }
+
+    //player is expected to hit the first and third beat of every measure. This function will check if 
+    //the song is currently in that window and allow player to give input
+    private bool CheckWindow()
+    {
+        //to hit the first beat in the measure, you get ticks 48 ~ 96 of the fourth beat in the PREVIOUS measure
+        //along with the first 48 ticks of beat 1
+        if (currBeat == 4 || currBeat == 1)
+        {
+            if ((currBeat == 4 && currTick >= 48) || (currBeat == 1 && currTick <= 48))
+            {
+                // expectedCombo = GetExpectedCombination();
+                // PressedKeyCheck();
+                // if (CombinationCheck(keys, expectedCombo)) 
+                //     Debug.Log("Correct");
+                // else 
+                //     Debug.Log("Incorrect");
+                return true;
+            }
+            //perhaps give it a range to check just exiting the window?
+            else if (currTick == 49)
+            {
+                //this will only execute assuming that the player only hit one key or no keys at all during
+                //the previous window 
+                justLeftWindow = true;
+                return false;
+            }
+            else
+                return false;
+        }
+
+        //to hit the third beat in the measure, you get ticks 48 ~ 96 of the second beat in the CURRENT measure
+        //along with the first 48 ticks of beat 2.
+        else if (currBeat == 2 || currBeat == 3)
+        {
+            if ((currBeat == 2 && currTick >= 48) || (currBeat == 3 && currTick <= 48))
+            {
+                // expectedCombo = GetExpectedCombination();
+                // PressedKeyCheck();
+                // if (CombinationCheck(keys, expectedCombo)) 
+                //     Debug.Log("Correct");
+                // else 
+                //     Debug.Log("Incorrect");
+                return true;
+            }
+            else
+                return false;
+        }
+
+        return false;
+    }
+
+
+
+    public string GetArrowKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            return "U";
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            return "L";
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+            return "D";
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+            return "R";
+
+        return "";
+    }
+
+    public string GetWASD()
     {
         //Code for pressing keys
-        if (Input.GetKeyDown(KeyCode.W)) //When a key is pressed
-        {
-            wasdK = "U"; //Set which one was pressed
-            if (!rk) //If this is the first key pressed, note that one key has been pressed
-            {
-                primed = true;
-                lk = true;
-                primeCool = pcN;
-            }
-            else //If this is the second key pressed, then confirm that a key combination has been entered
-            {
-                keyed = true;
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.W))
+            return "U";
         else if (Input.GetKeyDown(KeyCode.A))
-        {
-            wasdK = "L";
-            if (!rk)
-            {
-                primed = true;
-                lk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
+            return "L";
         else if (Input.GetKeyDown(KeyCode.S))
-        {
-            wasdK = "D";
-            if (!rk)
-            {
-                primed = true;
-                lk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
+            return "D";
         else if (Input.GetKeyDown(KeyCode.D))
-        {
-            wasdK = "R";
-            if (!rk)
-            {
-                primed = true;
-                lk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
+            return "R";
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            arrowK = "U";
-            if (!lk)
-            {
-                primed = true;
-                rk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            arrowK = "L";
-            if (!lk)
-            {
-                primed = true;
-                rk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            arrowK = "D";
-            if (!lk)
-            {
-                primed = true;
-                rk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            arrowK = "R";
-            if (!lk)
-            {
-                primed = true;
-                rk = true;
-                primeCool = pcN;
-            }
-            else
-            {
-                keyed = true;
-            }
-        }
+        return "";
     }
 
     //have a function that looks at current beat and measure and returns the expected key combination
@@ -307,10 +308,6 @@ public class RhythmGameController : MonoBehaviour
     private string GetExpectedCombination()
     {
         string expectedCombo = "";
-
-        int currMeasure = simpleClockScript.Measures;
-        int currBeat = simpleClockScript.Beats;
-
         //Debug.Log("Curr measure: " + currMeasure + "curr beat: " + currBeat);
 
         //this if statement is because sometimes SimpleClock returns a fifth beat and that was breaking everything
@@ -360,88 +357,20 @@ public class RhythmGameController : MonoBehaviour
         }
     }
 
+    //used for starting the notes moving in phase 2
     public IEnumerator StartNoteMovement()
     {
         for (int i = 0; i < thisSong.GetLength(0); i++)
         {
             for (int j = 0; j < thisSong.GetLength(1); i++)
             {
-                StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(5f));
+                StartCoroutine(thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+                Debug.Log("i value is: " + i + "j value is: " + j);
 
-                yield return new WaitForSeconds(3f);
+                //this will have to be changed to get the notes to launch at the right moment
+                yield return new WaitForSeconds(SimpleClock.QuarterLength());
             }
         }
-    }
-
-    //the fret will also be changing its sprite as the rhythm game goes
-    //string[] scriptedNotes = { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD" };
-    public IEnumerator SetFret()
-    {
-        for (int i = 0; i < scriptedNotes.Length; i++)
-        {
-            //Debug.Log(scriptedNotes[i]);
-
-            fret.gameObject.GetComponent<NewFretFeedback>().SetSprite(GetSprite(scriptedNotes[i]));
-
-            yield return new WaitForSeconds(2f);
-        }
-    }
-
-    private Sprite GetSprite(string combination)
-    {
-        switch (combination)
-        {
-            case "UU":
-                return UU;
-                break;
-            case "UR":
-                return UR;
-                break;
-            case "UL":
-                return UL;
-                break;
-            case "UD":
-                return UD;
-                break;
-            case "RU":
-                return RU;
-                break;
-            case "RR":
-                return RR;
-                break;
-            case "RL":
-                return RL;
-                break;
-            case "RD":
-                return RD;
-                break;
-            case "LU":
-                return LU;
-                break;
-            case "LR":
-                return LR;
-                break;
-            case "LL":
-                return LL;
-                break;
-            case "LD":
-                return LD;
-                break;
-            case "DU":
-                return DU;
-                break;
-            case "DR":
-                return DR;
-                break;
-            case "DL":
-                return DL;
-                break;
-            case "DD":
-                return DD;
-                break;
-        }
-
-        return null;
     }
 
     //miscellaneous debugging functions! 
@@ -470,6 +399,13 @@ public class RhythmGameController : MonoBehaviour
     }
 
 
+    // IEnumerator KeyPressCoolDown() {
+    //     while (true) {
+    //         canPress = false;
+    //         yield return new WaitForSeconds(2f);
+    //         canPress = true;
+    //     }
+    // }
 
 
 
@@ -506,13 +442,18 @@ public class RhythmGameController : MonoBehaviour
         public override void OnEnter()
         {
             Debug.Log("Scaling the fret");
-            Context.StartCoroutine(Context.fret.gameObject.GetComponent<NewFretFeedback>().ScaleFret(3f));
+            Context.StartCoroutine(Context.fretFeedbackScript.ScaleFret(3f));
         }
 
         public override void Update()
         {
-            //TransitionTo<Phase2>();
-            TransitionTo<Phase1>();
+            //GetScaleStatus will report when the fret has finished scaling to its final size. Once there, move on 
+            //to phase 1 of the game.
+            Context.inPhase1 = Context.fretFeedbackScript.GetScaleStatus();
+            if (Context.inPhase1)
+            {
+                TransitionTo<Phase1>();
+            }
         }
 
         public override void OnExit()
@@ -524,15 +465,107 @@ public class RhythmGameController : MonoBehaviour
     //phase 1 of rhythm game--press an x# of notes 
     private class Phase1 : FiniteStateMachine<RhythmGameController>.State
     {
+        private bool firstHit;
+        private int i = 0;
+        string pressed = "";
+
+        string[] firstNotes = new string[] {"U", "D", "L", "R", "U", "L", "U", "D"};
+
         public override void OnEnter()
         {
             Debug.Log("Entering phase 1");
-            Context.StartCoroutine(Context.SetFret());
-        }   
+            firstHit = false;
+        }
 
         public override void Update()
         {
-            TransitionTo<Phase2>();
+            // pressed = Context.GetArrowKeys();
+            // Debug.Log("This was just pressed: " + pressed + " and I was expecting : " + firstNotes[i]);
+
+            // if (i == 0 && pressed.Equals(firstNotes[i])) {
+            //     i++;
+            //     Debug.Log("Correct first input");
+            //     StartRhythmGame();
+            // }
+            // else if (pressed.Equals(firstNotes[i])) {
+            //     i++;
+            //     Debug.Log("Correct input number" + i);
+            // }
+            //hit the first note to start the rhythm game and call FirstBeat() in SimpleClock
+            // while (!firstHit) {
+
+            // }
+            //Context.RhythmGameEventHandler();
+
+            // if (Input.GetKeyDown(KeyCode.Y)) {
+            //     StartRhythmGame();
+            // }
+
+            // if (firstHit) {
+            //     Context.StartCoroutine(Context.fretFeedbackScript.SetFret());
+            // }
+            // Context.inPhase2 = Context.fretFeedbackScript.GetPhase1Status();
+            // Context.CheckWindow();
+            // if (Context.inPhase2)
+            // {
+            //     TransitionTo<Phase2>();
+            // }
+        }
+
+        private bool CheckWindow()
+    {
+        //to hit the first beat in the measure, you get ticks 48 ~ 96 of the fourth beat in the PREVIOUS measure
+        //along with the first 48 ticks of beat 1
+        if (currBeat == 4 || currBeat == 1)
+        {
+            if ((currBeat == 4 && currTick >= 48) || (currBeat == 1 && currTick <= 48))
+            {
+                // expectedCombo = GetExpectedCombination();
+                // PressedKeyCheck();
+                // if (CombinationCheck(keys, expectedCombo)) 
+                //     Debug.Log("Correct");
+                // else 
+                //     Debug.Log("Incorrect");
+                return true;
+            }
+            //perhaps give it a range to check just exiting the window?
+            else if (currTick == 49)
+            {
+                //this will only execute assuming that the player only hit one key or no keys at all during
+                //the previous window 
+                justLeftWindow = true;
+                return false;
+            }
+            else
+                return false;
+        }
+
+        //to hit the third beat in the measure, you get ticks 48 ~ 96 of the second beat in the CURRENT measure
+        //along with the first 48 ticks of beat 2.
+        else if (currBeat == 2 || currBeat == 3)
+        {
+            if ((currBeat == 2 && currTick >= 48) || (currBeat == 3 && currTick <= 48))
+            {
+                // expectedCombo = GetExpectedCombination();
+                // PressedKeyCheck();
+                // if (CombinationCheck(keys, expectedCombo)) 
+                //     Debug.Log("Correct");
+                // else 
+                //     Debug.Log("Incorrect");
+                return true;
+            }
+            else
+                return false;
+        }
+
+        return false;
+    }
+
+        private void StartRhythmGame()
+        {
+            Debug.Log("Starting the rhythm game");
+            Context.simpleClockScript.FirstBeat();
+            Context.StartCoroutine(Context.fretFeedbackScript.SetFret());
         }
 
         public override void OnExit()
@@ -544,15 +577,56 @@ public class RhythmGameController : MonoBehaviour
     //phase 2--notes will move across the screen and player has to hit them at the right time.
     private class Phase2 : FiniteStateMachine<RhythmGameController>.State
     {
+        //phase 2 has strikes. The player gets to mess up 4 times and on the 5th, the game restarts
+        private int strikes = 0;
+        public GameObject lifeSprite1;
+        public GameObject lifeSprite2;
+        public GameObject lifeSprite3;
+        public GameObject lifeSprite4;
+        public GameObject lifeSprite5;
+        GameObject[] lifeSprites;
+
+
         public override void OnEnter()
         {
+            // lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
+            // foreach (GameObject lifeSprite in lifeSprites) {
+            //     lifeSprite.SetActive(true);
+            // }
+
             Debug.Log("Entering phase2 state");
             Context.StartCoroutine(Context.StartNoteMovement());
         }
 
         public override void Update()
         {
+            Context.RhythmGameEventHandler();
+            Context.CheckWindow();
+            //StrikeCheck();
+        }
 
+        private void StrikeCheck()
+        {
+            if (strikes > 0)
+            {
+                lifeSprite5.SetActive(false);
+            }
+            if (strikes > 1)
+            {
+                lifeSprite4.SetActive(false);
+            }
+            if (strikes > 2)
+            {
+                lifeSprite3.SetActive(false);
+            }
+            if (strikes > 3)
+            {
+                lifeSprite2.SetActive(false);
+            }
+            if (strikes > 4)
+            {
+                lifeSprite1.SetActive(false);
+            }
         }
 
         public override void OnExit()
