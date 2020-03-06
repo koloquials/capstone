@@ -366,6 +366,7 @@ public class SimpleClock : MonoBehaviour
     {
         double startTick = AudioSettings.dspTime + StartDelay;
         //songSource.PlayScheduled(startTick);
+        // Debug.Log("starting the song");
         songSource.Play();
 
 

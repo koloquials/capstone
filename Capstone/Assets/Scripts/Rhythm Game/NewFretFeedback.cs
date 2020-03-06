@@ -72,7 +72,7 @@ public class NewFretFeedback : MonoBehaviour
             currTime += Time.deltaTime;
         } while (currTime <= time);
 
-        Debug.Log("This coroutine has finished executing. Thx for ur business :) ");
+        // Debug.Log("This coroutine has finished executing. Thx for ur business :) ");
         doneScaling = true;
     }
 
@@ -87,7 +87,7 @@ public class NewFretFeedback : MonoBehaviour
 
             SetSprite(songSequence[i]);
 
-            yield return new WaitForSeconds(1.75f);
+            yield return new WaitForSeconds(SimpleClock.HalfLength());
         }
     }
 
