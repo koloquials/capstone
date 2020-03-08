@@ -12513,7 +12513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcea1ccd45a8141e594a8103eefc1fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySpriteRenderer: {fileID: 0}
   p_stand2: {fileID: 21300000, guid: 7be3f5d124736d545be1d966e7062e08, type: 3}
   p_walk1: {fileID: 21300000, guid: b210bfb8d1337c249acdf9dbec1005c3, type: 3}
   minPosition: -79
@@ -12643,7 +12642,7 @@ Animator:
   m_GameObject: {fileID: 1100603060}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5473ea782038f43aeb6fde30a2ce24c9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

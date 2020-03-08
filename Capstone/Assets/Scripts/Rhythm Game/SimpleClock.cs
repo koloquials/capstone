@@ -651,6 +651,10 @@ public class SimpleClock : MonoBehaviour
         }
     }
 
+    public static float GetTickLength() {
+        return (float)TickLength;
+    }
+
     public static float ThirtySecondLength()
     {
         return (float)_thirtySecondLength;
