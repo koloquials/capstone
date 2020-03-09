@@ -30,6 +30,8 @@ public class NewFretFeedback : MonoBehaviour
     public Sprite RL;
     public Sprite RR;
 
+    private int currPosInSong = 1;
+
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -76,20 +78,34 @@ public class NewFretFeedback : MonoBehaviour
         doneScaling = true;
     }
 
-    public IEnumerator SetFret()
+    public void SetFret()
     {
-        for (int i = 0; i < songSequence.Length; i++)
+        if (currPosInSong > phase1Sequence.Length)
         {
-            if (i > phase1Sequence.Length)
-            {
-                phase1Over = true;
-            }
-
-            SetSprite(songSequence[i]);
-
-            yield return new WaitForSeconds(SimpleClock.HalfLength());
+            phase1Over = true;
         }
+        SetSprite(songSequence[currPosInSong]);
+
+        currPosInSong++;
     }
+
+    // public IEnumerator SetFret()
+    // {
+    //     for (int i = 0; i < songSequence.Length; i++)
+    //     {
+    //         if (i > phase1Sequence.Length)
+    //         {
+    //             phase1Over = true;
+    //         }
+
+    //         SetSprite(songSequence[i]);
+
+    //         yield return new WaitForSeconds(SimpleClock.MeasureLength());
+    //         Debug.Log("Changing to the next note");
+    //     }
+    // }
+
+
 
     public bool GetScaleStatus()
     {

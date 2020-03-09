@@ -60,8 +60,6 @@ public class RhythmGameController : MonoBehaviour
     string expectedCombo;   //what the correct combination for any given beat in a song is
     bool combinationCheck;  //manage if the keys input by the player match the expectedCombo
 
-    GameObject fret;    //fret feedback object
-
     //booleans to control moving between states of the rhythm game
     bool inPhase1 = false;
     bool inPhase2 = false;
@@ -80,6 +78,8 @@ public class RhythmGameController : MonoBehaviour
     public int currTick;
 
     public NewFretFeedback fretFeedbackScript;
+    public Orbitter orbitterScript;
+    public SpriteRenderer background;
 
     void Start()
     {
@@ -91,8 +91,10 @@ public class RhythmGameController : MonoBehaviour
         GetNotes();
         SetThisSongSequence(phase1Notes, phase2Notes);
 
-        fret = transform.GetChild(0).gameObject;
-        fretFeedbackScript = fret.gameObject.GetComponent<NewFretFeedback>();
+        fretFeedbackScript = transform.GetChild(0).gameObject.GetComponent<NewFretFeedback>();
+        orbitterScript = transform.GetChild(1).gameObject.GetComponent<Orbitter>();
+        background = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
+
 
         fretFeedbackScript.SetPhase1Sequence(phase1Notes);
         fretFeedbackScript.SetPhase2Sequence(phase2Notes);
@@ -121,7 +123,23 @@ public class RhythmGameController : MonoBehaviour
             RestartRhythmGame();
         }
 
-        //combinationCheck = CombinationCheck(keys, expectedCombo);
+        //ChangeBackground();
+    }
+
+    private void ChangeBackground(bool inWindow)
+    {
+        if (inWindow)
+        {
+            Color inWindowColour = Color.blue;
+            inWindowColour.a = 0.65f;
+            background.color = inWindowColour;
+        }
+        else
+        {
+            Color outOfWindowColour = Color.black;
+            outOfWindowColour.a = 0.65f;
+            background.color = outOfWindowColour;
+        }
     }
 
     //initialisation function--all notes for a song are generated at the beginning as to improve
@@ -195,143 +213,32 @@ public class RhythmGameController : MonoBehaviour
         //     Debug.Log("Setting the song sequence: " + combination);
     }
 
-    //pass function as parameter to this.
-    // void RhythmGameEventHandler()
-    // {
-    //     inWindow = CheckWindow();
-    //     string pressedCombo = GetArrowKeys() + GetWASD();
-    //     string expectedCombo = GetExpectedCombination();
-
-    //     if (inWindow)
-    //     {
-    //         //if the user hit two keys, they are forced out of the window.
-    //         if (pressedCombo.Length == 2)
-    //         {
-    //             inWindow = false;
-    //         }
-    //     }
-    //     // else if (!inWindow && justLeftWindow)
-    //     // {
-    //     //     Debug.Log("just exited window, processing");
-    //     //     //register a miss. In phase 1 this means restarting the entire rhythm game
-    //     //     //                 In phase 2 this means losing a life
-    //     // }
-    //     else if (!inWindow)
-    //     {
-    //         correct = CombinationCheck(pressedCombo, expectedCombo);
-    //     }
-    // }
-
-    //player is expected to hit the first and third beat of every measure. This function will check if 
-    //the song is currently in that window and allow player to give input
-    private bool CheckWindow()
-    {
-        //to hit the first beat in the measure, you get ticks 48 ~ 96 of the fourth beat in the PREVIOUS measure
-        //along with the first 48 ticks of beat 1
-        if (currBeat == 4 || currBeat == 1)
-        {
-            if ((currBeat == 4 && currTick >= 48) || (currBeat == 1 && currTick <= 48))
-            {
-                // expectedCombo = GetExpectedCombination();
-                // PressedKeyCheck();
-                // if (CombinationCheck(keys, expectedCombo)) 
-                //     Debug.Log("Correct");
-                // else 
-                //     Debug.Log("Incorrect");
-                return true;
-            }
-            //perhaps give it a range to check just exiting the window?
-            else if (currTick == 49)
-            {
-                //this will only execute assuming that the player only hit one key or no keys at all during
-                //the previous window 
-                justLeftWindow = true;
-                return false;
-            }
-            else
-                return false;
-        }
-
-        //to hit the third beat in the measure, you get ticks 48 ~ 96 of the second beat in the CURRENT measure
-        //along with the first 48 ticks of beat 2.
-        else if (currBeat == 2 || currBeat == 3)
-        {
-            if ((currBeat == 2 && currTick >= 48) || (currBeat == 3 && currTick <= 48))
-            {
-                // expectedCombo = GetExpectedCombination();
-                // PressedKeyCheck();
-                // if (CombinationCheck(keys, expectedCombo)) 
-                //     Debug.Log("Correct");
-                // else 
-                //     Debug.Log("Incorrect");
-                return true;
-            }
-            else
-                return false;
-        }
-
-        return false;
-    }
-
-
-
-    public void GetArrowKeys(out bool wasPressed, out string pressedValue)
+    public string GetArrowKeys()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            wasPressed = true;
-            pressedValue = "U";
-        }
+            return "U";
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            wasPressed = true;
-            pressedValue = "L";
-        }
+            return "L";
         else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            wasPressed = true;
-            pressedValue = "D";
-        }
+            return "D";
         else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            wasPressed = true;
-            pressedValue = "R";
-        }
-        else
-        {
-            wasPressed = true;
-            pressedValue = "";
-        }
+            return "R";
+
+        return "";
     }
 
-    public void GetWASD(out bool wasPressed, out string pressedValue)
+    public string GetWASD()
     {
-        //Code for pressing keys
         if (Input.GetKeyDown(KeyCode.W))
-        {
-            wasPressed = true;
-            pressedValue = "U";
-        }
+            return "U";
         else if (Input.GetKeyDown(KeyCode.A))
-        {
-            wasPressed = true;
-            pressedValue = "L";
-        }
+            return "L";
         else if (Input.GetKeyDown(KeyCode.S))
-        {
-            wasPressed = true;
-            pressedValue = "D";
-        }
+            return "D";
         else if (Input.GetKeyDown(KeyCode.D))
-        {
-            wasPressed = true;
-            pressedValue = "R";
-        }
-        else
-        {
-            wasPressed = true;
-            pressedValue = "";
-        }
+            return "R";
+
+        return "";
     }
 
     //have a function that looks at current beat and measure and returns the expected key combination
@@ -430,19 +337,6 @@ public class RhythmGameController : MonoBehaviour
     }
 
 
-    // IEnumerator KeyPressCoolDown() {
-    //     while (true) {
-    //         canPress = false;
-    //         yield return new WaitForSeconds(2f);
-    //         canPress = true;
-    //     }
-    // }
-
-
-
-
-
-
 
     //State machine
     //before the rhythm game. This is preparation for loading up the rhythm game and leading into the animation      
@@ -450,6 +344,8 @@ public class RhythmGameController : MonoBehaviour
     {
         public override void OnEnter()
         {
+            Debug.Log("Beat length is: " + SimpleClock.BeatLength());
+            Debug.Log("Tick length is: " + SimpleClock.GetTickLength());
             //accessing variables that are part of rhythm game controller
             //Context.thisSong;
             Debug.Log("Entering LoadRhythmGame state");
@@ -475,8 +371,9 @@ public class RhythmGameController : MonoBehaviour
     {
         public override void OnEnter()
         {
-            Debug.Log("Scaling the fret");
-            Context.StartCoroutine(Context.fretFeedbackScript.ScaleFret(3f));
+            Debug.Log("Scaling the fret and orbitter");
+            Context.StartCoroutine(Context.fretFeedbackScript.ScaleFret(2f));
+            Context.StartCoroutine(Context.orbitterScript.ScaleOrbitter(2f));
         }
 
         public override void Update()
@@ -515,40 +412,6 @@ public class RhythmGameController : MonoBehaviour
             phaseWindowStateMachine.Update();
         }
 
-        private bool CheckWindow()
-        {
-            //to hit the first beat in the measure, you get ticks 48 ~ 96 of the fourth beat in the PREVIOUS measure
-            //along with the first 48 ticks of beat 1
-            //this means the song hasn't started yet, hit first correct combination to start the rhythm game
-            if (Context.currBeat == 0)
-            {
-                return true;
-            }
-            if (Context.currBeat == 4 || Context.currBeat == 1)
-            {
-                if ((Context.currBeat == 4 && Context.currTick >= 48) || (Context.currBeat == 1 && Context.currTick <= 48))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-            //to hit the third beat in the measure, you get ticks 48 ~ 96 of the second beat in the CURRENT measure
-            //along with the first 48 ticks of beat 2.
-            else if (Context.currBeat == 2 || Context.currBeat == 3)
-            {
-                if ((Context.currBeat == 2 && Context.currTick >= 48) || (Context.currBeat == 3 && Context.currTick <= 48))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-            return false;
-        }
-
         public override void OnExit()
         {
 
@@ -573,15 +436,14 @@ public class RhythmGameController : MonoBehaviour
             }
             public override void Update()
             {
-                //first input starting the song. The game will wait for the player to make the first correct input
-                //and then begin
-                Context.Context.GetArrowKeys(out arrowPressed, out pressedArrow);
-                Context.Context.GetWASD(out WASDPressed, out pressedWASD);
+                pressedArrow = Context.Context.GetArrowKeys();
+                pressedWASD = Context.Context.GetWASD();
                 expectedCombo = Context.Context.thisSongSequence[0];
                 pressedCombo = pressedArrow + pressedWASD;
 
-                //first combination was pressed correctly
-                if (arrowPressed && WASDPressed && expectedCombo.Equals(pressedCombo)) {
+                //first combination was pressed correctly, game will otherwise stay resting the entire time.
+                if (expectedCombo.Equals(pressedCombo))
+                {
                     StartRhythmGame();
                 }
             }
@@ -591,13 +453,13 @@ public class RhythmGameController : MonoBehaviour
             {
                 Debug.Log("Starting the rhythm game");
                 Context.Context.simpleClockScript.FirstBeat();
-                Context.Context.StartCoroutine(Context.Context.fretFeedbackScript.SetFret());
-                TransitionTo<InWindow>();
+                Context.Context.fretFeedbackScript.SetFret();
+                // Context.Context.StartCoroutine(Context.Context.fretFeedbackScript.SetFret());
+                TransitionTo<OutOfWindow>();
             }
 
             public override void OnExit()
             {
-
             }
         }
 
@@ -606,8 +468,6 @@ public class RhythmGameController : MonoBehaviour
         {
             string pressedCombo = "";
             string expectedCombo = "";
-            bool arrowPressed;
-            bool WASDPressed;
             string pressedArrow;
             string pressedWASD;
             float windowLength;
@@ -615,67 +475,80 @@ public class RhythmGameController : MonoBehaviour
 
             public override void OnEnter()
             {
+                Debug.Log("Entering window");
+                pressedCombo = "";
+                expectedCombo = "";
+                pressedArrow = "";
+                pressedWASD = "";
                 //each window is 96 ticks long.
                 windowLength = SimpleClock.BeatLength();
-                // arrowPressedGlobal = false;
-                // WASDPressedGlobal = false;
                 canPress = true;
-                // pressedArrowGlobal = "";
-                // pressedWASDGlobal = "";
+
+                Context.Context.ChangeBackground(true);
             }
 
             public override void Update()
             {
-                // bool arrowPressed;
-                // bool WASDPressed;
-                // string pressedArrow;
-                // string pressedWASD;
+                windowLength -= Time.deltaTime;
+                // Debug.Log("Time remaining in the window: " + windowLength);
 
-                while (windowLength > 0 && canPress)        //while in the window and both keys have not yet taken in an input
+                if (!pressedArrow.Equals(""))
+                    pressedArrow = Context.Context.GetArrowKeys();
+
+                if (!pressedWASD.Equals(""))
+                    pressedWASD = Context.Context.GetWASD();
+
+                if (windowLength <= 0f)
                 {
-                    Context.Context.GetArrowKeys(out arrowPressed, out pressedArrow);
-                    Context.Context.GetWASD(out WASDPressed, out pressedWASD);
-
-                    if (arrowPressed && WASDPressed)
-                    {
-                        //an input has been accepted at both keys, so you cannot press anything else 
-                        canPress = false;
-                    }
-
-                    windowLength -= SimpleClock.GetTickLength();
-                    Debug.Log("time remaining in the window is: " + windowLength);
+                    TransitionTo<OutOfWindow>();
                 }
             }
 
             public override void OnExit()
             {
+                Debug.Log("Exiting window");
                 //do the evaluation
                 // string pressedCombo = pressedArrowGlobal + pressedWASDGlobal;
-                string pressedCombo = pressedArrow + pressedWASD;
-                string expectedCombo = Context.Context.GetExpectedCombination();
+                pressedCombo = pressedArrow + pressedWASD;
+                expectedCombo = Context.Context.GetExpectedCombination();
+                pressedArrow = "";
+                pressedWASD = "";
+
+                Context.Context.fretFeedbackScript.SetFret();
 
                 if (Context.Context.CombinationCheck(pressedCombo, expectedCombo))
                 {
                     //correct combination was pressed
                     Debug.Log("No strike");
                 }
-                else
-                {
-                    //restart the rhythm game
-                    Context.Context.RestartRhythmGame();
-                }
+                // else
+                // {
+                //     //restart the rhythm game
+                //     Debug.Log("Incorrect combination, restarting the game");
+                //     Context.Context.RestartRhythmGame();
+                // }
 
             }
         }
 
         private class OutOfWindow : FiniteStateMachine<Phase1>.State
         {
+            float outOfWindowLength;
             public override void OnEnter()
             {
-
+                Debug.Log("outside of window, cannot press");
+                outOfWindowLength = SimpleClock.BeatLength() * 2;
+                Context.Context.ChangeBackground(false);
             }
             public override void Update()
             {
+                outOfWindowLength -= Time.deltaTime;
+                // Debug.Log("Time remaining until next window: " + outOfWindowLength);
+
+                if (outOfWindowLength <= 0f)
+                {
+                    TransitionTo<InWindow>();
+                }
 
             }
 
@@ -712,9 +585,6 @@ public class RhythmGameController : MonoBehaviour
 
         public override void Update()
         {
-            //Context.RhythmGameEventHandler();
-            Context.CheckWindow();
-            //StrikeCheck();
         }
 
         private void StrikeCheck()

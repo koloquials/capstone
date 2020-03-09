@@ -15,13 +15,16 @@ public class Orbitter : MonoBehaviour
 
     void Start() {
         startPos = this.transform.position;
+        Debug.Log(startPos);
+        script = gameObject.GetComponent<conductorScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("trying to move the orbitter");
         float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
-        this.transform.localPosition = PointOnCircle(angle, r);
+        this.transform.position = PointOnCircle(angle, r);
     }
 
     Vector3 PointOnCircle(float angle, float radius) //Used to move the beat indicator in a circle.
@@ -31,5 +34,26 @@ public class Orbitter : MonoBehaviour
 
     public void ResetPosition() {
         transform.position = startPos;
+    }
+
+    public IEnumerator ScaleOrbitter(float time)
+    {
+        //Debug.Log("Coroutine: trying to scale the fret");
+        Vector3 originalScale = gameObject.transform.localScale;
+        Vector3 destinationScale = new Vector3(1f, 1f, 3f);
+
+        //Color spriteColour = mySpriteRenderer.color;
+
+        float currTime = 0f;
+
+        do
+        {
+            //Debug.Log("Scaling the object up");
+            gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
+            //spriteColour.a = 1 - (currTime / time);
+            //mySpriteRenderer.color = spriteColour;
+            yield return null;
+            currTime += Time.deltaTime;
+        } while (currTime <= time);
     }
 }
