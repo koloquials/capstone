@@ -22,7 +22,7 @@ public class Orbitter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("trying to move the orbitter");
+    //     Debug.Log("trying to move the orbitter");
         float angle = ((2 * Mathf.PI) * ((script.songPosinBeats % 3) / 3));
         this.transform.position = PointOnCircle(angle, r);
     }

@@ -78,13 +78,15 @@ public class NewFretFeedback : MonoBehaviour
         doneScaling = true;
     }
 
-    public void SetFret()
+    public void SetFret(string nextSpriteCombination)
     {
         if (currPosInSong > phase1Sequence.Length)
         {
             phase1Over = true;
         }
-        SetSprite(songSequence[currPosInSong]);
+
+        // SetSprite(songSequence[currPosInSong]);
+        SetSprite(nextSpriteCombination);
 
         currPosInSong++;
     }

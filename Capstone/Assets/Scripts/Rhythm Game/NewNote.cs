@@ -190,6 +190,10 @@ public class NewNote : MonoBehaviour
         }
     }
 
+    public Sprite GetSprite() {
+        return mySpriteRenderer.sprite;
+    }
+
     public void SetStartPos(Vector2 startPos)
     {
         this.startPos = new Vector3(startPos.x, startPos.y, 0f);
@@ -220,5 +224,10 @@ public class NewNote : MonoBehaviour
 
     public string GetCombination() {
         return myCombination;
+    }
+
+    //Debug function to check all properties of a note
+    public void PrintEveryProperty() {
+        Debug.Log("My combination is: " + GetCombination() + " my assigned measure is: " + measure + " my assigned beat is: " + beat);
     }
 }
