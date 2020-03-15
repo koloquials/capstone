@@ -30,11 +30,14 @@ public class NewFretFeedback : MonoBehaviour
     public Sprite RL;
     public Sprite RR;
 
+    public ParticleSystem rippleParticleSystem;
+
     private int currPosInSong = 1;
 
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
     }
 
     public void SetPhase1Sequence(List<string> phase1Sequence)
@@ -58,7 +61,7 @@ public class NewFretFeedback : MonoBehaviour
     {
         //Debug.Log("Coroutine: trying to scale the fret");
         Vector3 originalScale = gameObject.transform.localScale;
-        Vector3 destinationScale = new Vector3(3.0f, 3.0f, 3.0f);
+        Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
 
         //Color spriteColour = mySpriteRenderer.color;
 
@@ -89,6 +92,10 @@ public class NewFretFeedback : MonoBehaviour
         SetSprite(nextSpriteCombination);
 
         currPosInSong++;
+    }
+
+    public void RippleEffect() {
+        rippleParticleSystem.Play();
     }
 
     // public IEnumerator SetFret()

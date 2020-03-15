@@ -31,7 +31,7 @@ public class RhythmGameController : MonoBehaviour
     //representing the four beats. 
     GameObject[,] thisSong = new GameObject[77, 4];
     string[] thisSongSequence;          //array to hold the entire song's combinations ONLY. This has nothing to do with the
-                                        //actual internal workings of the rhythm game, but this makes setting the fret easier
+                                        //actual internal workings of the rhythm game, but just makes setting the fret easier
 
     public Sprite UU;
     public Sprite UD;
@@ -192,7 +192,7 @@ public class RhythmGameController : MonoBehaviour
         phase1NotesCombinations.AddRange(phase2NotesCombinations);
         this.thisSongSequence = phase1NotesCombinations.ToArray();
 
-        Debug.Log("the song, in combinations, is this long: " + thisSongSequence.Length);
+        // Debug.Log("the song, in combinations, is this long: " + thisSongSequence.Length);
         // foreach (string combination in thisSongSequence)
             // Debug.Log("Setting the song sequence: " + combination);
     }
@@ -235,10 +235,11 @@ public class RhythmGameController : MonoBehaviour
         //also, measures start counting at 2. 0 Measures is the song has not started playing yet. 
         if (currBeat < 5 && currMeasure > 0)
         {
-            int expectedNoteBeat = 0;
-            int expectedNoteMeasure = 0;
+            int expectedNoteBeat = currBeat;
+            int expectedNoteMeasure = currMeasure;
             //if we're at the second beat in a measure, want to get the third beat, which is index 2
             if (currBeat == 2) {
+                // Debug.Log("Tracking values from beat two: " + expectedNoteMeasure + " and " + expectedNoteBeat);
                 expectedNoteMeasure = currMeasure;
                 expectedNoteBeat = 2;
                 
@@ -246,12 +247,17 @@ public class RhythmGameController : MonoBehaviour
             //if we're at the fourth beat in a measure, then to get the first beat of the next one (which is the one
             //expecting to be pressed), get index 0 for the NEXT measure)
             else if (currBeat == 4) {
+                // Debug.Log("Tracking values from beat four: " + expectedNoteMeasure + " and " + expectedNoteBeat);
                 expectedNoteMeasure = currMeasure + 1;
                 expectedNoteBeat = 0;
             }
 
+            expectedNoteMeasure -= 2;
+
             //must be -2, because the first measure of the song returned by SimpleClock is actually 2. 
-            GameObject posInSong = thisSong[expectedNoteMeasure - 2, expectedNoteBeat];
+            Debug.Log("this is what we are trying to extract from the song: " + expectedNoteMeasure + " and " + expectedNoteBeat);
+            Debug.Log("Values according to the SimpleClock: " + currMeasure + " and " + currBeat);
+            GameObject posInSong = thisSong[expectedNoteMeasure, expectedNoteBeat];
             
             if (posInSong != null)
             {
@@ -280,21 +286,24 @@ public class RhythmGameController : MonoBehaviour
         // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
 
         //this code is specifically for resetting phase1 of the game
-        // StopAllCoroutines();
+        StopAllCoroutines();
 
-        // //reset all notes.
-        // for (int i = 0; i < thisSong.GetLength(0); i++)
-        // {
-        //     for (int j = 0; j < thisSong.GetLength(1); j++)
-        //     {
-        //         //index out of bounds exception somewhere :'( 
-        //         if (thisSong[i, j] != null)
-        //         {
-        //             NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
-        //             thisNoteScript.ResetNote(thisNoteScript.GetCombination(), transform.position, false);
-        //         }
-        //     }
-        // }
+        //Reset the clock 
+        SimpleClock.Instance.ResetSong();
+
+        //reset all notes.
+        for (int i = 0; i < thisSong.GetLength(0); i++)
+        {
+            for (int j = 0; j < thisSong.GetLength(1); j++)
+            {
+                //index out of bounds exception somewhere :'( 
+                if (thisSong[i, j] != null)
+                {
+                    NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
+                    thisNoteScript.ResetNote(thisNoteScript.GetCombination(), transform.position, false);
+                }
+            }
+        }
     }
 
     //used for starting the notes moving in phase 2
@@ -429,7 +438,10 @@ public class RhythmGameController : MonoBehaviour
         public override void Update()
         {
             phaseWindowStateMachine.Update();
-            // if (noteCounter)
+            //if the noteCounter is past the first phase, transition into phase 2
+            if (noteCounter >= Context.phase1NotesCombinations.Count) {
+                TransitionTo<Phase2>();
+            }
             // Debug.Log("This is the current expected combination: " + Context.GetExpectedCombination());
         }
 
@@ -441,7 +453,7 @@ public class RhythmGameController : MonoBehaviour
         //state for handling starting the rhythm game. This is a special case.
         private class Resting : FiniteStateMachine<Phase1>.State
         {
-            bool firstInput;
+            int startingPosition;               //start at the beginning of the 2D array which represents the song
 
             string pressedCombo = "";
             string expectedCombo = "";
@@ -455,6 +467,8 @@ public class RhythmGameController : MonoBehaviour
             {
                 started = false;
                 bufferTime = SimpleClock.BeatLength() / 2;
+                Context.noteCounter = 0;                        //every time we enter the Resting phase, we want to be at the very beginning of the song
+                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);               
                 // Debug.Log("Buffer time is: " + bufferTime);
             }
             public override void Update()
@@ -472,10 +486,10 @@ public class RhythmGameController : MonoBehaviour
 
                 if (started) {
                     bufferTime -= Time.deltaTime;
-                    Debug.Log(bufferTime);
+                    // Debug.Log(bufferTime);
                 }
                 if (bufferTime <= 0) {
-                    Debug.Log("Buffer for offset special first case over and starting rhythm game");
+                    // Debug.Log("Buffer for offset special first case over and starting rhythm game");
                     TransitionTo<OutOfWindow>();
                 }
             }
@@ -533,11 +547,12 @@ public class RhythmGameController : MonoBehaviour
                 {
                     TransitionTo<OutOfWindow>();
                 }
-                Debug.Log("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
+                // Debug.Log("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
             }
 
             public override void OnExit()
             {
+                Context.Context.fretFeedbackScript.RippleEffect();
                 Debug.Log("Exiting window");
                 pressedCombo = pressedArrow + pressedWASD;
 
@@ -606,6 +621,7 @@ public class RhythmGameController : MonoBehaviour
 
         public override void OnEnter()
         {
+            Debug.Log("entering phase 2");
             // lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
             // foreach (GameObject lifeSprite in lifeSprites) {
             //     lifeSprite.SetActive(true);

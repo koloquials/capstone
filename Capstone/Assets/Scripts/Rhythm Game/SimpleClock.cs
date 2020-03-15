@@ -383,6 +383,11 @@ public class SimpleClock : MonoBehaviour
         _initialized = true;
     }
 
+    public void ResetSong() {
+        Debug.Log("Trying to end the song");
+        songSource.Stop();
+    }
+
     /// <summary>
     /// Resets counts for all beats
     /// </summary>
