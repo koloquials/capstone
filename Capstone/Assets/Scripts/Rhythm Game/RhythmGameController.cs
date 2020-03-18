@@ -106,6 +106,8 @@ public class RhythmGameController : MonoBehaviour
 
         //this will call the Update function of whatever state it is in. 
         rhythmGameStateMachine.Update();
+
+        Test();
     }
 
     //generate the entire list of combinations first
@@ -346,7 +348,7 @@ public class RhythmGameController : MonoBehaviour
         {
             Debug.Log("Entering phase one, calling coroutine");
 
-            //StartCoroutine(noteLaunchCoroutine);
+            StartCoroutine(StartNoteMovement());
         }
     }
 
@@ -552,7 +554,7 @@ public class RhythmGameController : MonoBehaviour
 
             public override void OnExit()
             {
-                Context.Context.fretFeedbackScript.RippleEffect();
+                // Context.Context.fretFeedbackScript.RippleEffect();
                 Debug.Log("Exiting window");
                 pressedCombo = pressedArrow + pressedWASD;
 
