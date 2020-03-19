@@ -270,7 +270,7 @@ public class RhythmGameController : MonoBehaviour {
         // SimpleClock.Instance.enabled = false;
         Destroy(SimpleClock.Instance);
 
-        //reset all notes.
+        //reset all notes. 
         for (int i = 0; i < thisSong.GetLength (0); i++) {
             for (int j = 0; j < thisSong.GetLength (1); j++) {
                 //index out of bounds exception somewhere :' ( 
@@ -285,7 +285,6 @@ public class RhythmGameController : MonoBehaviour {
         this.gameObject.AddComponent<SimpleClock>();
         SimpleClock.Instance.BPM = 138;
         SimpleClock.Instance.beatsPerMeasure = 4;
-        Debug.Log("added the simpleClock back in");
     }
 
     //used for starting the notes moving in phase 2
@@ -496,7 +495,8 @@ public class RhythmGameController : MonoBehaviour {
                 if (pressedWASD.Equals (""))
                     pressedWASD = Context.Context.GetWASD();
                 //transition out of the window if it is over
-                if (windowLength <= 0f) {
+                if (windowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
+                    Debug.Log("inWindow timer status: " + windowLength);
                     TransitionTo<OutOfWindow>();
                 }
                 // Debug.Log ("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
@@ -537,7 +537,8 @@ public class RhythmGameController : MonoBehaviour {
                 outOfWindowLength -= Time.deltaTime;
                 Debug.Log ("Time remaining until next window: " + outOfWindowLength);
 
-                if (outOfWindowLength <= 0f) {
+                if (outOfWindowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
+                    Debug.Log("OoW timer status: " + outOfWindowLength);
                     TransitionTo<InWindow>();
                 }
 
