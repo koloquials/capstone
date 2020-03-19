@@ -117,20 +117,21 @@ public class SimpleClock : MonoBehaviour
     private static SimpleClock _instance;
     public static SimpleClock Instance { get { return _instance; } }
 
-    private AudioSource songSource;
-    
+    [HideInInspector]public AudioSource songSource;
+
     private void Awake()
     {
         songSource = gameObject.GetComponent<AudioSource>();
-        if (_instance != null && _instance != this)
-        {
-            Debug.Log("Destroying"); 
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
+        _instance = this;
+        // if (_instance != null && _instance != this)
+        // {
+        //     Debug.Log("Destroying"); 
+        //     Destroy(this.gameObject);
+        // }
+        // else
+        // {
+        //     _instance = this;
+        // }
         if (BPM.Equals(0.0)) Debug.LogWarning("BPM not set! Please set the BPM in the Beat Clock.");
     }
 
@@ -143,6 +144,12 @@ public class SimpleClock : MonoBehaviour
     public int Measures;
     public int Beats;
     public int Ticks;
+
+    private void OnEnable() {
+        Measures = 0;
+        Beats = 0;
+        Ticks = 0;
+    }
 
     [Header("Tempo")] public double BPM;
 
@@ -381,11 +388,6 @@ public class SimpleClock : MonoBehaviour
         _nextHalf = startTick + _halfLength;
         _nextMeasure = startTick + _measureLength;
         _initialized = true;
-    }
-
-    public void ResetSong() {
-        Debug.Log("Trying to end the song");
-        songSource.Stop();
     }
 
     /// <summary>
