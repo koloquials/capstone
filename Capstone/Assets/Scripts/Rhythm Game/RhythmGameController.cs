@@ -13,6 +13,8 @@ public class RhythmGameController : MonoBehaviour {
 
     FiniteStateMachine<RhythmGameController> rhythmGameStateMachine;
 
+    public Yarn.Unity.Example.CameraFollow cam;
+
     public GameObject notePrefab;
 
     //the first x# of notes for any song will be scripted
@@ -65,11 +67,14 @@ public class RhythmGameController : MonoBehaviour {
     public NewFretFeedback fretFeedbackScript; //reference to the fret (important for swapping the sprite on the fret out)
     public Orbitter orbitterScript;
     public SpriteRenderer background;
+    public Transform noteObjectsParent;
 
     void Start() {
         //make and begin running the state machine
         rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController> (this);
         rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
+
+        noteObjectsParent = transform.GetChild(3).gameObject.GetComponent<Transform>();
 
         //grab a reference to the clock
         // simpleClockScript = gameObject.GetComponent<SimpleClock>();
@@ -80,9 +85,10 @@ public class RhythmGameController : MonoBehaviour {
         GenerateNotes();
 
         //visual utility and feedback scripts
-        fretFeedbackScript = transform.GetChild (0).gameObject.GetComponent<NewFretFeedback>();
-        orbitterScript = transform.GetChild (1).gameObject.GetComponent<Orbitter>();
-        background = transform.GetChild (2).gameObject.GetComponent<SpriteRenderer>();
+        fretFeedbackScript = transform.GetChild(0).gameObject.GetComponent<NewFretFeedback>();
+        orbitterScript = transform.GetChild(1).gameObject.GetComponent<Orbitter>();
+        background = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
+
 
         //fret will be self-sufficient
         fretFeedbackScript.SetPhase1Sequence (phase1NotesCombinations);
@@ -147,7 +153,7 @@ public class RhythmGameController : MonoBehaviour {
                 if (j == 1 || j == 3) {
                     thisSong[i, j] = null;
                 } else {
-                    GameObject newNote = Instantiate (notePrefab);
+                    GameObject newNote = Instantiate(notePrefab, noteObjectsParent);
                     NewNote newNoteScript = newNote.gameObject.GetComponent<NewNote>();
 
                     //set the properties of each note 
@@ -155,7 +161,7 @@ public class RhythmGameController : MonoBehaviour {
                     newNoteScript.SetMeasure (i + 2); //must be +2 because SimpleClock is set up so that the measures start counting at 2
                     //as soon as the song starts
                     //Debug.Log ("trying to get combination: " + thisSongSequence[combinationStepper]);
-                    newNoteScript.SetSprite (thisSongSequence[combinationStepper], transform.position);
+                    newNoteScript.SetSprite (thisSongSequence[combinationStepper], noteObjectsParent.transform.position);
 
                     //add the note to the 2D array, the combination to the correct combination list
                     thisSong[i, j] = newNote;
@@ -265,10 +271,9 @@ public class RhythmGameController : MonoBehaviour {
         //this code is specifically for resetting phase1 of the game
         StopAllCoroutines();
 
-        //Reset the clock 
+        //stop the song
         SimpleClock.Instance.songSource.Stop();
-        // SimpleClock.Instance.enabled = false;
-        Destroy(SimpleClock.Instance);
+        SimpleClock.Instance.SetBPM(138);
 
         //reset all notes. 
         for (int i = 0; i < thisSong.GetLength (0); i++) {
@@ -280,11 +285,17 @@ public class RhythmGameController : MonoBehaviour {
                 }
             }
         }
+    }
 
-        //re instantiate SimpleClock
-        this.gameObject.AddComponent<SimpleClock>();
-        SimpleClock.Instance.BPM = 138;
-        SimpleClock.Instance.beatsPerMeasure = 4;
+    public void CallCoroutine(string coroutineToCall) {
+        if (coroutineToCall.Equals("IntroAnimation")) {
+            StartCoroutine(IntroAnim());
+        }
+
+        if (coroutineToCall.Equals("StartNotes")) {
+            Debug.Log("Starting the note movement");
+            StartCoroutine(StartNoteMovement());
+        }
     }
 
     //used for starting the notes moving in phase 2
@@ -293,14 +304,24 @@ public class RhythmGameController : MonoBehaviour {
         //notes don't start moving until phase 2. Setting i to start at currMeasure and j at currBeat ensures that
         //the note objects for the first, scripted sequence don't start moving too quickly.
         for  (int i = currMeasure; i < thisSong.GetLength (0); i++) {
-            for  (int j = currBeat; j < thisSong.GetLength (1); i++) {
-                StartCoroutine (thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove (0f));
+            for  (int j = currBeat; j < thisSong.GetLength (1); j++) {
+                if (thisSong[i,j] != null)
+                    StartCoroutine (thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove (0f));
                 Debug.Log ("i value is: " + i + "j value is: " + j);
 
                 //this will have to be changed to get the notes to launch at the right moment
-                yield return new WaitForSeconds (SimpleClock.QuarterLength());
+                yield return new WaitForSeconds (SimpleClock.BeatLength());
             }
         }
+    }
+
+    //Coroutine to manage the scaling of the fret and orbitter. Orbitter scalls to full size before the fret starts
+    public IEnumerator IntroAnim() {
+        StartCoroutine(orbitterScript.ScaleOrbitter(2f));
+
+        yield return new WaitForSeconds(2.25f);
+
+        StartCoroutine(fretFeedbackScript.ScaleFret(2f));
     }
 
     //miscellaneous debugging functions! 
@@ -347,8 +368,9 @@ public class RhythmGameController : MonoBehaviour {
 
         public override void Update() {
             //call transitionto, then onExit will run, then onenter for whatever transitionto will be run
-            if (Input.GetKeyDown (KeyCode.P)) {
+            if (Input.GetKeyDown(KeyCode.P)) {
                 TransitionTo<IntroAnimation>();
+                Context.cam.setGame(true);
             }
         }
 
@@ -361,8 +383,7 @@ public class RhythmGameController : MonoBehaviour {
     private class IntroAnimation : FiniteStateMachine<RhythmGameController>.State {
         public override void OnEnter() {
             Debug.Log ("Scaling the fret and orbitter");
-            Context.StartCoroutine (Context.fretFeedbackScript.ScaleFret (2f));
-            Context.StartCoroutine (Context.orbitterScript.ScaleOrbitter (2f));
+            Context.CallCoroutine("IntroAnimation");
         }
 
         public override void Update() {
@@ -393,7 +414,7 @@ public class RhythmGameController : MonoBehaviour {
         public override void Update() {
             phaseWindowStateMachine.Update();
             //if the noteCounter is past the first phase, transition into phase 2
-            if (noteCounter >= Context.phase1NotesCombinations.Count) {
+            if (noteCounter > 10) {
                 Debug.Log ("transitioning to phase 2");
                 TransitionTo<Phase2>();
             }
@@ -456,6 +477,7 @@ public class RhythmGameController : MonoBehaviour {
                 //Context.Context.simpleClockScript.FirstBeat();
                 SimpleClock.Instance.FirstBeat();
                 Context.noteCounter += 1;
+                Debug.Log("Notes passed: " + Context.noteCounter);
                 Context.Context.fretFeedbackScript.SetFret (Context.Context.thisSongSequence[Context.noteCounter]);
                 started = true;
             }
@@ -569,7 +591,7 @@ public class RhythmGameController : MonoBehaviour {
             // }
 
             Debug.Log ("Entering phase2 state");
-            Context.StartCoroutine (Context.StartNoteMovement());
+            Context.CallCoroutine("StartNotes");
         }
 
         public override void Update() { }
