@@ -117,28 +117,39 @@ public class SimpleClock : MonoBehaviour
     private static SimpleClock _instance;
     public static SimpleClock Instance { get { return _instance; } }
 
-    private AudioSource songSource;
-    
+    [HideInInspector]public AudioSource songSource;
+
     private void Awake()
     {
         songSource = gameObject.GetComponent<AudioSource>();
-        if (_instance != null && _instance != this)
-        {
-            Debug.Log("Destroying"); 
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
+        _instance = this;
+        // if (_instance != null && _instance != this)
+        // {
+        //     Debug.Log("Destroying"); 
+        //     Destroy(this.gameObject);
+        // }
+        // else
+        // {
+        //     _instance = this;
+        // }
         if (BPM.Equals(0.0)) Debug.LogWarning("BPM not set! Please set the BPM in the Beat Clock.");
     }
 
     public double StartDelay;
 
-    [Header("M:B:T")] [SerializeField] private int Measures; //for display purposes in unity editor
-    [SerializeField] private int Beats;
-    [SerializeField] private int Ticks;
+    [Header("M:B:T")] 
+    // [SerializeField] private int Measures; //for display purposes in unity editor
+    // [SerializeField] private int Beats;
+    // [SerializeField] private int Ticks;
+    public int Measures;
+    public int Beats;
+    public int Ticks;
+
+    private void OnEnable() {
+        Measures = 0;
+        Beats = 0;
+        Ticks = 0;
+    }
 
     [Header("Tempo")] public double BPM;
 
@@ -332,7 +343,7 @@ public class SimpleClock : MonoBehaviour
         _tickCounter = _ticksPerMeasure;
         SetLengths();
         BuildTickMaskArray();
-        FirstBeat();
+        // FirstBeat();
     }
 
     /// <summary>
@@ -358,10 +369,12 @@ public class SimpleClock : MonoBehaviour
     /// <summary>
     /// Internal function, sets timings for next beats
     /// </summary>
-    void FirstBeat()
+    public void FirstBeat()
     {
         double startTick = AudioSettings.dspTime + StartDelay;
-        songSource.PlayScheduled(startTick);
+        //songSource.PlayScheduled(startTick);
+        // Debug.Log("starting the song");
+        songSource.Play();
 
 
         _nextTick = startTick * _sampleRate + SamplesPerTick; //_tickLength;
@@ -643,6 +656,10 @@ public class SimpleClock : MonoBehaviour
             default:
                 return BeatLength();
         }
+    }
+
+    public static float GetTickLength() {
+        return (float)TickLength;
     }
 
     public static float ThirtySecondLength()

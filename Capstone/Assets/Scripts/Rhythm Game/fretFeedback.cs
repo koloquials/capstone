@@ -24,7 +24,7 @@ public class fretFeedback : MonoBehaviour
     bool started = false; //When the rhythm game is actually running
 
     AudioSource tambourineSoundSrc;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +34,9 @@ public class fretFeedback : MonoBehaviour
         transform.localScale = Vector2.zero; //For the start animation
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Debug.Log("Trying to scale the fret");
         if (startScale)
         {
             scaleMod = Mathf.Lerp(scaleMod, sConstant, 0.04f);
@@ -46,7 +46,7 @@ public class fretFeedback : MonoBehaviour
                 startScale = false;
                 started = true;
             }
-            transform.localScale = new Vector2(scaleMod*sConstant, scaleMod*sConstant);
+            transform.localScale = new Vector2(scaleMod * sConstant, scaleMod * sConstant);
         }
         else if (endScale)
         {
@@ -88,17 +88,19 @@ public class fretFeedback : MonoBehaviour
         }
     }
 
-    public void noteRippleParticles() {
+    public void noteRippleParticles()
+    {
         rippleParticles.Play();
     }
 
-    public void PlayTambourineSound() {
+    public void PlayTambourineSound()
+    {
         tambourineSoundSrc.Play();
     }
 
     public void setSprite(Sprite newSprite)
     {
-        if(newSprite == null)
+        if (newSprite == null)
             Debug.Log("This is null");
         else
             sr.sprite = newSprite;

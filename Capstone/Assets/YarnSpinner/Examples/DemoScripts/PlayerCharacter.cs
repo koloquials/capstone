@@ -28,11 +28,15 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Yarn.Unity.Example {
-    public class PlayerCharacter : MonoBehaviour {
+namespace Yarn.Unity.Example
+{
+    public class PlayerCharacter : MonoBehaviour
+    {
 
         //sprites 
-        [HideInInspector]public SpriteRenderer mySpriteRenderer;
+        private SpriteRenderer mySpriteRenderer;
+        private Animator myAnimator;
+
         public Sprite p_stand2;
         public Sprite p_walk1;
 
@@ -43,64 +47,70 @@ namespace Yarn.Unity.Example {
 
         public float interactionRadius = 2.0f;
 
-        public float movementFromButtons {get;set;}
+        public float movementFromButtons { get; set; }
 
         bool motion = true;
 
-        
+
         private float speed = 2f;
         private Vector3 mousePosition;
         private Vector3 targetPosition;
         private bool isMoving;
         private bool facingRight = true;
 
-        void Start() {
+        void Start()
+        {
             mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            myAnimator = gameObject.GetComponent<Animator>();
+
         }
         /// Draw the range at which we'll start talking to people.
-        void OnDrawGizmosSelected() {
+        void OnDrawGizmosSelected()
+        {
             Gizmos.color = Color.blue;
 
             // Flatten the sphere into a disk, which looks nicer in 2D games
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, new Vector3(1,1,0));
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, new Vector3(1, 1, 0));
 
             // Need to draw at position zero because we set position in the line above
             Gizmos.DrawWireSphere(Vector3.zero, interactionRadius);
         }
 
         /// Update is called once per frame
-        void Update () {
+        void Update()
+        {
             // Remove all player control when we're in dialogue
             // Edited to also remove player control when in the rhythm game.
-            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion) {  
-                    if (Input.GetKey(KeyCode.Alpha1))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().SetOption(0);
-                    }
-                    else if (Input.GetKey(KeyCode.Alpha2))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().SetOption(1);
-                    }
-                    else if (Input.GetKey(KeyCode.Alpha3))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().SetOption(2);
-                    }
-                    else if (Input.GetKey(KeyCode.Alpha4))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().SetOption(3);
-                    }
-                    if (Input.GetKeyUp(KeyCode.UpArrow))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(-1);
-                    }
-                    else if (Input.GetKeyUp(KeyCode.DownArrow))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(1);
-                    }
-                    if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space))
-                    {
-                        FindObjectOfType<ClassicDialogueUI>().ScrollOption(0);
-                    }
+            if (FindObjectOfType<DialogueRunner>().isDialogueRunning == true || !motion)
+            {
+                if (Input.GetKey(KeyCode.Alpha1))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().SetOption(0);
+                }
+                else if (Input.GetKey(KeyCode.Alpha2))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().SetOption(1);
+                }
+                else if (Input.GetKey(KeyCode.Alpha3))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().SetOption(2);
+                }
+                else if (Input.GetKey(KeyCode.Alpha4))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().SetOption(3);
+                }
+                if (Input.GetKeyUp(KeyCode.UpArrow))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().ScrollOption(-1);
+                }
+                else if (Input.GetKeyUp(KeyCode.DownArrow))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().ScrollOption(1);
+                }
+                if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.Space))
+                {
+                    FindObjectOfType<ClassicDialogueUI>().ScrollOption(0);
+                }
                 return;
             }
 
@@ -119,15 +129,19 @@ namespace Yarn.Unity.Example {
             // transform.position = newPosition;
 
             // Detect if we want to start a conversation
-            if (Input.GetMouseButtonDown(0)) {
-                CheckForNearbyNPC ();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Mouse being pressed");
+                CheckForNearbyNPC();
             }
             DetectMovement();
         }
 
         //detect if the player pressed the mouse to move the character and move the character accordingly
-        public void DetectMovement() {
-            if (Input.GetMouseButtonUp(0)) {
+        public void DetectMovement()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 targetPosition.z = transform.position.z;
                 targetPosition.y = transform.position.y;
@@ -135,49 +149,60 @@ namespace Yarn.Unity.Example {
 
                 //check whether the player is moving toward the right or left (on the screen) of where character
                 //currently is 
-                if (targetPosition.x >= transform.position.x) {
+                if (targetPosition.x >= transform.position.x)
+                {
                     facingRight = true;
                 }
-                else {
+                else
+                {
                     facingRight = false;
                 }
 
-                if (!isMoving) {
+                if (!isMoving)
+                {
                     isMoving = true;
                 }
             }
-        
-            if (isMoving) {
-                mySpriteRenderer.sprite = p_walk1;
+
+            if (isMoving)
+            {
+                myAnimator.SetBool("isRunning", true);
                 SetDirection();
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
-            
-            if (targetPosition == transform.position) {
+
+            //if player is where they pressed to be
+            if (targetPosition == transform.position)
+            {
+                myAnimator.SetBool("isRunning", false);
                 CheckForNearbyNPC();
-                mySpriteRenderer.sprite = p_stand2;
                 isMoving = false;
             }
         }
 
         //check which side character is walking towards to flip the sprite accordingly 
-        public void SetDirection() {
-            if (!facingRight) {
+        public void SetDirection()
+        {
+            if (!facingRight)
+            {
                 mySpriteRenderer.flipX = true;
             }
-            else {
+            else
+            {
                 mySpriteRenderer.flipX = false;
             }
         }
 
-        public void Clicked(Vector3 newPosition) {
+        public void Clicked(Vector3 newPosition)
+        {
             Debug.Log("Entering clicked");
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
+
             RaycastHit hit = new RaycastHit();
-            
-            if (Physics.Raycast (ray, out hit)) {
+
+            if (Physics.Raycast(ray, out hit))
+            {
                 Debug.Log(hit.collider.gameObject.name);
                 newPosition = hit.point;
                 transform.position = newPosition;
@@ -187,18 +212,20 @@ namespace Yarn.Unity.Example {
         /** Filter them to those that have a Yarn start node and are in range; 
          * then start a conversation with the first one
          */
-        public void CheckForNearbyNPC ()
+        public void CheckForNearbyNPC()
         {
-            var allParticipants = new List<NPC> (FindObjectsOfType<NPC> ());
-            var target = allParticipants.Find (delegate (NPC p) {
-                return string.IsNullOrEmpty (p.talkToNode) == false && // has a conversation node?
+            var allParticipants = new List<NPC>(FindObjectsOfType<NPC>());
+            var target = allParticipants.Find(delegate (NPC p)
+            {
+                return string.IsNullOrEmpty(p.talkToNode) == false && // has a conversation node?
                 (p.transform.position - this.transform.position)// is in range?
                 .magnitude <= interactionRadius
                 && !p.moving;
             });
-            if (target != null) {
+            if (target != null)
+            {
                 // Kick off the dialogue at this node.
-                FindObjectOfType<DialogueRunner> ().StartDialogue (target.talkToNode);
+                FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
             }
         }
 
