@@ -325,19 +325,23 @@ public class RhythmGameController : MonoBehaviour {
         }
     }
 
-    // public IEnumerator StartNoteMovement() {
-    //     //notes don't start moving until phase 2. Setting i to start at currMeasure and j at currBeat ensures that
-    //     //the note objects for the first, scripted sequence don't start moving too quickly.
-    //     for  (int i = currMeasure; i < thisSong.GetLength (0); i++) {
-    //         for  (int j = currBeat; j < thisSong.GetLength (1); i++) {
-    //             StartCoroutine (thisSong[i, j].gameObject.GetComponent<NewNote>().WaitAndMove (0f));
-    //             Debug.Log ("i value is: " + i + "j value is: " + j);
+    public IEnumerator TestStartNoteMovement() {
+        //notes don't start moving until phase 2. Setting i to start at currMeasure and j at currBeat ensures that
+        //the note objects for the first, scripted sequence don't start moving too quickly.
+        for (int i = currMeasure; i < thisSong.GetLength (0); i++) {
+            for (int j = currBeat; j < thisSong.GetLength (1); j++) {
+                Debug.Log ("i value is: " + i + "j value is: " + j);
 
-    //             //this will have to be changed to get the notes to launch at the right moment
-    //             yield return new WaitForSeconds (SimpleClock.BeatLength());
-    //         }
-    //     }
-    // }
+                if (thisSong[i, j] != null) {
+                    // Debug.Log("A note exists here");
+                    StartCoroutine(thisSong[i,j].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+                }
+
+                //this will have to be changed to get the notes to launch at the right moment
+                yield return new WaitForSeconds (SimpleClock.BeatLength());
+            }
+        }
+    }
 
     //Coroutine to manage the scaling of the fret and orbitter. Orbitter scalls to full size before the fret starts
     public IEnumerator IntroAnim() {
@@ -362,9 +366,10 @@ public class RhythmGameController : MonoBehaviour {
     //debugging function to test starting note movement
     public void Test() {
         if (Input.GetKeyDown(KeyCode.Z)) {
-            Debug.Log ("Entering phase one, calling coroutine");
-
-            StartCoroutine(StartNoteMovement());
+            Debug.Log ("Testing note movement");
+        
+            // SimpleClock.Instance.FirstBeat();
+            StartCoroutine(TestStartNoteMovement());
         }
     }
 
@@ -435,13 +440,12 @@ public class RhythmGameController : MonoBehaviour {
             phaseWindowStateMachine = new FiniteStateMachine<Phase1> (this);
             phaseWindowStateMachine.TransitionTo<Resting>();
         }
-
         public override void Update() {
             phaseWindowStateMachine.Update();
             //if the noteCounter is past the first phase, transition into phase 2
             // Debug.Log("where we are in the list of notes: " + noteCounter);
             // Debug.Log("This is how many notes we will need to get through before transitioning to phase 2: " + Context.phase1NotesCombinations.ToString());
-            if (noteCounter >= 10) {
+            if (noteCounter > 10) {
                 
                 Debug.Log ("transitioning to phase 2");
                 TransitionTo<Phase2>();
@@ -584,7 +588,7 @@ public class RhythmGameController : MonoBehaviour {
             }
             public override void Update() {
                 outOfWindowLength -= Time.deltaTime;
-                Debug.Log ("Time remaining until next window: " + outOfWindowLength);
+                // Debug.Log ("Time remaining until next window: " + outOfWindowLength);
 
                 if (outOfWindowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
                     Debug.Log("OoW timer status: " + outOfWindowLength);
