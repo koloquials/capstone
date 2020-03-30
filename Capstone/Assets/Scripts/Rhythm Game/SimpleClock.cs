@@ -144,12 +144,6 @@ public class SimpleClock : MonoBehaviour
     public int Beats;
     public int Ticks;
 
-    private void OnEnable() {
-        Measures = 0;
-        Beats = 0;
-        Ticks = 0;
-    }
-
     [Header("Tempo")] public double BPM;
 
     [Header("Time Signature")] public int beatsPerMeasure;
