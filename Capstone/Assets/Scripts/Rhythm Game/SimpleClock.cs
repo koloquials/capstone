@@ -122,16 +122,15 @@ public class SimpleClock : MonoBehaviour
     private void Awake()
     {
         songSource = gameObject.GetComponent<AudioSource>();
-        _instance = this;
-        // if (_instance != null && _instance != this)
-        // {
-        //     Debug.Log("Destroying"); 
-        //     Destroy(this.gameObject);
-        // }
-        // else
-        // {
-        //     _instance = this;
-        // }
+        if (_instance != null && _instance != this)
+        {
+            Debug.Log("Destroying"); 
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
         if (BPM.Equals(0.0)) Debug.LogWarning("BPM not set! Please set the BPM in the Beat Clock.");
     }
 
@@ -144,12 +143,6 @@ public class SimpleClock : MonoBehaviour
     public int Measures;
     public int Beats;
     public int Ticks;
-
-    private void OnEnable() {
-        Measures = 0;
-        Beats = 0;
-        Ticks = 0;
-    }
 
     [Header("Tempo")] public double BPM;
 
