@@ -289,6 +289,9 @@ public class RhythmGameController : MonoBehaviour {
         }
 
         rhythmGameStateMachine.TransitionTo<Phase1>();
+
+        Debug.Log("Changing the background to indicate that the rhythm game is restarting");
+        ChangeBackground(false, true);
     }
 
     public void CallCoroutine(string coroutineToCall) {
@@ -363,8 +366,14 @@ public class RhythmGameController : MonoBehaviour {
     }
 
     //debugging function to see when we are in and out of the window. blue background means in window, black means out of window
-    private void ChangeBackground (bool inWindow) {
-        if (inWindow) {
+    private void ChangeBackground(bool inWindow, bool restarted) {
+        if (restarted) {
+            Color inWindowColour = Color.red;
+            inWindowColour.a = 0.65f;
+            background.color = inWindowColour;
+        }
+        
+        else if (inWindow) {
             Color inWindowColour = Color.blue;
             inWindowColour.a = 0.65f;
             background.color = inWindowColour;
@@ -470,6 +479,7 @@ public class RhythmGameController : MonoBehaviour {
                 bufferTime = SimpleClock.BeatLength() / 2; //window offset is half of a beat (48 ticks)
                 Context.Context.noteCounter = 0; //every time we enter the Resting phase, we want to be at the very beginning of the song
                 Context.Context.fretFeedbackScript.SetFret (Context.Context.thisSongSequence[Context.Context.noteCounter]);
+                Context.Context.ChangeBackground(false, true);
                 // Debug.Log ("Buffer time is: " + bufferTime);
             }
             public override void Update() {
@@ -524,7 +534,7 @@ public class RhythmGameController : MonoBehaviour {
                 //each window is one beat long
                 windowLength = SimpleClock.BeatLength();
 
-                Context.Context.ChangeBackground (true);
+                Context.Context.ChangeBackground(true, false);
             }
 
             public override void Update() {
@@ -571,7 +581,7 @@ public class RhythmGameController : MonoBehaviour {
             public override void OnEnter() {
                 // Debug.Log ("outside of window, cannot press");
                 outOfWindowLength = SimpleClock.BeatLength();
-                Context.Context.ChangeBackground (false);
+                Context.Context.ChangeBackground(false, false);
             }
             public override void Update() {
                 outOfWindowLength -= Time.deltaTime;
@@ -640,7 +650,7 @@ public class RhythmGameController : MonoBehaviour {
                 //each window is one beat long
                 windowLength = SimpleClock.BeatLength();
 
-                Context.Context.ChangeBackground (true);
+                Context.Context.ChangeBackground(true, false);
             }
 
             public override void Update() {
@@ -693,7 +703,7 @@ public class RhythmGameController : MonoBehaviour {
             public override void OnEnter() {
                 Debug.Log ("outside of window, cannot press");
                 outOfWindowLength = SimpleClock.BeatLength();
-                Context.Context.ChangeBackground(false);
+                Context.Context.ChangeBackground(false, false);
             }
             public override void Update() {
                 outOfWindowLength -= Time.deltaTime;

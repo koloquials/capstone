@@ -87,6 +87,8 @@ public class NewNote : MonoBehaviour
         mySpriteRenderer.enabled = visible;
     }
 
+    //SetSprite is a little more loaded than a setter function should be
+    //takes three parameters: the combination for this note, the parentTransform (used to set start position), and the fretTransform (used to set finish position)
     public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
     {
         switch (thisNotesCombo)
