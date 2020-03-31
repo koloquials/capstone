@@ -336,7 +336,7 @@ public class SimpleClock : MonoBehaviour
         _tickCounter = _ticksPerMeasure;
         SetLengths();
         BuildTickMaskArray();
-        //FirstBeat();
+        // FirstBeat();
     }
 
     /// <summary>

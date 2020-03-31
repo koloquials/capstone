@@ -111,11 +111,11 @@ public class RhythmGameController : MonoBehaviour {
         rhythmGameStateMachine.Update();
 
         Test();
-
         // Print2DArray();
     }
 
     //generate the entire list of combinations first
+    //so much SPAGHETT
     private void GenerateCombinations() {
         //oof, hard coded values
         int combosToGenerate = 154 - 10;
@@ -278,8 +278,8 @@ public class RhythmGameController : MonoBehaviour {
         SimpleClock.Instance.SetBPM(138);
 
         //reset all notes. 
-        for (int i = 0; i < thisSong.GetLength (0); i++) {
-            for (int j = 0; j < thisSong.GetLength (1); j++) {
+        for (int i = 0; i < thisSong.GetLength(0); i++) {
+            for (int j = 0; j < thisSong.GetLength(1); j++) {
                 //index out of bounds exception somewhere :' ( 
                 if (thisSong[i, j] != null) {
                     NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
@@ -319,6 +319,11 @@ public class RhythmGameController : MonoBehaviour {
                 if (thisSong[i - 2,j - 1] != null)
                     StartCoroutine(thisSong[i - 2,j - 1].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
                 Debug.Log ("i value is: " + i + "j value is: " + j);
+
+                if (thisSong[i, j] != null) {
+                    // Debug.Log("A note exists here");
+                    StartCoroutine(thisSong[i,j].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+                }
 
                 //this will have to be changed to get the notes to launch at the right moment
                 yield return new WaitForSeconds(SimpleClock.BeatLength());
@@ -437,7 +442,6 @@ public class RhythmGameController : MonoBehaviour {
             phaseWindowStateMachine = new FiniteStateMachine<Phase1> (this);
             phaseWindowStateMachine.TransitionTo<Resting>();
         }
-
         public override void Update() {
             phaseWindowStateMachine.Update();
             //if the noteCounter is past the first phase, transition into phase 2
@@ -489,7 +493,7 @@ public class RhythmGameController : MonoBehaviour {
                 pressedCombo = pressedArrow + pressedWASD;
 
                 //first combination was pressed correctly, game will otherwise stay resting the entire time.
-                if (expectedCombo.Equals (pressedCombo)) {
+                if (expectedCombo.Equals(pressedCombo)) {
                     StartRhythmGame();
                 }
 

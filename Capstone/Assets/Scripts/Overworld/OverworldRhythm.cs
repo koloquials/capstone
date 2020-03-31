@@ -57,16 +57,18 @@ public class OverworldRhythm : MonoBehaviour
     GameObject player;
     Vector2 playerPos;
 
-    List<NoteLock> localLocks;
-    List<NoteBlock> localBlocks;
-    List<NoteSpinner> localSpinners;
+    //List<NoteLock> localLocks;
+    //List<NoteBlock> localBlocks;
+    //List<NoteSpinner> localSpinners;
+    List<EnvironmentNote> localNotes;
 
     // Start is called before the first frame update
     void Start()
     {
-        localLocks = new List<NoteLock>();
-        localBlocks = new List<NoteBlock>();
-        localSpinners = new List<NoteSpinner>();
+        //localLocks = new List<NoteLock>();
+        //localBlocks = new List<NoteBlock>();
+        //localSpinners = new List<NoteSpinner>();
+        localNotes = new List<EnvironmentNote>();
         invis = new Color(1, 1, 1, 0);
         vis = new Color(1, 1, 1, 1);
         sr = GetComponent<SpriteRenderer>();
@@ -84,29 +86,12 @@ public class OverworldRhythm : MonoBehaviour
             Debug.Log("Turning on");
             beat = true;
             playerPos = player.transform.position;
-            foreach (NoteLock n in ec.lockList) //Interacting with locks
+            foreach (EnvironmentNote n in ec.interactables) //Get all the nearby interactables
             {
                 if (Vector3.Distance(transform.position, n.transform.position) < 10) //If the note is within a certain range. May wish to edit this to get a good range.
                 {
-                    localLocks.Add(n);
+                    localNotes.Add(n);
                     n.inRange(true);
-                }
-            }
-            foreach (NoteBlock n in ec.blockList) //Interacting with locks
-            {
-                if (Vector3.Distance(transform.position, n.transform.position) < 10) //If the note is within a certain range. May wish to edit this to get a good range.
-                {
-                    localBlocks.Add(n);
-                    n.inRange(true);
-                }
-            }
-            foreach (NoteSpinner n in ec.spinnerList)
-            {
-                if (Vector3.Distance(transform.position, n.transform.position) < 10) //If the note is within a certain range. May wish to edit this to get a good range.
-                {
-                    localSpinners.Add(n);
-                    //n.inRange(true);
-                    //Right now there isn't a highlight for spinners in range
                 }
             }
         }
@@ -121,17 +106,11 @@ public class OverworldRhythm : MonoBehaviour
                 sr.color = invis;
                 Debug.Log("Turning off");
                 beat = true;
-                foreach(NoteLock n in localLocks)
+                foreach(EnvironmentNote n in localNotes)
                 {
                     n.inRange(false);
                 }
-                foreach(NoteBlock n in localBlocks)
-                {
-                    n.inRange(false);
-                }
-                localLocks.Clear();
-                localBlocks.Clear();
-                localSpinners.Clear();
+                localNotes.Clear();
             }
 
             //Code for pressing keys
@@ -336,39 +315,17 @@ public class OverworldRhythm : MonoBehaviour
                 break;
         }
 
-        if (localLocks != null)
+        if (localNotes != null)
         {
-            foreach (NoteLock n in localLocks) //Interacting with locks
+            foreach (EnvironmentNote n in localNotes) //Interacting with objects
             {
-                if (keys.Equals(n.getCode())) //Interact with the lock based on if the note is correct or not
+                if (keys.Equals(n.getCode())) //Interact with the object based on if the note is correct or not
                 {
-                    n.opened();
+                    n.keyed(true);
                 }
                 else
                 {
-                    n.closed();
-                }
-            }
-        }
-
-        if (localBlocks != null)
-        {
-            foreach(NoteBlock n in localBlocks)
-            {
-                if(keys.Equals(n.getCode()))
-                {
-                    n.keyed();
-                }
-            }
-        }
-        
-        if(localSpinners != null)
-        {
-            foreach(NoteSpinner n in localSpinners)
-            {
-                if(keys.Equals(n.getCode()))
-                {
-                    n.keyed();
+                    n.keyed(false);
                 }
             }
         }

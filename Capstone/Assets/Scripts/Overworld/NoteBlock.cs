@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteBlock : MonoBehaviour
+public class NoteBlock : EnvironmentNote
 {
     //The note codes for the different positions.
     public string code1;
@@ -37,25 +37,28 @@ public class NoteBlock : MonoBehaviour
         
     }
 
-    public void keyed() //Called when the block's note is played.
+    public override void keyed(bool correct) //Called when the block's note is played.
     {
-        if (pos == 1)
+        if (correct)
         {
-            transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
-            noteSprite.sprite = note2;
-            activeCode = code2;
-            pos = 2;
-        }
-        else if (pos == 2)
-        {
-            transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f    ));
-            noteSprite.sprite = note1;
-            activeCode = code1;
-            pos = 1;
+            if (pos == 1)
+            {
+                transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
+                noteSprite.sprite = note2;
+                activeCode = code2;
+                pos = 2;
+            }
+            else if (pos == 2)
+            {
+                transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f));
+                noteSprite.sprite = note1;
+                activeCode = code1;
+                pos = 1;
+            }
         }
     }
 
-    public void inRange(bool on) //Locks will light up if in range
+    public override void inRange(bool on) //Locks will light up if in range
     {
         if (on)
         {
@@ -67,7 +70,7 @@ public class NoteBlock : MonoBehaviour
         }
     }
 
-    public string getCode() //Getter for the note code
+    public override string getCode() //Getter for the note code
     {
         return activeCode;
     }

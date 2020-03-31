@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoteLock : MonoBehaviour
+public class NoteLock : EnvironmentNote
 {
 
     //The three gameobjects that make up the lock. Should be blocking the player's path, and have an image of their note on them somewhere
@@ -47,48 +47,47 @@ public class NoteLock : MonoBehaviour
        
     }
 
-    public void opened() //Called when the correct note is pressed. Opens the active lock and makes the next one active.
+    public override void keyed(bool correct) //Called when notes are pressed
     {
         if (!open)
         {
-            if (active == 1)
+            if (correct) //Correct note, open active lock and make next lock active
             {
-                lock1.transform.position = new Vector2(lock1.transform.position.x, lock1.transform.position.y + moveAmount);
-                active = 2;
-                activeCode = code2;
+                if (active == 1)
+                {
+                    lock1.transform.position = new Vector2(lock1.transform.position.x, lock1.transform.position.y + moveAmount);
+                    active = 2;
+                    activeCode = code2;
+                }
+                else if (active == 2)
+                {
+                    lock2.transform.position = new Vector2(lock2.transform.position.x, lock2.transform.position.y + moveAmount);
+                    active = 3;
+                    activeCode = code3;
+                }
+                else if (active == 3) //If all locks are open, keep the gate open
+                {
+                    lock3.transform.position = new Vector2(lock3.transform.position.x, lock3.transform.position.y + moveAmount);
+                    open = true;
+                }
             }
-            else if (active == 2)
+            else //Wrong note pressed, reset gate
             {
-                lock2.transform.position = new Vector2(lock2.transform.position.x, lock2.transform.position.y + moveAmount);
-                active = 3;
-                activeCode = code3;
-            }
-            else if (active == 3) //If all locks are open, keep the gate open
-            {
-                lock3.transform.position = new Vector2(lock3.transform.position.x, lock3.transform.position.y + moveAmount);
-                open = true;
+                active = 1;
+                activeCode = code1;
+                lock1.transform.localPosition = pos1;
+                lock2.transform.localPosition = pos2;
+                lock3.transform.localPosition = pos3;
             }
         }
     }
 
-    public void closed() //Called when a wrong note is pressed, resets the gate.
-    {
-        if (!open)
-        {
-            active = 1;
-            activeCode = code1;
-            lock1.transform.localPosition = pos1;
-            lock2.transform.localPosition = pos2;
-            lock3.transform.localPosition = pos3;
-        }
-    }
-
-    public string getCode() //Getter for the code
+    public override string getCode() //Getter for the code
     {
         return activeCode;
     }
 
-    public void inRange(bool on) //Locks will light up if in range
+    public override void inRange(bool on) //Locks will light up if in range
     {
         if(on)
         {
