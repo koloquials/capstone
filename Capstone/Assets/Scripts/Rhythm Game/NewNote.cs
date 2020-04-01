@@ -57,14 +57,17 @@ public class NewNote : MonoBehaviour
     {
         currTime = 0f;
 
-        SetMaterial(true);
+        // SetMaterial(true);
         SetVisibility(true);
 
+        // Debug.Log("starting from: " + startPos + " and moving towards: " + destinationPos);
+        // Debug.Log("will take this long to move across the screen: " + SimpleClock.MeasureLength() * 4);
         yield return new WaitForSeconds(delayTime); // start at time X
         while (currTime < (SimpleClock.MeasureLength() * 4))
         { // until one second passed
-        currTime += Time.deltaTime;
+            currTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in one second
+            // Debug.Log("note " + myCombination + " is currently at " + transform.position);
             yield return 1; // wait for next frame
         }
         
@@ -73,9 +76,9 @@ public class NewNote : MonoBehaviour
     }
 
     //function for resetting all properties of the note that are mutable as the game is played. 
-    public void ResetNote(string thisNotesCombo, Vector3 parentTransform, bool enabled) {
-        SetSprite(thisNotesCombo, parentTransform);
-        SetMaterial(enabled);
+    public void ResetNote(bool enabled) {
+        transform.position = startPos;
+        // SetMaterial(enabled);
         SetVisibility(enabled);
     }
 
@@ -89,7 +92,7 @@ public class NewNote : MonoBehaviour
 
     //SetSprite is a little more loaded than a setter function should be
     //takes three parameters: the combination for this note, the parentTransform (used to set start position), and the fretTransform (used to set finish position)
-    public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
+    public void SetSprite(string thisNotesCombo, Vector3 parentTransform, Vector3 fretTransform)
     {
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.

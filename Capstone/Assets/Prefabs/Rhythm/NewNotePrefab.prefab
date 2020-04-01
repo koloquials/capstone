@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1990880561357486150}
   - component: {fileID: 1990880561357486151}
   - component: {fileID: 4796850260619751041}
-  - component: {fileID: 1711065385}
   - component: {fileID: 1990880561798682606}
   m_Layer: 0
   m_Name: NewNotePrefab
@@ -84,7 +83,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,24 +116,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1711065385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990880561357486149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  glowColor: {r: 0.9245283, g: 0.5712887, b: 0.68742234, a: 0.85882354}
-  glowBrightness: 2.46
-  outlineWidth: 2
-  alphaThreshold: 0.01
-  drawOutside: 0
-  enableInstancing: 0
 --- !u!96 &1990880561798682606
 TrailRenderer:
   serializedVersion: 2
