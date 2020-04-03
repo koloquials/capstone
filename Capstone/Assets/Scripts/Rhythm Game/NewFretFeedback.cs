@@ -57,11 +57,12 @@ public class NewFretFeedback : MonoBehaviour
         this.songSequence = phase1Sequence.ToArray();
     }
 
-    public IEnumerator ScaleFret(float time)
+    public IEnumerator ScaleFret(float time, Vector3 scaleToSize)
     {
         //Debug.Log("Coroutine: trying to scale the fret");
         Vector3 originalScale = gameObject.transform.localScale;
-        Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
+        // Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
+        Vector3 destinationScale = scaleToSize;
 
         //Color spriteColour = mySpriteRenderer.color;
 

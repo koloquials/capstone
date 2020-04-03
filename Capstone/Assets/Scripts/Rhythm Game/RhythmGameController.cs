@@ -70,12 +70,17 @@ public class RhythmGameController : MonoBehaviour {
     public SpriteRenderer background;
     public Transform noteObjectsParent;
 
+    public Yarn.Unity.Example.PlayerCharacter player; //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
+
     public int noteCounter = 0;
 
-    void Start() {
+    public bool gameEnded = false;
+
+    void OnEnable() {
         //make and begin running the state machine
         rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController> (this);
-        rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
+        // rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
+        rhythmGameStateMachine.TransitionTo<IntroAnimation>();
 
         noteObjectsParent = transform.GetChild(3).gameObject.GetComponent<Transform>();
 
@@ -111,6 +116,10 @@ public class RhythmGameController : MonoBehaviour {
         //this will call the Update function of whateverß state it is in. 
         rhythmGameStateMachine.Update();
 
+        // if (Input.GetKeyDown(KeyCode.T)) {
+        //     rhythmGameStateMachine.TransitionTo<LoadRhythmGame>();
+        // }
+
         Test();
         // Print2DArray();
     }
@@ -123,7 +132,7 @@ public class RhythmGameController : MonoBehaviour {
         string thisNotesCombo = "";
 
         for (int i = 0; i < combosToGenerate; i++) {
-            int comboBias = Random.Range (0, 5);
+            int comboBias = Random.Range(0, 5);
             int getComboIndex = 0;
 
             if (comboBias == 0 || comboBias == 1) {
@@ -302,7 +311,7 @@ public class RhythmGameController : MonoBehaviour {
 
         if (coroutineToCall.Equals("StartNotes")) {
             Debug.Log("Starting the note movement");
-            StartCoroutine(StartNoteMovement(currMeasure + 3, 1));
+            StartCoroutine(StartNoteMovement(currMeasure + 4, 1));
         }
 
         if (coroutineToCall.Equals("ClosingAnimation")) {
@@ -346,22 +355,25 @@ public class RhythmGameController : MonoBehaviour {
 
     //Coroutine to manage the scaling of the fret and orbitter. Orbitter scalls to full size before the fret starts
     public IEnumerator IntroAnim() {
-        StartCoroutine(orbitterScript.ScaleOrbitter(2f));
-        StartCoroutine(backgroundScript.ScaleBackground(4.25f));
+        StartCoroutine(orbitterScript.ScaleOrbitter(2f, new Vector3(0.5f, 0.5f, 3f)));
+        StartCoroutine(backgroundScript.ScaleBackground(4.25f, new Vector3(24f, 12f, 1f)));
 
         yield return new WaitForSeconds(2.25f);
 
-        StartCoroutine(fretFeedbackScript.ScaleFret(2f));
+        StartCoroutine(fretFeedbackScript.ScaleFret(2f, new Vector3(2.0f, 2.0f, 2.0f)));
     }
 
     //make everything scale down. 
     //probably give it some other parameter that asks if should scale in the positive or negative direction (from current size)
     public IEnumerator ClosingAnim() {
-        StartCoroutine(orbitterScript.ScaleOrbitter(2f));
+        StartCoroutine(fretFeedbackScript.ScaleFret(2f, new Vector3(0f, 0f, 2f)));
+        StartCoroutine(backgroundScript.ScaleBackground(4.25f, new Vector3(0f, 0f, 1f)));
 
         yield return new WaitForSeconds(2.25f);
 
-        StartCoroutine(fretFeedbackScript.ScaleFret(2f));
+        StartCoroutine(orbitterScript.ScaleOrbitter(2f, new Vector3(0f, 0f, 3f)));
+
+        gameEnded = true;
     }
 
     //miscellaneous debugging functions! 
@@ -405,25 +417,26 @@ public class RhythmGameController : MonoBehaviour {
 
     //State machine
     //before the rhythm game. This is preparation for loading up the rhythm game and leading into the animation      
-    private class LoadRhythmGame : FiniteStateMachine<RhythmGameController>.State {
-        public override void OnEnter() {
-            //accessing variables that are part of rhythm game controller
-            //Context.thisSong;
-            Debug.Log ("Entering LoadRhythmGame state");
-        }
+    // private class LoadRhythmGame : FiniteStateMachine<RhythmGameController>.State {
+    //     public override void OnEnter() {
+    //         //accessing variables that are part of rhythm game controller
+    //         //Context.thisSong;
+    //         Debug.Log ("Entering LoadRhythmGame state");
+    //         Context.player.motionControl(false); 
+    //     }
 
-        public override void Update() {
-            //call transitionto, then onExit will run, then onenter for whatever transitionto will be run
-            if (Input.GetKeyDown(KeyCode.P)) {
-                TransitionTo<IntroAnimation>();
-                Context.cam.setGame(true);
-            }
-        }
+    //     public override void Update() {
+    //         //call transitionto, then onExit will run, then onenter for whatever transitionto will be run
+    //         if (Input.GetKeyDown(KeyCode.P)) {
+    //             TransitionTo<IntroAnimation>();
+    //             Context.cam.setGame(true);
+    //         }
+    //     }
 
-        public override void OnExit() {
+    //     public override void OnExit() {
 
-        }
-    }
+    //     }
+    // }
 
     //intro animation for the rhythm game. Player input cannot be taken.
     private class IntroAnimation : FiniteStateMachine<RhythmGameController>.State {
@@ -458,16 +471,15 @@ public class RhythmGameController : MonoBehaviour {
             phaseWindowStateMachine.TransitionTo<Resting>();
         }
         public override void Update() {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                TransitionTo<ClosingAnimation>();
+            }
+
             phaseWindowStateMachine.Update();
             //if the noteCounter is past the first phase, transition into phase 2
             if (Context.noteCounter > 10) {
                 Debug.Log("transitioning to phase 2");
                 TransitionTo<Phase2>();
-            }
-
-            if (Context.noteCounter == 3 && !startedNoteMovement) {
-                startedNoteMovement = true;
-                Context.CallCoroutine("StartNotes");
             }
             // Debug.Log ("This is the current expected combination: " + Context.GetExpectedCombination());
         }
@@ -533,7 +545,11 @@ public class RhythmGameController : MonoBehaviour {
                 started = true;
             }
 
-            public override void OnExit() { }
+            public override void OnExit() { 
+                Debug.Log("Starting notes moving in");
+                Context.startedNoteMovement = true;
+                Context.Context.CallCoroutine("StartNotes");
+            }
         }
 
         //internal states of phase 1 
@@ -579,6 +595,8 @@ public class RhythmGameController : MonoBehaviour {
 
                 Context.Context.noteCounter += 1;
 
+                Debug.Log("how many notes have passed: " + Context.Context.noteCounter);
+
                 //set the next expected note
                 Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.Context.noteCounter]);
 
@@ -587,7 +605,8 @@ public class RhythmGameController : MonoBehaviour {
                 if (Context.Context.CombinationCheck (pressedCombo, expectedCombo)) {
                     //correct combination was pressed
                     Debug.Log ("No strike");
-                } else {
+                } 
+                else {
                     //restart the rhythm game
                     Debug.Log ("Incorrect combination, restarting the game");
                     Context.Context.RestartRhythmGame();
@@ -642,6 +661,10 @@ public class RhythmGameController : MonoBehaviour {
 
         public override void Update() {
             phaseWindowStateMachine.Update();
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                TransitionTo<ClosingAnimation>();
+            }
             //if the noteCounter is past the first phase, transition into phase 2
 
             //criteria to end the song
@@ -766,14 +789,10 @@ public class RhythmGameController : MonoBehaviour {
     private class ClosingAnimation : FiniteStateMachine<RhythmGameController>.State {
         public override void OnEnter() {
             Debug.Log("Closing the rhythm game");
-        }
-
-        public override void Update() {
             Context.CallCoroutine("ClosingAnimation");
         }
 
-        public override void OnExit() {
-
+        public override void Update() {
         }
     }
 }

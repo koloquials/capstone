@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Background : MonoBehaviour
 {
-    public IEnumerator ScaleBackground(float time)
+    public IEnumerator ScaleBackground(float time, Vector3 scaleToSize)
     {
         //Debug.Log("Coroutine: trying to scale the fret");
-        Vector3 originalScale = new Vector3(0f, 0f, 0f);
-        Vector3 destinationScale = new Vector3(24f, 12f, 1f);
-        
+        Vector3 originalScale = gameObject.transform.localScale;
+        // Vector3 destinationScale = new Vector3(24f, 12f, 1f);
+        Vector3 destinationScale = scaleToSize;
+
         //Color spriteColour = mySpriteRenderer.color;
 
         float currTime = 0f;

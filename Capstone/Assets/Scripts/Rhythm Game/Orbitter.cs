@@ -36,11 +36,12 @@ public class Orbitter : MonoBehaviour
         transform.position = startPos;
     }
 
-    public IEnumerator ScaleOrbitter(float time)
+    public IEnumerator ScaleOrbitter(float time, Vector3 scaleToSize)
     {
         //Debug.Log("Coroutine: trying to scale the fret");
         Vector3 originalScale = gameObject.transform.localScale;
-        Vector3 destinationScale = new Vector3(0.5f, 0.5f, 3f);
+        // Vector3 destinationScale = new Vector3(0.5f, 0.5f, 3f);
+        Vector3 destinationScale = scaleToSize;
 
         //Color spriteColour = mySpriteRenderer.color;
 
