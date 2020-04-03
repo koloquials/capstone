@@ -314,7 +314,7 @@ Piper: I’m going to try something, okay?
 <<Set $startedRhythm to 1>>
 <<Set $waypoint to 5>>
 <<Set $completeRhythm to 0>>
-<<RhythmStart notePrefab>>
+<<RhythmGameState GameManager>>
 
 
 ===

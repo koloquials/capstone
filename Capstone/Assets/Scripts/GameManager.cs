@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         gameManagerStateMachine.Update();
+
+        //remove these later. Here for debugging purposes. Start 
         if (Input.GetKeyDown(KeyCode.C)) {
             gameManagerStateMachine.TransitionTo<RhythmGame>();
         }
@@ -29,6 +31,15 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) {
             gameManagerStateMachine.TransitionTo<Overworld>();
         }
+        //End
+    }
+
+    public void RhythmGameState() {
+        gameManagerStateMachine.TransitionTo<RhythmGame>();
+    }
+
+    public void OverworldState() {
+        gameManagerStateMachine.TransitionTo<Overworld>();
     }
 
     private class Overworld : FiniteStateMachine<GameManager>.State {

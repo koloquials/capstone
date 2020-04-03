@@ -561,7 +561,7 @@ public class RhythmGameController : MonoBehaviour {
             float windowLength;
 
             public override void OnEnter() {
-                Debug.Log ("Entering window");
+                Debug.Log("Entering window at beat " + SimpleClock.Instance.Beats + " and tick " + SimpleClock.Instance.Ticks);
                 pressedCombo = "";
                 expectedCombo = Context.Context.GetExpectedCombination();
 
@@ -584,6 +584,7 @@ public class RhythmGameController : MonoBehaviour {
                 //transition out of the window if it is over
                 if (windowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
                     // Debug.Log("inWindow timer status: " + windowLength);
+                    Debug.Log("Exited window at beat " + SimpleClock.Instance.Beats + " and tick " + SimpleClock.Instance.Ticks);
                     TransitionTo<OutOfWindow>();
                 }
                 // Debug.Log ("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
