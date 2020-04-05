@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         gameManagerStateMachine.Update();
 
         //remove these later. Here for debugging purposes. Start 
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C) && (gameManagerStateMachine.CurrentState.GetType() != typeof(RhythmGame))) {
             gameManagerStateMachine.TransitionTo<RhythmGame>();
         }
 

@@ -11918,6 +11918,7 @@ MonoBehaviour:
   RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   rippleParticleSystem: {fileID: 0}
+  phase1Threshold: 0
 --- !u!212 &430224947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17418,7 +17419,6 @@ MonoBehaviour:
   RD: {fileID: -3289130346622629159, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
-  simpleClockScript: {fileID: 0}
   currMeasure: 0
   currBeat: 0
   currTick: 0
@@ -17427,7 +17427,6 @@ MonoBehaviour:
   backgroundScript: {fileID: 0}
   background: {fileID: 0}
   noteObjectsParent: {fileID: 0}
-  player: {fileID: 1100603061}
   noteCounter: 0
   gameEnded: 0
 --- !u!1 &1018475572
@@ -18306,7 +18305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590019738}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c503353ae16e0438ab7a973ce8ca421b, type: 3}
   m_Name: 

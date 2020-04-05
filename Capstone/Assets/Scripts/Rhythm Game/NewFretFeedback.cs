@@ -34,27 +34,12 @@ public class NewFretFeedback : MonoBehaviour
 
     private int currPosInSong = 1;
 
+    public int phase1Threshold = 0;
+
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
-    }
-
-    public void SetPhase1Sequence(List<string> phase1Sequence)
-    {
-        this.phase1Sequence = phase1Sequence.ToArray();
-
-    }
-
-    public void SetPhase2Sequence(List<string> phase2Sequence)
-    {
-        this.phase2Sequence = phase2Sequence.ToArray();
-    }
-
-    public void SetSong(List<string> phase1Sequence, List<string> phase2Sequence)
-    {
-        phase1Sequence.AddRange(phase2Sequence);
-        this.songSequence = phase1Sequence.ToArray();
     }
 
     public IEnumerator ScaleFret(float time, Vector3 scaleToSize)
@@ -84,7 +69,7 @@ public class NewFretFeedback : MonoBehaviour
 
     public void SetFret(string nextSpriteCombination)
     {
-        if (currPosInSong > phase1Sequence.Length)
+        if (currPosInSong > phase1Threshold)
         {
             phase1Over = true;
         }

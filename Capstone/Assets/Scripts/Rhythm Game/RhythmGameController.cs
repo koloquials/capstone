@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// this script will control the entire rhythm game: it takes care of key input, checking if a combination was correct, 
+/// Put this on an empty GameObject. The object will start inactive and is set to active when the player enters the rhythm game state 
 /// 
 /// </summary>
 public class RhythmGameController : MonoBehaviour {
@@ -18,7 +18,7 @@ public class RhythmGameController : MonoBehaviour {
     public GameObject notePrefab;
 
     //the first x# of notes for any song will be scripted
-    List<string> phase1NotesCombinations = new List<string>() { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD", "LL", "RR" };
+    List<string> notesCombinations = new List<string>() { "UU", "DD", "LL", "RR", "UD", "LR", "UU", "DD", "LL", "RR" };
 
     //note combinations will be generated at random, but they will not appear with equal likelihood! 
     string[] mostLikelyCombos = { "UU", "DD", "LL", "RR" }; //these have a 40% chance of appearing
@@ -31,8 +31,7 @@ public class RhythmGameController : MonoBehaviour {
     //the song will be represented in a 2D array. The outer array representing the measure and the inner array 
     //representing the four beats. 
     GameObject[, ] thisSong = new GameObject[77, 4];
-    string[] thisSongSequence; //array to hold the entire song's combinations ONLY. This has nothing to do with the
-    //actual internal workings of the rhythm game, but just makes setting the fret easier
+    string[] thisSongSequence; //array to hold the entire song's string combinations ONLY. This has nothing to do with the actual internal workings of the rhythm game, but just makes setting the fret easier
 
     public Sprite UU;
     public Sprite UD;
@@ -53,12 +52,8 @@ public class RhythmGameController : MonoBehaviour {
 
     //booleans to control moving between states of the rhythm game
     bool inPhase1 = false; //this gets set to true when the IntroAnimation state has finished
-    bool inPhase2 = false; //this gets set to true when the player has hit the first 10 key combinations
-    //correctly and will move into Phase2 state
 
-    public SimpleClock simpleClockScript; //another script that is attached to the same object (not a child)
-    //SimpleClock manages the song itself (beats, measures, playing it, etc...)
-
+    //
     public int currMeasure;
     public int currBeat;
     public int currTick;
@@ -69,11 +64,6 @@ public class RhythmGameController : MonoBehaviour {
     public Background backgroundScript;
     public SpriteRenderer background;
     public Transform noteObjectsParent;
-
-    public Yarn.Unity.Example.PlayerCharacter player; //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
-
-    public int noteCounter = 0;
-
     public bool gameEnded = false;
 
     void OnEnable() {
@@ -95,14 +85,13 @@ public class RhythmGameController : MonoBehaviour {
 
         //generate the random combination for the second phase of the song and make the song into one string
         GenerateCombinations();
-        SetThisSongSequence (phase1NotesCombinations, phase2NotesCombinations);
+
+        fretFeedbackScript.phase1Threshold = 10;
+        // SetThisSongSequence(phase1NotesCombinations, phase2NotesCombinations);
+
+        this.thisSongSequence = notesCombinations.ToArray();
+    
         GenerateNotes();
-
-        //fret will be self-sufficient
-        fretFeedbackScript.SetPhase1Sequence (phase1NotesCombinations);
-        fretFeedbackScript.SetPhase2Sequence (phase2NotesCombinations);
-
-        fretFeedbackScript.SetSong (phase1NotesCombinations, phase2NotesCombinations);
     }
 
     // Update is called once per frame
@@ -146,7 +135,7 @@ public class RhythmGameController : MonoBehaviour {
                 thisNotesCombo = leastLikelyCombos[getComboIndex];
             }
 
-            phase2NotesCombinations.Add (thisNotesCombo);
+            notesCombinations.Add(thisNotesCombo);
 
             thisNotesCombo = "";
         }
@@ -190,14 +179,14 @@ public class RhythmGameController : MonoBehaviour {
 
     //utility function: the song is one sequence, but it has two phases with notes that are handled differently. 
     // (scripted in phase 1, generated in phase 2). Function to put both lists together to make the entire song.
-    void SetThisSongSequence (List<string> phase1NotesCombinations, List<string> phase2NotesCombinations) {
-        phase1NotesCombinations.AddRange (phase2NotesCombinations);
-        this.thisSongSequence = phase1NotesCombinations.ToArray();
+    // void SetThisSongSequence (List<string> phase1NotesCombinations, List<string> phase2NotesCombinations) {
+    //     phase1NotesCombinations.AddRange(phase2NotesCombinations);
+    //     this.thisSongSequence = phase1NotesCombinations.ToArray();
 
-        // Debug.Log ("the song, in combinations, is this long: " + thisSongSequence.Length);
-        // foreach (string combination in thisSongSequence)
-        // Debug.Log ("Setting the song sequence: " + combination);
-    }
+    //     // Debug.Log ("the song, in combinations, is this long: " + thisSongSequence.Length);
+    //     // foreach (string combination in thisSongSequence)
+    //     // Debug.Log ("Setting the song sequence: " + combination);
+    // }
 
     public string GetArrowKeys() {
         if (Input.GetKeyDown (KeyCode.UpArrow))
@@ -276,37 +265,44 @@ public class RhythmGameController : MonoBehaviour {
     }
 
     //utility functions for handling the present state of the rhythm game 
-    public void RestartRhythmGame() {
-        //notes are not destroyed when they reach the goal, they just turn invisible and
-        // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
+    // public void RestartRhythmGame() {
+    //     //notes are not destroyed when they reach the goal, they just turn invisible and
+    //     // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
 
-        //this code is specifically for resetting phase1 of the game
-        StopAllCoroutines();
+    //     //this code is specifically for resetting phase1 of the game
+    //     StopAllCoroutines();
 
-        //stop the song
-        SimpleClock.Instance.songSource.Stop();
-        SimpleClock.Instance.SetBPM(138);
+    //     //stop the song
+    //     SimpleClock.Instance.songSource.Stop();
+    //     SimpleClock.Instance.SetBPM(138);
 
-        //reset all notes. 
-        for (int i = 0; i < thisSong.GetLength(0); i++) {
-            for (int j = 0; j < thisSong.GetLength(1); j++) {
-                //index out of bounds exception somewhere :' ( 
-                if (thisSong[i, j] != null) {
-                    NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
-                    thisNoteScript.ResetNote(false);
-                }
-            }
-        }
+    //     //reset all notes. 
+    //     for (int i = 0; i < thisSong.GetLength(0); i++) {
+    //         for (int j = 0; j < thisSong.GetLength(1); j++) {
+    //             //index out of bounds exception somewhere :' ( 
+    //             if (thisSong[i, j] != null) {
+    //                 NewNote thisNoteScript = thisSong[i, j].gameObject.GetComponent<NewNote>();
+    //                 thisNoteScript.ResetNote(false);
+    //             }
+    //         }
+    //     }
 
-        rhythmGameStateMachine.TransitionTo<Phase1>();
+    //     rhythmGameStateMachine.TransitionTo<Phase1>();
 
-        Debug.Log("Changing the background to indicate that the rhythm game is restarting");
-        ChangeBackground(false, true);
-    }
+    //     ChangeBackground(false, true);
+    // }
 
     public void CallCoroutine(string coroutineToCall) {
+        if (coroutineToCall.Equals("StopAll")) {
+            StopAllCoroutines();
+        }
+
         if (coroutineToCall.Equals("IntroAnimation")) {
             StartCoroutine(IntroAnim());
+        }
+
+        if (coroutineToCall.Equals("StartMovement")) {
+            MoveNote(currMeasure + 4, currBeat);
         }
 
         if (coroutineToCall.Equals("StartNotes")) {
@@ -315,6 +311,25 @@ public class RhythmGameController : MonoBehaviour {
 
         if (coroutineToCall.Equals("ClosingAnimation")) {
             StartCoroutine(ClosingAnim());
+        }
+    }
+
+    public void MoveNote(int currMeasure, int currBeat) {
+        int getMeasure = currMeasure - 2;
+        int getBeat = currBeat - 1;
+
+        int nextMeasure;
+        int nextBeat;
+
+        if (currBeat == 1) {
+            nextMeasure = getMeasure;
+            nextBeat = 2;
+            StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+        }
+        else if (currBeat == 3) {
+            nextMeasure = getMeasure + 1;
+            nextBeat = 0;
+            StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
         }
     }
 
@@ -373,12 +388,13 @@ public class RhythmGameController : MonoBehaviour {
 
     public bool WindowCheck() {
         //hitting the third beat of a measure
-        if ((SimpleClock.Instance.Beats == 2 && (SimpleClock.Instance.Ticks >= 48)) || (SimpleClock.Instance.Beats == 3 && (SimpleClock.Instance.Ticks <= 48))) {
+        if ( (SimpleClock.Instance.Beats == 2 && (SimpleClock.Instance.Ticks >= 48)) || (SimpleClock.Instance.Beats == 3 && (SimpleClock.Instance.Ticks <= 48)) ) {
             return true;
         }
         
         //hitting the first beat of a measure
-        else if ((SimpleClock.Instance.Beats == 4 && (SimpleClock.Instance.Ticks >= 48)) || (SimpleClock.Instance.Beats == 1 && (SimpleClock.Instance.Ticks <= 48))) {
+        //occasionally SimpleClock will return that it was Beat 5, even though that's incorrect (musically). Idk why, coding with time be messy like that lol
+        else if ((SimpleClock.Instance.Beats == 4 && (SimpleClock.Instance.Ticks >= 48)) || (SimpleClock.Instance.Beats == 1 && (SimpleClock.Instance.Ticks <= 48)) || SimpleClock.Instance.Beats == 5) {
             return true;
         }
 
@@ -427,29 +443,10 @@ public class RhythmGameController : MonoBehaviour {
         }
     }
 
-    //State machine
-    //before the rhythm game. This is preparation for loading up the rhythm game and leading into the animation      
-    // private class LoadRhythmGame : FiniteStateMachine<RhythmGameController>.State {
-    //     public override void OnEnter() {
-    //         //accessing variables that are part of rhythm game controller
-    //         //Context.thisSong;
-    //         Debug.Log ("Entering LoadRhythmGame state");
-    //         Context.player.motionControl(false); 
-    //     }
-
-    //     public override void Update() {
-    //         //call transitionto, then onExit will run, then onenter for whatever transitionto will be run
-    //         if (Input.GetKeyDown(KeyCode.P)) {
-    //             TransitionTo<IntroAnimation>();
-    //             Context.cam.setGame(true);
-    //         }
-    //     }
-
-    //     public override void OnExit() {
-
-    //     }
-    // }
-
+    
+    /// <summary>
+    /// State machine that handles the three states that the rhythm game goes through: intro animation, rhythm game and closing animation.
+    /// </summary>
     //intro animation for the rhythm game. Player input cannot be taken.
     private class IntroAnimation : FiniteStateMachine<RhythmGameController>.State {
         public override void OnEnter() {
@@ -474,7 +471,7 @@ public class RhythmGameController : MonoBehaviour {
     //phase 1 of rhythm game--press an x# of notes 
     private class Phase1 : FiniteStateMachine<RhythmGameController>.State {
         FiniteStateMachine<Phase1> phaseWindowStateMachine;
-        // private int noteCounter = 0;
+        private int noteCounter = 0;
         private bool startedNoteMovement = false;           //manage making sure the coroutine is only called once
         private string pressedArrow;
         private string pressedWASD;
@@ -485,6 +482,11 @@ public class RhythmGameController : MonoBehaviour {
             
         private bool started = false;
 
+        private bool phase1 = true;
+        private bool phase2 = false;
+
+        private int strikes = 0;
+
         public override void OnEnter() {
             Debug.Log ("starting phase 1");
             phaseWindowStateMachine = new FiniteStateMachine<Phase1>(this);
@@ -492,62 +494,87 @@ public class RhythmGameController : MonoBehaviour {
         }
 
         public override void Update() {
+            phaseWindowStateMachine.Update();
+
             //exit out of the rhythm game 
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 TransitionTo<ClosingAnimation>();
-            }
+            } 
 
-            phaseWindowStateMachine.Update();
             //if the noteCounter is past the first phase, transition into phase 2
-            if (Context.noteCounter > 10) {
-                Debug.Log("transitioning to phase 2");
-                TransitionTo<Phase2>();
+            if (noteCounter > 10 && phase1) {
+                Debug.Log("phase1 ended, entering phase2");
+                phase1 = false;
+                phase2 = true;
             }
 
             //if in the window and state machine already is not in InWindow state, transition to the state
             //makes sure that we do not repeatedly enter the window
-            if (Context.WindowCheck() && phaseWindowStateMachine.CurrentState.GetType() != typeof(InWindow) && started)  {
-                Debug.Log("parent transitioning the child state");
+            if (Context.WindowCheck() && (phaseWindowStateMachine.CurrentState.GetType() != typeof(InWindow)) && started)  {
+                Debug.Log("parent transitioning the child state to InWindow");
                 phaseWindowStateMachine.TransitionTo<InWindow>();
             }
-            // else if (!Context.WindowCheck() && windowExited) {
-            //     windowExited = false;
-            //     phaseWindowStateMachine.TransitionTo<OutOfWindow>();
-            // }
-            //windowCheck returns false AND window has not been entered
-            // else if (!Context.WindowCheck() && !windowEntered && started) {
-            //     phaseWindowStateMachine.TransitionTo<OutOfWindow>();
-            // }
+            else if (!Context.WindowCheck() && (phaseWindowStateMachine.CurrentState.GetType() == typeof(InWindow)) && started) {
+                Debug.Log("parent transitioning the child state to OutOfWindow");
+                phaseWindowStateMachine.TransitionTo<OutOfWindow>();
+            }
 
-            //if in the window and two keys have not yet been pressed, detect player input
-            // if (Context.WindowCheck() && pressedCombo.Length != 2 && windowClosed)  {
-            //     pressedArrow = Context.GetArrowKeys();
-            //     pressedWASD = Context.GetWASD();
+            //criteria to end the song
+            //the song is 77 bars long, when the clock hits 79 bars, end of game
+            if (SimpleClock.Instance.Measures == 79)  {
+                TransitionTo<ClosingAnimation>();
+            }
+        }
 
-            //     expectedCombo = Context.GetExpectedCombination();
+        //function that resets all variables and restarts the rhythm game
+        public void RestartRhythmGame() {
+            //notes are not destroyed when they reach the goal, they just turn invisible and
+            // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
 
-            //     pressedCombo = pressedArrow + pressedWASD;
+            //this code is specifically for resetting phase1 of the game
+            Context.CallCoroutine("StopAll");
+        
+            SimpleClock.Instance.songSource.Stop();
+            SimpleClock.Instance.SetBPM(138);
 
-            //     if (pressedCombo.Length == 2) {
-            //         windowClosed = true;
-            //     }
-            // }
-            // //if in the window but player has already entered two input for that cycle, the window has forced closed and evaluate input
-            // else if (Context.WindowCheck() && windowClosed) {
-            //     Context.CombinationCheck();
-            // }
-            // else {
-            //     Debug.Log("Not in the window, doing nothing");
-            // }
+            noteCounter = 0;
+            strikes = 0; 
 
-            // Debug.Log ("This is the current expected combination: " + Context.GetExpectedCombination());
+            Context.fretFeedbackScript.SetFret(Context.thisSongSequence[noteCounter]);
+
+            //reset all notes. 
+            for (int i = 0; i < Context.thisSong.GetLength(0); i++) {
+                for (int j = 0; j < Context.thisSong.GetLength(1); j++) {
+                //index out of bounds exception somewhere :' ( 
+                    if (Context.thisSong[i, j] != null) {
+                    NewNote thisNoteScript = Context.thisSong[i, j].gameObject.GetComponent<NewNote>();
+                    thisNoteScript.ResetNote(false);
+                    }
+                }
+            }
+
+            phaseWindowStateMachine.TransitionTo<Resting>();
+
+            Context.ChangeBackground(false, true);
+
+            started = false;
         }
 
         public override void OnExit() {
 
         }
 
-        //state for handling starting the rhythm game. This is a special case.
+
+        /// <summary>
+        /// nested state machine which operates whilst the rhythm game itself is running.
+        /// Handles three cases: resting, within a time window and outside of a time window
+        /// This state machine is NOT self sufficient, the parent state controls the window. The only state that should be calling TransitionTo<>() is resting
+        /// </summary>
+
+        /// Resting: a special case that only occurs at the very beginning of the rhythm game. 
+        /// starting the rhythm game is a special case because it is dependent on input, not the window system like the rest 
+        /// of the game. After receiving first correct input, the clock begins and it will start at beat 1 and the 48 ticks following it do not constitute a valid window
+        /// since the player already entered input.
         private class Resting : FiniteStateMachine<Phase1>.State {
             int startingPosition; //start at the beginning of the 2D array which represents the song
 
@@ -556,20 +583,11 @@ public class RhythmGameController : MonoBehaviour {
             string pressedArrow;
             string pressedWASD;
 
-            //variables for starting the rhythm game. 
-            //starting the rhythm game is a special case because it is dependent on input, not the window system like the rest 
-            //of the game. After receiving first correct input, the clock begins and it will start at beat 1. In order for the
-            //in-window/out-of-window pattern to work, the windows have to be offset by 48 ticks (half of a beat) before entering
-            //the window pattern
             bool firstComboPressed;
-            float bufferTime;
 
             public override void OnEnter() {
                 Debug.Log("Entering resting phase");
                 firstComboPressed = false;
-                bufferTime = SimpleClock.BeatLength(); //window offset is half of a beat (48 ticks)
-                Context.Context.noteCounter = 0; //every time we enter the Resting phase, we want to be at the very beginning of the song
-                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.Context.noteCounter]);
                 Context.Context.ChangeBackground(false, true);
                 // Debug.Log ("Buffer time is: " + bufferTime);
             }
@@ -580,19 +598,13 @@ public class RhythmGameController : MonoBehaviour {
                 pressedCombo = pressedArrow + pressedWASD;
 
                 //first combination was pressed correctly, game will otherwise stay resting the entire time.
-                if (expectedCombo.Equals(pressedCombo)) {
-                    Debug.Log ("this is what was expected to start: " + expectedCombo + "this was what was pressed: " + pressedCombo);
-                    Debug.Log("starting rhythm game");
+                if (expectedCombo.Equals(pressedCombo) && !firstComboPressed) {
+                    Debug.Log("Starting rhythm game");
                     StartRhythmGame();
                 }
 
-                //if the first combo has been pressed, set the timer
-                if (firstComboPressed) {
-                    bufferTime -= Time.deltaTime;
-                    // Debug.Log ("time remaining: " + bufferTime);
-                }
-                if (bufferTime <= 0) {
-                    Debug.Log ("Buffer for offset special first case over and starting rhythm game");
+                if (firstComboPressed && SimpleClock.Instance.Beats >= 2) {
+                    Debug.Log("First case handled and transitioning to Out of Window at : " + SimpleClock.Instance.Beats + " and this tick: " + SimpleClock.Instance.Ticks);
                     TransitionTo<OutOfWindow>();
                 }
             }
@@ -602,20 +614,20 @@ public class RhythmGameController : MonoBehaviour {
                 // Debug.Log (Context.Context.currMeasure + " and " + Context.Context.currBeat);
                 //Context.Context.simpleClockScript.FirstBeat();
                 SimpleClock.Instance.FirstBeat();
-                Context.Context.noteCounter += 1;
-                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.Context.noteCounter]);
+                Context.noteCounter += 1;
+                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
                 firstComboPressed = true;
             }
 
             public override void OnExit() { 
                 Debug.Log("Starting notes moving in");
                 Context.startedNoteMovement = true;
-                Context.Context.CallCoroutine("StartNotes");
+                // Context.Context.CallCoroutine("StartNotes");
                 Context.started = true;
             }
         }
 
-        //internal states of phase 1 
+        //InWindow:
         private class InWindow : FiniteStateMachine<Phase1>.State { 
             string pressedCombo = "";
             string expectedCombo = "";
@@ -637,7 +649,6 @@ public class RhythmGameController : MonoBehaviour {
             }
 
             public override void Update() {
-                windowLength -= Time.deltaTime; //decrement the time left 
                 // Debug.Log("Time left in the window: " + windowLength);
 
                 if (pressedArrow.Equals("")) //if a pressed key has not yet been registered, 
@@ -645,10 +656,6 @@ public class RhythmGameController : MonoBehaviour {
                 if (pressedWASD.Equals(""))
                     pressedWASD = Context.Context.GetWASD();
                 //transition out of the window if it is over
-
-                if (windowLength <= 0f) {
-                    TransitionTo<OutOfWindow>();
-                }
                 // Debug.Log ("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
             }
 
@@ -656,19 +663,33 @@ public class RhythmGameController : MonoBehaviour {
                 // Context.Context.fretFeedbackScript.RippleEffect();
                 pressedCombo = pressedArrow + pressedWASD;
 
-                Context.Context.noteCounter += 1;
+                Context.noteCounter += 1;
 
                 //set the next expected note
-                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.Context.noteCounter]);
+                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
+
+                Context.Context.CallCoroutine("StartMovement");
 
                 Debug.Log ("this is what was expected: " + expectedCombo + "this was what was pressed: " + pressedCombo);
                 Debug.Log("exiting window at measure " + SimpleClock.Instance.Measures +  " and beat " + SimpleClock.Instance.Beats + " and tick " + SimpleClock.Instance.Ticks);
                 
-                //if an incorrect combination was pressed, restart the rhythm game
-                if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo)) {
-                    //restart the rhythm game
+                //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
+                if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     Debug.Log("Restarting the rhythm game");
-                    Context.Context.RestartRhythmGame();
+                    Context.RestartRhythmGame(); 
+                }
+
+                //phase 2 check: if an incorrect combination was pressed, grant a strike
+                if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase2) {
+                    Context.strikes++;
+                    
+                    Debug.Log("Current number of strikes: " + Context.strikes);
+
+                    //restart the game if more than 5 strikes
+                    if (Context.strikes >= 5) {
+                        Debug.Log("Too many strikes, restarting rhythm game");
+                        Context.RestartRhythmGame();
+                    }
                 }
             }
         }
@@ -676,18 +697,11 @@ public class RhythmGameController : MonoBehaviour {
         private class OutOfWindow : FiniteStateMachine<Phase1>.State {
             float outOfWindowLength;
             public override void OnEnter() {
-                Debug.Log("outside of window, cannot press");
-                outOfWindowLength = SimpleClock.BeatLength();
+                Debug.Log("Out of Window OnEnter()");
                 Context.Context.ChangeBackground(false, false);
             }
             public override void Update() {
-                // outOfWindowLength -= Time.deltaTime;
-                // // Debug.Log ("Time remaining until next window: " + outOfWindowLength);
 
-                // if (outOfWindowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
-                //     // Debug.Log("OoW timer status: " + outOfWindowLength);
-                //     TransitionTo<InWindow>();
-                // }
             }
 
             public override void OnExit() {
@@ -695,155 +709,7 @@ public class RhythmGameController : MonoBehaviour {
             }
         }
     }
-
-    //phase 2--notes will move across the screen and player has to hit them at the right time.
-    private class Phase2 : FiniteStateMachine<RhythmGameController>.State {
-        //phase 2 has strikes. The player gets to mess up 4 times and on the 5th, the game restarts
-        private int strikes = 0;
-        public GameObject lifeSprite1;
-        public GameObject lifeSprite2;
-        public GameObject lifeSprite3;
-        public GameObject lifeSprite4;
-        public GameObject lifeSprite5;
-        GameObject[] lifeSprites;
-
-        FiniteStateMachine<Phase2> phaseWindowStateMachine;
-        // private int noteCounter = 0;
-
-        public override void OnEnter() {
-            Debug.Log("Entering phase 2");
-            phaseWindowStateMachine = new FiniteStateMachine<Phase2>(this);
-            phaseWindowStateMachine.TransitionTo<OutOfWindow>();
-        }
-
-        public override void Update() {
-            phaseWindowStateMachine.Update();
-
-            if (Input.GetKeyDown(KeyCode.Escape)) {
-                TransitionTo<ClosingAnimation>();
-            }
-            //if the noteCounter is past the first phase, transition into phase 2
-
-            //criteria to end the song
-            //the song is 77 bars long, when the clock hits 79 bars, end of game
-            if (SimpleClock.Instance.Measures == 79)  {
-                TransitionTo<ClosingAnimation>();
-            }
-            //thisSong[,] holds the entire song, when we've reached the end of it
-        }
-
-        private class InWindow : FiniteStateMachine<Phase2>.State {
-            string pressedCombo = "";
-            string expectedCombo = "";
-            string pressedArrow;
-            string pressedWASD;
-            float windowLength;
-            
-
-            public override void OnEnter() {
-                Debug.Log ("Entering window");
-                pressedCombo = "";
-                expectedCombo = Context.Context.GetExpectedCombination();
-
-                pressedArrow = "";
-                pressedWASD = "";
-                //each window is one beat long
-                windowLength = SimpleClock.BeatLength();
-
-                Context.Context.ChangeBackground(true, false);
-            }
-
-            public override void Update() {
-                windowLength -= Time.deltaTime; //decrement the time left 
-                // Debug.Log("Time left in the window: " + windowLength);
-
-                if (pressedArrow.Equals ("")) //if a pressed key has not yet been registered, 
-                    pressedArrow = Context.Context.GetArrowKeys(); //then check for a pressed key
-                if (pressedWASD.Equals (""))
-                    pressedWASD = Context.Context.GetWASD();
-                //transition out of the window if it is over
-                if (windowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
-                    Debug.Log("inWindow timer status: " + windowLength);
-                    TransitionTo<OutOfWindow>();
-                }
-                // Debug.Log ("We are currently at measure: " + Context.Context.currMeasure + " and at beat: " + Context.Context.currBeat);
-            }
-
-            public override void OnExit() {
-                // Context.Context.fretFeedbackScript.RippleEffect();
-                // Debug.Log ("Exiting window");
-                pressedCombo = pressedArrow + pressedWASD;
-
-                Context.Context.noteCounter += 1;
-
-                //set the next expected note
-                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.Context.noteCounter]);
-
-                Debug.Log ("this is what was expected: " + expectedCombo + "this was what was pressed: " + pressedCombo);
-
-                if (Context.Context.CombinationCheck (pressedCombo, expectedCombo)) {
-                    //correct combination was pressed
-                    Debug.Log ("No strike");
-                } 
-                else {                    
-                    Context.strikes++;
-
-                    Debug.Log("Current number of strikes: " + Context.strikes);
-                    //restart the game if more than 5 strikes
-                    if (Context.strikes >= 5) {
-                        Debug.Log("Too many strikes, restarting rhythm game");
-                        Context.Context.RestartRhythmGame();
-                    }
-                }
-            }
-        }
-
-        private class OutOfWindow : FiniteStateMachine<Phase2>.State {
-            float outOfWindowLength;
-            public override void OnEnter() {
-                Debug.Log ("outside of window, cannot press");
-                outOfWindowLength = SimpleClock.BeatLength();
-                Context.Context.ChangeBackground(false, false);
-            }
-            public override void Update() {
-                outOfWindowLength -= Time.deltaTime;
-                // Debug.Log("Not in the window, cannot press anything");
-                // Debug.Log ("Time remaining until next window: " + outOfWindowLength);
-
-                // if (outOfWindowLength <= 0f || SimpleClock.Instance.Ticks == 48) {
-                //     // Debug.Log("OoW timer status: " + outOfWindowLength);
-                //     TransitionTo<InWindow>();
-                // }
-            }
-
-            public override void OnExit() {
-
-            }
-        }
-
-        // private void StrikeCheck() {
-        //     if (strikes > 0) {
-        //         lifeSprite5.SetActive(false);
-        //     }
-        //     if (strikes > 1) {
-        //         lifeSprite4.SetActive(false);
-        //     }
-        //     if (strikes > 2) {
-        //         lifeSprite3.SetActive(false);
-        //     }
-        //     if (strikes > 3) {
-        //         lifeSprite2.SetActive(false);
-        //     }
-        //     if (strikes > 4) {
-        //         lifeSprite1.SetActive(false);
-        //     }
-        // }
-
-        public override void OnExit() {
-
-        }
-    }
-
+    
     private class ClosingAnimation : FiniteStateMachine<RhythmGameController>.State {
         public override void OnEnter() {
             Debug.Log("Closing the rhythm game");
