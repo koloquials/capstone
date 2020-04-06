@@ -57,14 +57,17 @@ public class NewNote : MonoBehaviour
     {
         currTime = 0f;
 
-        SetMaterial(true);
+        // SetMaterial(true);
         SetVisibility(true);
 
+        // Debug.Log("starting from: " + startPos + " and moving towards: " + destinationPos);
+        // Debug.Log("will take this long to move across the screen: " + SimpleClock.MeasureLength() * 4);
         yield return new WaitForSeconds(delayTime); // start at time X
         while (currTime < (SimpleClock.MeasureLength() * 4))
         { // until one second passed
-        currTime += Time.deltaTime;
+            currTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in one second
+            // Debug.Log("note " + myCombination + " is currently at " + transform.position);
             yield return 1; // wait for next frame
         }
         
@@ -73,9 +76,9 @@ public class NewNote : MonoBehaviour
     }
 
     //function for resetting all properties of the note that are mutable as the game is played. 
-    public void ResetNote(string thisNotesCombo, Vector3 parentTransform, bool enabled) {
-        SetSprite(thisNotesCombo, parentTransform);
-        SetMaterial(enabled);
+    public void ResetNote(bool enabled) {
+        transform.position = startPos;
+        // SetMaterial(enabled);
         SetVisibility(enabled);
     }
 
@@ -87,104 +90,106 @@ public class NewNote : MonoBehaviour
         mySpriteRenderer.enabled = visible;
     }
 
-    public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
+    //SetSprite is a little more loaded than a setter function should be
+    //takes three parameters: the combination for this note, the parentTransform (used to set start position), and the fretTransform (used to set finish position)
+    public void SetSprite(string thisNotesCombo, Vector3 parentTransform, Vector3 fretTransform)
     {
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
             case "UU":
                 mySpriteRenderer.sprite = UU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.32f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.32f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.32f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UR":
                 mySpriteRenderer.sprite = UR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.27f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.27f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.27f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UL":
                 mySpriteRenderer.sprite = UL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.22f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.22f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.22f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UD":
                 mySpriteRenderer.sprite = UD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.17f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.17f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.17f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RU":
                 mySpriteRenderer.sprite = RU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.12f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.12f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.12f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RR":
                 mySpriteRenderer.sprite = RR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.07f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.07f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.07f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RL":
                 mySpriteRenderer.sprite = RL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.02f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y + 0.02f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y + 0.02f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RD":
                 mySpriteRenderer.sprite = RD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.03f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.03f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.03f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LU":
                 mySpriteRenderer.sprite = LU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.08f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y -0.08f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y -0.08f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LR":
                 mySpriteRenderer.sprite = LR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.13f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.13f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.13f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LL":
                 mySpriteRenderer.sprite = LL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.18f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y -0.18f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y -0.18f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LD":
                 mySpriteRenderer.sprite = LD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.23f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.23f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.23f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DU":
                 mySpriteRenderer.sprite = DU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.28f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.28f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.28f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DR":
                 mySpriteRenderer.sprite = DR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.33f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.33f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.33f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DL":
                 mySpriteRenderer.sprite = DL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.38f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.38f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.38f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DD":
                 mySpriteRenderer.sprite = DD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.43f));
-                SetDestinationPos(new Vector2(0f, parentTransform.y - 0.43f));
+                SetDestinationPos(new Vector2(1f, parentTransform.y - 0.43f));
                 SetCombination(thisNotesCombo);
                 break;
         }

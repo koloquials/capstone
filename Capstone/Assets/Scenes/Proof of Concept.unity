@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1397,6 +1397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49600606}
   - component: {fileID: 49600607}
+  - component: {fileID: 49600608}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -1468,6 +1469,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &49600608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49600605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d32504fc8f145e892580fcf9eae3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85910110
 GameObject:
   m_ObjectHideFlags: 0
@@ -7082,6 +7095,7 @@ MonoBehaviour:
   RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   rippleParticleSystem: {fileID: 0}
+  phase1Threshold: 0
 --- !u!212 &430224947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12329,7 +12343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &949923093
 Transform:
   m_ObjectHideFlags: 0
@@ -12500,7 +12514,6 @@ MonoBehaviour:
   RD: {fileID: -3289130346622629159, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RL: {fileID: 7045376975022999946, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
-  simpleClockScript: {fileID: 0}
   currMeasure: 0
   currBeat: 0
   currTick: 0
@@ -12508,7 +12521,7 @@ MonoBehaviour:
   orbitterScript: {fileID: 0}
   background: {fileID: 0}
   noteObjectsParent: {fileID: 0}
-  noteCounter: 0
+  gameEnded: 0
 --- !u!1 &1018475572
 GameObject:
   m_ObjectHideFlags: 0
@@ -13330,6 +13343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1435728932}
+  - component: {fileID: 1435728933}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13351,6 +13365,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435728933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435728931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599f549179bd741a6bbca8ba2d5dacfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1778579291}
+  player: {fileID: 1100603061}
+  rhythmGameController: {fileID: 949923092}
 --- !u!114 &1697991490 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6375833867557332074, guid: 9e0841b82a4ebcd438730d23886e17e6,
@@ -14345,7 +14374,7 @@ PrefabInstance:
     - target: {fileID: 1990880561357486150, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.63
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1990880561357486150, guid: a1de72314b9704c2eaf5c1bc7f0ad233,
         type: 3}

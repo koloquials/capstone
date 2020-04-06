@@ -61,10 +61,13 @@ public class RhythmGameController : MonoBehaviour {
     //UI element scripts and objects.
     public NewFretFeedback fretFeedbackScript; //reference to the fret (important for swapping the sprite on the fret out)
     public Orbitter orbitterScript;
-    public Background backgroundScript;
+    // public Background backgroundScript;
     public SpriteRenderer background;
     public Transform noteObjectsParent;
     public bool gameEnded = false;
+
+    public ScaleObject orbitterScaler;
+    public ScaleObject backgroundScaler;
 
     void OnEnable() {
         //make and begin running the state machine
@@ -77,8 +80,9 @@ public class RhythmGameController : MonoBehaviour {
         //visual utility and feedback scripts
         fretFeedbackScript = transform.GetChild(0).gameObject.GetComponent<NewFretFeedback>();
         orbitterScript = transform.GetChild(1).gameObject.GetComponent<Orbitter>();
-        backgroundScript = transform.GetChild(2).gameObject.GetComponent<Background>();
+        // backgroundScript = transform.GetChild(2).gameObject.GetComponent<Background>();
         background = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
+        backgroundScaler = background.gameObject.GetComponent<ScaleObject>();
 
         //grab a reference to the clock
         // simpleClockScript = gameObject.GetComponent<SimpleClock>();
@@ -301,10 +305,13 @@ public class RhythmGameController : MonoBehaviour {
             StartCoroutine(IntroAnim());
         }
 
+        //a little bit confusing
+        //this conditional calls the coroutine for each note to move itself dependent on where we are in the song right now
         if (coroutineToCall.Equals("StartMovement")) {
             MoveNote(currMeasure + 4, currBeat);
         }
 
+        //this conditional calls a coroutine that tells each note to start its movement coroutine
         if (coroutineToCall.Equals("StartNotes")) {
             StartCoroutine(StartNoteMovement(currMeasure + 4, 1));
         }
@@ -318,19 +325,24 @@ public class RhythmGameController : MonoBehaviour {
         int getMeasure = currMeasure - 2;
         int getBeat = currBeat - 1;
 
-        int nextMeasure;
-        int nextBeat;
+        // int nextMeasure;
+        // int nextBeat;
 
-        if (currBeat == 1) {
-            nextMeasure = getMeasure;
-            nextBeat = 2;
-            StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
-        }
-        else if (currBeat == 3) {
-            nextMeasure = getMeasure + 1;
-            nextBeat = 0;
-            StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
-        }
+        StartCoroutine(thisSong[getMeasure, getBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+
+
+
+        //if the beat when this method was called is the first in a measure then the next one to move will be third beat. 
+        // if (currBeat == 1) {
+        //     nextMeasure = getMeasure;
+        //     nextBeat = 2;
+        //     StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+        // }
+        // else if (currBeat == 3) {
+        //     nextMeasure = getMeasure + 1;
+        //     nextBeat = 0;
+        //     StartCoroutine(thisSong[nextMeasure, nextBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
+        // }
     }
 
     //used for starting the notes moving in phase 2
@@ -366,7 +378,7 @@ public class RhythmGameController : MonoBehaviour {
     //Coroutine to manage the scaling of the fret and orbitter. Orbitter scalls to full size before the fret starts
     public IEnumerator IntroAnim() {
         StartCoroutine(orbitterScript.ScaleOrbitter(2f, new Vector3(0.5f, 0.5f, 3f)));
-        StartCoroutine(backgroundScript.ScaleBackground(4.25f, new Vector3(24f, 12f, 1f)));
+        StartCoroutine(backgroundScaler.Scale(4.25f, new Vector3(24f, 12f, 1f)));
 
         yield return new WaitForSeconds(2.25f);
 
@@ -377,7 +389,7 @@ public class RhythmGameController : MonoBehaviour {
     //probably give it some other parameter that asks if should scale in the positive or negative direction (from current size)
     public IEnumerator ClosingAnim() {
         StartCoroutine(fretFeedbackScript.ScaleFret(2f, new Vector3(0f, 0f, 2f)));
-        StartCoroutine(backgroundScript.ScaleBackground(4.25f, new Vector3(0f, 0f, 1f)));
+        StartCoroutine(backgroundScaler.Scale(4.25f, new Vector3(0f, 0f, 1f)));
 
         yield return new WaitForSeconds(2.25f);
 
@@ -388,6 +400,10 @@ public class RhythmGameController : MonoBehaviour {
 
     public bool WindowCheck() {
         //hitting the third beat of a measure
+        if (SimpleClock.Instance.Beats == 0) {
+            return true;
+        }
+
         if ( (SimpleClock.Instance.Beats == 2 && (SimpleClock.Instance.Ticks >= 48)) || (SimpleClock.Instance.Beats == 3 && (SimpleClock.Instance.Ticks <= 48)) ) {
             return true;
         }
@@ -603,7 +619,7 @@ public class RhythmGameController : MonoBehaviour {
                     StartRhythmGame();
                 }
 
-                if (firstComboPressed && SimpleClock.Instance.Beats >= 2) {
+                if (firstComboPressed && !Context.Context.WindowCheck()) {
                     Debug.Log("First case handled and transitioning to Out of Window at : " + SimpleClock.Instance.Beats + " and this tick: " + SimpleClock.Instance.Ticks);
                     TransitionTo<OutOfWindow>();
                 }
@@ -623,6 +639,7 @@ public class RhythmGameController : MonoBehaviour {
                 Debug.Log("Starting notes moving in");
                 Context.startedNoteMovement = true;
                 // Context.Context.CallCoroutine("StartNotes");
+                // Context.Context.CallCoroutine("StartMovement");
                 Context.started = true;
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   public Yarn.Unity.Example.CameraFollow cam;
+    public Yarn.Unity.Example.CameraFollow cam;
     public Yarn.Unity.Example.PlayerCharacter player;   //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
 
     public GameObject rhythmGameController;
