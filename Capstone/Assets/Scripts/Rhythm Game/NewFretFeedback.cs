@@ -39,7 +39,7 @@ public class NewFretFeedback : MonoBehaviour
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        // rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+        rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
     }
 
     public IEnumerator ScaleFret(float time, Vector3 scaleToSize)
