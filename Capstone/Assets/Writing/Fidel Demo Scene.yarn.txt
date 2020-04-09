@@ -3,6 +3,7 @@ title: Start
 tags: 
 colorID: 0
 position: -21,45
+parent: 
 ---
 <<if $waypoint is 2>>
 	[[Scene2]]
