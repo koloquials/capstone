@@ -233,5 +233,12 @@ namespace Yarn.Unity.Example
         {
             motion = m;
         }
+
+        public void teleport(Vector3 t) //Call this function whenever the player teleports, such as when using a door, otherwise the player will try to return to the last place clicked.
+        {
+            targetPosition = t;
+            isMoving = false;
+            facingRight = true;
+        }
     }
 }
