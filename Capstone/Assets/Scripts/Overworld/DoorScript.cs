@@ -27,6 +27,8 @@ public class DoorScript : MonoBehaviour
     bool active = false; //True when the mouse is clicked while primed is true. If the player goes into the door while active they will use it.
     bool playerOver = false; //If the player is over the door
 
+    bool useable = false; //Whether the door can actually be used, so dialogue can control access to scene transitions. Call dialogueActivate through a yarn script to turn it on.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,59 +38,66 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !fading) //If mouse is clicked while not already using the door, then either set it to active if the door is clicked on or deactivate if the door is not clicked on
+        if (useable) //If the door has been activated through dialogue, can be interacted with
         {
-            if(primed)
+            if (Input.GetMouseButtonDown(0) && !fading) //If mouse is clicked while not already using the door, then either set it to active if the door is clicked on or deactivate if the door is not clicked on
             {
-                active = true;
-            }
-            else
-            {
-                active = false;
-            }
-        }
-        if(active && playerOver) //If the door is active and the player is over it, open the door
-        {
-            openDoor();
-        }
-
-        if(fading) //Fading out
-        {
-            player.transform.position = playerPos;
-            if (fadeAmount < 1)
-            {
-                //Debug.Log("Fading");
-                fade.color = new Color(0, 0, 0, fadeAmount);
-                fadeAmount += 2 * Time.deltaTime;
-            }
-            else
-            {
-                player.transform.position = destinationWaypoint.transform.position; //Move the player. May want a better way of doing this, and may not move the camera as well
-                playerPos = player.transform.position; //Reset the player's position to their new position
-                player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().teleport(playerPos); //Tell the player character motion script that it teleported and therefore should stop trying to move
-                fading = false;
-                pausing = true;
-            }
-        }
-        if (pausing)
-        {
-            if (pause < 1) //Pausing for a half second after fading to black
-            {
-                //Debug.Log("Pause");
-                pause += 1 * Time.deltaTime;
-                player.transform.position = playerPos;
-            }
-            else if (fadeAmount > 0) //Fading back in
-            {
-                fadeAmount -= 2 * Time.deltaTime;
-                if (fadeAmount < 0)
+                if (primed)
                 {
-                    fadeAmount = 0;
-                    pausing = false;
+                    active = true;
                 }
-                fade.color = new Color(0, 0, 0, fadeAmount);
-                player.transform.position = playerPos;
+                else
+                {
+                    active = false;
+                }
             }
+            if (active && playerOver) //If the door is active and the player is over it, open the door
+            {
+                openDoor();
+            }
+
+            if (fading) //Fading out
+            {
+                player.transform.position = playerPos;
+                if (fadeAmount < 1)
+                {
+                    //Debug.Log("Fading");
+                    fade.color = new Color(0, 0, 0, fadeAmount);
+                    fadeAmount += 2 * Time.deltaTime;
+                }
+                else
+                {
+                    player.transform.position = destinationWaypoint.transform.position; //Move the player. May want a better way of doing this, and may not move the camera as well
+                    playerPos = player.transform.position; //Reset the player's position to their new position
+                    player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().teleport(playerPos); //Tell the player character motion script that it teleported and therefore should stop trying to move
+                    fading = false;
+                    pausing = true;
+                }
+            }
+            if (pausing)
+            {
+                if (pause < 1) //Pausing for a half second after fading to black
+                {
+                    //Debug.Log("Pause");
+                    pause += 1 * Time.deltaTime;
+                    player.transform.position = playerPos;
+                }
+                else if (fadeAmount > 0) //Fading back in
+                {
+                    fadeAmount -= 2 * Time.deltaTime;
+                    if (fadeAmount < 0)
+                    {
+                        fadeAmount = 0;
+                        pausing = false;
+                    }
+                    fade.color = new Color(0, 0, 0, fadeAmount);
+                    player.transform.position = playerPos;
+                }
+            }
+        }
+        else //If the door cannot be used, dialogue hasn't progressed
+        {
+            //Could have a script here that plays a locked door sound when clicked, or have Piper comment on having to talk to someone before leaving.
         }
     }
 
@@ -129,6 +138,11 @@ public class DoorScript : MonoBehaviour
         {
             playerOver = false;
         }
+    }
+
+    public void dialogueActivate() //Call this through a yarn script to activate the door
+    {
+        useable = true;
     }
 
 }
