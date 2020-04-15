@@ -1,40 +1,43 @@
 fileFormatVersion: 2
-guid: 05ea282cb40ae41b7bd12b6a3a3adb4b
+guid: 1a9e3fbf5e2ed4ac3ada977281982a99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9132943649063849663
-    second: p_neutral
+      213: -6124769478648142522
+    second: f_neutral
   - first:
-      213: -491972509161256054
-    second: p_happy1
+      213: 7346785490901998585
+    second: f_hah1
   - first:
-      213: 3841763337466331563
-    second: p_concern1
+      213: 8859913015139263608
+    second: f_concern1
   - first:
-      213: 2203558243583364522
-    second: p_concern2
+      213: -602085915115422508
+    second: f_hah2
   - first:
-      213: 6106397115019309877
-    second: p_happy2
+      213: -8603658861295588849
+    second: f_oooh
   - first:
-      213: 3744116162359150961
-    second: p_happy3
+      213: -8891824769840637312
+    second: f_smirk
   - first:
-      213: 7351381420051476410
-    second: p_upset1
+      213: 7286212765566003911
+    second: f_think
   - first:
-      213: -8628787795404737999
-    second: p_upset2
+      213: 5209939697362144026
+    second: f_concern2
   - first:
-      213: 8267236781181630474
-    second: p_indignant
+      213: 4938032592743283553
+    second: f_upset1
   - first:
-      213: 1619780670565327046
-    second: piper talksprites_9
+      213: -6737798243363774360
+    second: f_upset2
   - first:
-      213: -6688091669321103305
-    second: piper talksprites_10
+      213: 1772594784658690658
+    second: f_upset3
+  - first:
+      213: -4278549983757611044
+    second: f_eyes
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -131,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: p_neutral
+      name: f_neutral
       rect:
         serializedVersion: 2
         x: 0
@@ -145,14 +148,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 141b3ebb324414180800000000000000
-      internalID: -9132943649063849663
+      spriteID: 645e50e0c92700ba0800000000000000
+      internalID: -6124769478648142522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_happy1
+      name: f_hah1
       rect:
         serializedVersion: 2
         x: 500
@@ -166,14 +169,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8b8f280c992c29f0800000000000000
-      internalID: -491972509161256054
+      spriteID: 9fb1532aa7605f560800000000000000
+      internalID: 7346785490901998585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_concern1
+      name: f_concern1
       rect:
         serializedVersion: 2
         x: 1000
@@ -187,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba1ccc0a66fa05530800000000000000
-      internalID: 3841763337466331563
+      spriteID: 8746c3802fbb4fa70800000000000000
+      internalID: 8859913015139263608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_concern2
+      name: f_hah2
       rect:
         serializedVersion: 2
         x: 1500
@@ -208,14 +211,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aad8bae2c8c949e10800000000000000
-      internalID: 2203558243583364522
+      spriteID: 4dc7749dc06f4a7f0800000000000000
+      internalID: -602085915115422508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_happy2
+      name: f_oooh
       rect:
         serializedVersion: 2
         x: 0
@@ -229,14 +232,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5333232b2d74eb450800000000000000
-      internalID: 6106397115019309877
+      spriteID: f0aa5db89d9a99880800000000000000
+      internalID: -8603658861295588849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_happy3
+      name: f_smirk
       rect:
         serializedVersion: 2
         x: 500
@@ -250,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 179473fffc5c5f330800000000000000
-      internalID: 3744116162359150961
+      spriteID: 08a11a49b74e99480800000000000000
+      internalID: -8891824769840637312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_upset1
+      name: f_think
       rect:
         serializedVersion: 2
         x: 1000
@@ -271,14 +274,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abf2396c37a550660800000000000000
-      internalID: 7351381420051476410
+      spriteID: 7ca6a7108e3dd1560800000000000000
+      internalID: 7286212765566003911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_upset2
+      name: f_concern2
       rect:
         serializedVersion: 2
         x: 1500
@@ -292,14 +295,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 132bca4a733604880800000000000000
-      internalID: -8628787795404737999
+      spriteID: a1b0a722d8c6d4840800000000000000
+      internalID: 5209939697362144026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: p_indignant
+      name: f_upset1
       rect:
         serializedVersion: 2
         x: 0
@@ -313,14 +316,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a08ff500d002bb270800000000000000
-      internalID: 8267236781181630474
+      spriteID: 16bb3c3fa7a678440800000000000000
+      internalID: 4938032592743283553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: piper talksprites_9
+      name: f_upset2
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8602d0032388e72a0800000000000000
+      internalID: -6737798243363774360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f_upset3
       rect:
         serializedVersion: 2
         x: 1000
@@ -334,14 +358,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c0271b10fd9a7610800000000000000
-      internalID: 1619780670565327046
+      spriteID: 2629a46a095899810800000000000000
+      internalID: 1772594784658690658
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: piper talksprites_10
+      name: f_eyes
       rect:
         serializedVersion: 2
         x: 1500
@@ -355,8 +379,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 738cdd0df002f23a0800000000000000
-      internalID: -6688091669321103305
+      spriteID: cdfcf5065798f94c0800000000000000
+      internalID: -4278549983757611044
       vertices: []
       indices: 
       edges: []
