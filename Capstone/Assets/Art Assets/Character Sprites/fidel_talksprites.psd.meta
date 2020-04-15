@@ -4,46 +4,46 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 7929271397297698954
-    second: fidel_talksprites_0
+    second: f_neutral
   - first:
       213: 5333714126446823914
-    second: fidel_talksprites_1
+    second: f_hah1
   - first:
       213: -976475998485418127
-    second: fidel_talksprites_2
+    second: f_concern1
   - first:
       213: 184722230261241447
     second: fidel_talksprites_3
   - first:
       213: 3007528860948611013
-    second: fidel_talksprites_4
+    second: f_hah2
   - first:
       213: -966264813389897375
     second: fidel_talksprites_5
   - first:
       213: 3918282803347154605
-    second: fidel_talksprites_6
+    second: f_oooh
   - first:
       213: 6703426015467208972
-    second: fidel_talksprites_7
+    second: f_smirk
   - first:
       213: -2393098619860420973
-    second: fidel_talksprites_8
+    second: f_think
   - first:
       213: -8210116976461072555
-    second: fidel_talksprites_9
+    second: f_concern2
   - first:
       213: 320541982517780468
-    second: fidel_talksprites_10
+    second: f_upset1
   - first:
       213: -2489584629131484334
-    second: fidel_talksprites_11
+    second: f_upset2
   - first:
       213: 6578273250070648246
-    second: fidel_talksprites_12
+    second: f_upset3
   - first:
       213: -7659724671114989393
-    second: fidel_talksprites_13
+    second: f_eyes
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -164,7 +164,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fidel_talksprites_0
+      name: f_neutral
       rect:
         serializedVersion: 2
         x: 52
@@ -172,7 +172,7 @@ TextureImporter:
         width: 425
         height: 475
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,7 +185,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_1
+      name: f_hah1
       rect:
         serializedVersion: 2
         x: 551
@@ -193,7 +193,7 @@ TextureImporter:
         width: 430
         height: 478
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_2
+      name: f_concern1
       rect:
         serializedVersion: 2
         x: 1036
@@ -214,7 +214,7 @@ TextureImporter:
         width: 425
         height: 473
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,36 +227,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_3
+      name: f_hah2
       rect:
         serializedVersion: 2
-        x: 1541
-        y: 1177
-        width: 34
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 766d6d4c3e3409200800000000000000
-      internalID: 184722230261241447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fidel_talksprites_4
-      rect:
-        serializedVersion: 2
-        x: 1545
+        x: 1523
         y: 1000
-        width: 432
+        width: 454
         height: 486
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -269,28 +248,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_5
-      rect:
-        serializedVersion: 2
-        x: 1523
-        y: 1127
-        width: 51
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 161afee85432792f0800000000000000
-      internalID: -966264813389897375
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fidel_talksprites_6
+      name: f_oooh
       rect:
         serializedVersion: 2
         x: 51
@@ -298,7 +256,7 @@ TextureImporter:
         width: 428
         height: 484
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -311,7 +269,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_7
+      name: f_smirk
       rect:
         serializedVersion: 2
         x: 546
@@ -319,7 +277,7 @@ TextureImporter:
         width: 410
         height: 475
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -332,7 +290,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_8
+      name: f_think
       rect:
         serializedVersion: 2
         x: 1038
@@ -340,7 +298,7 @@ TextureImporter:
         width: 414
         height: 467
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -353,7 +311,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_9
+      name: f_concern2
       rect:
         serializedVersion: 2
         x: 1543
@@ -361,7 +319,7 @@ TextureImporter:
         width: 421
         height: 469
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -374,7 +332,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_10
+      name: f_upset1
       rect:
         serializedVersion: 2
         x: 35
@@ -382,7 +340,7 @@ TextureImporter:
         width: 431
         height: 446
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -395,7 +353,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_11
+      name: f_upset2
       rect:
         serializedVersion: 2
         x: 535
@@ -403,7 +361,7 @@ TextureImporter:
         width: 431
         height: 446
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -416,7 +374,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_12
+      name: f_upset3
       rect:
         serializedVersion: 2
         x: 1035
@@ -424,7 +382,7 @@ TextureImporter:
         width: 431
         height: 446
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -437,7 +395,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fidel_talksprites_13
+      name: f_eyes
       rect:
         serializedVersion: 2
         x: 1538
@@ -445,7 +403,7 @@ TextureImporter:
         width: 418
         height: 462
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
