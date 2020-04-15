@@ -23,18 +23,30 @@ public class NoteBlock : EnvironmentNote
 
     SpriteRenderer noteSprite; //The spriterenderer of the child sprite, which indicates the note.
 
+    Vector3 position1; //The vector coordinates for the note block positions
+    Vector3 position2;
+
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         activeCode = code1;
         noteSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        position1 = transform.position; //Set positions 1 and 2
+        position2 = new Vector3(position1.x + xTransform, position1.y + yTransform, position1.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(pos == 1 && Vector3.Distance(transform.position, position1) > 0.001)
+        {
+            transform.position = Vector3.Lerp(transform.position, position1, 0.1f);
+        }
+        if (pos == 2 && Vector3.Distance(transform.position, position2) > 0.001)
+        {
+            transform.position = Vector3.Lerp(transform.position, position2, 0.1f);
+        }
     }
 
     public override void keyed(bool correct) //Called when the block's note is played.
@@ -43,14 +55,14 @@ public class NoteBlock : EnvironmentNote
         {
             if (pos == 1)
             {
-                transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
+                //transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
                 noteSprite.sprite = note2;
                 activeCode = code2;
                 pos = 2;
             }
             else if (pos == 2)
             {
-                transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f));
+                //transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f));
                 noteSprite.sprite = note1;
                 activeCode = code1;
                 pos = 1;
