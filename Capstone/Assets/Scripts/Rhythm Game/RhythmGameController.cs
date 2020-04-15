@@ -88,6 +88,8 @@ public class RhythmGameController : MonoBehaviour {
         this.thisSongSequence = notesCombinations.ToArray();
     
         GenerateNotes();
+
+        Debug.Log("This song is this many notes long: " + thisSongSequence.Length);
     }
 
     // Update is called once per frame
@@ -271,7 +273,8 @@ public class RhythmGameController : MonoBehaviour {
         if (coroutineToCall.Equals("StartMovement")) {
             //always looking to move the note that is 4 measures ahead. Which means that this always has to be performing an out of bounds check, because when the song is on bar 73, beat 4, it will
             //be attempting to move bar 77 beat 4 (which is the end of the song). Do NOT allow this to be called if we are past bar 73 beat 4. 
-            MoveNote(currMeasure + 4, currBeat);
+            if (currMeasure < 75 && currBeat != 2 && currBeat != 4) 
+                MoveNote(currMeasure + 4, currBeat);
         }
 
         //this conditional calls a coroutine that tells each note to start its movement coroutine
@@ -290,7 +293,8 @@ public class RhythmGameController : MonoBehaviour {
 
         // int nextMeasure;
         // int nextBeat;
-
+    
+        Debug.Log("Moving: " + getMeasure + " and " + getBeat);
         StartCoroutine(thisSong[getMeasure, getBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
     }
 
@@ -476,7 +480,8 @@ public class RhythmGameController : MonoBehaviour {
 
             //criteria to end the song
             //the song is 77 bars long (inclusive), when the clock hits 80 bars, end of game
-            if (SimpleClock.Instance.Measures == 80)  {
+            if (SimpleClock.Instance.Measures == 80 || noteCounter > Context.thisSongSequence.Length)  {
+                Debug.Log("Forcing to closing animation");
                 TransitionTo<ClosingAnimation>();
             }
         }
@@ -624,7 +629,10 @@ public class RhythmGameController : MonoBehaviour {
                 Context.noteCounter += 1;
 
                 //set the next expected note
-                Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
+                Debug.Log("Setting index: " + Context.noteCounter);
+
+                if (Context.noteCounter <= Context.Context.thisSongSequence.Length)
+                    Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
 
                 Context.Context.CallCoroutine("StartMovement");
 
