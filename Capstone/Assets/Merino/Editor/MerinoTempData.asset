@@ -12,27 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13981b66f67204744891820795ef4230, type: 3}
   m_Name: MerinoTempData
   m_EditorClassIdentifier: 
-  editedID: 8
-  timestamp: 924.952738333
+  editedID: 7
+  timestamp: 19175.791819776
   viewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 07000000
-    m_LastClickedID: 7
-    m_ExpandedIDs: 00000000010000000200000003000000040000000a000000
+    m_SelectedIDs: 09000000
+    m_LastClickedID: 9
+    m_ExpandedIDs: 000000000100000002000000030000000400000005000000060000000a000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Scene2
+      m_OriginalName: Scene2
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 5
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
@@ -82,13 +82,12 @@ MonoBehaviour:
       is 0>>\n\t\t<<Act @ Fidel, fidel_disappointed>>\n\t\tFidel: Am I really worth
       it to you?\n\t\t<<Hide @ Fidel>>\n\t\t<<RhythmStart notePrefab>>\n\t<<endif>>\n\t<<if
       $completedRhythm is 1>>\n\t\t[[EndScene]]\n\t<<endif>>\n<<endif>>\n<<if not
-      visited(\"Scene4\")>>\n\t//start of the Fidel Tour Scene (demo)\n\t<<Act @
-      Fidel, fidel_happy>>\n\t//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>\n\t//<<Act
-      @ Eve, cool-girl, left, center, green>>\n\tFidel: -and that\u2019s my theory
-      on how all seagulls are just acoustic pelicans.\n\tFidel: Oh, just in time.
-      Here we are\u2026 our first stop!\n\tFidel: You can open your eyes now.  \n\t//<<HideAll
-      @>>\n\t//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>\n\t<<Act @ Piper,
-      player_neutral>>\n\tPiper: \u2018kay.\n\n\t[[Scene1]]\n\t//[[Scene4]]\n\t//[[EndScene]]\n<<endif>>\n"
+      visited(\"Scene4\")>>\n\t//start of the Fidel Tour Scene (demo)\n\n\t//[BLACK]\n\t<<Act
+      @ Fidel, fidel_happy>>\n\t//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>\n\tFidel:
+      -and that\u2019s my theory on how all seagulls are just acoustic pelicans.\n\tFidel:
+      Oh, just in time. Here we are\u2026 our first stop!\n\tFidel: C'mon, you can
+      open your eyes now. \n\t//<<HideAll @>>\n\t//<<Act @ Piper, player_neutral,
+      0.5, 0.5, #6764f7>>\n\t<<Act @ Piper, player_neutral>>\n\tPiper: \u2018kay.\n\n\t[[Scene1]]\n\t//[[Scene4]]\n\t//[[EndScene]]\n<<endif>>\n"
     leafType: 0
     nodePosition: {x: -21, y: 45}
     cachedParentID: 2
@@ -97,28 +96,28 @@ MonoBehaviour:
     m_Name: Scene1
     m_Depth: 1
     nodeTags: 
-    nodeBody: "//blur into view. standing in shitty mall clothing section\n<<Act
-      @ Fidel, fidel_wry>>\nFidel: Thanks for deciding to trust, heh, a stranger
-      like me with taking you around town. \nFidel: For starters, this is my humble
-      abode! Welcome.\n//<<HideAll @>>\n<<Act @ Piper, player_neutral>>\nPiper: \u2026\nPiper:
-      This is\u2014 \nPiper: We\u2019re in an old mall.\n<<Act @ Fidel, fidel_happy>>\nFidel:
-      Sure are!\n<<Act @ Piper, player_concern>>\nPiper: You live here.\nPiper: In
-      the clothing department?\n<<Act @ Fidel, fidel_happy>>\nFidel: Well, you know
-      what they say, one animal\u2019s trash is another one\u2019s beautiful home.\n->
-      Do they, now?\n\t<<Act @ Piper, player_joke>>\n\tPiper Do they, now?\n\t<<Act
-      @ Fidel, fidel_happy>>\n\tFidel: Yeah, and it\u2019s *this* trash animal\u2019s
-      crib, heh! \n-> It\u2019s nice.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper:
-      It\u2019s nice.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: Aw, thanks. I don\u2019t
-      really decorate or anything.\n\tFidel: Intentionally, anyways.\n<<Act @ Fidel,
-      fidel_disappointed>>\nFidel: Hmm.\nFidel: Is that all it is to you? Just an
-      old mall?\n-> Should it be more?\n\t<<Act @ Piper, player_concern>>\n\tPiper:
-      Should it be more?\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: Ah\u2026
-      I guess not. It\u2019s not important, don\u2019t worry about it.\n-> Doesn\u2019t
-      ring any bells, sorry.\n\t<<Act @ Piper, player_sorry>>\n\tPiper: Doesn\u2019t
-      ring any bells, sorry.\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: That\u2019s
-      okay. I\u2019m sorry, that must\u2019ve sounded like a weird question. \n<<Act
-      @ Fidel, fidel_happy>>\nFidel: But that\u2019s enough of that. Alrighty, camera
-      crew, lemme hit you with the tour.\n<<Act @ Piper, player_neutral>>\nPiper:
+    nodeBody: "//[Still black.]\n<<Act @ Fidel, fidel_wry>>\nFidel: Surpriseee! \n\n//[From
+      black. Blur into view: BG1 (mall entrance)]\n<<Act @ Piper, player_neutral>>\nPiper:
+      \u2026 This is.\nPiper: We\u2019re in an old mall.\n<<Act @ Fidel, fidel_happy>>\nFidel:
+      Sure are! Stellar observation!\nFidel: Thanks for deciding to trust, me, a
+      total stranger, with taking you around town.\nFidel: Thought I'd start with
+      my humble abode! Welcome.\n<<Act @ Piper, player_concern>>\nPiper: You live.
+      In there?\n<<Act @ Fidel, fidel_happy>>\nFidel: Well, you know what they say,
+      one animal\u2019s trash is another one\u2019s beautiful home.\n-> Do they,
+      now?\n\t<<Act @ Piper, player_joke>>\n\tPiper Do they, now?\n\t<<Act @ Fidel,
+      fidel_happy>>\n\tFidel: Yeah, and it\u2019s *this* trash animal\u2019s crib,
+      heh! \n-> It\u2019s nice.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper: It\u2019s
+      nice.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: Aw, thanks. It's literally
+      just a shopping mall. \n<<Act @ Fidel, fidel_disappointed>>\nFidel: Hmm.\nFidel:
+      Is that all it is to you? Nothing more?\n-> Should it be more?\n\t<<Act @ Piper,
+      player_concern>>\n\tPiper: Should it be more?\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel:
+      Oh, I guess I was hoping it'd jog some memories? Maybe not yet.\n\t<<Act @
+      Piper, player_concern>>\n\tPiper: Memories? \n-> Doesn\u2019t ring any bells,
+      sorry.\n\t<<Act @ Piper, player_sorry>>\n\tPiper: Doesn\u2019t ring any bells,
+      sorry.\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: That\u2019s okay. Amnesia's
+      tough, don't wanna put you on the spot. \n\t<<Act @ Piper, player_sorry>>\n\tPiper:
+      You didn't.\n<<Act @ Fidel, fidel_happy>>\nFidel: Okay let's not worry about
+      that now! Camera crew, lemme hit you with the tour.\n<<Act @ Piper, player_neutral>>\nPiper:
       I don\u2019t have a camera.\n<<Act @ Fidel, fidel_hah>>\nFidel: \u2026It was
       a joke! C\u2019mon, stick with it!\n<<Act @ Piper, player_neutral>>\nPiper:
       I don\u2019t\u2014 okay. Let\u2019s go.  \n<<Act @ Fidel, fidel_woah>>\nFidel:
@@ -135,76 +134,131 @@ MonoBehaviour:
     m_Name: Scene2
     m_Depth: 1
     nodeTags: 
-    nodeBody: "//they walk a little bit and get into a more desolate part of the
-      mall\n<<Act @ Fidel, fidel_neutral>>\nFidel: Anywho, this is sorta just my
-      usual stompin grounds.\nFidel: I hang out here and have fun!\nFidel: Mind the
-      murals and, uh, wire sculptures. I like to consider myself an artistic soul.\nFidel:
-      ...and the broken glass. I was just tossing rocks once. I\u2014 I dunno. I
-      was vibing. \n//he walks forward some more\n<<Act @ Fidel, fidel_thinking>>\nFidel:
-      Hmmm\u2026 what else, what else? Oh!\nFidel: It\u2019s a \u2018lil early for
-      this, b-but I want you to meet my other friends!\n<<Act @ Piper, player_neutral>>\nPiper:
-      Why are you blushing?\nPiper: Your other friends are here?\n<<Act @ Fidel,
-      fidel_happy>>\nFidel: Just stay right there, I\u2019ll go get them!\n//they
-      run off, retrieve two rat mannequins. they resemble the player and mara a little.\n<<showNPC
-      micequinns>>\n<<Act @ Fidel, fidel_happy>>\nFidel: Here they are\u2014 my besties!
-      \n-> Nice to meet you.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper: Nice to
-      meet you.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: So polite!\n\tFidel: Thanks
-      for being kind to them. Some people are so rude, y\u2019know?\n\t<<Act @ Piper,
-      player_concern>>\n\tPiper: ...Yeah.\n-> Huh.\n\t<<Act @ Piper, player_neutral>>\n\tPiper:
+    nodeBody: "//[BG2 (clothing aisle), they walk in and then stop near the left.]\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: This is my usual stompin grounds. I hang out
+      here and have fun!\nFidel: Or like, make my own fun, same deal. \n\n//[Fidel
+      walks more towards the right, then pauses again.]\n<<Act @ Fidel, fidel_neutral>>\nFidel:
+      Mind the trash bags and, uh, wire sculptures. It's very cozy, I know.\n-> Yeah,
+      cozy.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper: Yeah, cozy.\n\t<<Act @
+      Fidel, fidel_happy>>\n\tFidel: You think so? \n\t<<Act @ Piper, player_concern>>\n\tPiper:
+      It's got its charm.\n-> You live like this?\n\t<<Act @ Piper, player_neutral>>\n\tPiper:
+      You live like this?\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: Yes?\n\t<<Act
+      @ Piper, player_concern>>\n\tPiper: As long as you like it. \n<<Act @ Fidel,
+      fidel_thinking>>\nFidel: Thanks! What else, what else? Oh!\nFidel: It\u2019s
+      a \u2018lil early for this, but I want you to meet my other friends!\n<<Act
+      @ Piper, player_neutral>>\nPiper: Your other friends are here?\n<<Act @ Fidel,
+      fidel_happy>>\nFidel: Just stay right there, I\u2019ll go get them!\n\n//[Fidel
+      runs offscreen.]\n<<Act @ Fidel, fidel_happy>>\nFidel: These are. Soheavy.\n\n//[Fidel
+      comes back onscreen, pushing the micequinns.]\n<<showNPC micequinns>>\n<<Act
+      @ Fidel, fidel_happy>>\nFidel: Here they are\u2014 my besties! \n-> Nice to
+      meet you.\n\t<<Act @ Piper, player_pleasant>>\n\tPiper: Nice to meet you.\n\t<<Act
+      @ Fidel, fidel_happy>>\n\tFidel: So polite! That's what I like about you.\n\tFidel:
+      Some people are so rude, y\u2019know?\n\t<<Act @ Piper, player_concern>>\n\tPiper:
+      I get what you mean.\n-> Huh.\n\t<<Act @ Piper, player_neutral>>\n\tPiper:
       Huh.\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel: Hey, don\u2019t be rude. I want
       my friends to get along!\n\t<<Act @ Piper, player_concern>>\n\tPiper: Are we
       friends?\n\t<<Act @ Fidel, fidel_disappointed>>\n\tFidel: Okay, point. \n<<Act
-      @ Fidel, fidel_happy>>\nFidel: We\u2019ve been through thick and thin together;
-      we\u2019ve been friends forever!\n<<Act @ Piper, player_concern>>\nPiper: The\u2014
-      them? They look like you\u2026 found them yesterday. That\u2019s\u2026 surprising.\n<<Act
-      @ Fidel, fidel_neutral>>\nFidel: That they don\u2019t look older? Oh yeah,
-      like I said earlier, weird time bubble.\nFidel: Everything\u2019s\u2026 frozen.
-      I guess that\u2019s the best way to explain it. \nFidel: You don\u2019t have
-      to think too hard about it.\n\n//[[Scene3]]\n<<set $waypoint to 3>>\n<<moveNPC
-      Fidel>>\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
+      @ Piper, player_concern>>\nPiper: Just to be clear, this is a bit, right?\n<<Act
+      @ Fidel, fidel_happy>>\nFidel: Yeah this is a bit.\n<<Act @ Piper, player_concern>>\nPiper:
+      Okay. Carry on.\n<<Act @ Fidel, fidel_happy>>\nFidel: We\u2019ve been through
+      thick and thin together; we\u2019ve been friends forever!\n<<Act @ Piper, player_concern>>\nPiper:
+      Wait, forever? They look like you found them yesterday. That\u2019s surprising.\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: That they don\u2019t look older? \nFidel:
+      Oh yeah, I think I mentioned it on the way here: weird time bubble.\nFidel:
+      Best way to explain it, is that everything's frozen.\nFidel: Aside from us,
+      nothing moves, or ages, or collects dust, or anything.\nFidel: And even we
+      don't need to eat or sleep, it's been weird. \n\n//[[Scene2b]]\n//you have
+      to change stuff in start to account for the new scenes\n<<set $waypoint to
+      3>>\n<<moveNPC Fidel>>\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
     cachedParentID: 2
     cachedSize: 0
   - m_ID: 6
-    m_Name: Scene3
+    m_Name: Scene2b
     m_Depth: 1
     nodeTags: 
-    nodeBody: "//there's a beat. and then they continue on their way\n<<Act @ Fidel,
-      fidel_neutral>>\nFidel: Anyways, you hungry?\n-> Yeah, I\u2019m peckish.\n\t<<Act
-      @ Piper, player_neutral>>\n\tPiper: Yeah, I\u2019m peckish.\n\t<<Act @ Fidel,
-      fidel_hah>>\n\tFidel: Cool! Just don\u2019t peck at me, yeah? Hah! \n-> Not
-      really.\n\t<<Act @ Piper, player_neutral>>\n\tPiper: Not really.\n\t<<Act @
-      Fidel, fidel_hah>>\n\tFidel: Me neither, but that\u2019s where this path of
-      debris leads, so we gotta blast!\nFidel: To the food court! \n<<set $waypoint
-      to 4>>\n<<moveNPC Fidel>>\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
+    nodeBody: "//[BG3 (stained glass), triggers once you've walked in.]\n<<Act @
+      Piper, player_neutral>>\nPiper: Fidel, can I ask you a question?\n<<Act @ Fidel,
+      fidel_neutral>>\nFidel: Sure? Shoot!\n<<Act @ Piper, player_neutral>>\nPiper:
+      I've been wondering for a bit, why are you so invested in showing me around?\nPiper:
+      Surely with everything you've got going on, you've got plenty to do.\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: Haha, you'd be surprised. \nFidel: But mostly,
+      I wanna make sure you feel welcome and comfy!\n-> Oh, well sure. Thanks.\n\t<<Act
+      @ Piper, player_pleasant>>\n\tPiper: Oh, well sure. Thanks.\n\t<<Act @ Fidel,
+      fidel_happy>>\n\tFidel: You are feeling okay, right?\n-> Is that all?\n\t<<Act
+      @ Piper, player_neutral>>\n\tPiper: Is that all?\n\t<<Act @ Fidel, fidel_happy>>\n\tFidel:
+      If you have something bouncing 'round your noggin, go for it.\n<<Act @ Piper,
+      player_neutral>>\nPiper: It's just, should I be remembering something?\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: Don't take this the wrong way, but we used
+      to be friends is all.\nFidel: I guess it doesn't matter, if you don't remember.\nFidel:
+      That's just how it be!\n\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 19
+    m_Name: Scene2bPuzzle
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//[Approach the puzzle.]\n<<Act @ Fidel, fidel_neutral>>\nFidel: Weird.
+      This is like, really weird.\n<<Act @ Piper, player_neutral>>\nPiper: Hm?\n<<Act
+      @ Fidel, fidel_neutral>>\nFidel: Things shouldn't be able to move on their
+      own like this!\nFidel: It's like I said. Birds don't fly, water doesn't fall,
+      nothing moves aside from us.\nFidel: How are we supposed to get through now?\n<<Act
+      @ Piper, player_neutral>>\nPiper: I wonder\u2026 can I do something about it?\nPiper:
+      I have an itch to try something.\n\n//[Hit your first note.]\n<<Act @ Fidel,
+      fidel_neutral>>\nFidel: W-woah! The heck! You've never- what was that?\n<<Act
+      @ Piper, player_neutral>>\nPiper: Gonna try and figure the rest of this out.\n\n//[Finish
+      puzzle.]\n<<Act @ Piper, player_neutral>>\nPiper: There.\n<<Act @ Fidel, fidel_neutral>>\nFidel:
+      You did it! We can get through!\nFidel: Maybe you coming back shook some stuff
+      around? That's so strange.\n<<Act @ Piper, player_neutral>>\nPiper: Dunno."
     leafType: 0
     nodePosition: {x: 0, y: 0}
     cachedParentID: 2
     cachedSize: 0
   - m_ID: 7
+    m_Name: Scene3
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "//[BG4 (food court), triggers once you've walked in.]\n<<Act @ Fidel,
+      fidel_neutral>>\nFidel: Whatever it was, it was neat! You hungry?\n-> Yeah,
+      I\u2019m peckish.\n\t<<Act @ Piper, player_neutral>>\n\tPiper: Yeah, I\u2019m
+      peckish.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel: Cool! Just don\u2019t peck
+      at me, yeah? Hah! \n-> Not really.\n\t<<Act @ Piper, player_neutral>>\n\tPiper:
+      Not really.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel: Me neither, but that\u2019s
+      where this path of debris leads, so we gotta blast!\nFidel: To the food court!
+      \n<<set $waypoint to 4>>\n<<moveNPC Fidel>>\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 8
     m_Name: Scene3b
     m_Depth: 1
     nodeTags: 
-    nodeBody: "//fidel runs ahead and the player follows. they fuck around at a food
-      court\n<<Act @ Fidel, fidel_happy>>\nFidel: Okay, okay. Don\u2019t mind if
-      I do! \n//they get to a counter and dive behind it\nFidel: Welcome to Grilli\u2019s,
-      how can I help you?\n-> Are you going to take my order?\n\t<<Act @ Piper, player_concern>>\n\tPiper:
-      Are you going to take my order?\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel: Heh,
-      absolutely not. I can\u2019t help you at all! Who do you think I am?\n\tFidel:
-      But I do have a very *un*helpful thing for you.\n-> Cheeseburger.\n\t<<Act
-      @ Piper, player_neutral>>\n\tPiper: Cheeseburger.\n\t<<Act @ Fidel, fidel_hah>>\n\tFidel:
-      That\u2019s not even on the menu. Get outta here, you heathen! Scram!\nFidel:
-      ...Now come back. I have something real special to ask you.    \nFidel: Piper,
-      do you...\nFidel: Do you wanna see me eat seventy chicken nuggets?\n-> No.\n\t<<Act
-      @ Piper, player_mad>>\n\tPiper: No.\n-> Absolutely not.\n\t<<Act @ Piper, player_mad>>\n\tPiper:
-      Absolutely not.\n//automatically dismisses this in 0.2 seconds so it looks
-      like they don\u2019t get a choice\n<<Act @ Fidel, fidel_hah>>\nFidel: Well,
-      we can\u2019t always have what we want, buddy.\nFidel: Oh no, I dropped one.
-      Ah beans, there it goes... down the drain. \nFidel: Now I have exactly one
-      fewer than seventy.\n<<Act @ Piper, player_concern>>\nPiper: What drain? We\u2019re
-      in a food court.\nPiper: I just watched you very deliberately open a carton
-      and drop a nugget to the floor.\n<<Act @ Fidel, fidel_hah>>\nFidel: Haha, yeah.
+    nodeBody: "//[BG4 (food court), triggers once you've walked in.]\n<<Act @ Fidel,
+      fidel_happy>>\nFidel: Okay, alright. Don\u2019t mind if I do! \n//[Fidel goes
+      offscreen.]\n\n//[When player joins them by the counter, Fidel is in their
+      counter sprite. Talk to them and they pop out holding the nugs.]\nFidel: Welcome
+      to Grili\u2019s, how can I help you?\n-> Are you going to take my order?\n\t<<Act
+      @ Piper, player_concern>>\n\tPiper: Are you going to take my order?\n\t<<Act
+      @ Fidel, fidel_hah>>\n\tFidel: Heh, absolutely not. I can\u2019t help you at
+      all! Who do you think I am?\n\tFidel: But I do have a very *un*helpful thing
+      for you.\n-> Cheeseburger.\n\t<<Act @ Piper, player_neutral>>\n\tPiper: Cheeseburger.\n\t<<Act
+      @ Fidel, fidel_hah>>\n\tFidel: That\u2019s not even on the menu. Get outta
+      here, you heathen! Scram!\nFidel: ...Now come back. I have something real special
+      to ask you.    \nFidel: Piper, do you...\nFidel: Do you wanna see me eat seventy
+      chicken nuggets?\n-> No.\n\t<<Act @ Piper, player_mad>>\n\tPiper: No.\n-> Absolutely
+      not.\n\t<<Act @ Piper, player_mad>>\n\tPiper: Absolutely not.\n//[automatically
+      dismisses this in 0.2 seconds so it looks like they don\u2019t get a choice]\n<<Act
+      @ Fidel, fidel_hah>>\nFidel: Well, we can\u2019t always have what we want,
+      buddy.\n\n//[Spawn the single nug sprite on the floor. Fidel changes sprites
+      to nug2.] \n<<Act @ Fidel, fidel_hah>>\nFidel: Oh no, I dropped one. Ah beans,
+      there it goes... down the drain. \nFidel: Now I have exactly one fewer than
+      seventy.\n<<Act @ Piper, player_concern>>\nPiper: What drain? We\u2019re in
+      a food court.\nPiper: I just watched you very deliberately open a carton and
+      drop a nugget to the floor.\n<<Act @ Fidel, fidel_hah>>\nFidel: Haha, yeah.
       It\u2019s gone forever. Goodbye.\nFidel: So good of this fast food place to
       offer their nuggets in increments of seven like this.\nFidel: Also they\u2019re,
       like, technically ten years old, so I don\u2019t actually want any of \u2018em.\n<<Act
@@ -213,63 +267,68 @@ MonoBehaviour:
       You\u2019re learning! Yeah, it\u2019s another one of those frozen magic deals.\nFidel:
       Physically they\u2019ve remained just a few hours old. The world hasn\u2019t
       moved at all.\nFidel: So they\u2019re safe to eat! But it still feels icky.
-      It\u2019s, like, the principle of the matter. \nFidel: Mnm.\n//fidel eats one
-      anyways\n<<Act @ Piper, player_concern>>\nPiper: \u2026 \n<<Act @ Fidel, fidel_hah>>\nFidel:
-      Yeah, my body doesn\u2019t remember what food is, so it\u2019s disagreeing
-      with everything.\n<<Act @ Piper, player_concern>>\nPiper: Why are you like
-      this? \n<<Act @ Fidel, fidel_hah>>\nFidel: You know me!\nFidel: Or I guess
-      you don\u2019t. \n//wistful silence\n\n[[Scene4]]"
-    leafType: 0
-    nodePosition: {x: 0, y: 0}
-    cachedParentID: 2
-    cachedSize: 0
-  - m_ID: 8
-    m_Name: Scene4
-    m_Depth: 1
-    nodeTags: 
-    nodeBody: "//more wistful silence as we disconnect from the scene\n<<Act @ Fidel,
-      fidel_neutral>>\nFidel: So\u2026 you really don\u2019t remember anything, huh?\nFidel:
-      I hoped coming here would jog your memory. But it was just that. \nFidel: Wishful
-      thinking.\n<<Act @ Piper, player_neutral>>\nPiper: I'm. Really sorry.\n<<Act
-      @ Fidel, fidel_neutral>>\nFidel: Don't be.\nFidel: This. This has been fun.
-      I\u2019m glad you\u2019re back. I am. \nFidel: I know it doesn\u2019t mean
-      anything to you, but it was good to see you again. \nFidel: It\u2019s just
-      been so long. I didn\u2019t think it was possible, I didn\u2019t think things
-      would ever be different.\n-> \u2026 \n\t<<Act @ Piper, player_concern>>\n\tPiper:
-      \u2026\n\t<<Act @ Fidel, fidel_neutral>>\n\tFidel: I just can\u2019t do this.\n->
-      Fidel\u2026 \n\t<<Act @ Piper, player_concern>>\n\tPiper: Fidel\u2026\n\t<<Act
-      @ Fidel, fidel_sad>>\n\tFidel: I just can\u2019t do this, Piper.\nFidel: We\u2019ve
-      been living like this for so long. I thought it was okay, for things to just
-      be this way.\nFidel: For me to be alone out here.\nFidel: For the world to
-      be in a standstill.\nFidel: And for me to just. Get by.\n<<Act @ Piper, player_neutral>>\nPiper:
-      Hey.\nPiper: I\u2019m going to try something, okay?\n//some sick entering fidel\u2019s
-      soul animation. music gameplay begins.\n//<<HideAll @>>\n<<Hide @ Fidel>>\n<<Hide
-      @ Piper>>\n<<Set $startedRhythm to 1>>\n<<Set $waypoint to 5>>\n<<Set $completeRhythm
-      to 0>>\n<<RhythmStart notePrefab>>\n\n"
+      It\u2019s, like, the principle of the matter. \nFidel: Mnm.\n<<Act @ Piper,
+      player_concern>>\nPiper: \u2026 \n<<Act @ Fidel, fidel_hah>>\nFidel: Yeah,
+      my body doesn\u2019t remember what food is, so it\u2019s disagreeing with everything.\n<<Act
+      @ Piper, player_concern>>\nPiper: Why are you like this? \n<<Act @ Fidel, fidel_hah>>\nFidel:
+      You know me!\nFidel: Or. Well. \n//[Fidel walks offscreen again, but towards
+      the left.]\n\n[[Scene4]]"
     leafType: 0
     nodePosition: {x: 0, y: 0}
     cachedParentID: 2
     cachedSize: 0
   - m_ID: 9
-    m_Name: EndScene
+    m_Name: Scene4
     m_Depth: 1
     nodeTags: 
-    nodeBody: "\n<<Act @ Piper, player_neutral>>\nPiper: We can do it, together.\nPiper:
-      We can ask for life to be better.\nPiper: We can move towards that difference.\nPiper:
-      I may not remember anything, but I\u2019m back, aren\u2019t I? \n<<Act @ Fidel,
-      fidel_neutral>>\nFidel: Yeah, you are.\n<<Act @ Piper, player_neutral>>\nPiper:
-      My memories might never come back. Maybe I\u2019ll never be the person you
-      want in your life.\nPiper: Is that okay?\n<<Act @ Fidel, fidel_neutral>>\nFidel:
-      Honestly, it stings. But. Yeah, yeah.\nFidel: I\u2019ll count my blessings.\nFidel:
-      I\u2019m not really sure how or why you\u2019re here. Or what you\u2019ve done.\nFidel:
-      But I\u2019m glad you\u2019re here. I\u2019m glad we\u2019re here, together.\n<<Act
-      @ Piper, player_pleasant>>\nPiper: Then let\u2019s consider this the first
-      step.\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
+    nodeBody: "//[You find them again and they're in sadbat mode. Talk to them.]\n<<Act
+      @ Piper, player_neutral>>\nPiper: Hey\u2026\n<<Act @ Fidel, fidel_neutral>>\nFidel:
+      Haha, you remember nothing, huh?\nFidel: I hoped coming here would jog your
+      memory. But I was just being stupid.\nFidel: It was just wishful thinking.\n<<Act
+      @ Piper, player_neutral>>\nPiper: I'm. Really sorry.\n<<Act @ Fidel, fidel_neutral>>\nFidel:
+      Don't be. I'm not being fair.\nFidel: This. Romping around has been fun. I\u2019m
+      glad you\u2019re back. I am. \nFidel: I know it doesn\u2019t mean anything
+      to you, but it was good to see you again. \nFidel: It\u2019s just been so long.
+      I didn\u2019t think it was possible, I didn\u2019t think things would ever
+      be different.\n-> \u2026 \n\t<<Act @ Piper, player_concern>>\n\tPiper: \u2026\n\t<<Act
+      @ Fidel, fidel_neutral>>\n\t//[Change to sadbat2]\n\tFidel: I just can\u2019t
+      do this.\n-> Fidel\u2026 \n\t<<Act @ Piper, player_concern>>\n\tPiper: Fidel\u2026\n\t<<Act
+      @ Fidel, fidel_sad>>\n\t//[Change to sadbat2]\n\tFidel: I just can\u2019t do
+      this, Piper.\nFidel: We\u2019ve been living like this for so long. I thought
+      it was okay, for things to just be this way.\nFidel: For the world to be in
+      a standstill.\nFidel: For the two of you to have left.\nFidel: And for me to
+      just. Get by.\n<<Act @ Piper, player_neutral>>\nPiper: Hey.\nPiper: I don't
+      really get it, but I get *you*, okay? \n<<Act @ Fidel, fidel_neutral>>\nFidel:
+      I just can't handle this. I'm just so tired. \n<<Act @ Piper, player_neutral>>\nPiper:
+      But I'm here for you.\nPiper: I\u2019m going to try something, okay?\n\n//[some
+      sick entering fidel\u2019s soul animation? Music gameplay begins.]\n<<Hide
+      @ Fidel>>\n<<Hide @ Piper>>\n<<Set $startedRhythm to 1>>\n<<Set $waypoint to
+      5>>\n<<Set $completeRhythm to 0>>\n<<RhythmStart notePrefab>>\n\n"
     leafType: 0
     nodePosition: {x: 0, y: 0}
     cachedParentID: 2
     cachedSize: 0
   - m_ID: 10
+    m_Name: EndScene
+    m_Depth: 1
+    nodeTags: 
+    nodeBody: "\n<<Act @ Piper, player_neutral>>\nPiper: We can do it, together.\nPiper:
+      We can ask for life to be better.\nPiper: We can move towards that difference,
+      even if it hurts.\nPiper: I may not remember anything, but I\u2019m back, aren\u2019t
+      I? \n<<Act @ Fidel, fidel_neutral>>\nFidel: Yeah. You are.\n<<Act @ Piper,
+      player_neutral>>\nPiper: My memories might never come back. Maybe I\u2019ll
+      never be the person you want in your life.\nPiper: Is that okay?\n<<Act @ Fidel,
+      fidel_neutral>>\nFidel: Honestly, it stings.\nFidel: But I\u2019ll count my
+      blessings. And I'll choose to see where they take me.\nFidel: I\u2019m not
+      really sure how or why you\u2019re here. Or what fuckery you just did.\nFidel:
+      But I\u2019m glad you\u2019re here. I\u2019m glad we\u2019re here, together.\n<<Act
+      @ Piper, player_pleasant>>\nPiper: Then let\u2019s consider this our first
+      step.\n<<Hide @ Piper>>\n<<Hide @ Fidel>>\n"
+    leafType: 0
+    nodePosition: {x: 0, y: 0}
+    cachedParentID: 2
+    cachedSize: 0
+  - m_ID: 11
     m_Name: MoreExamples
     m_Depth: 1
     nodeTags: 
@@ -289,7 +348,7 @@ MonoBehaviour:
     nodePosition: {x: 28, y: -178}
     cachedParentID: 2
     cachedSize: 0
-  - m_ID: 11
+  - m_ID: 12
     m_Name: RopeworkComplexExample.yarn
     m_Depth: 0
     nodeTags: 
@@ -298,7 +357,7 @@ MonoBehaviour:
     nodePosition: {x: 0, y: 0}
     cachedParentID: -1
     cachedSize: 0
-  - m_ID: 12
+  - m_ID: 13
     m_Name: Start_2
     m_Depth: 1
     nodeTags: 
@@ -368,9 +427,9 @@ MonoBehaviour:
 '
     leafType: 0
     nodePosition: {x: 0, y: 0}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
-  - m_ID: 13
+  - m_ID: 14
     m_Name: History
     m_Depth: 1
     nodeTags: 
@@ -384,9 +443,9 @@ MonoBehaviour:
       great two bedroom with Steve, it's been great.\n[[Gay]]\n"
     leafType: 0
     nodePosition: {x: 10, y: 0}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
-  - m_ID: 14
+  - m_ID: 15
     m_Name: FiredSlow
     m_Depth: 1
     nodeTags: 
@@ -399,9 +458,9 @@ MonoBehaviour:
       too.\n-> Eve: Speaking of Steve...\n\tEve: Actually, speaking of Steve...\n\n[[Gay]]\n"
     leafType: 0
     nodePosition: {x: 20, y: 0}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
-  - m_ID: 15
+  - m_ID: 16
     m_Name: FiredNow
     m_Depth: 1
     nodeTags: 
@@ -469,9 +528,9 @@ MonoBehaviour:
       good luck.\n<<Move @ Eve, -0.25, 0.5, 2.0>>\n\n<<Fade @ black>>\n(SAD END)\n"
     leafType: 0
     nodePosition: {x: 30, y: 30}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
-  - m_ID: 16
+  - m_ID: 17
     m_Name: TrueEnding
     m_Depth: 1
     nodeTags: 
@@ -518,9 +577,9 @@ MonoBehaviour:
       setting an example for us all.\n(TRUE END)\n"
     leafType: 0
     nodePosition: {x: 40, y: 40}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
-  - m_ID: 17
+  - m_ID: 18
     m_Name: Gay
     m_Depth: 1
     nodeTags: 
@@ -563,5 +622,5 @@ MonoBehaviour:
       note, the purpose of this meeting is to inform you that...\n[[FiredNow]]\n"
     leafType: 0
     nodePosition: {x: 40, y: 20}
-    cachedParentID: 11
+    cachedParentID: 12
     cachedSize: 0
