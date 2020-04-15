@@ -1527,7 +1527,8 @@ GameObject:
   - component: {fileID: 133296675}
   - component: {fileID: 133296676}
   - component: {fileID: 133296677}
-  m_Layer: 0
+  - component: {fileID: 133296678}
+  m_Layer: 9
   m_Name: Fidel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,7 +1615,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1697,17 +1698,36 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133296669}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8f6d3c6e4250e84192f5b34ce9e71bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
-  glowBrightness: 3.21
-  outlineWidth: 1
+  glowColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+  glowBrightness: 7.59
+  outlineWidth: 0
   alphaThreshold: 0
   drawOutside: 0
   enableInstancing: 0
+--- !u!95 &133296678
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133296669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc03c309038574d9ab7ef8b8c5f53bf8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &163514520 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224915738641848798, guid: 9e0841b82a4ebcd438730d23886e17e6,
@@ -12975,8 +12995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcea1ccd45a8141e594a8103eefc1fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p_stand2: {fileID: 21300000, guid: 7be3f5d124736d545be1d966e7062e08, type: 3}
-  p_walk1: {fileID: 21300000, guid: b210bfb8d1337c249acdf9dbec1005c3, type: 3}
+  p_idle: {fileID: 3605789484828217869, guid: d55247b3294934f45853ec1d845c4a61, type: 3}
+  p_run: {fileID: 0}
   minPosition: -79
   maxPosition: 9
   moveSpeed: 4
@@ -13020,7 +13040,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1660728702026297200, guid: a0aef511266fb463e9d845013f693236,
+  m_Sprite: {fileID: 3605789484828217869, guid: d55247b3294934f45853ec1d845c4a61,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13916,6 +13936,7 @@ GameObject:
   - component: {fileID: 1778579291}
   - component: {fileID: 1778579293}
   - component: {fileID: 1778579292}
+  - component: {fileID: 1778579294}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14053,6 +14074,22 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1778579294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778579287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c880eba4d2e463081031f8c458ef4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DrawAsSolidColor: {fileID: 4800000, guid: 29b449d351fa2409682a8449d1e63254, type: 3}
+  Outline: {fileID: 4800000, guid: 7a12aa1f4da9541df83e0fa56cc6e9e5, type: 3}
+  outlineMaterial: {fileID: 0}
+  TempCam: {fileID: 0}
 --- !u!114 &1890569129 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114424206964999768, guid: 9e0841b82a4ebcd438730d23886e17e6,

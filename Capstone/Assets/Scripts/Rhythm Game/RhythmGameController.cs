@@ -269,8 +269,8 @@ public class RhythmGameController : MonoBehaviour {
         //a little bit confusing
         //this conditional calls the coroutine that is on NewNote for the note to move itself dependent on where we are in the song right now
         if (coroutineToCall.Equals("StartMovement")) {
-            //song goes up to 77 full bars, which means the last thing asked to move should be bar 77, beat 4. There are no more notes to move after bar 73, beat 4
-            //AKA, thisSong[71, 3]
+            //always looking to move the note that is 4 measures ahead. Which means that this always has to be performing an out of bounds check, because when the song is on bar 73, beat 4, it will
+            //be attempting to move bar 77 beat 4 (which is the end of the song). Do NOT allow this to be called if we are past bar 73 beat 4. 
             MoveNote(currMeasure + 4, currBeat);
         }
 
@@ -483,10 +483,7 @@ public class RhythmGameController : MonoBehaviour {
 
         //function that resets all variables and restarts the rhythm game
         public void RestartRhythmGame() {
-            //notes are not destroyed when they reach the goal, they just turn invisible and
-            // teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
 
-            //this code is specifically for resetting phase1 of the game
             Context.CallCoroutine("StopAll");
         
             SimpleClock.Instance.songSource.Stop();
@@ -501,6 +498,8 @@ public class RhythmGameController : MonoBehaviour {
             Context.fretFeedbackScript.SetFret(Context.thisSongSequence[noteCounter]);
 
             //reset all notes. 
+            //notes are not destroyed when they reach the goal, they just turn invisible and
+            //teleport somewhere irrelevant, so restarting the rhythm game is just resetting their start position
             for (int i = 0; i < Context.thisSong.GetLength(0); i++) {
                 for (int j = 0; j < Context.thisSong.GetLength(1); j++) {
                 //index out of bounds exception somewhere :' ( 
@@ -588,7 +587,7 @@ public class RhythmGameController : MonoBehaviour {
             }
         }
 
-        //InWindow:
+        //InWindow: the 96 ticks that a player is allowed to hit keys and make a combination 
         private class InWindow : FiniteStateMachine<Phase1>.State { 
             string pressedCombo = "";
             string expectedCombo = "";
