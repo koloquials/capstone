@@ -251,91 +251,91 @@ PrefabInstance:
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.size
-      value: 14
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[0]
       value: 
-      objectReference: {fileID: -8943602557333504836, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: -6124769478648142522, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[1]
       value: 
-      objectReference: {fileID: -1177102857279169265, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: -8891824769840637312, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[2]
       value: 
-      objectReference: {fileID: -4219713073618026442, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: 7346785490901998585, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[3]
       value: 
-      objectReference: {fileID: 235278958494686708, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: -602085915115422508, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[4]
       value: 
-      objectReference: {fileID: 3725846151082224524, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: 7286212765566003911, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[5]
       value: 
-      objectReference: {fileID: 5714164164254822477, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: -8603658861295588849, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[6]
       value: 
-      objectReference: {fileID: 3906988056636236666, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: 8859913015139263608, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[7]
       value: 
-      objectReference: {fileID: -4916998978847143574, guid: 179a46140fefd49fcad9b3e51040a042,
+      objectReference: {fileID: 5209939697362144026, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[8]
       value: 
-      objectReference: {fileID: -6924919347696595095, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: -4278549983757611044, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[9]
       value: 
-      objectReference: {fileID: -6245208608739579264, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: 4938032592743283553, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[10]
       value: 
-      objectReference: {fileID: -560528232334811599, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: -6737798243363774360, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[11]
       value: 
-      objectReference: {fileID: -6107967270525258040, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: 1772594784658690658, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[12]
       value: 
-      objectReference: {fileID: -4938287451989501954, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: -9132943649063849663, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: loadSprites.Array.data[13]
       value: 
-      objectReference: {fileID: 9105727569295609154, guid: 46507a52c3186470ab20640e383c5053,
+      objectReference: {fileID: -491972509161256054, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
         type: 3}
     - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
@@ -372,6 +372,48 @@ PrefabInstance:
       propertyPath: defaultTint.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[14]
+      value: 
+      objectReference: {fileID: 6106397115019309877, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[15]
+      value: 
+      objectReference: {fileID: 3744116162359150961, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[16]
+      value: 
+      objectReference: {fileID: 8859913015139263608, guid: 1a9e3fbf5e2ed4ac3ada977281982a99,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[17]
+      value: 
+      objectReference: {fileID: 2203558243583364522, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[18]
+      value: 
+      objectReference: {fileID: 8267236781181630474, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[19]
+      value: 
+      objectReference: {fileID: 7351381420051476410, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
+    - target: {fileID: 114392013309792444, guid: 9e0841b82a4ebcd438730d23886e17e6,
+        type: 3}
+      propertyPath: loadSprites.Array.data[20]
+      value: 
+      objectReference: {fileID: -8628787795404737999, guid: 05ea282cb40ae41b7bd12b6a3a3adb4b,
+        type: 3}
     - target: {fileID: 114424206964999768, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: buttonText.Array.size
@@ -949,6 +991,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &15763998 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1926541381838882062, guid: 9e0841b82a4ebcd438730d23886e17e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 15763993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &47717063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13868,55 +13916,115 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   m_RaycastTarget: 1
+  <useLegacyMeshGeneration>k__BackingField: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   m_text: Combotext
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_currentFontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_isSDFShader: 1
   m_sharedMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
     type: 2}
+  m_currentMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
+    type: 2}
+  m_currentMaterialIndex: 0
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
+  m_isMaterialDirty: 0
   m_fontColor32:
-    serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_underlineColor:
+    rgba: 4294967295
+  m_strikethroughColor:
+    rgba: 4294967295
+  m_highlightColor:
+    rgba: 4294967295
+  m_highlightPadding: {x: 0, y: 0, z: 0, w: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    topRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
+  m_tintSprite: 0
+  m_spriteColor:
+    rgba: 0
   m_overrideHtmlColors: 0
   m_faceColor:
-    serializedVersion: 2
     rgba: 4294967295
   m_outlineColor:
-    serializedVersion: 2
     rgba: 4278190080
+  m_outlineWidth: 0
   m_fontSize: 20
+  m_currentFontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
+  m_FontWeightInternal: 400
   m_enableAutoSizing: 0
+  m_maxFontSize: 72
+  m_minFontSize: 18
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
+  m_FontStyleInternal: 0
+  m_isUsingBold: 0
   m_textAlignment: 257
+  m_lineJustification: 257
+  m_textContainerLocalCorners:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_characterSpacing: 0
+  m_cSpacing: 0
+  m_monoSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
+  m_lineSpacingDelta: 0
+  m_lineHeight: -32767
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
+  m_charWidthAdjDelta: 0
   m_enableWordWrapping: 1
+  m_isCharacterWrappingEnabled: 0
+  m_isNonBreakingSpace: 0
+  m_isIgnoringAlignment: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -13928,6 +14036,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
+  m_isOverlay: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_ignoreRectMaskCulling: 0
@@ -13935,25 +14044,193 @@ MonoBehaviour:
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
+  m_renderMode: 255
   m_geometrySortingOrder: 0
   m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
+  m_maxVisibleCharacters: 99999
+  m_maxVisibleWords: 99999
+  m_maxVisibleLines: 99999
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
+  m_isNewPage: 0
   m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 2002341817}
-    characterCount: 9
-    spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
+  m_marginLeft: 0
+  m_marginRight: 0
+  m_marginWidth: 200
+  m_marginHeight: 50
+  m_width: -1
+  m_textInfo: {textComponent: {fileID: 2002341817}, characterCount: 9, spriteCount: 0,
+    spaceCount: 0, wordCount: 1, linkCount: 0, lineCount: 1, pageCount: 1, materialCount: 1}
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
+  m_transform: {fileID: 2002341816}
+  m_rectTransform: {fileID: 2002341816}
+  <autoSizeTextContainer>k__BackingField: 0
+  m_autoSizeTextContainer: 0
+  m_mesh: {fileID: 0}
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
+  m_flexibleHeight: -1
+  m_flexibleWidth: -1
+  m_minWidth: 0
+  m_minHeight: 0
+  m_maxWidth: 0
+  m_maxHeight: 0
+  m_LayoutElement: {fileID: 0}
+  m_preferredWidth: 0
+  m_renderedWidth: 0
+  m_isPreferredWidthDirty: 1
+  m_preferredHeight: 0
+  m_renderedHeight: 0
+  m_isPreferredHeightDirty: 1
+  m_isCalculatingPreferredValues: 0
+  m_recursiveCount: 0
+  m_layoutPriority: 0
+  m_isCalculateSizeRequired: 1
+  m_isLayoutDirty: 1
+  m_verticesAlreadyDirty: 1
+  m_layoutAlreadyDirty: 1
+  m_isAwake: 1
+  m_isWaitingOnResourceLoad: 0
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  old_text: 
+  m_fontScale: 0.22222222
+  m_fontScaleMultiplier: 1
+  m_htmlTag: []
+  m_attributeParameterValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  tag_LineIndent: 0
+  tag_Indent: 0
+  tag_NoParsing: 0
+  m_isParsingText: 0
+  m_FXMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_isFXMatrixSet: 0
+  m_input_CharArray: []
+  m_charArray_Length: 0
+  m_totalCharacterCount: 9
+  m_characterCount: 9
+  m_firstCharacterOfLine: 9
+  m_firstVisibleCharacterOfLine: 0
+  m_lastCharacterOfLine: 8
+  m_lastVisibleCharacterOfLine: 8
+  m_lineNumber: 0
+  m_lineVisibleCharacterCount: 0
+  m_pageNumber: 0
+  m_maxAscender: 19.24
+  m_maxCapHeight: 13.555555
+  m_maxDescender: -0.76000005
+  m_maxLineAscender: 19.24
+  m_maxLineDescender: -0.76000005
+  m_startOfLineAscender: 0
+  m_lineOffset: 0
+  m_htmlColor:
+    rgba: 4294967295
+  m_colorGradientPreset: {fileID: 0}
+  m_tabSpacing: 0
+  m_spacing: 0
+  m_padding: 1.25
+  m_baselineOffset: 0
+  m_xAdvance: 65.34028
+  m_textElementType: 0
+  m_cached_TextElement:
+    m_ElementType: 1
+    m_Unicode: 116
+    m_Glyph:
+      m_Index: 73
+      m_Metrics:
+        m_Width: 25.828125
+        m_Height: 58.953125
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 59.671875
+        m_HorizontalAdvance: 31.234375
+      m_GlyphRect:
+        m_X: 54
+        m_Y: 198
+        m_Width: 27
+        m_Height: 60
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 73
+    m_Scale: 1
+  m_cached_Underline_Character:
+    m_ElementType: 1
+    m_Unicode: 95
+    m_Glyph:
+      m_Index: 53
+      m_Metrics:
+        m_Width: 50.671875
+        m_Height: 8.375
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 8.28125
+        m_HorizontalAdvance: 56.0625
+      m_GlyphRect:
+        m_X: 10
+        m_Y: 10
+        m_Width: 52
+        m_Height: 10
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 53
+    m_Scale: 1
+  m_cached_Ellipsis_Character:
+    m_ElementType: 1
+    m_Unicode: 0
+    m_Glyph:
+      m_Index: 0
+      m_Metrics:
+        m_Width: 0
+        m_Height: 0
+        m_HorizontalBearingX: 0
+        m_HorizontalBearingY: 0
+        m_HorizontalAdvance: 0
+      m_GlyphRect:
+        m_X: 0
+        m_Y: 0
+        m_Width: 0
+        m_Height: 0
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 0
+    m_Scale: 1
+  m_defaultSpriteAsset: {fileID: 0}
+  m_currentSpriteAsset: {fileID: 0}
+  m_spriteCount: 0
+  m_spriteIndex: 0
+  m_spriteAnimationID: 0
+  m_ignoreActiveState: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -13964,8 +14241,41 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_previousLossyScaleY: 0.8
+  m_RectTransformCorners:
+  - {x: -100, y: -25, z: 0}
+  - {x: -100, y: 25, z: 0}
+  - {x: 100, y: 25, z: 0}
+  - {x: 100, y: -25, z: 0}
+  m_canvasRenderer: {fileID: 2002341818}
+  m_canvas: {fileID: 15763998}
+  m_isFirstAllocation: 1
+  m_max_characters: 8
+  m_isMaskingEnabled: 0
   m_baseMaterial: {fileID: 0}
+  m_isScrollRegionSet: 0
+  m_stencilID: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  m_EnvMapMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_recursiveCountA: 0
+  loopCountA: 1
+  m_isRebuildingLayout: 0
 --- !u!222 &2002341818
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14117,55 +14427,115 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   m_RaycastTarget: 1
+  <useLegacyMeshGeneration>k__BackingField: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   m_text: timerText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_currentFontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_isSDFShader: 1
   m_sharedMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
     type: 2}
+  m_currentMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
+    type: 2}
+  m_currentMaterialIndex: 0
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
+  m_isMaterialDirty: 0
   m_fontColor32:
-    serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_underlineColor:
+    rgba: 4294967295
+  m_strikethroughColor:
+    rgba: 4294967295
+  m_highlightColor:
+    rgba: 4294967295
+  m_highlightPadding: {x: 0, y: 0, z: 0, w: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    topRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
+  m_tintSprite: 0
+  m_spriteColor:
+    rgba: 0
   m_overrideHtmlColors: 0
   m_faceColor:
-    serializedVersion: 2
     rgba: 4294967295
   m_outlineColor:
-    serializedVersion: 2
     rgba: 4278190080
+  m_outlineWidth: 0
   m_fontSize: 20
+  m_currentFontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
+  m_FontWeightInternal: 400
   m_enableAutoSizing: 0
+  m_maxFontSize: 72
+  m_minFontSize: 18
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
+  m_FontStyleInternal: 0
+  m_isUsingBold: 0
   m_textAlignment: 257
+  m_lineJustification: 257
+  m_textContainerLocalCorners:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_characterSpacing: 0
+  m_cSpacing: 0
+  m_monoSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
+  m_lineSpacingDelta: 0
+  m_lineHeight: -32767
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
+  m_charWidthAdjDelta: 0
   m_enableWordWrapping: 1
+  m_isCharacterWrappingEnabled: 0
+  m_isNonBreakingSpace: 0
+  m_isIgnoringAlignment: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -14177,6 +14547,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
+  m_isOverlay: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_ignoreRectMaskCulling: 0
@@ -14184,25 +14555,193 @@ MonoBehaviour:
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
+  m_renderMode: 255
   m_geometrySortingOrder: 0
   m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
+  m_maxVisibleCharacters: 99999
+  m_maxVisibleWords: 99999
+  m_maxVisibleLines: 99999
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
+  m_isNewPage: 0
   m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 2069798263}
-    characterCount: 9
-    spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
+  m_marginLeft: 0
+  m_marginRight: 0
+  m_marginWidth: 200
+  m_marginHeight: 50
+  m_width: -1
+  m_textInfo: {textComponent: {fileID: 2069798263}, characterCount: 9, spriteCount: 0,
+    spaceCount: 0, wordCount: 1, linkCount: 0, lineCount: 1, pageCount: 1, materialCount: 1}
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
+  m_transform: {fileID: 2069798262}
+  m_rectTransform: {fileID: 2069798262}
+  <autoSizeTextContainer>k__BackingField: 0
+  m_autoSizeTextContainer: 0
+  m_mesh: {fileID: 0}
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
+  m_flexibleHeight: -1
+  m_flexibleWidth: -1
+  m_minWidth: 0
+  m_minHeight: 0
+  m_maxWidth: 0
+  m_maxHeight: 0
+  m_LayoutElement: {fileID: 0}
+  m_preferredWidth: 0
+  m_renderedWidth: 0
+  m_isPreferredWidthDirty: 1
+  m_preferredHeight: 0
+  m_renderedHeight: 0
+  m_isPreferredHeightDirty: 1
+  m_isCalculatingPreferredValues: 0
+  m_recursiveCount: 0
+  m_layoutPriority: 0
+  m_isCalculateSizeRequired: 1
+  m_isLayoutDirty: 1
+  m_verticesAlreadyDirty: 1
+  m_layoutAlreadyDirty: 1
+  m_isAwake: 1
+  m_isWaitingOnResourceLoad: 0
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  old_text: 
+  m_fontScale: 0.22222222
+  m_fontScaleMultiplier: 1
+  m_htmlTag: []
+  m_attributeParameterValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  tag_LineIndent: 0
+  tag_Indent: 0
+  tag_NoParsing: 0
+  m_isParsingText: 0
+  m_FXMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_isFXMatrixSet: 0
+  m_input_CharArray: []
+  m_charArray_Length: 0
+  m_totalCharacterCount: 9
+  m_characterCount: 9
+  m_firstCharacterOfLine: 9
+  m_firstVisibleCharacterOfLine: 0
+  m_lastCharacterOfLine: 8
+  m_lastVisibleCharacterOfLine: 8
+  m_lineNumber: 0
+  m_lineVisibleCharacterCount: 0
+  m_pageNumber: 0
+  m_maxAscender: 19.24
+  m_maxCapHeight: 13.555555
+  m_maxDescender: -0.76000005
+  m_maxLineAscender: 19.24
+  m_maxLineDescender: -0.76000005
+  m_startOfLineAscender: 0
+  m_lineOffset: 0
+  m_htmlColor:
+    rgba: 4294967295
+  m_colorGradientPreset: {fileID: 0}
+  m_tabSpacing: 0
+  m_spacing: 0
+  m_padding: 1.25
+  m_baselineOffset: 0
+  m_xAdvance: 59.302086
+  m_textElementType: 0
+  m_cached_TextElement:
+    m_ElementType: 1
+    m_Unicode: 116
+    m_Glyph:
+      m_Index: 73
+      m_Metrics:
+        m_Width: 25.828125
+        m_Height: 58.953125
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 59.671875
+        m_HorizontalAdvance: 31.234375
+      m_GlyphRect:
+        m_X: 54
+        m_Y: 198
+        m_Width: 27
+        m_Height: 60
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 73
+    m_Scale: 1
+  m_cached_Underline_Character:
+    m_ElementType: 1
+    m_Unicode: 95
+    m_Glyph:
+      m_Index: 53
+      m_Metrics:
+        m_Width: 50.671875
+        m_Height: 8.375
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 8.28125
+        m_HorizontalAdvance: 56.0625
+      m_GlyphRect:
+        m_X: 10
+        m_Y: 10
+        m_Width: 52
+        m_Height: 10
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 53
+    m_Scale: 1
+  m_cached_Ellipsis_Character:
+    m_ElementType: 1
+    m_Unicode: 0
+    m_Glyph:
+      m_Index: 0
+      m_Metrics:
+        m_Width: 0
+        m_Height: 0
+        m_HorizontalBearingX: 0
+        m_HorizontalBearingY: 0
+        m_HorizontalAdvance: 0
+      m_GlyphRect:
+        m_X: 0
+        m_Y: 0
+        m_Width: 0
+        m_Height: 0
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 0
+    m_Scale: 1
+  m_defaultSpriteAsset: {fileID: 0}
+  m_currentSpriteAsset: {fileID: 0}
+  m_spriteCount: 0
+  m_spriteIndex: 0
+  m_spriteAnimationID: 0
+  m_ignoreActiveState: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14213,8 +14752,41 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_previousLossyScaleY: 0.8
+  m_RectTransformCorners:
+  - {x: -100, y: -25, z: 0}
+  - {x: -100, y: 25, z: 0}
+  - {x: 100, y: 25, z: 0}
+  - {x: 100, y: -25, z: 0}
+  m_canvasRenderer: {fileID: 2069798264}
+  m_canvas: {fileID: 15763998}
+  m_isFirstAllocation: 1
+  m_max_characters: 8
+  m_isMaskingEnabled: 0
   m_baseMaterial: {fileID: 0}
+  m_isScrollRegionSet: 0
+  m_stencilID: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  m_EnvMapMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_recursiveCountA: 0
+  loopCountA: 1
+  m_isRebuildingLayout: 0
 --- !u!222 &2069798264
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14273,55 +14845,115 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   m_RaycastTarget: 1
+  <useLegacyMeshGeneration>k__BackingField: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_CallsDirty: 1
   m_text: HitMissText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_currentFontAsset: {fileID: 11400000, guid: 41088ec8cf0c34d499c19a5add692a76, type: 2}
+  m_isSDFShader: 1
   m_sharedMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
     type: 2}
+  m_currentMaterial: {fileID: -5275662192789226202, guid: 41088ec8cf0c34d499c19a5add692a76,
+    type: 2}
+  m_currentMaterialIndex: 0
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
+  m_isMaterialDirty: 0
   m_fontColor32:
-    serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
+  m_underlineColor:
+    rgba: 4294967295
+  m_strikethroughColor:
+    rgba: 4294967295
+  m_highlightColor:
+    rgba: 4294967295
+  m_highlightPadding: {x: 0, y: 0, z: 0, w: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    topRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomLeft:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+    bottomRight:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
+  m_tintSprite: 0
+  m_spriteColor:
+    rgba: 0
   m_overrideHtmlColors: 0
   m_faceColor:
-    serializedVersion: 2
     rgba: 4294967295
   m_outlineColor:
-    serializedVersion: 2
     rgba: 4278190080
+  m_outlineWidth: 0
   m_fontSize: 20
+  m_currentFontSize: 20
   m_fontSizeBase: 20
   m_fontWeight: 400
+  m_FontWeightInternal: 400
   m_enableAutoSizing: 0
+  m_maxFontSize: 72
+  m_minFontSize: 18
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
+  m_FontStyleInternal: 0
+  m_isUsingBold: 0
   m_textAlignment: 257
+  m_lineJustification: 257
+  m_textContainerLocalCorners:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   m_characterSpacing: 0
+  m_cSpacing: 0
+  m_monoSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
+  m_lineSpacingDelta: 0
+  m_lineHeight: -32767
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
+  m_charWidthAdjDelta: 0
   m_enableWordWrapping: 1
+  m_isCharacterWrappingEnabled: 0
+  m_isNonBreakingSpace: 0
+  m_isIgnoringAlignment: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -14333,6 +14965,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
+  m_isOverlay: 0
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_ignoreRectMaskCulling: 0
@@ -14340,25 +14973,193 @@ MonoBehaviour:
   m_horizontalMapping: 0
   m_verticalMapping: 0
   m_uvLineOffset: 0
+  m_renderMode: 255
   m_geometrySortingOrder: 0
   m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
+  m_maxVisibleCharacters: 99999
+  m_maxVisibleWords: 99999
+  m_maxVisibleLines: 99999
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
+  m_isNewPage: 0
   m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 2104028764}
-    characterCount: 11
-    spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
+  m_marginLeft: 0
+  m_marginRight: 0
+  m_marginWidth: 200
+  m_marginHeight: 50
+  m_width: -1
+  m_textInfo: {textComponent: {fileID: 2104028764}, characterCount: 11, spriteCount: 0,
+    spaceCount: 0, wordCount: 1, linkCount: 0, lineCount: 1, pageCount: 1, materialCount: 1}
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
+  m_transform: {fileID: 2104028763}
+  m_rectTransform: {fileID: 2104028763}
+  <autoSizeTextContainer>k__BackingField: 0
+  m_autoSizeTextContainer: 0
+  m_mesh: {fileID: 0}
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
+  m_flexibleHeight: -1
+  m_flexibleWidth: -1
+  m_minWidth: 0
+  m_minHeight: 0
+  m_maxWidth: 0
+  m_maxHeight: 0
+  m_LayoutElement: {fileID: 0}
+  m_preferredWidth: 0
+  m_renderedWidth: 0
+  m_isPreferredWidthDirty: 1
+  m_preferredHeight: 0
+  m_renderedHeight: 0
+  m_isPreferredHeightDirty: 1
+  m_isCalculatingPreferredValues: 0
+  m_recursiveCount: 0
+  m_layoutPriority: 0
+  m_isCalculateSizeRequired: 1
+  m_isLayoutDirty: 1
+  m_verticesAlreadyDirty: 1
+  m_layoutAlreadyDirty: 1
+  m_isAwake: 1
+  m_isWaitingOnResourceLoad: 0
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  old_text: 
+  m_fontScale: 0.22222222
+  m_fontScaleMultiplier: 1
+  m_htmlTag: []
+  m_attributeParameterValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  tag_LineIndent: 0
+  tag_Indent: 0
+  tag_NoParsing: 0
+  m_isParsingText: 0
+  m_FXMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_isFXMatrixSet: 0
+  m_input_CharArray: []
+  m_charArray_Length: 0
+  m_totalCharacterCount: 11
+  m_characterCount: 11
+  m_firstCharacterOfLine: 11
+  m_firstVisibleCharacterOfLine: 0
+  m_lastCharacterOfLine: 10
+  m_lastVisibleCharacterOfLine: 10
+  m_lineNumber: 0
+  m_lineVisibleCharacterCount: 0
+  m_pageNumber: 0
+  m_maxAscender: 19.24
+  m_maxCapHeight: 13.555555
+  m_maxDescender: -0.76000005
+  m_maxLineAscender: 19.24
+  m_maxLineDescender: -0.76000005
+  m_startOfLineAscender: 0
+  m_lineOffset: 0
+  m_htmlColor:
+    rgba: 4294967295
+  m_colorGradientPreset: {fileID: 0}
+  m_tabSpacing: 0
+  m_spacing: 0
+  m_padding: 1.25
+  m_baselineOffset: 0
+  m_xAdvance: 68.96181
+  m_textElementType: 0
+  m_cached_TextElement:
+    m_ElementType: 1
+    m_Unicode: 116
+    m_Glyph:
+      m_Index: 73
+      m_Metrics:
+        m_Width: 25.828125
+        m_Height: 58.953125
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 59.671875
+        m_HorizontalAdvance: 31.234375
+      m_GlyphRect:
+        m_X: 54
+        m_Y: 198
+        m_Width: 27
+        m_Height: 60
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 73
+    m_Scale: 1
+  m_cached_Underline_Character:
+    m_ElementType: 1
+    m_Unicode: 95
+    m_Glyph:
+      m_Index: 53
+      m_Metrics:
+        m_Width: 50.671875
+        m_Height: 8.375
+        m_HorizontalBearingX: 2.703125
+        m_HorizontalBearingY: 8.28125
+        m_HorizontalAdvance: 56.0625
+      m_GlyphRect:
+        m_X: 10
+        m_Y: 10
+        m_Width: 52
+        m_Height: 10
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 53
+    m_Scale: 1
+  m_cached_Ellipsis_Character:
+    m_ElementType: 1
+    m_Unicode: 0
+    m_Glyph:
+      m_Index: 0
+      m_Metrics:
+        m_Width: 0
+        m_Height: 0
+        m_HorizontalBearingX: 0
+        m_HorizontalBearingY: 0
+        m_HorizontalAdvance: 0
+      m_GlyphRect:
+        m_X: 0
+        m_Y: 0
+        m_Width: 0
+        m_Height: 0
+      m_Scale: 1
+      m_AtlasIndex: 0
+    m_GlyphIndex: 0
+    m_Scale: 1
+  m_defaultSpriteAsset: {fileID: 0}
+  m_currentSpriteAsset: {fileID: 0}
+  m_spriteCount: 0
+  m_spriteIndex: 0
+  m_spriteAnimationID: 0
+  m_ignoreActiveState: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -14369,8 +15170,41 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  m_previousLossyScaleY: 0.8
+  m_RectTransformCorners:
+  - {x: -100, y: -25, z: 0}
+  - {x: -100, y: 25, z: 0}
+  - {x: 100, y: 25, z: 0}
+  - {x: 100, y: -25, z: 0}
+  m_canvasRenderer: {fileID: 2104028765}
+  m_canvas: {fileID: 15763998}
+  m_isFirstAllocation: 1
+  m_max_characters: 8
+  m_isMaskingEnabled: 0
   m_baseMaterial: {fileID: 0}
+  m_isScrollRegionSet: 0
+  m_stencilID: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+  m_EnvMapMatrix:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  m_recursiveCountA: 0
+  loopCountA: 1
+  m_isRebuildingLayout: 0
 --- !u!222 &2104028765
 CanvasRenderer:
   m_ObjectHideFlags: 0
