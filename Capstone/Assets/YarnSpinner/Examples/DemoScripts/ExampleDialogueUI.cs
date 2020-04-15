@@ -146,6 +146,7 @@ namespace Yarn.Unity.Example {
             if (continuePrompt != null)
                 continuePrompt.SetActive (true);
 
+
             // Wait for any user input
             while (Input.anyKeyDown == false) {
                 yield return null;
