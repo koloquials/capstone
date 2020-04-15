@@ -1,0 +1,571 @@
+fileFormatVersion: 2
+guid: 9739028f4fb0a4280b74388a7ac61db9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8905223364564135152
+    second: beanArrows_UR
+  - first:
+      213: -7501655041179209716
+    second: beanArrows_UU
+  - first:
+      213: -5057949215394770624
+    second: beanArrows_UD
+  - first:
+      213: 1196713556504780297
+    second: beanArrows_UL
+  - first:
+      213: 3674629705579679455
+    second: beanArrows_RU
+  - first:
+      213: 2142843192722068002
+    second: beanArrows_RR
+  - first:
+      213: 3404038204344233894
+    second: beanArrows_RD
+  - first:
+      213: -5528095093884948128
+    second: beanArrows_RL
+  - first:
+      213: 463190769038434445
+    second: beanArrows_DU
+  - first:
+      213: 418823870995130983
+    second: beanArrows_DR
+  - first:
+      213: -5600755773070100629
+    second: beanArrows_DD
+  - first:
+      213: 7376772989214349017
+    second: beanArrows_LL
+  - first:
+      213: -3790039877001645049
+    second: beanArrows_LU
+  - first:
+      213: 7750580951515489472
+    second: beanArrows_LD
+  - first:
+      213: -2754568240442851725
+    second: beanArrows_DL
+  - first:
+      213: 5494504496444377568
+    second: beanArrows_LR
+  - first:
+      213: -7873186572007964917
+    second: beanArrows_LU
+  - first:
+      213: 4516109973962667052
+    second: beanArrows_UU
+  - first:
+      213: -1906967688020588030
+    second: beanArrows_UR
+  - first:
+      213: 4379796366804138015
+    second: beanArrows_UD
+  - first:
+      213: -7406911044373881079
+    second: beanArrows_UL
+  - first:
+      213: 4909258969993788939
+    second: beanArrows_RU
+  - first:
+      213: 3936479144173415575
+    second: beanArrows_RR
+  - first:
+      213: 2427732110714773430
+    second: beanArrows_RD
+  - first:
+      213: -3341955208875173919
+    second: beanArrows_RL
+  - first:
+      213: -1286505350262178382
+    second: beanArrows_DU
+  - first:
+      213: 4134309005978933746
+    second: beanArrows_DR
+  - first:
+      213: -4012970450112381663
+    second: beanArrows_DD
+  - first:
+      213: -7673930898004436757
+    second: beanArrows_DL
+  - first:
+      213: 3194957203518625553
+    second: beanArrows_LR
+  - first:
+      213: -2889841951704038212
+    second: beanArrows_LD
+  - first:
+      213: -1233769174471196599
+    second: beanArrows_LL
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: beanArrows_UU
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 467
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c24b4ac08127cae30800000000000000
+      internalID: 4516109973962667052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_UR
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 467
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a8265cdf61985e0800000000000000
+      internalID: -1906967688020588030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_UD
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 467
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1838e7279928cc30800000000000000
+      internalID: 4379796366804138015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_UL
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 467
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f5d2d06ad553990800000000000000
+      internalID: -7406911044373881079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_RU
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 313
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0e31e8d501312440800000000000000
+      internalID: 4909258969993788939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_RR
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 313
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ca03edcee21a630800000000000000
+      internalID: 3936479144173415575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_RD
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 313
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf96f4fd7901b120800000000000000
+      internalID: 2427732110714773430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_RL
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 313
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e79ab7a17dfe91d0800000000000000
+      internalID: -3341955208875173919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_DU
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 159
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bdbbfb333a652ee0800000000000000
+      internalID: -1286505350262178382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_DR
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 159
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9921de224006930800000000000000
+      internalID: 4134309005978933746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_DD
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 159
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d79e223a01f48c0800000000000000
+      internalID: -4012970450112381663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_DL
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 159
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be81d89a188b08590800000000000000
+      internalID: -7673930898004436757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_LU
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70470c6ffc2176bc0800000000000000
+      internalID: -3790039877001645049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_LR
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 5
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1179d4426a4c65c20800000000000000
+      internalID: 3194957203518625553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_LD
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 5
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb4c8a35e0835e7d0800000000000000
+      internalID: -2889841951704038212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beanArrows_LL
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 5
+        width: 272
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94041dcf875c0eee0800000000000000
+      internalID: -1233769174471196599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

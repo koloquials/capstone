@@ -34,34 +34,20 @@ public class NewFretFeedback : MonoBehaviour
 
     private int currPosInSong = 1;
 
+    public int phase1Threshold = 0;
+
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
     }
 
-    public void SetPhase1Sequence(List<string> phase1Sequence)
-    {
-        this.phase1Sequence = phase1Sequence.ToArray();
-
-    }
-
-    public void SetPhase2Sequence(List<string> phase2Sequence)
-    {
-        this.phase2Sequence = phase2Sequence.ToArray();
-    }
-
-    public void SetSong(List<string> phase1Sequence, List<string> phase2Sequence)
-    {
-        phase1Sequence.AddRange(phase2Sequence);
-        this.songSequence = phase1Sequence.ToArray();
-    }
-
-    public IEnumerator ScaleFret(float time)
+    public IEnumerator ScaleFret(float time, Vector3 scaleToSize)
     {
         //Debug.Log("Coroutine: trying to scale the fret");
         Vector3 originalScale = gameObject.transform.localScale;
-        Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
+        // Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
+        Vector3 destinationScale = scaleToSize;
 
         //Color spriteColour = mySpriteRenderer.color;
 
@@ -83,7 +69,7 @@ public class NewFretFeedback : MonoBehaviour
 
     public void SetFret(string nextSpriteCombination)
     {
-        if (currPosInSong > phase1Sequence.Length)
+        if (currPosInSong > phase1Threshold)
         {
             phase1Over = true;
         }
@@ -94,9 +80,9 @@ public class NewFretFeedback : MonoBehaviour
         currPosInSong++;
     }
 
-    public void RippleEffect() {
-        rippleParticleSystem.Play();
-    }
+    // public void RippleEffect() {
+    //     rippleParticleSystem.Play();
+    // }
 
     // public IEnumerator SetFret()
     // {

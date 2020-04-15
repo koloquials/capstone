@@ -17,6 +17,8 @@ public class NewNote : MonoBehaviour
     Vector3 destinationPos;
     Vector3 startPos;
 
+    Vector3 startScale;
+
     public Sprite UU;
     public Sprite UD;
     public Sprite UL;
@@ -40,6 +42,8 @@ public class NewNote : MonoBehaviour
 
     private SpriteGlowEffect glowScript;
 
+    public bool finishedMoving = false;                //flips to true once the note has reachd the fret. 
+
     [HideInInspector] public string myCombination;
 
     void Awake()
@@ -47,36 +51,40 @@ public class NewNote : MonoBehaviour
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         destinationPos = new Vector3(0f, transform.position.y, 0f);
         glowScript = gameObject.GetComponent<SpriteGlowEffect>();
+        startScale = new Vector3(0f, 0f, 0f);
     }
 
     void Start() {
         SetVisibility(false);
+        transform.localScale = startScale;
     }
 
     public IEnumerator WaitAndMove(float delayTime)
     {
         currTime = 0f;
 
-        SetMaterial(true);
+        // SetMaterial(true);
         SetVisibility(true);
 
-        yield return new WaitForSeconds(delayTime); // start at time X
-        while (currTime < (SimpleClock.MeasureLength() * 4))
+        while (currTime < (SimpleClock.MeasureLength() * 4 - (SimpleClock.BeatLength()/2)))
         { // until one second passed
-        currTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in one second
+            currTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in currTime/(SimpleClock.MeasureLength() * 4
             yield return 1; // wait for next frame
         }
         
         //make a note invisible once it has reached its destination
-        SetVisibility(false);
+        ResetNote(false, true);
     }
 
     //function for resetting all properties of the note that are mutable as the game is played. 
-    public void ResetNote(string thisNotesCombo, Vector3 parentTransform, bool enabled) {
-        SetSprite(thisNotesCombo, parentTransform);
-        SetMaterial(enabled);
+    //finishedMoving is true if the note has moved and reached the fret. Takes false when the rhythm game is trying to reset. 
+    public void ResetNote(bool enabled, bool finishedMoving) {
+        transform.position = startPos;
+        // SetMaterial(enabled);
         SetVisibility(enabled);
+        transform.localScale = startScale;
+        this.finishedMoving = finishedMoving;
     }
 
     private void SetMaterial(bool enabled) {
@@ -87,7 +95,9 @@ public class NewNote : MonoBehaviour
         mySpriteRenderer.enabled = visible;
     }
 
-    public void SetSprite(string thisNotesCombo, Vector3 parentTransform)
+    //SetSprite is a little more loaded than a setter function should be
+    //takes three parameters: the combination for this note, the parentTransform (used to set start position), and the fretTransform (used to set finish position)
+    public void SetSprite(string thisNotesCombo, Vector3 parentTransform, Vector3 fretTransform)
     {
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.

@@ -177,7 +177,8 @@ namespace Yarn.Unity.Example {
                     while ( timeWaited < textSpeed ) {
                         timeWaited += Time.deltaTime;
                         // early out / skip ahead
-                        if ( Input.anyKeyDown ) {
+                        if ( Input.GetMouseButtonDown(0) ) {
+                            Debug.Log("Progressing dialogue");
                             lineText.text = lineTextDisplay;
                             earlyOut = true;
                         }
@@ -199,9 +200,13 @@ namespace Yarn.Unity.Example {
             }
 
             // Wait for any user input
-            while (Input.anyKeyDown == false) {
+            while (!Input.GetMouseButtonDown(0)) {
+                Debug.Log("waiting");
                 yield return null;
             }
+            // while (Input.anyKeyDown == false) {
+            //     yield return null;
+            // }
 
             // Hide the text and prompt
             // lineText.gameObject.SetActive (false); // commented this out, so that the last message still displays while making choices

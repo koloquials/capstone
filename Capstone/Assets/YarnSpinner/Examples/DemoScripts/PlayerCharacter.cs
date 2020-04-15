@@ -37,8 +37,8 @@ namespace Yarn.Unity.Example
         private SpriteRenderer mySpriteRenderer;
         private Animator myAnimator;
 
-        public Sprite p_stand2;
-        public Sprite p_walk1;
+        public Sprite p_idle;
+        public Sprite p_run;
 
         public float minPosition = -5.3f;
         public float maxPosition = 5.3f;
@@ -170,6 +170,11 @@ namespace Yarn.Unity.Example
                 SetDirection();
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
+            }
+            if (!isMoving) {
+                Debug.Log("Not moving, display idle sprite");
+                myAnimator.SetBool("isRunning", false);
+                mySpriteRenderer.sprite = p_idle;
             }
 
             //if player is where they pressed to be
