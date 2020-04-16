@@ -8,9 +8,12 @@ using UnityEngine;
 /// </summary>
 public class ScaleObject : MonoBehaviour
 {
+    
+    public bool finishedScaling = false;
+
     public IEnumerator Scale(float time, Vector3 scaleToSize)
     {
-        //Debug.Log("Coroutine: trying to scale the fret");
+        Debug.Log("Scaling to size: " + scaleToSize);
         Vector3 originalScale = gameObject.transform.localScale;
         // Vector3 destinationScale = new Vector3(0.5f, 0.5f, 3f);
         Vector3 destinationScale = scaleToSize;
@@ -28,5 +31,7 @@ public class ScaleObject : MonoBehaviour
             yield return null;
             currTime += Time.deltaTime;
         } while (currTime <= time);
+
+        finishedScaling = true;
     }
 }

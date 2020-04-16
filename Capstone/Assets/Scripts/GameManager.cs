@@ -25,13 +25,9 @@ public class GameManager : MonoBehaviour
 
         //remove these later. Here for debugging purposes. Start 
         if (Input.GetKeyDown(KeyCode.C) && (gameManagerStateMachine.CurrentState.GetType() != typeof(RhythmGame))) {
+            Debug.Log("Entering the rhythm game");
             gameManagerStateMachine.TransitionTo<RhythmGame>();
         }
-
-        if (Input.GetKeyDown(KeyCode.Q)) {
-            gameManagerStateMachine.TransitionTo<Overworld>();
-        }
-        //End
     }
 
     public void RhythmGameState() {

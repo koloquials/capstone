@@ -36,80 +36,38 @@ public class NewFretFeedback : MonoBehaviour
 
     public int phase1Threshold = 0;
 
+    public ScaleObject objectScalerScript;
+
+    private Vector3 originalScale;
+
     void Start()
     {
         mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        // rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
+        objectScalerScript = gameObject.GetComponent<ScaleObject>();
+        rippleParticleSystem = transform.GetChild(0).gameObject.GetComponent<ParticleSystem>();
     }
 
-    public IEnumerator ScaleFret(float time, Vector3 scaleToSize)
-    {
-        //Debug.Log("Coroutine: trying to scale the fret");
-        Vector3 originalScale = gameObject.transform.localScale;
-        // Vector3 destinationScale = new Vector3(2.0f, 2.0f, 2.0f);
-        Vector3 destinationScale = scaleToSize;
+    void Update() {
+        doneScaling = objectScalerScript.finishedScaling;
+    }
 
-        //Color spriteColour = mySpriteRenderer.color;
-
-        float currTime = 0f;
-
-        do
-        {
-            //Debug.Log("Scaling the object up");
-            gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
-            //spriteColour.a = 1 - (currTime / time);
-            //mySpriteRenderer.color = spriteColour;
-            yield return null;
-            currTime += Time.deltaTime;
-        } while (currTime <= time);
-
-        // Debug.Log("This coroutine has finished executing. Thx for ur business :) ");
-        doneScaling = true;
+    public void ScaleFret(float time, Vector3 scaleToSize) {
+        StartCoroutine(objectScalerScript.Scale(time, scaleToSize));
     }
 
     public void SetFret(string nextSpriteCombination)
     {
-        if (currPosInSong > phase1Threshold)
-        {
-            phase1Over = true;
-        }
-
-        // SetSprite(songSequence[currPosInSong]);
         SetSprite(nextSpriteCombination);
-
-        currPosInSong++;
     }
-
-    // public void RippleEffect() {
-    //     rippleParticleSystem.Play();
-    // }
-
-    // public IEnumerator SetFret()
-    // {
-    //     for (int i = 0; i < songSequence.Length; i++)
-    //     {
-    //         if (i > phase1Sequence.Length)
-    //         {
-    //             phase1Over = true;
-    //         }
-
-    //         SetSprite(songSequence[i]);
-
-    //         yield return new WaitForSeconds(SimpleClock.MeasureLength());
-    //         Debug.Log("Changing to the next note");
-    //     }
-    // }
-
-
 
     public bool GetScaleStatus()
     {
         return doneScaling;
     }
 
-    public bool GetPhase1Status()
-    {
-        return phase1Over;
+    public void ResetFret() {
+        mySpriteRenderer.color = Color.white;
+        doneScaling = false;
     }
 
     public void SetSprite(string currentSpriteCombo)
@@ -164,6 +122,23 @@ public class NewFretFeedback : MonoBehaviour
             case "DD":
                 mySpriteRenderer.sprite = DD;
                 break;
+        }
+    }
+
+    public IEnumerator FretHit(bool hit) //Whenever the fret gets hit. Pass a bool for if the hit was accurate
+    {
+        if (hit) { //If it hits, set the color and increase the scale 
+            originalScale = transform.localScale;
+            mySpriteRenderer.color = new Color(0.26667f, 0.49020f, 0.85490f, 0.5f); //May change this and the miss color once our palette is finalized.
+            StartCoroutine(objectScalerScript.Scale(0.1f, new Vector3(2.2f, 2.2f, transform.position.z)));
+
+            yield return new WaitForSeconds(0.1f);
+
+            mySpriteRenderer.color = Color.white;
+            StartCoroutine(objectScalerScript.Scale(0.1f, originalScale)); 
+        }
+        else  {//On a miss, set the color and decrease the scale
+            mySpriteRenderer.color = new Color(0.96078f, 0.43922f, 0.53333f, 0.8f);
         }
     }
 }

@@ -41,6 +41,9 @@ public class NewNote : MonoBehaviour
     private float currTime = 0f;
 
     private SpriteGlowEffect glowScript;
+    private TrailRenderer trail;
+
+    private bool isVisible = false;
 
     public bool finishedMoving = false;                //flips to true once the note has reachd the fret. 
 
@@ -52,11 +55,18 @@ public class NewNote : MonoBehaviour
         destinationPos = new Vector3(0f, transform.position.y, 0f);
         glowScript = gameObject.GetComponent<SpriteGlowEffect>();
         startScale = new Vector3(0f, 0f, 0f);
+        trail = gameObject.GetComponent<TrailRenderer>();
+        isVisible = gameObject.GetComponent<ScaleObject>().finishedScaling;
     }
 
     void Start() {
         SetVisibility(false);
         transform.localScale = startScale;
+    }
+
+    void Update() {
+        if (isVisible) 
+            SetTrail(isVisible);
     }
 
     public IEnumerator WaitAndMove(float delayTime)
@@ -87,12 +97,12 @@ public class NewNote : MonoBehaviour
         this.finishedMoving = finishedMoving;
     }
 
-    private void SetMaterial(bool enabled) {
-        glowScript.enabled = enabled;
-    }
-
     private void SetVisibility(bool visible) {
         mySpriteRenderer.enabled = visible;
+    }
+
+    private void SetTrail(bool enabled) {
+        trail.enabled = enabled;
     }
 
     //SetSprite is a little more loaded than a setter function should be
