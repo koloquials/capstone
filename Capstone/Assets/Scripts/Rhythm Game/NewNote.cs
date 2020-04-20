@@ -5,7 +5,7 @@ using SpriteGlow;
 
 public class NewNote : MonoBehaviour
 {
-    SpriteRenderer mySpriteRenderer;
+    SpriteRenderer spriteRenderer;
 
     [HideInInspector] public int measure;
     [HideInInspector] public int beat;
@@ -51,7 +51,7 @@ public class NewNote : MonoBehaviour
 
     void Awake()
     {
-        mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         destinationPos = new Vector3(0f, transform.position.y, 0f);
         glowScript = gameObject.GetComponent<SpriteGlowEffect>();
         startScale = new Vector3(0f, 0f, 0f);
@@ -98,7 +98,7 @@ public class NewNote : MonoBehaviour
     }
 
     private void SetVisibility(bool visible) {
-        mySpriteRenderer.enabled = visible;
+        spriteRenderer.enabled = visible;
     }
 
     private void SetTrail(bool enabled) {
@@ -112,97 +112,97 @@ public class NewNote : MonoBehaviour
         switch (thisNotesCombo)
         {//I think this is the easiest way to assign sprites and positions based on the 16 possible combinations.
             case "UU":
-                mySpriteRenderer.sprite = UU;
+                spriteRenderer.sprite = UU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.32f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.32f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UR":
-                mySpriteRenderer.sprite = UR;
+                spriteRenderer.sprite = UR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.27f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.27f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UL":
-                mySpriteRenderer.sprite = UL;
+                spriteRenderer.sprite = UL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.22f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.22f));
                 SetCombination(thisNotesCombo);
                 break;
             case "UD":
-                mySpriteRenderer.sprite = UD;
+                spriteRenderer.sprite = UD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.17f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.17f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RU":
-                mySpriteRenderer.sprite = RU;
+                spriteRenderer.sprite = RU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.12f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.12f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RR":
-                mySpriteRenderer.sprite = RR;
+                spriteRenderer.sprite = RR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.07f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.07f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RL":
-                mySpriteRenderer.sprite = RL;
+                spriteRenderer.sprite = RL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y + 0.02f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y + 0.02f));
                 SetCombination(thisNotesCombo);
                 break;
             case "RD":
-                mySpriteRenderer.sprite = RD;
+                spriteRenderer.sprite = RD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.03f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.03f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LU":
-                mySpriteRenderer.sprite = LU;
+                spriteRenderer.sprite = LU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.08f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y -0.08f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LR":
-                mySpriteRenderer.sprite = LR;
+                spriteRenderer.sprite = LR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.13f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.13f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LL":
-                mySpriteRenderer.sprite = LL;
+                spriteRenderer.sprite = LL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.18f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y -0.18f));
                 SetCombination(thisNotesCombo);
                 break;
             case "LD":
-                mySpriteRenderer.sprite = LD;
+                spriteRenderer.sprite = LD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.23f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.23f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DU":
-                mySpriteRenderer.sprite = DU;
+                spriteRenderer.sprite = DU;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.28f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.28f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DR":
-                mySpriteRenderer.sprite = DR;
+                spriteRenderer.sprite = DR;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.33f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.33f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DL":
-                mySpriteRenderer.sprite = DL;
+                spriteRenderer.sprite = DL;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.38f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.38f));
                 SetCombination(thisNotesCombo);
                 break;
             case "DD":
-                mySpriteRenderer.sprite = DD;
+                spriteRenderer.sprite = DD;
                 SetStartPos(new Vector2(parentTransform.x, parentTransform.y - 0.43f));
                 SetDestinationPos(new Vector2(1f, parentTransform.y - 0.43f));
                 SetCombination(thisNotesCombo);
@@ -211,7 +211,7 @@ public class NewNote : MonoBehaviour
     }
 
     public Sprite GetSprite() {
-        return mySpriteRenderer.sprite;
+        return spriteRenderer.sprite;
     }
 
     public void SetStartPos(Vector2 startPos)

@@ -58,12 +58,15 @@ namespace Yarn.Unity.Example
         private bool isMoving;
         private bool facingRight = true;
 
+        public AudioSource footstepsSrc;
+
         void Start()
         {
             mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             myAnimator = gameObject.GetComponent<Animator>();
-
+            footstepsSrc = gameObject.GetComponent<AudioSource>();
         }
+
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected()
         {
@@ -168,6 +171,7 @@ namespace Yarn.Unity.Example
             {
                 myAnimator.SetBool("isRunning", true);
                 SetDirection();
+                footstepsSrc.Play();
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }

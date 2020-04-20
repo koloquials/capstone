@@ -224,7 +224,7 @@ public class RhythmGameController : MonoBehaviour {
             Debug.Log("Checking measure: " + expectedNoteMeasure + " and beat: " + expectedNoteBeat);
 
             //this will result in index out of bounds trying to check the last beat in the song. Have to make sure the measure doesn't go out. 
-            if (expectedNoteMeasure < 78) {
+            if (expectedNoteMeasure < 77) {
                 GameObject posInSong = thisSong[expectedNoteMeasure, expectedNoteBeat];
             // Debug.Log ("What were are trying to extract from 2D array: " + posInSong);
 
@@ -480,6 +480,7 @@ public class RhythmGameController : MonoBehaviour {
 
         //function to handle strikes
         public void StrikeCheck() {
+            Debug.Log("deactivating: " + strikes + "out of a total of " + Context.lifeSprites.Length);
             Context.lifeSprites[strikes].SetActive(false);
         }
 
@@ -628,20 +629,22 @@ public class RhythmGameController : MonoBehaviour {
                 
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
-                    Context.RestartRhythmGame(); 
+                    // Context.RestartRhythmGame(); 
                 }
 
                 //phase 2 check: if an incorrect combination was pressed, grant a strike
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase2) {
-                    Context.StrikeCheck();
+                    if (Context.strikes < 5) 
+                        Context.StrikeCheck();
 
                     //increment strike counter after doing the StrikeCheck to prevent an index-out-of-bounds error
 
                     Context.strikes++;
                     
                     //restart the game if more than 5 strikes
-                    if (Context.strikes >= 5) {
-                        Context.RestartRhythmGame();
+                    if (Context.strikes > 5) {
+                        Debug.Log("Restarting the rhythm game because too many strikes");
+                        // Context.RestartRhythmGame();
                     }
                 }
 

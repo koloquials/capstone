@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private class Overworld : FiniteStateMachine<GameManager>.State {
         public override void OnEnter() {
-        }
+        }   
 
         public override void Update() {
         }
@@ -55,11 +55,12 @@ public class GameManager : MonoBehaviour
             Context.player.motionControl(false); 
             Context.cam.setGame(true);
             Context.rhythmGameController.gameObject.SetActive(true);
+
         }
 
         //rhythm game is self sufficient. It will handle entering and exiting on its own.
         public override void Update() {
-            if (Context.rhythmGameController.gameObject.GetComponent<RhythmGameController>().gameEnded) {
+            if(Context.rhythmGameController.gameObject.GetComponent<RhythmGameController>().gameEnded) {
                 TransitionTo<Overworld>();
             }
         }
