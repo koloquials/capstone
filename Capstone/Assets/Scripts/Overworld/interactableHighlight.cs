@@ -14,6 +14,7 @@ public class InteractableHighlight : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    //the glowscript should only be disabled when it will never be enabled again. 
     private SpriteGlowEffect glowScript;
 
     void Start() {
@@ -25,6 +26,7 @@ public class InteractableHighlight : MonoBehaviour
         LightUp(false, originalColour);
     }
 
+    //interactable highlight will be disabled when the character fades out
     void OnDisable() {
         glowScript.enabled = false;
     }
@@ -37,9 +39,10 @@ public class InteractableHighlight : MonoBehaviour
     void OnMouseExit() {
         Debug.Log("Deactivating light up");
         LightUp(false, originalColour);
-        // spriteRenderer.material = defaultMat;
     }
 
+    //lighting up doesn't disable the glowscript, just changes the values. Disabling and enabling glowScript impacts the material on the sprite that this
+    //script is dangerous and potentially causes rendering problems! 
     public void LightUp(bool enabled, Color newColour) {
         if (enabled) {
             glowScript.GlowBrightness = 2;

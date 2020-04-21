@@ -8,26 +8,43 @@ using UnityEngine;
 /// </summary>
 public class ScaleObject : MonoBehaviour
 {
-    
     public bool finishedScaling = false;
+    public SpriteRenderer spriteRenderer;
+    private bool scaleUp;
+
+    void Start() {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     public IEnumerator Scale(float time, Vector3 scaleToSize)
     {
-        Debug.Log("Scaling to size: " + scaleToSize);
         Vector3 originalScale = gameObject.transform.localScale;
-        // Vector3 destinationScale = new Vector3(0.5f, 0.5f, 3f);
         Vector3 destinationScale = scaleToSize;
 
-        //Color spriteColour = mySpriteRenderer.color;
+        // if (destinationScale.x > originalScale.x) {
+        //     scaleUp = true;
+        // }
+        // else {
+        //     scaleUp = false;
+        // }
+
+        // Color spriteColour = spriteRenderer.color;
 
         float currTime = 0f;
 
         do
         {
-            //Debug.Log("Scaling the object up");
             gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
-            //spriteColour.a = 1 - (currTime / time);
-            //mySpriteRenderer.color = spriteColour;
+            
+            //scale to max alpha or min alpha depending on which direction we are scaling in 
+            // if (scaleUp) {
+            //     spriteColour.a = (currTime / time);
+            //     spriteRenderer.color = spriteColour;
+            // }
+            // else {
+            //     spriteColour.a = 1 - (currTime / time);
+            //     spriteRenderer.color = spriteColour;
+            // }
             yield return null;
             currTime += Time.deltaTime;
         } while (currTime <= time);

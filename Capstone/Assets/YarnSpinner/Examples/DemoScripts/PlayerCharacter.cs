@@ -169,14 +169,16 @@ namespace Yarn.Unity.Example
 
             if (isMoving)
             {
+                if (!footstepsSrc.isPlaying) 
+                    footstepsSrc.Play();
+
                 myAnimator.SetBool("isRunning", true);
                 SetDirection();
-                footstepsSrc.Play();
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
             if (!isMoving) {
-                Debug.Log("Not moving, display idle sprite");
+                footstepsSrc.Stop();
                 myAnimator.SetBool("isRunning", false);
                 mySpriteRenderer.sprite = p_idle;
             }
@@ -189,7 +191,7 @@ namespace Yarn.Unity.Example
                 isMoving = false;
             }
         }
-
+        
         //check which side character is walking towards to flip the sprite accordingly 
         public void SetDirection()
         {

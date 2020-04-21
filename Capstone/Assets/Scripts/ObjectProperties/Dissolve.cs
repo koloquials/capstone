@@ -18,6 +18,7 @@ public class Dissolve : MonoBehaviour
 
     void OnEnable() {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        mainTex = spriteRenderer.sprite.texture;
         dissolveMat.SetTexture("_MainTex", mainTex);
         spriteRenderer.material = dissolveMat;
 
