@@ -37,17 +37,17 @@ parent:
 	<<endif>>
 <<endif>>
 <<if not visited("Scene4")>>
-	//start of the Fidel Tour Scene (demo)
+	//{Start of the Fidel Tour Scene (demo)}
 
 	//[BLACK]
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_neutral>>
 	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
 	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
 	Fidel: Oh, just in time. Here we are… our first stop!
 	Fidel: C'mon, you can open your eyes now. 
 	//<<HideAll @>>
 	//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
-	<<Act @ Piper, player_neutral>>
+	<<Act @ Piper, p_neutral>>
 	Piper: ‘kay.
 
 	[[Scene1]]
@@ -62,63 +62,71 @@ colorID: 0
 position: -138,-49
 parent: 
 ---
+//{Continue from before.}
 //[Still black.]
-<<Act @ Fidel, fidel_wry>>
+<<Act @ Fidel, f_smirk>>
 Fidel: Surpriseee! 
 
 //[From black. Blur into view: BG1 (mall entrance)]
-<<Act @ Piper, player_neutral>>
+// SPRITES: fidel walks over and f_stand_0 in front of the entrance. p_stand_1
+<<Act @ Piper, p_concern2>>
 Piper: … This is.
+//[Piper turns slightly.]
+// SPRITES: p_stand_0
+<<Act @ Piper, p_neutral>>
 Piper: We’re in an old mall.
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Sure are! Stellar observation!
+<<Act @ Fidel, f_neutral>>
 Fidel: Thanks for deciding to trust, me, a total stranger, with taking you around town.
 Fidel: Thought I'd start with my humble abode! Welcome.
-<<Act @ Piper, player_concern>>
+<<Act @ Piper, p_concern2>>
 Piper: You live. In there?
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah2>>
 Fidel: Well, you know what they say, one animal’s trash is another one’s beautiful home.
 -> Do they, now?
-	<<Act @ Piper, player_joke>>
-	Piper Do they, now?
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Piper, p_happy3>>
+	Piper: Do they, now?
+	<<Act @ Fidel, f_hah1>>
 	Fidel: Yeah, and it’s *this* trash animal’s crib, heh! 
 -> It’s nice.
-	<<Act @ Piper, player_pleasant>>
+	<<Act @ Piper, p_happy2>>
 	Piper: It’s nice.
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_hah2>>
 	Fidel: Aw, thanks. It's literally just a shopping mall. 
-<<Act @ Fidel, fidel_disappointed>>
+<<Act @ Fidel, f_concern1>>
 Fidel: Hmm.
+<<Act @ Fidel, f_neutral>>
 Fidel: Is that all it is to you? Nothing more?
 -> Should it be more?
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern2>>
 	Piper: Should it be more?
-	<<Act @ Fidel, fidel_disappointed>>
+	<<Act @ Fidel, f_concern1>>
 	Fidel: Oh, I guess I was hoping it'd jog some memories? Maybe not yet.
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern2>>
 	Piper: Memories? 
 -> Doesn’t ring any bells, sorry.
-	<<Act @ Piper, player_sorry>>
+	<<Act @ Piper, p_concern1>>
 	Piper: Doesn’t ring any bells, sorry.
-	<<Act @ Fidel, fidel_disappointed>>
+	<<Act @ Fidel, f_concern1>>
 	Fidel: That’s okay. Amnesia's tough, don't wanna put you on the spot. 
-	<<Act @ Piper, player_sorry>>
+	<<Act @ Piper, p_smile1>>
 	Piper: You didn't.
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Okay let's not worry about that now! Camera crew, lemme hit you with the tour.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_neutral>>
 Piper: I don’t have a camera.
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_hah2>>
 Fidel: …It was a joke! C’mon, stick with it!
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_smile1>>
 Piper: I don’t— okay. Let’s go.  
-<<Act @ Fidel, fidel_woah>>
+<<Act @ Fidel, f_oooh>>
 Fidel: Woah there, chief. Try not to get *too* excited. 
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: …
-<<Act @ Fidel, fidel_disappointed>>
+<<Act @ Fidel, f_concern1>>
 Fidel: …
+<<Act @ Fidel, f_concern2>>
 Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the stage.
 
 <<set $waypoint to 2>>
@@ -135,12 +143,18 @@ colorID: 0
 position: 0,0
 parent: 
 ---
+//{Enter next scene.}
+
 //[BG2 (clothing aisle), they walk in and then stop near the left.]
-<<Act @ Fidel, fidel_neutral>>
+// SPRITES: fidel walks over to the left and f_stand_0
+
+<<Act @ Fidel, f_neutral>>
 Fidel: This is my usual stompin grounds. I hang out here and have fun!
+<<Act @ Fidel, f_think>>
 Fidel: Or like, make my own fun, same deal. 
 
 //[Fidel walks more towards the right, then pauses again.]
+// SPRITES: f_stand_0 + p_stand_0
 <<Act @ Fidel, fidel_neutral>>
 Fidel: Mind the trash bags and, uh, wire sculptures. It's very cozy, I know.
 -> Yeah, cozy.
@@ -157,55 +171,73 @@ Fidel: Mind the trash bags and, uh, wire sculptures. It's very cozy, I know.
 	Fidel: Yes?
 	<<Act @ Piper, player_concern>>
 	Piper: As long as you like it. 
-<<Act @ Fidel, fidel_thinking>>
+<<Act @ Fidel, f_think>>
 Fidel: Thanks! What else, what else? Oh!
+<<Act @ Fidel, f_hah1>>
 Fidel: It’s a ‘lil early for this, but I want you to meet my other friends!
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_neutral>>
 Piper: Your other friends are here?
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Just stay right there, I’ll go get them!
 
 //[Fidel runs offscreen.]
-<<Act @ Fidel, fidel_happy>>
+// SPRITES: p_stand_0 still. for Fidel, none: offscreen.
+<<Act @ Fidel, f_hah1>>
 Fidel: These are. Soheavy.
 
 //[Fidel comes back onscreen, pushing the micequinns.]
+// SPRITES: micequinns + f_pushmice, sliding from offscreen to the left. if you can make it so that he slowly inches in (pauses every few inches) that would be especially rad.
+
+//[Fidel stops once they're close enough to Piper and motions at them!]
+// SPRITES: micequinns still there. f_stand_1 + p_stand_1 once they're close. They might have to stand in front of the mice sprite to get the angle right.
+
 <<showNPC micequinns>>
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah2>>
 Fidel: Here they are— my besties! 
 -> Nice to meet you.
-	<<Act @ Piper, player_pleasant>>
+	<<Act @ Piper, p_smile3>>
 	Piper: Nice to meet you.
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_hah2>>
 	Fidel: So polite! That's what I like about you.
+	<<Act @ Fidel, f_oooh>>
 	Fidel: Some people are so rude, y’know?
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_smile2>>
 	Piper: I get what you mean.
 -> Huh.
-	<<Act @ Piper, player_neutral>>
+	<<Act @ Piper, p_concern1>>
 	Piper: Huh.
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_oooh>>
 	Fidel: Hey, don’t be rude. I want my friends to get along!
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern2>>
 	Piper: Are we friends?
-	<<Act @ Fidel, fidel_disappointed>>
+	<<Act @ Fidel, f_concern2>>
 	Fidel: Okay, point. 
-<<Act @ Piper, player_concern>>
+
+//[Piper looks at. Fidel.]
+// SPRITES: p_stand_0, looking at Fidel who is to their right.
+<<Act @ Piper, p_concern1>>
 Piper: Just to be clear, this is a bit, right?
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_neutral>>
 Fidel: Yeah this is a bit.
-<<Act @ Piper, player_concern>>
+<<Act @ Piper, p_smile1>>
 Piper: Okay. Carry on.
-<<Act @ Fidel, fidel_happy>>
+<<Act @ Fidel, f_hah2>>
 Fidel: We’ve been through thick and thin together; we’ve been friends forever!
-<<Act @ Piper, player_concern>>
-Piper: Wait, forever? They look like you found them yesterday. That’s surprising.
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Piper, p_concern2>>
+Piper: Forever? They look like you found them yesterday. That’s surprising.
+<<Act @ Fidel, f_neutral>>
 Fidel: That they don’t look older? 
-Fidel: Oh yeah, I think I mentioned it on the way here: weird time bubble.
+//[Fidel sprite change now that the funnies are over.]
+// SPRITES: f_stand_0
+<<Act @ Fidel, f_smirk>>
+Fidel: Actually yeah, I think I mentioned it on the way here: weird time bubble.
+<<Act @ Fidel, f_think>>
 Fidel: Best way to explain it, is that everything's frozen.
 Fidel: Aside from us, nothing moves, or ages, or collects dust, or anything.
-Fidel: And even we don't need to eat or sleep, it's been weird. 
+<<Act @ Fidel, f_concern2>>
+Fidel: And even we don't need to eat or sleep. 
+<<Act @ Fidel, f_concern1>>
+Fidel: It's been weird. 
 
 //[[Scene2b]]
 //you have to change stuff in start to account for the new scenes
@@ -221,34 +253,41 @@ colorID: 0
 position: 0,0
 parent: 
 ---
-//[BG3 (stained glass), triggers once you've walked in.]
-<<Act @ Piper, player_neutral>>
+//{Enter next scene.}
+
+//[BG3 (stained glass), triggers once you've walked in. They walk, Fidel in the front. Piper pauses, then Fidel after, and flips to look towards the left, at Piper.]
+// SPRITES: p_stand_0 + f_stand_0
+<<Act @ Piper, p_concern1>>
 Piper: Fidel, can I ask you a question?
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_smirk>>
 Fidel: Sure? Shoot!
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: I've been wondering for a bit, why are you so invested in showing me around?
 Piper: Surely with everything you've got going on, you've got plenty to do.
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Haha, you'd be surprised. 
+<<Act @ Fidel, f_smirk>>
 Fidel: But mostly, I wanna make sure you feel welcome and comfy!
 -> Oh, well sure. Thanks.
-	<<Act @ Piper, player_pleasant>>
+	<<Act @ Piper, p_smile2>>
 	Piper: Oh, well sure. Thanks.
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_concern1>>
 	Fidel: You are feeling okay, right?
 -> Is that all?
-	<<Act @ Piper, player_neutral>>
+	<<Act @ Piper, p_concern2>>
 	Piper: Is that all?
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_smirk>>
 	Fidel: If you have something bouncing 'round your noggin, go for it.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: It's just, should I be remembering something?
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_neutral>>
 Fidel: Don't take this the wrong way, but we used to be friends is all.
+<<Act @ Fidel, f_concern1>>
 Fidel: I guess it doesn't matter, if you don't remember.
+<<Act @ Fidel, f_hah2>>
 Fidel: That's just how it be!
-
+//[Fidel keeps walking to in front of the puzzle.]
+// SPRITES: f_stand_0
 
 ===
 title: Scene2bPuzzle
@@ -257,33 +296,59 @@ colorID: 0
 position: 0,0
 parent: 
 ---
-//[Approach the puzzle.]
-<<Act @ Fidel, fidel_neutral>>
+//{Approach the puzzle and Fidel.}
+
+<<Act @ Fidel, f_think>>
 Fidel: Weird. This is like, really weird.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: Hm?
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_concern2>>
 Fidel: Things shouldn't be able to move on their own like this!
 Fidel: It's like I said. Birds don't fly, water doesn't fall, nothing moves aside from us.
+<<Act @ Fidel, f_concern1>>
 Fidel: How are we supposed to get through now?
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_neutral>>
 Piper: I wonder… can I do something about it?
 Piper: I have an itch to try something.
+//[Piper kneels down.]
+//SPRITES: p_crouch
 
-//[Hit your first note.]
-<<Act @ Fidel, fidel_neutral>>
+//{Hit your first note.}
+<<Act @ Fidel, f_oooh>>
 Fidel: W-woah! The heck! You've never- what was that?
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_smile1>>
 Piper: Gonna try and figure the rest of this out.
 
 //[Finish puzzle.]
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_smile2>>
 Piper: There.
-<<Act @ Fidel, fidel_neutral>>
+//[Piper gets back up.]
+//SPRITES: p_stand_0
+<<Act @ Fidel, f_hah1>>
 Fidel: You did it! We can get through!
+<<Act @ Fidel, f_think>>
 Fidel: Maybe you coming back shook some stuff around? That's so strange.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: Dunno.
+<<Act @ Fidel, f_hah1>>
+Fidel: Well, whatever you did was neat! You hungry?
+-> Yeah, I’m peckish.
+	<<Act @ Piper, p_smile3>>
+	Piper: Yeah, I’m peckish.
+	<<Act @ Fidel, f_hah2>>
+	Fidel: Cool! Just don’t peck at me, yeah? Hah! 
+-> Not really.
+	<<Act @ Piper, p_smile1>>
+	Piper: Not really.
+	<<Act @ Fidel, f_hah2>>
+	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
+	Fidel: To the food court! 
+//[Fidel motions way to food court.]
+//SPRITES: f_stand_1
+<<set $waypoint to 4>>
+<<moveNPC Fidel>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
 ===
 title: Scene3
 tags: 
@@ -291,24 +356,8 @@ colorID: 0
 position: 0,0
 parent: 
 ---
-//[BG4 (food court), triggers once you've walked in.]
-<<Act @ Fidel, fidel_neutral>>
-Fidel: Whatever it was, it was neat! You hungry?
--> Yeah, I’m peckish.
-	<<Act @ Piper, player_neutral>>
-	Piper: Yeah, I’m peckish.
-	<<Act @ Fidel, fidel_hah>>
-	Fidel: Cool! Just don’t peck at me, yeah? Hah! 
--> Not really.
-	<<Act @ Piper, player_neutral>>
-	Piper: Not really.
-	<<Act @ Fidel, fidel_hah>>
-	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
-Fidel: To the food court! 
-<<set $waypoint to 4>>
-<<moveNPC Fidel>>
-<<Hide @ Piper>>
-<<Hide @ Fidel>>
+//[scene that used to be here moved to Scene2bPuzzle]
+
 
 ===
 title: Scene3b
@@ -317,63 +366,79 @@ colorID: 0
 position: 0,0
 parent: 
 ---
-//[BG4 (food court), triggers once you've walked in.]
-<<Act @ Fidel, fidel_happy>>
+//{BG4 (food court), triggers once you've walked in.}
+//SPRITES: fidel_stand_0
+<<Act @ Fidel, f_hah1>>
 Fidel: Okay, alright. Don’t mind if I do! 
-//[Fidel goes offscreen.]
+//[Fidel walks offscreen to the right.]
 
-//[When player joins them by the counter, Fidel is in their counter sprite. Talk to them and they pop out holding the nugs.]
+//[When player approaches them by the counter, Fidel is in their counter sprite.] 
+//SPRITES: f_counter (animation)
+
+//[Talk to them and they pop out holding the nugs.]
+//SPRITES: f_nug_0 + p_stand_0
 Fidel: Welcome to Grili’s, how can I help you?
 -> Are you going to take my order?
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_smile3>>
 	Piper: Are you going to take my order?
-	<<Act @ Fidel, fidel_hah>>
+	<<Act @ Fidel, f_hah2>>
 	Fidel: Heh, absolutely not. I can’t help you at all! Who do you think I am?
 	Fidel: But I do have a very *un*helpful thing for you.
 -> Cheeseburger.
-	<<Act @ Piper, player_neutral>>
+	<<Act @ Piper, p_smile1>>
 	Piper: Cheeseburger.
-	<<Act @ Fidel, fidel_hah>>
+	<<Act @ Fidel, f_hah2>>
 	Fidel: That’s not even on the menu. Get outta here, you heathen! Scram!
-Fidel: ...Now come back. I have something real special to ask you.    
-Fidel: Piper, do you...
+<<Act @ Fidel, f_hah1>>
+Fidel: ...Now come back. I have something real special to ask you.
+<<Act @ Fidel, f_oooh>>    
+Fidel: Piper, do you…
+<<Act @ Fidel, f_hah2>>
 Fidel: Do you wanna see me eat seventy chicken nuggets?
 -> No.
-	<<Act @ Piper, player_mad>>
+	<<Act @ Piper, p_indignant>>
 	Piper: No.
 -> Absolutely not.
-	<<Act @ Piper, player_mad>>
+	<<Act @ Piper, p_indignant>>
 	Piper: Absolutely not.
 //[automatically dismisses this in 0.2 seconds so it looks like they don’t get a choice]
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Well, we can’t always have what we want, buddy.
 
 //[Spawn the single nug sprite on the floor. Fidel changes sprites to nug2.] 
-<<Act @ Fidel, fidel_hah>>
+//SPRITES: f_nug_1 + nug
+<<Act @ Fidel, f_neutral>>
 Fidel: Oh no, I dropped one. Ah beans, there it goes... down the drain. 
+<<Act @ Fidel, f_concern1>>
 Fidel: Now I have exactly one fewer than seventy.
-<<Act @ Piper, player_concern>>
+<<Act @ Piper, p_concern2>>
 Piper: What drain? We’re in a food court.
+<<Act @ Piper, p_indignant>>
 Piper: I just watched you very deliberately open a carton and drop a nugget to the floor.
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_concern1>>
 Fidel: Haha, yeah. It’s gone forever. Goodbye.
+<<Act @ Fidel, f_smirk>>
 Fidel: So good of this fast food place to offer their nuggets in increments of seven like this.
+<<Act @ Fidel, f_neutral>>
 Fidel: Also they’re, like, technically ten years old, so I don’t actually want any of ‘em.
-<<Act @ Piper, player_concern>>
+<<Act @ Piper, p_concern2>>
 Piper: They look fine to me. Is this the same deal as before? Another time bubble… thing? 
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_hah1>>
 Fidel: You’re learning! Yeah, it’s another one of those frozen magic deals.
+<<Act @ Fidel, f_smirk>>
 Fidel: Physically they’ve remained just a few hours old. The world hasn’t moved at all.
 Fidel: So they’re safe to eat! But it still feels icky. It’s, like, the principle of the matter. 
-Fidel: Mnm.
-<<Act @ Piper, player_concern>>
+<<Act @ Fidel, f_neutral>>
+Fidel: Mnm. *gulp.*
+<<Act @ Piper, p_concern1>>
 Piper: … 
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_smirk>>
 Fidel: Yeah, my body doesn’t remember what food is, so it’s disagreeing with everything.
-<<Act @ Piper, player_concern>>
+<<Act @ Piper, p_indignant>>
 Piper: Why are you like this? 
-<<Act @ Fidel, fidel_hah>>
+<<Act @ Fidel, f_hah2>>
 Fidel: You know me!
+<<Act @ Fidel, f_concern2>>
 Fidel: Or. Well. 
 //[Fidel walks offscreen again, but towards the left.]
 
@@ -385,43 +450,58 @@ colorID: 0
 position: 0,0
 parent: 
 ---
-//[You find them again and they're in sadbat mode. Talk to them.]
-<<Act @ Piper, player_neutral>>
+//{You find them again and they're in sadbat mode. Talk to them.}
+//[Fidel to the left, a screen away, crouched.]
+//SPRITES: f_sadbat
+<<Act @ Piper, p_upset2>>
 Piper: Hey…
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_hah1>>
 Fidel: Haha, you remember nothing, huh?
+<<Act @ Fidel, f_concern1>>
 Fidel: I hoped coming here would jog your memory. But I was just being stupid.
+<<Act @ Fidel, f_concern2>>
 Fidel: It was just wishful thinking.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_upset1>>
 Piper: I'm. Really sorry.
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_concern1>>
 Fidel: Don't be. I'm not being fair.
+<<Act @ Fidel, f_neutral>>
 Fidel: This. Romping around has been fun. I’m glad you’re back. I am. 
 Fidel: I know it doesn’t mean anything to you, but it was good to see you again. 
-Fidel: It’s just been so long. I didn’t think it was possible, I didn’t think things would ever be different.
+<<Act @ Fidel, f_concern2>>
+Fidel: It’s just been so long. 
+<<Act @ Fidel, f_eyes>>
+Fidel: I didn’t think it was possible, I didn’t think things would ever be different.
 -> … 
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern1>>
 	Piper: …
-	<<Act @ Fidel, fidel_neutral>>
-	//[Change to sadbat2]
+	<<Act @ Fidel, f_upset1>>
+	//[:(]
+	//SPRITES: f_sadbat2
 	Fidel: I just can’t do this.
 -> Fidel… 
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_upset2>>
 	Piper: Fidel…
-	<<Act @ Fidel, fidel_sad>>
-	//[Change to sadbat2]
+	<<Act @ Fidel, f_upset2>>
+	//[:(]
+	//SPRITES: f_sadbat2
 	Fidel: I just can’t do this, Piper.
+<<Act @ Fidel, f_upset1>>
 Fidel: We’ve been living like this for so long. I thought it was okay, for things to just be this way.
 Fidel: For the world to be in a standstill.
+<<Act @ Fidel, f_upset2>>
 Fidel: For the two of you to have left.
+<<Act @ Fidel, f_upset3>>
 Fidel: And for me to just. Get by.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: Hey.
+<<Act @ Piper, p_neutral>>
 Piper: I don't really get it, but I get *you*, okay? 
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_upset1>>
 Fidel: I just can't handle this. I'm just so tired. 
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_neutral>>
 Piper: But I'm here for you.
+<<Act @ Piper, p_smile1>>
 Piper: I’m going to try something, okay?
 
 //[some sick entering fidel’s soul animation? Music gameplay begins.]
@@ -434,29 +514,87 @@ Piper: I’m going to try something, okay?
 
 
 ===
+title: FidelSongCalls
+tags: 
+colorID: 0
+position: 0,0
+parent: 
+---
+//Things Fidel says while you are playing the rhythm game.
+
+//{START}
+Fidel: …What are you doing?
+Fidel: Is this the same thing as before? It feels. Weird.
+
+//{PHASE 1: Said after hitting # note, only trigger the FIRST time you get to that number, meaning they do not repeat if you fail.}
+//1
+Fidel: …
+//2
+Fidel: You know. It’s just not fair. I accepted the way things were. 
+//3
+Fidel: Sure, we were trapped, and I was all by myself. 
+//4
+Fidel: But I was coping. I was fine.
+//5
+Fidel: So why did you have to come back? 
+//6
+Fidel: Why did you make me hope things were different?
+//7
+Fidel: Make me think that, suddenly, things weren’t fine after all.
+
+//{PHASE 2: Said after # failure.}
+//first time:
+Fidel: I just want to go back to the way things were.
+
+//second time:
+Fidel: It’s just not worth the effort.
+
+//third time:
+Fidel: It’s not worth the pain.
+
+//fourth time:
+Fidel: Isn’t the desire to push forward, to want the impossible…
+Fidel: Isn’t it exhausting?
+
+//fifth+ time:
+Fidel: Sometimes, you just have to give up.
+Fidel: It’s the only thing left to do.
+
+
+
+
+===
 title: EndScene
 tags: 
 colorID: 0
 position: 0,0
 parent: 
 ---
-
-<<Act @ Piper, player_neutral>>
+//[Fidel crouched. Piper standing over them.]
+//SPRITES: f_sadbat + p_stand2, positioned over Fidel so it looks like they're standing over them.
+<<Act @ Piper, p_smile2>>
 Piper: We can do it, together.
+<<Act @ Piper, p_smile1>>
 Piper: We can ask for life to be better.
+<<Act @ Piper, p_concern1>>
 Piper: We can move towards that difference, even if it hurts.
+<<Act @ Piper, p_smile2>>
 Piper: I may not remember anything, but I’m back, aren’t I? 
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_eyes>>
+Fidel: …
+<<Act @ Fidel, f_neutral>>
 Fidel: Yeah. You are.
-<<Act @ Piper, player_neutral>>
+<<Act @ Piper, p_concern1>>
 Piper: My memories might never come back. Maybe I’ll never be the person you want in your life.
 Piper: Is that okay?
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_concern1>>
 Fidel: Honestly, it stings.
+<<Act @ Fidel, f_neutral>>
 Fidel: But I’ll count my blessings. And I'll choose to see where they take me.
+<<Act @ Fidel, f_smirk>>
 Fidel: I’m not really sure how or why you’re here. Or what fuckery you just did.
 Fidel: But I’m glad you’re here. I’m glad we’re here, together.
-<<Act @ Piper, player_pleasant>>
+<<Act @ Piper, p_smile2>>
 Piper: Then let’s consider this our first step.
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
