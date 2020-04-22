@@ -23,6 +23,8 @@ public class Orbitter : MonoBehaviour
     float posY;
     float angle = 0f;
 
+    private ScaleObject objectScalerScript;
+
 
     void Start() {
         startPos = this.transform.position;
@@ -30,6 +32,7 @@ public class Orbitter : MonoBehaviour
         script = gameObject.GetComponent<conductorScript>();
         // angularSpeed = SimpleClock.BeatLength();
         Debug.Log("angular speed will be: " + angularSpeed);
+        objectScalerScript = gameObject.GetComponent<ScaleObject>();
         // rotationCenter = transform.GetChild(0).gameObject.GetComponent<Transform>();
     }
 
@@ -59,25 +62,7 @@ public class Orbitter : MonoBehaviour
         angle = 0f;
     }
 
-    public IEnumerator ScaleOrbitter(float time, Vector3 scaleToSize)
-    {
-        //Debug.Log("Coroutine: trying to scale the fret");
-        Vector3 originalScale = gameObject.transform.localScale;
-        // Vector3 destinationScale = new Vector3(0.5f, 0.5f, 3f);
-        Vector3 destinationScale = scaleToSize;
-
-        //Color spriteColour = mySpriteRenderer.color;
-
-        float currTime = 0f;
-
-        do
-        {
-            //Debug.Log("Scaling the object up");
-            gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
-            //spriteColour.a = 1 - (currTime / time);
-            //mySpriteRenderer.color = spriteColour;
-            yield return null;
-            currTime += Time.deltaTime;
-        } while (currTime <= time);
+    public void ScaleOrbitter(float time, Vector3 scaleToSize) {
+        StartCoroutine(objectScalerScript.Scale(time, scaleToSize));
     }
 }
