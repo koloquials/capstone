@@ -8,9 +8,20 @@ parent:
 <<if $waypoint is 2>>
 	[[Scene2]]
 <<elseif $waypoint is 3>>
-	[[Scene3]]
-<<elseif $waypoint is 4 and $completedRhythm is 0>>
+	[[Scene2b]]
+<<elseif $waypoint is 4>>
+	[[Scene2bPuzzle]]
+<<elseif $waypoint is 5>>
 	[[Scene3b]]
+<<elseif $waypoint is 6>>
+	[[Scene4]]
+<<elseif $waypoint is 7 and $completedRhythm is 1>>
+	[[EndScene]]
+<<elseif $waypoint is 7 and $completedRhythm is 0>>
+	<<Act @ Fidel, f_upset1>>
+	Fidel: Am I really worth it to you?
+	<<Hide @ Fidel>>
+	<<RhythmStart notePrefab>>
 //<<elseif $waypoint is 5>>
 	//<<if $completedRhythm is 0>>
 		//<<Act @ Fidel, fidel_disappointed>>
@@ -27,7 +38,7 @@ parent:
 //<<if $startedRhythm is 1>>
 <<if visited("Scene4")>>
 	<<if $completedRhythm is 0>>
-		<<Act @ Fidel, fidel_disappointed>>
+		<<Act @ Fidel, f_upset1>>
 		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
 		<<RhythmStart notePrefab>>
@@ -46,7 +57,7 @@ parent:
 	Fidel: Oh, just in time. Here we are… our first stop!
 	Fidel: C'mon, you can open your eyes now. 
 	//<<HideAll @>>
-	//<<Act @ Piper, player_neutral, 0.5, 0.5, #6764f7>>
+	//<<Act @ Piper, p_neutral, 0.5, 0.5, #6764f7>>
 	<<Act @ Piper, p_neutral>>
 	Piper: ‘kay.
 
@@ -73,6 +84,7 @@ Fidel: Surpriseee!
 Piper: … This is.
 //[Piper turns slightly.]
 // SPRITES: p_stand_0
+<<changeNPC Player p_stand_0>>
 <<Act @ Piper, p_neutral>>
 Piper: We’re in an old mall.
 <<Act @ Fidel, f_hah1>>
@@ -110,7 +122,7 @@ Fidel: Is that all it is to you? Nothing more?
 	Piper: Doesn’t ring any bells, sorry.
 	<<Act @ Fidel, f_concern1>>
 	Fidel: That’s okay. Amnesia's tough, don't wanna put you on the spot. 
-	<<Act @ Piper, p_smile1>>
+	<<Act @ Piper, p_happy1>>
 	Piper: You didn't.
 <<Act @ Fidel, f_hah1>>
 Fidel: Okay let's not worry about that now! Camera crew, lemme hit you with the tour.
@@ -118,7 +130,7 @@ Fidel: Okay let's not worry about that now! Camera crew, lemme hit you with the 
 Piper: I don’t have a camera.
 <<Act @ Fidel, f_hah2>>
 Fidel: …It was a joke! C’mon, stick with it!
-<<Act @ Piper, p_smile1>>
+<<Act @ Piper, p_happy1>>
 Piper: I don’t— okay. Let’s go.  
 <<Act @ Fidel, f_oooh>>
 Fidel: Woah there, chief. Try not to get *too* excited. 
@@ -131,7 +143,8 @@ Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the sta
 
 <<set $waypoint to 2>>
 //<<set $waypoint to 5>>
-<<moveNPC Fidel>>
+<<moveNPC Fidel FidelPoint2>>
+<<warpNPC Fidel>>
 //[[Scene2]]
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
@@ -147,6 +160,8 @@ parent:
 
 //[BG2 (clothing aisle), they walk in and then stop near the left.]
 // SPRITES: fidel walks over to the left and f_stand_0
+<<moveNPC Fidel FidelPoint2a>>
+<<changeNPC Fidel f_stand_0>>
 
 <<Act @ Fidel, f_neutral>>
 Fidel: This is my usual stompin grounds. I hang out here and have fun!
@@ -154,22 +169,23 @@ Fidel: This is my usual stompin grounds. I hang out here and have fun!
 Fidel: Or like, make my own fun, same deal. 
 
 //[Fidel walks more towards the right, then pauses again.]
+<<moveNPC Fidel FidelPoint2>>
 // SPRITES: f_stand_0 + p_stand_0
-<<Act @ Fidel, fidel_neutral>>
+<<Act @ Fidel, f_neutral>>
 Fidel: Mind the trash bags and, uh, wire sculptures. It's very cozy, I know.
 -> Yeah, cozy.
-	<<Act @ Piper, player_pleasant>>
+	<<Act @ Piper, p_happy2>>
 	Piper: Yeah, cozy.
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_hah>>
 	Fidel: You think so? 
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern>>
 	Piper: It's got its charm.
 -> You live like this?
-	<<Act @ Piper, player_neutral>>
+	<<Act @ Piper, p_neutral>>
 	Piper: You live like this?
-	<<Act @ Fidel, fidel_happy>>
+	<<Act @ Fidel, f_hah>>
 	Fidel: Yes?
-	<<Act @ Piper, player_concern>>
+	<<Act @ Piper, p_concern>>
 	Piper: As long as you like it. 
 <<Act @ Fidel, f_think>>
 Fidel: Thanks! What else, what else? Oh!
@@ -178,11 +194,18 @@ Fidel: It’s a ‘lil early for this, but I want you to meet my other friends!
 <<Act @ Piper, p_neutral>>
 Piper: Your other friends are here?
 <<Act @ Fidel, f_hah1>>
+<<moveNPC Fidel FidelPoint2b>>
 Fidel: Just stay right there, I’ll go get them!
 
 //[Fidel runs offscreen.]
 // SPRITES: p_stand_0 still. for Fidel, none: offscreen.
 <<Act @ Fidel, f_hah1>>
+<<warpNPC Fidel>>
+<<showNPC micequinns>>
+<<setNPCMove Fidel push>>
+<<setNPCMove micequinns push>>
+<<moveNPC Fidel FidelPoint2c>>
+<<moveNPC micequinns FidelPoint2>>
 Fidel: These are. Soheavy.
 
 //[Fidel comes back onscreen, pushing the micequinns.]
@@ -190,8 +213,13 @@ Fidel: These are. Soheavy.
 
 //[Fidel stops once they're close enough to Piper and motions at them!]
 // SPRITES: micequinns still there. f_stand_1 + p_stand_1 once they're close. They might have to stand in front of the mice sprite to get the angle right.
+<<warpNPC micequinns>>
+<<warpNPC Fidel>>
+<<setNPCMove Fidel normal>>
+<<changeNPC Fidel f_stand_1>>
+<<changeNPC Player p_stand_1>>
 
-<<showNPC micequinns>>
+//<<showNPC micequinns>>
 <<Act @ Fidel, f_hah2>>
 Fidel: Here they are— my besties! 
 -> Nice to meet you.
@@ -215,6 +243,7 @@ Fidel: Here they are— my besties!
 
 //[Piper looks at. Fidel.]
 // SPRITES: p_stand_0, looking at Fidel who is to their right.
+<<changeNPC Player p_stand_0>>
 <<Act @ Piper, p_concern1>>
 Piper: Just to be clear, this is a bit, right?
 <<Act @ Fidel, f_neutral>>
@@ -229,6 +258,7 @@ Piper: Forever? They look like you found them yesterday. That’s surprising.
 Fidel: That they don’t look older? 
 //[Fidel sprite change now that the funnies are over.]
 // SPRITES: f_stand_0
+<<changeNPC Fidel f_stand_0>>
 <<Act @ Fidel, f_smirk>>
 Fidel: Actually yeah, I think I mentioned it on the way here: weird time bubble.
 <<Act @ Fidel, f_think>>
@@ -242,7 +272,7 @@ Fidel: It's been weird.
 //[[Scene2b]]
 //you have to change stuff in start to account for the new scenes
 <<set $waypoint to 3>>
-<<moveNPC Fidel>>
+<<moveNPC Fidel FidelPoint3>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
 
@@ -288,6 +318,9 @@ Fidel: I guess it doesn't matter, if you don't remember.
 Fidel: That's just how it be!
 //[Fidel keeps walking to in front of the puzzle.]
 // SPRITES: f_stand_0
+<<set $waypoint to 4>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
 
 ===
 title: Scene2bPuzzle
@@ -312,6 +345,7 @@ Piper: I wonder… can I do something about it?
 Piper: I have an itch to try something.
 //[Piper kneels down.]
 //SPRITES: p_crouch
+<<changeNPC Player p_crouch>>
 
 //{Hit your first note.}
 <<Act @ Fidel, f_oooh>>
@@ -324,6 +358,7 @@ Piper: Gonna try and figure the rest of this out.
 Piper: There.
 //[Piper gets back up.]
 //SPRITES: p_stand_0
+<<changeNPC Player p_stand_0>>
 <<Act @ Fidel, f_hah1>>
 Fidel: You did it! We can get through!
 <<Act @ Fidel, f_think>>
@@ -345,8 +380,9 @@ Fidel: Well, whatever you did was neat! You hungry?
 	Fidel: To the food court! 
 //[Fidel motions way to food court.]
 //SPRITES: f_stand_1
-<<set $waypoint to 4>>
-<<moveNPC Fidel>>
+<<changeNPC Fidel f_stand_1>>
+<<set $waypoint to 5>>
+<<moveNPC Fidel FidelPoint4>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
 ===
@@ -368,15 +404,20 @@ parent:
 ---
 //{BG4 (food court), triggers once you've walked in.}
 //SPRITES: fidel_stand_0
+<<changeNPC Fidel f_stand_0>>
 <<Act @ Fidel, f_hah1>>
 Fidel: Okay, alright. Don’t mind if I do! 
 //[Fidel walks offscreen to the right.]
-
+<<moveNPC Fidel FidelPoint4a>>
 //[When player approaches them by the counter, Fidel is in their counter sprite.] 
-//SPRITES: f_counter (animation)
-
+//SPRITES: f_counter (animation) NOTE: Once animations are working better should replace f_counter_0 with f_counter as an animation
+<<changeNPC Fidel f_counter_0>>
+//NOTE: I implemented a sort of test dialogue here until we can get re-entering these conversations to work. This is just to have a dialogue that holds fidel in the counter animation so it's visible.
+Fidel: ...
 //[Talk to them and they pop out holding the nugs.]
 //SPRITES: f_nug_0 + p_stand_0
+<<changeNPC Player p_stand_0>>
+<<changeNPC Fidel f_nug_0>>
 Fidel: Welcome to Grili’s, how can I help you?
 -> Are you going to take my order?
 	<<Act @ Piper, p_smile3>>
@@ -401,12 +442,14 @@ Fidel: Do you wanna see me eat seventy chicken nuggets?
 -> Absolutely not.
 	<<Act @ Piper, p_indignant>>
 	Piper: Absolutely not.
-//[automatically dismisses this in 0.2 seconds so it looks like they don’t get a choice]
+//[automatically dismisses this in 0.2 seconds so it looks like they don’t get a choice] (This may be difficult)
 <<Act @ Fidel, f_hah1>>
 Fidel: Well, we can’t always have what we want, buddy.
 
-//[Spawn the single nug sprite on the floor. Fidel changes sprites to nug2.] 
+//[Spawn the single nug sprite on the floor. Fidel changes sprites to nug2.]
+<<showNPC nug>>
 //SPRITES: f_nug_1 + nug
+<<changeNPC Fidel f_nug_1>>
 <<Act @ Fidel, f_neutral>>
 Fidel: Oh no, I dropped one. Ah beans, there it goes... down the drain. 
 <<Act @ Fidel, f_concern1>>
@@ -441,8 +484,11 @@ Fidel: You know me!
 <<Act @ Fidel, f_concern2>>
 Fidel: Or. Well. 
 //[Fidel walks offscreen again, but towards the left.]
+<<moveNPC Fidel FidelPoint5>>
+<<changeNPC Fidel f_sadbat>>
+<<set $waypoint to 6>>
 
-[[Scene4]]
+//[[Scene4]]
 ===
 title: Scene4
 tags: 
@@ -451,8 +497,8 @@ position: 0,0
 parent: 
 ---
 //{You find them again and they're in sadbat mode. Talk to them.}
-//[Fidel to the left, a screen away, crouched.]
-//SPRITES: f_sadbat
+//[Fidel to the left, a screen away, crouched.] 
+//SPRITES: f_sadbat (I changed this above so he looks this way when you find him)
 <<Act @ Piper, p_upset2>>
 Piper: Hey…
 <<Act @ Fidel, f_hah1>>
@@ -478,6 +524,7 @@ Fidel: I didn’t think it was possible, I didn’t think things would ever be d
 	<<Act @ Fidel, f_upset1>>
 	//[:(]
 	//SPRITES: f_sadbat2
+	<<changeNPC Fidel f_sadbat2>>
 	Fidel: I just can’t do this.
 -> Fidel… 
 	<<Act @ Piper, p_upset2>>
@@ -485,6 +532,7 @@ Fidel: I didn’t think it was possible, I didn’t think things would ever be d
 	<<Act @ Fidel, f_upset2>>
 	//[:(]
 	//SPRITES: f_sadbat2
+	<<changeNPC Fidel f_sadbat2>>
 	Fidel: I just can’t do this, Piper.
 <<Act @ Fidel, f_upset1>>
 Fidel: We’ve been living like this for so long. I thought it was okay, for things to just be this way.
@@ -508,7 +556,7 @@ Piper: I’m going to try something, okay?
 <<Hide @ Fidel>>
 <<Hide @ Piper>>
 <<Set $startedRhythm to 1>>
-<<Set $waypoint to 5>>
+<<Set $waypoint to 7>>
 <<Set $completeRhythm to 0>>
 <<RhythmStart notePrefab>>
 
@@ -572,6 +620,8 @@ parent:
 ---
 //[Fidel crouched. Piper standing over them.]
 //SPRITES: f_sadbat + p_stand2, positioned over Fidel so it looks like they're standing over them.
+<<changeNPC Fidel f_sadbat>>
+<<changeNPC Piper p_stand2>>
 <<Act @ Piper, p_smile2>>
 Piper: We can do it, together.
 <<Act @ Piper, p_smile1>>

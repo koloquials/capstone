@@ -201,7 +201,7 @@ namespace Yarn.Unity.Example {
 
             // Wait for any user input
             while (!Input.GetMouseButtonDown(0)) {
-                Debug.Log("waiting");
+                //Debug.Log("waiting");
                 yield return null;
             }
             // while (Input.anyKeyDown == false) {
