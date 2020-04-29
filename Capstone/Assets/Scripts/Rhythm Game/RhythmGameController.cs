@@ -540,8 +540,8 @@ public class RhythmGameController : MonoBehaviour {
             // phaseWindowStateMachine.TransitionTo<Resting>();
             TransitionTo<Phase1>();
 
-            // Context.orbitterScript.StopRotation();
-            // Context.orbitterScript.ResetPosition();
+            Context.orbitterScript.StopRotation();
+            Context.orbitterScript.ResetPosition();
         }
 
         public override void OnExit() {
@@ -596,7 +596,7 @@ public class RhythmGameController : MonoBehaviour {
             //function to start the rhythm game
             private void StartRhythmGame() {
                 SimpleClock.Instance.FirstBeat();           //FirstBeat() begins playing the song and the clock 
-                // Context.Context.orbitterScript.StartRotation();
+                Context.Context.orbitterScript.StartRotation();
                 Context.noteCounter += 1;
                 Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
                 firstComboPressed = true;

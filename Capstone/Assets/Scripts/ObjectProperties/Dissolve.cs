@@ -23,6 +23,7 @@ public class Dissolve : MonoBehaviour
         spriteRenderer.material = dissolveMat;
 
         StartCoroutine(DissolveObject(5f));
+        //eeeee
     }
 
     //gradually make the current object dissolve 
