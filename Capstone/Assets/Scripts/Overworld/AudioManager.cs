@@ -6,23 +6,23 @@ using UnityEngine;
 /// This script will be used for managing all audio related to overworld sound effects that are not related to a
 /// character.null i.e. it will handle ambience and puzzle effects. It does NOT handle footsteps
 
+/// This GameObject should have two AudioSources on it: One to manage constant overworld ambience, the other to play
+/// shorter sounds at random intervals.
+/// Use this script by setting the array size in the inspector and dragging in as many AudioClips desired
+
 /// in the future, this can be used to pass different songs to the RhythmGameController! 
 /// 
 /// </summary>
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource masterAmbienceSrc;      //this gameObject will have two audio sources: one playing master background ambiencee (always looping)
-    public AudioSource individualSoundsSrc;    //the other will be playing various sounds at random intervals 
+    private AudioSource masterAmbienceSrc;      //this gameObject will have two audio sources: one playing master background ambiencee (always looping)
+    private AudioSource individualSoundsSrc;    //the other will be playing various sounds at random intervals 
 
     public AudioClip masterAmbienceClip;
-    public AudioClip echoDropClip;
-    public AudioClip waterDropletsClip;
 
-    public AudioSource[] audioSources;
-    public AudioClip[] audioClips;
-
-    public int randomSelection;
+    private AudioSource[] audioSources; 
+    public AudioClip[] audioClips;              //set array size and assign clips via inspector
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         masterAmbienceSrc = audioSources[0];
         individualSoundsSrc = audioSources[1];
 
-        audioClips = new AudioClip[] { echoDropClip, waterDropletsClip };
+        StartCoroutine(PlayIndividualSounds());
     }  
 
     // Update is called once per frame
@@ -40,17 +40,21 @@ public class AudioManager : MonoBehaviour
     {
         if (!masterAmbienceSrc.isPlaying) 
             masterAmbienceSrc.Play();
+    }
+    
+    //the individual sounds will be randomly selected and played at random intervals. 
+    IEnumerator PlayIndividualSounds() {
+        AudioClip randomClip = GetRandomClip();                     //grab a random audioclip
+        individualSoundsSrc.pitch = Random.Range(1f, 2f);           //give it a random pitch 
+        individualSoundsSrc.volume = Random.Range(0.1f, 0.6f);      //give it a random volume
 
-        //play a random individual clip at random intervals 
-        if (!individualSoundsSrc.isPlaying)
-            randomSelection = Random.Range(0, 100);
+        individualSoundsSrc.PlayOneShot(randomClip);
 
-        if (randomSelection <= 10 && !individualSoundsSrc.isPlaying) {
-            Debug.Log("Playing a random sound");
-            AudioClip randomClip = GetRandomClip();
-            individualSoundsSrc.clip = randomClip;
-            individualSoundsSrc.Play();
-        }
+        float randomWaitTime = Random.Range(5f, 13f);               //give a random wait time between individual sounds
+            
+        yield return new WaitForSeconds(randomWaitTime);
+
+        StartCoroutine(PlayIndividualSounds());
     }
 
     AudioClip GetRandomClip() {

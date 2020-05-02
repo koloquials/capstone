@@ -164,13 +164,14 @@ namespace Yarn.Unity.Example
                 if (!isMoving)
                 {
                     isMoving = true;
+                    StartCoroutine(Footsteps());
                 }
             }
 
             if (isMoving)
             {
-                if (!footstepsSrc.isPlaying) 
-                    footstepsSrc.Play();
+                // if (!footstepsSrc.isPlaying) 
+                //     footstepsSrc.Play();
 
                 myAnimator.SetBool("isRunning", true);
                 SetDirection();
@@ -178,7 +179,8 @@ namespace Yarn.Unity.Example
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
             if (!isMoving) {
-                footstepsSrc.Stop();
+                // footstepsSrc.Stop();
+                StopAllCoroutines();
                 myAnimator.SetBool("isRunning", false);
                 mySpriteRenderer.sprite = p_idle;
             }
@@ -190,6 +192,14 @@ namespace Yarn.Unity.Example
                 CheckForNearbyNPC();
                 isMoving = false;
             }
+        }
+
+        IEnumerator Footsteps() {
+            footstepsSrc.PlayOneShot(footstepsSrc.clip);
+
+            yield return new WaitForSeconds(0.4f);
+
+            StartCoroutine(Footsteps());
         }
         
         //check which side character is walking towards to flip the sprite accordingly 

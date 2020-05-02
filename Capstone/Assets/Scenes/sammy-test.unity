@@ -17767,10 +17767,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cfd4be0f9914a4c969c777af1ca25f71, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 16848ff0146f34e57959074781054498, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.71
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -18990,7 +18990,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.609
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19199,9 +19199,11 @@ MonoBehaviour:
   masterAmbienceSrc: {fileID: 0}
   individualSoundsSrc: {fileID: 0}
   masterAmbienceClip: {fileID: 0}
-  echoDropClip: {fileID: 8300000, guid: d1132b84d785d496da0d5737e8409c9f, type: 3}
-  waterDropletsClip: {fileID: 8300000, guid: 5d2645280b9a24bd2a2ac699c38d9ad1, type: 3}
   audioSources: []
+  audioClips:
+  - {fileID: 8300000, guid: d1132b84d785d496da0d5737e8409c9f, type: 3}
+  - {fileID: 8300000, guid: 5d2645280b9a24bd2a2ac699c38d9ad1, type: 3}
+  randomSelection: 0
 --- !u!1 &1778579287
 GameObject:
   m_ObjectHideFlags: 0
