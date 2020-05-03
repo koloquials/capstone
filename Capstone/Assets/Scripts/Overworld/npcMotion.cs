@@ -14,10 +14,16 @@ namespace Yarn.Unity.Example
 
         bool moving = false; //Whether the npc is moving to a waypoint.
         int motionType = 0;
+        float constantZ = 0; //The starting value of the NPC's z coordinate. Used to keep it the same throughout movements, since some would cause it to reset to 0.
 
         NPC npc; //The NPC script for this npc
 
-        float motionTimer = 0;
+        public float movementTime = 5f; //How long it takes the NPC to complete a given motion, in seconds. Might be an overly complicated way of doing this.
+
+        public bool flippy = true; //Whether or not the sprite should flip when moving. For example, Piper would want this true, Micequinns would want it false.
+        public bool reverseFlip = false; //Whether or not the sprite is already flipped, and therefore should have it's flips reversed. For example, Fidel's sprites are like this.
+
+        float motionTimer = 0; //Used for moving
 
         float pushtimer = 0;
         float pushcool = 0;
@@ -50,6 +56,7 @@ namespace Yarn.Unity.Example
 
             sr = this.GetComponent<SpriteRenderer>();
             npc = this.GetComponent<NPC>();
+            constantZ = transform.position.z;
         }
 
         // Update is called once per frame
@@ -59,14 +66,16 @@ namespace Yarn.Unity.Example
             {
                 if (motionType == 0) //Normal movement
                 {
-                    if (Vector2.Distance(transform.position, waypoints[point].transform.position) > 0.1)
+                    if (Mathf.Abs(transform.position.x - waypoints[point].transform.position.x) > 0.1)
                     {
-                        transform.position = new Vector3(Mathf.Lerp(startPos.x, waypoints[point].transform.position.x, motionTimer / 5f), transform.position.y, transform.position.z);
+                        transform.position = new Vector3(Mathf.Lerp(startPos.x, waypoints[point].transform.position.x, motionTimer / movementTime), transform.position.y, transform.position.z); //Moves the sprite. When motionTimer = movementTime, the sprite has arrived at the destination.
                         motionTimer += Time.deltaTime;
                     }
                     else
                     {
                         moving = false;
+                        transform.position = new Vector3(transform.position.x, transform.position.y, constantZ); //Set the z coordinate to the constant value, fixes some issues that were starting up.
+                        sr.flipX = false;
                         //npc.setMotion(false);
                         if (standingSprite != null)
                         {
@@ -76,11 +85,11 @@ namespace Yarn.Unity.Example
                 }
                 else if (motionType == 1) //Pushing movement
                 {
-                    if (Vector2.Distance(transform.position, waypoints[point].transform.position) > 0.1)
+                    if (Mathf.Abs(transform.position.x - waypoints[point].transform.position.x) > 0.1)
                     {
                         if (pushtimer < 1)
                         {
-                            transform.position = new Vector2(Mathf.Lerp(startPos.x, waypoints[point].transform.position.x, motionTimer / 5f), transform.position.y);
+                            transform.position = new Vector2(Mathf.Lerp(startPos.x, waypoints[point].transform.position.x, motionTimer / movementTime), transform.position.y);
                             motionTimer += Time.deltaTime;
                             pushtimer += Time.deltaTime;
                         }
@@ -97,6 +106,8 @@ namespace Yarn.Unity.Example
                     else
                     {
                         moving = false;
+                        transform.position = new Vector3(transform.position.x, transform.position.y, constantZ);
+                        sr.flipX = false;
                         //npc.setMotion(false);
                         if (standingSprite != null)
                         {
@@ -120,10 +131,20 @@ namespace Yarn.Unity.Example
                 moving = true;
                 motionTimer = 0;
                 startPos = transform.position;
-                if (startPos.x < waypoints[point].transform.position.x)
-                    sr.flipX = true;
-                else
-                    sr.flipX = false;
+                if (flippy && startPos.x < waypoints[point].transform.position.x)
+                {
+                    if (reverseFlip)
+                        sr.flipX = true;
+                    else
+                        sr.flipX = false;
+                }
+                else if (flippy)
+                {
+                    if (reverseFlip)
+                        sr.flipX = false;
+                    else
+                        sr.flipX = true;
+                }
                 //npc.setMotion(true);
             }
             else
@@ -171,6 +192,8 @@ namespace Yarn.Unity.Example
             {
                 transform.position = waypoints[point].transform.position;
                 moving = false;
+                transform.position = new Vector3(transform.position.x, transform.position.y, constantZ);
+                sr.flipX = false;
                 //npc.setMotion(false);
                 if (standingSprite != null)
                 {
