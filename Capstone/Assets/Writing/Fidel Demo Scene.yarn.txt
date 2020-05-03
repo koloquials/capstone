@@ -52,6 +52,7 @@ parent:
 
 	//[BLACK]
 	<<Act @ Fidel, f_neutral>>
+	<<moveNPC Player PiperPoint1
 	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
 	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
 	Fidel: Oh, just in time. Here we are… our first stop!
@@ -160,6 +161,7 @@ parent:
 
 //[BG2 (clothing aisle), they walk in and then stop near the left.]
 // SPRITES: fidel walks over to the left and f_stand_0
+<<moveNPC Player PiperPoint2>>
 <<moveNPC Fidel FidelPoint2a>>
 <<changeNPC Fidel f_stand_0>>
 
@@ -176,16 +178,16 @@ Fidel: Mind the trash bags and, uh, wire sculptures. It's very cozy, I know.
 -> Yeah, cozy.
 	<<Act @ Piper, p_happy2>>
 	Piper: Yeah, cozy.
-	<<Act @ Fidel, f_hah>>
+	<<Act @ Fidel, f_hah1>>
 	Fidel: You think so? 
-	<<Act @ Piper, p_concern>>
+	<<Act @ Piper, p_concern1>>
 	Piper: It's got its charm.
 -> You live like this?
 	<<Act @ Piper, p_neutral>>
 	Piper: You live like this?
-	<<Act @ Fidel, f_hah>>
+	<<Act @ Fidel, f_hah1>>
 	Fidel: Yes?
-	<<Act @ Piper, p_concern>>
+	<<Act @ Piper, p_concern1>>
 	Piper: As long as you like it. 
 <<Act @ Fidel, f_think>>
 Fidel: Thanks! What else, what else? Oh!
@@ -223,13 +225,13 @@ Fidel: These are. Soheavy.
 <<Act @ Fidel, f_hah2>>
 Fidel: Here they are— my besties! 
 -> Nice to meet you.
-	<<Act @ Piper, p_smile3>>
+	<<Act @ Piper, p_happy3>>
 	Piper: Nice to meet you.
 	<<Act @ Fidel, f_hah2>>
 	Fidel: So polite! That's what I like about you.
 	<<Act @ Fidel, f_oooh>>
 	Fidel: Some people are so rude, y’know?
-	<<Act @ Piper, p_smile2>>
+	<<Act @ Piper, p_happy2>>
 	Piper: I get what you mean.
 -> Huh.
 	<<Act @ Piper, p_concern1>>
@@ -248,7 +250,7 @@ Fidel: Here they are— my besties!
 Piper: Just to be clear, this is a bit, right?
 <<Act @ Fidel, f_neutral>>
 Fidel: Yeah this is a bit.
-<<Act @ Piper, p_smile1>>
+<<Act @ Piper, p_happy1>>
 Piper: Okay. Carry on.
 <<Act @ Fidel, f_hah2>>
 Fidel: We’ve been through thick and thin together; we’ve been friends forever!
@@ -284,7 +286,7 @@ position: 0,0
 parent: 
 ---
 //{Enter next scene.}
-
+<<moveNPC Player PiperPoint3>>
 //[BG3 (stained glass), triggers once you've walked in. They walk, Fidel in the front. Piper pauses, then Fidel after, and flips to look towards the left, at Piper.]
 // SPRITES: p_stand_0 + f_stand_0
 <<Act @ Piper, p_concern1>>
@@ -299,7 +301,7 @@ Fidel: Haha, you'd be surprised.
 <<Act @ Fidel, f_smirk>>
 Fidel: But mostly, I wanna make sure you feel welcome and comfy!
 -> Oh, well sure. Thanks.
-	<<Act @ Piper, p_smile2>>
+	<<Act @ Piper, p_happy2>>
 	Piper: Oh, well sure. Thanks.
 	<<Act @ Fidel, f_concern1>>
 	Fidel: You are feeling okay, right?
@@ -350,11 +352,11 @@ Piper: I have an itch to try something.
 //{Hit your first note.}
 <<Act @ Fidel, f_oooh>>
 Fidel: W-woah! The heck! You've never- what was that?
-<<Act @ Piper, p_smile1>>
+<<Act @ Piper, p_happy1>>
 Piper: Gonna try and figure the rest of this out.
 
 //[Finish puzzle.]
-<<Act @ Piper, p_smile2>>
+<<Act @ Piper, p_happy2>>
 Piper: There.
 //[Piper gets back up.]
 //SPRITES: p_stand_0
@@ -368,12 +370,12 @@ Piper: Dunno.
 <<Act @ Fidel, f_hah1>>
 Fidel: Well, whatever you did was neat! You hungry?
 -> Yeah, I’m peckish.
-	<<Act @ Piper, p_smile3>>
+	<<Act @ Piper, p_happy3>>
 	Piper: Yeah, I’m peckish.
 	<<Act @ Fidel, f_hah2>>
 	Fidel: Cool! Just don’t peck at me, yeah? Hah! 
 -> Not really.
-	<<Act @ Piper, p_smile1>>
+	<<Act @ Piper, p_happy1>>
 	Piper: Not really.
 	<<Act @ Fidel, f_hah2>>
 	Fidel: Me neither, but that’s where this path of debris leads, so we gotta blast!
@@ -404,6 +406,7 @@ parent:
 ---
 //{BG4 (food court), triggers once you've walked in.}
 //SPRITES: fidel_stand_0
+<<moveNPC Player PiperPoint4>>
 <<changeNPC Fidel f_stand_0>>
 <<Act @ Fidel, f_hah1>>
 Fidel: Okay, alright. Don’t mind if I do! 
@@ -420,13 +423,13 @@ Fidel: ...
 <<changeNPC Fidel f_nug_0>>
 Fidel: Welcome to Grili’s, how can I help you?
 -> Are you going to take my order?
-	<<Act @ Piper, p_smile3>>
+	<<Act @ Piper, p_happy3>>
 	Piper: Are you going to take my order?
 	<<Act @ Fidel, f_hah2>>
 	Fidel: Heh, absolutely not. I can’t help you at all! Who do you think I am?
 	Fidel: But I do have a very *un*helpful thing for you.
 -> Cheeseburger.
-	<<Act @ Piper, p_smile1>>
+	<<Act @ Piper, p_happy1>>
 	Piper: Cheeseburger.
 	<<Act @ Fidel, f_hah2>>
 	Fidel: That’s not even on the menu. Get outta here, you heathen! Scram!
@@ -487,6 +490,8 @@ Fidel: Or. Well.
 <<moveNPC Fidel FidelPoint5>>
 <<changeNPC Fidel f_sadbat>>
 <<set $waypoint to 6>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
 
 //[[Scene4]]
 ===
@@ -496,6 +501,7 @@ colorID: 0
 position: 0,0
 parent: 
 ---
+<<moveNPC Player PiperPoint5>>
 //{You find them again and they're in sadbat mode. Talk to them.}
 //[Fidel to the left, a screen away, crouched.] 
 //SPRITES: f_sadbat (I changed this above so he looks this way when you find him)
@@ -549,7 +555,7 @@ Piper: I don't really get it, but I get *you*, okay?
 Fidel: I just can't handle this. I'm just so tired. 
 <<Act @ Piper, p_neutral>>
 Piper: But I'm here for you.
-<<Act @ Piper, p_smile1>>
+<<Act @ Piper, p_happy1>>
 Piper: I’m going to try something, okay?
 
 //[some sick entering fidel’s soul animation? Music gameplay begins.]
@@ -622,13 +628,13 @@ parent:
 //SPRITES: f_sadbat + p_stand2, positioned over Fidel so it looks like they're standing over them.
 <<changeNPC Fidel f_sadbat>>
 <<changeNPC Piper p_stand2>>
-<<Act @ Piper, p_smile2>>
+<<Act @ Piper, p_happy2>>
 Piper: We can do it, together.
-<<Act @ Piper, p_smile1>>
+<<Act @ Piper, p_happy1>>
 Piper: We can ask for life to be better.
 <<Act @ Piper, p_concern1>>
 Piper: We can move towards that difference, even if it hurts.
-<<Act @ Piper, p_smile2>>
+<<Act @ Piper, p_happy2>>
 Piper: I may not remember anything, but I’m back, aren’t I? 
 <<Act @ Fidel, f_eyes>>
 Fidel: …
@@ -644,7 +650,7 @@ Fidel: But I’ll count my blessings. And I'll choose to see where they take me.
 <<Act @ Fidel, f_smirk>>
 Fidel: I’m not really sure how or why you’re here. Or what fuckery you just did.
 Fidel: But I’m glad you’re here. I’m glad we’re here, together.
-<<Act @ Piper, p_smile2>>
+<<Act @ Piper, p_happy2>>
 Piper: Then let’s consider this our first step.
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
