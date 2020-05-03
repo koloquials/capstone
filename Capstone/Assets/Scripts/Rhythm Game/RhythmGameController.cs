@@ -228,7 +228,7 @@ public class RhythmGameController : MonoBehaviour {
             Debug.Log("Checking measure: " + expectedNoteMeasure + " and beat: " + expectedNoteBeat);
 
             //this will result in index out of bounds trying to check the last beat in the song. Have to make sure the measure doesn't go out. 
-            if (expectedNoteMeasure < 77) {
+            if (expectedNoteMeasure < 77 && expectedNoteBeat <= 3) {
                 GameObject posInSong = thisSong[expectedNoteMeasure, expectedNoteBeat];
             // Debug.Log ("What were are trying to extract from 2D array: " + posInSong);
 
@@ -282,6 +282,10 @@ public class RhythmGameController : MonoBehaviour {
     }
 
     public void MoveNote(int currMeasure, int currBeat) {
+        //sometimes this gets called with wrong value, because of how SimpleClock works
+        if (currBeat == 1 || currBeat == 3) {
+            currBeat--;
+        }
         Debug.Log("Moving: " + currMeasure + " and " + currBeat);
         StartCoroutine(thisSong[currMeasure, currBeat].gameObject.GetComponent<NewNote>().WaitAndMove(0f));
     }

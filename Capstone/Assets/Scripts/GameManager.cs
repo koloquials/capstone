@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject rhythmGameController;
 
+    public AudioManager audioManager;
+
     FiniteStateMachine<GameManager> gameManagerStateMachine;
 
     // Start is called before the first frame update
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
     {
         gameManagerStateMachine = new FiniteStateMachine<GameManager>(this);
         gameManagerStateMachine.TransitionTo<Overworld>();
+
+        audioManager = transform.GetChild(0).GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -56,6 +60,7 @@ public class GameManager : MonoBehaviour
             Context.cam.setGame(true);
             Context.rhythmGameController.gameObject.SetActive(true);
 
+            Context.audioManager.ControlAmbience(false);            //turn overworld ambience off
         }
 
         //rhythm game is self sufficient. It will handle entering and exiting on its own.
@@ -69,6 +74,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Closing rhythm game state. Reactivating player movement");
             Context.player.motionControl(true);
             Context.rhythmGameController.gameObject.SetActive(false);
+            
+            Context.audioManager.ControlAmbience(true);             //turn overworld ambience back on
         }
     }
 }
