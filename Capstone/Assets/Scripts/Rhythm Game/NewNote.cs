@@ -80,6 +80,7 @@ public class NewNote : MonoBehaviour
         { // until one second passed
             currTime += Time.deltaTime;
             transform.position = Vector3.Lerp(startPos, destinationPos, currTime/(SimpleClock.MeasureLength() * 4)); // lerp from A to B in currTime/(SimpleClock.MeasureLength() * 4
+            glowScript.GlowBrightness = Mathf.Lerp(1f, 3.5f, currTime/(SimpleClock.MeasureLength() * 4));           //notes get brighter as they approach the fret
             yield return 1; // wait for next frame
         }
         

@@ -143,13 +143,13 @@ namespace Yarn.Unity
         }
 
         void Update() {
-            if (isDialogueRunning) {
-                // audioManager.DialogueRunning(true);
-                AudioManager.Instance.PlayDialogueSound(true);
-            }
-            else 
-                // audioManager.DialogueRunning(false);
-                AudioManager.Instance.PlayDialogueSound(false);
+            // if (isDialogueRunning) {
+            //     // audioManager.DialogueRunning(true);
+            //     AudioManager.Instance.PlayDialogueSound(true);
+            // }
+            // else 
+            //     // audioManager.DialogueRunning(false);
+            //     AudioManager.Instance.PlayDialogueSound(false);
         }
 
         /// Add a string of text to a script

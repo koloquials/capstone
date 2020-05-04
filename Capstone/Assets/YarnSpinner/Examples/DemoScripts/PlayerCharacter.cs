@@ -247,6 +247,7 @@ namespace Yarn.Unity.Example
             {
                 // Kick off the dialogue at this node.
                 FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
+                StopAllCoroutines();                    //stop the walking sound
             }
         }
 

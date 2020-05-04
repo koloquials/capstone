@@ -35,12 +35,9 @@ public class Orbitter : MonoBehaviour
 
     void Start() {
         startPos = this.transform.position;
-        Debug.Log(startPos);
         script = gameObject.GetComponent<conductorScript>();
-        // angularSpeed = SimpleClock.BeatLength();
         Debug.Log("angular speed will be: " + angularSpeed);
         objectScalerScript = gameObject.GetComponent<ScaleObject>();
-        // rotationCenter = transform.GetChild(0).gameObject.GetComponent<Transform>();
 
         radius = (child.position - pivot.position).magnitude;
 
@@ -56,31 +53,11 @@ public class Orbitter : MonoBehaviour
             
             rotationTime += Time.deltaTime;
         }
-
-        Debug.Log("orbitter currently at: " + child.position);
-
-        // if (rotating) {
-        //     Debug.Log("Rotating the orbitter");
-        //     posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius;
-        //     posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius;
-        //     transform.position = new Vector2 (posX, posY);
-        //     angle = angle + Time.deltaTime * angularSpeed;
-
-        //     if (angle >= 360f)
-        //         angle = 0f;
-        // }
 	}
 
     private Vector3 PointOnCircle(float theta) {
         return new Vector3(Mathf.Cos(theta), Mathf.Sin(theta));
     }
-
-
-
-    //    Vector3 PointOnCircle(float angle, float radius) //Used to move the beat indicator in a circle.
-    // {
-    //     return new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), -0.3f);
-    // }
 
     public void StartRotation() {
         rotating = true;

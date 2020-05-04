@@ -490,6 +490,8 @@ public class RhythmGameController : MonoBehaviour {
             //criteria to end the song
             //the song is 77 bars long (inclusive), when the clock hits 80 bars, end of game
             if (SimpleClock.Instance.Measures > 78)  {
+                Context.orbitterScript.StopRotation();
+                Context.orbitterScript.ResetPosition();
                 TransitionTo<ClosingAnimation>();
             }
         }

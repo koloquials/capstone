@@ -10,8 +10,6 @@ using UnityEngine;
 public class MaterialManager : MonoBehaviour
 {
     public Material[] materials;
-    // public Material defaultMat;
-    // public Material alternateMat;
     public InteractableHighlight highlightScript;
     public Dissolve dissolveScript;
 
@@ -19,15 +17,6 @@ public class MaterialManager : MonoBehaviour
     void Start() {
         highlightScript = gameObject.GetComponent<InteractableHighlight>();
         dissolveScript = gameObject.GetComponent<Dissolve>();
-        // materials = new Material[] {defaultMat, alternateMat};
-    // {
-    //     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    //     spriteRenderer.material = defaultMat;
-    //     materials[0] = defaultMat;
-    //     materials[1] = dissolveMat;
-    //     materials[2] = glowMat;
-
-        // dissolveScript = gameObject.GetComponent<Dissolve>();
     }
 
     void Update() {
