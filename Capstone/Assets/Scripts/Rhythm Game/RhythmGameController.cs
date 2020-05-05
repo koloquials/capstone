@@ -46,24 +46,19 @@ public class RhythmGameController : MonoBehaviour {
     public bool gameEnded = false;
 
     public ScaleObject backgroundScaler;
-    // public GameObject lifeSprite1; //Sprites for your five lives. Should start disabled.
-    // public GameObject lifeSprite2;
-    // public GameObject lifeSprite3;
-    // public GameObject lifeSprite4;
-    // public GameObject lifeSprite5;
 
     public GameObject[] lifeSprites;
+    public Transform lifeSpritesParent;
 
     void Start() {
         Debug.Log("This should only be called once!");
-
-        // lifeSprites = new GameObject[] {lifeSprite1, lifeSprite2, lifeSprite3, lifeSprite4, lifeSprite5};
 
         //make and begin running the state machine
         rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController>(this);
         rhythmGameStateMachine.TransitionTo<IntroAnimation>();
 
         noteObjectsParent = transform.GetChild(3).gameObject.GetComponent<Transform>();
+        lifeSpritesParent = transform.GetChild(5).gameObject.GetComponent<Transform>();
 
         //visual utility and feedback scripts
         fretFeedbackScript = transform.GetChild(0).gameObject.GetComponent<NewFretFeedback>();
@@ -302,11 +297,16 @@ public class RhythmGameController : MonoBehaviour {
             }
         }
 
-        //all lifeSprites start disabled as well
-        foreach(GameObject lifeSprite in lifeSprites) {
+        //all HPSprites start disabled as well
+        foreach(GameObject lifeSprite in lifeSprites) 
             lifeSprite.SetActive(true);
-            StartCoroutine(lifeSprite.gameObject.GetComponent<ScaleObject>().Scale(0.75f, new Vector3 (0.4f, 0.4f, 1f)));
-        }
+
+        StartCoroutine(lifeSpritesParent.gameObject.GetComponent<ScaleObject>().Scale(0.75f, new Vector3(0.4f, 0.4f, 1f)));
+        //all lifeSprites start disabled as well
+        // foreach(GameObject lifeSprite in lifeSprites) {
+        //     lifeSprite.SetActive(true);
+        //     StartCoroutine(lifeSprite.gameObject.GetComponent<ScaleObject>().Scale(0.75f, new Vector3 (0.4f, 0.4f, 1f)));
+        // }
     }
 
     //Intro Animation. Scale all Rhythm Game UI components up. Orbitter scales to full size before the fret starts
