@@ -1,0 +1,17 @@
+﻿title: Beginning
+tags: 
+colorID: 0
+position: 0,0
+---
+//[BLACK]
+	<<Act @ Fidel, f_neutral>>
+	<<moveNPC Player PiperPoint1>>
+	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
+	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
+	Fidel: Oh, just in time. Here we are… our first stop!
+	Fidel: C'mon, you can open your eyes now. 
+	//<<HideAll @>>
+	//<<Act @ Piper, p_neutral, 0.5, 0.5, #6764f7>>
+	<<Act @ Piper, p_neutral>>
+	Piper: ‘kay.
+===

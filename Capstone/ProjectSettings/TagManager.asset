@@ -8,6 +8,14 @@ TagManager:
   - environmentNote
   - environmentBall
   - Wall
+  - ground
+  - Obstacle
+  - BombPickup
+  - Enemy
+  - ExplosionFX
+  - Bullet
+  - HealthBar
+  - Puzzle
   layers:
   - Default
   - TransparentFX
