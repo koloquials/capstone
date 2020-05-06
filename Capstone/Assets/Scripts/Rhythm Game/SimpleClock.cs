@@ -118,10 +118,14 @@ public class SimpleClock : MonoBehaviour
     public static SimpleClock Instance { get { return _instance; } }
 
     [HideInInspector]public AudioSource songSource;
+    public AudioSource[] audioSources; 
 
     private void Awake()
     {
-        songSource = gameObject.GetComponent<AudioSource>();
+        audioSources = gameObject.GetComponents<AudioSource>();
+        // songSource = gameObject.GetComponent<AudioSource>();
+        songSource = audioSources[0];                   //RhythmGameController can have multiple AudioSources, but the one that SimpleClock
+                                                        //refers to (the one that plays the music) MUST always be the first
         if (_instance != null && _instance != this)
         {
             Debug.Log("Destroying"); 

@@ -50,7 +50,13 @@ public class RhythmGameController : MonoBehaviour {
     public GameObject[] lifeSprites;
     public Transform lifeSpritesParent;
 
+    public AudioSource clockSrc;
+    public AudioSource[] audioSources;
+
     void Start() {
+        audioSources = gameObject.GetComponents<AudioSource>();
+        clockSrc = audioSources[1];
+
         //make and begin running the state machine
         rhythmGameStateMachine = new FiniteStateMachine<RhythmGameController>(this);
         rhythmGameStateMachine.TransitionTo<IntroAnimation>();
@@ -438,10 +444,6 @@ public class RhythmGameController : MonoBehaviour {
         public override void Update() {
             phaseWindowStateMachine.Update();
 
-            if (Input.GetKeyDown(KeyCode.Y)) {
-                SimpleClock.Instance.FirstBeat();
-            }
-
             //exit out of the rhythm game 
             if (Input.GetKeyDown(KeyCode.Escape)) {
                 Debug.Log("Exiting via escape");
@@ -517,7 +519,7 @@ public class RhythmGameController : MonoBehaviour {
                 lifeSprite.SetActive(false);
             }
 
-            // Context.ChangeBackground(false, true);
+            Context.ChangeBackground(false, true);
 
             started = false;
 
@@ -580,6 +582,7 @@ public class RhythmGameController : MonoBehaviour {
             //function to start the rhythm game
             private void StartRhythmGame() {
                 SimpleClock.Instance.FirstBeat();           //FirstBeat() begins playing the song and the clock 
+                // Context.Context.clockSrc.Play();
                 Context.Context.orbitterScript.StartRotation();
                 Context.noteCounter += 1;
                 Context.Context.fretFeedbackScript.SetFret(Context.Context.thisSongSequence[Context.noteCounter]);
@@ -607,7 +610,7 @@ public class RhythmGameController : MonoBehaviour {
                 pressedArrow = "";
                 pressedWASD = "";
 
-                // Context.Context.ChangeBackground(true, false);
+                Context.Context.ChangeBackground(true, false);
             }
 
             public override void Update() {
@@ -665,7 +668,7 @@ public class RhythmGameController : MonoBehaviour {
         private class OutOfWindow : FiniteStateMachine<Phase1>.State {
             public override void OnEnter() {
                 Debug.Log("Out of Window OnEnter()");
-                // Context.Context.ChangeBackground(false, false);
+                Context.Context.ChangeBackground(false, false);
             }
             public override void Update() {
 

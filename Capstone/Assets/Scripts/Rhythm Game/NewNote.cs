@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SpriteGlow;
 
+/// <summary>
+/// Attach this to the rhythm game note prefab. Holds the properties of every note
+/// </summary>
+
+
 public class NewNote : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
@@ -36,8 +41,6 @@ public class NewNote : MonoBehaviour
     public Sprite RL;
     public Sprite RR;
 
-    public float delayTime = 3f;
-   // private float SimpleClock.Instance.quarter = 5f;
     private float currTime = 0f;
 
     private SpriteGlowEffect glowScript;
@@ -47,7 +50,7 @@ public class NewNote : MonoBehaviour
 
     public bool finishedMoving = false;                //flips to true once the note has reachd the fret. 
 
-    [HideInInspector] public string myCombination;
+    [HideInInspector]public string combination;
 
     void Awake()
     {
@@ -225,7 +228,6 @@ public class NewNote : MonoBehaviour
         this.destinationPos = new Vector3(destinationPos.x, destinationPos.y, 0f);
     }
 
-
     //Setters for IMMUTABLE properties of each note. 
     //set this note's measure in the entire song
     public void SetMeasure(int measure)
@@ -239,16 +241,16 @@ public class NewNote : MonoBehaviour
         this.beat = beat;
     }
 
-    public void SetCombination(string myCombination) {
-        this.myCombination = myCombination;
+    public void SetCombination(string combination) {
+        this.combination = combination;
     }
 
     public string GetCombination() {
-        return myCombination;
+        return combination;
     }
 
     //Debug function to check all properties of a note
     public void PrintEveryProperty() {
-        Debug.Log("My combination is: " + GetCombination() + " my assigned measure is: " + measure + " my assigned beat is: " + beat);
+        Debug.Log("This note's combination is: " + GetCombination() + " my assigned measure is: " + measure + " my assigned beat is: " + beat);
     }
 }

@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource puzzleSoundSrc;         //this source will play sound effects for the puzzles
 
     private AudioSource[] audioSources; 
-    public AudioClip[] audioClips;              //set array size and assign clips via inspector
+    public AudioClip[] individualAudioClips;              //set array size and assign clips via inspector. AudioClips can be dragged in in any order
 
     private Dictionary<string, AudioClip> puzzleSoundsDict;     //all sound effects for the puzzles will be stored and accessed via a dictionary
 
@@ -86,14 +86,13 @@ public class AudioManager : MonoBehaviour
 
         float randomWaitTime = Random.Range(5f, 13f);               //give a random wait time between individual sounds
 
-
         StartCoroutine(PlayIndividualSounds(randomWaitTime));
     }
 
     AudioClip GetRandomClip() {                 //helper function to generate random ambience clip
-        int randomClip = Random.Range(0, audioClips.Length);
+        int randomClip = Random.Range(0, individualAudioClips.Length);
 
-        return audioClips[randomClip];
+        return individualAudioClips[randomClip];
     }
 
     //Dialogue running scripts can call this function 

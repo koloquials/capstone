@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// for moving the blue circle orbiting the fret
+/// for controlling the blue circle orbiting the fret
 /// </summary>
 
 public class Orbitter : MonoBehaviour
