@@ -177,8 +177,7 @@ namespace Yarn.Unity.Example {
                     while ( timeWaited < textSpeed ) {
                         timeWaited += Time.deltaTime;
                         // early out / skip ahead
-                        if ( Input.GetMouseButtonDown(0) ) {
-                            Debug.Log("Progressing dialogue");
+                        if ( Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) ) {
                             lineText.text = lineTextDisplay;
                             earlyOut = true;
                         }
@@ -200,7 +199,7 @@ namespace Yarn.Unity.Example {
             }
 
             // Wait for any user input
-            while (!Input.GetMouseButtonDown(0)) {
+            while (!Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
                 //Debug.Log("waiting");
                 yield return null;
             }

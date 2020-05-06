@@ -35,22 +35,53 @@ namespace Yarn.Unity.Example {
      * shouldn't be too fast nor too slow
      */
     public class CameraFollow : MonoBehaviour {
+        //CameraFollow can be accessed by any script in the screen with CameraFollow.Instance.()
+        private static CameraFollow _instance;
+        public static CameraFollow Instance { get { return _instance; } }
 
         /// Target of the camera
         public Transform target;
 
         /// Minimum position of camera
-        public float minPosition = -5.3f;
+        private float minPosition;
 
         /// Maximum position of camera
         public float maxPosition = 5.3f;
+        private float minMaxDistance;
 
         /// Movement speed of camera
         public float moveSpeed = 1.0f;
 
         public bool inGame = false; //Whether or not the rhythm game is active.
 
+        public GameObject wall1; 
+        float vertExtent;
+        float horzExtent;
+
+        ShakeBehaviour shakeScript;
+
         // Update is called once per frame
+
+        void Awake() {
+            //singleton pattern
+            if (_instance != null && _instance != this) {
+                Destroy(this.gameObject);
+            }
+            else {
+                _instance = this;
+            }
+
+            minPosition = transform.position.x;
+            maxPosition = -35f;                         //hard-coded values, oof, but (camera.transform.position.x + Screen.Width/2) should NOT exceed wall1.transform.position.x;
+
+            minMaxDistance = Mathf.Abs(minPosition - maxPosition);
+
+            vertExtent = Camera.main.orthographicSize;   
+            horzExtent = vertExtent * Screen.width / Screen.height;
+
+            shakeScript = this.gameObject.GetComponent<ShakeBehaviour>();
+        }
+
         void Update () {
             if (inGame)
             {
@@ -70,11 +101,26 @@ namespace Yarn.Unity.Example {
 
                 transform.position = newPosition;
             }
+
+            if (Input.GetKeyDown(KeyCode.T)) {
+                ScreenShake();
+            }
         }
 
         public void setGame(bool g)
         {
             inGame = g;
+        }
+
+        //Each room will have its own unique min and max camera position. Everytime a room is entered (aka, a door is activated), call this.
+        //the camera teleports itself with the player, 
+        public void SetNewRoom() {
+            minPosition = transform.position.x;
+            maxPosition = minPosition + minMaxDistance;
+        }
+
+        public void ScreenShake() {
+            shakeScript.TriggerShake(0.1f, 0.5f);
         }
     }
 }
