@@ -10,6 +10,8 @@ public class OverworldRhythm : MonoBehaviour
 
     //public ExampleVariableStorage varStor; //The example variable storage for the yarn system. Used to tell dialogue when you've won.
 
+    //SHOULD BE ON A CHILD OF THE PLAYER, NOT THE PLAYER ITSELF
+
     //Sprites representing the 16 possible note combinations
     public Sprite UU;
     public Sprite UD;
@@ -55,7 +57,7 @@ public class OverworldRhythm : MonoBehaviour
     bool beat = false; //Wait a frame when turning on or off, prevents some issues.
 
     GameObject player;
-    Vector2 playerPos;
+    Vector3 playerPos;
 
     List<NoteLock> localLocks;
     List<NoteBlock> localBlocks;
@@ -83,7 +85,9 @@ public class OverworldRhythm : MonoBehaviour
             sr.color = vis;
             Debug.Log("Turning on");
             beat = true;
-            playerPos = player.transform.position;
+            //playerPos = player.transform.position;
+            player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(false); //Stops the player from moving
+
             foreach (NoteLock n in ec.lockList) //Interacting with locks
             {
                 if (Vector3.Distance(transform.position, n.transform.position) < 10) //If the note is within a certain range. May wish to edit this to get a good range.
@@ -113,7 +117,7 @@ public class OverworldRhythm : MonoBehaviour
 
         if (active)
         {
-            player.transform.position = playerPos; //Locks the player's position of they're using the rhythm game. In the future, have this call the player's movement script to disable it instead.
+            //player.transform.position = playerPos; //Old method of locking position. 
 
             if (!beat && Input.GetKeyDown(KeyCode.R)) //Closes the rhythm game.
             {
@@ -132,6 +136,7 @@ public class OverworldRhythm : MonoBehaviour
                 localLocks.Clear();
                 localBlocks.Clear();
                 localSpinners.Clear();
+                player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(true);
             }
 
             //Code for pressing keys

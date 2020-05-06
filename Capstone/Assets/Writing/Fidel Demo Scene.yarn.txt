@@ -9,8 +9,10 @@ parent:
 	[[Scene2]]
 <<elseif $waypoint is 3>>
 	[[Scene2b]]
-<<elseif $waypoint is 4>>
+<<elseif $waypoint is 4 and $completedPuzzle is 0>>
 	[[Scene2bPuzzle]]
+<<elseif $waypoint is 4 and $completedPuzzle is 1>>
+	[[Scene2bPuzzleFinish]]
 <<elseif $waypoint is 5>>
 	[[Scene3b]]
 <<elseif $waypoint is 6>>
@@ -52,7 +54,7 @@ parent:
 
 	//[BLACK]
 	<<Act @ Fidel, f_neutral>>
-	<<moveNPC Player PiperPoint1
+	<<moveNPC Player PiperPoint1>>
 	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
 	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
 	Fidel: Oh, just in time. Here we are… our first stop!
@@ -146,6 +148,7 @@ Fidel: Shit, dude. Zero out of two. We’re gonna get tomatoed right off the sta
 //<<set $waypoint to 5>>
 <<moveNPC Fidel FidelPoint2>>
 <<warpNPC Fidel>>
+<<activateDoor Door1>>
 //[[Scene2]]
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
@@ -321,6 +324,7 @@ Fidel: That's just how it be!
 //[Fidel keeps walking to in front of the puzzle.]
 // SPRITES: f_stand_0
 <<set $waypoint to 4>>
+<<moveNPC Fidel FidelPoint3a>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
 
@@ -332,7 +336,7 @@ position: 0,0
 parent: 
 ---
 //{Approach the puzzle and Fidel.}
-
+<<moveNPC Player PiperPoint3a>>
 <<Act @ Fidel, f_think>>
 Fidel: Weird. This is like, really weird.
 <<Act @ Piper, p_concern1>>
@@ -347,15 +351,25 @@ Piper: I wonder… can I do something about it?
 Piper: I have an itch to try something.
 //[Piper kneels down.]
 //SPRITES: p_crouch
-<<changeNPC Player p_crouch>>
+//<<changeNPC Player p_crouch>>
+<<Hide @ Piper>>
+<<Hide @ Fidel>>
 
-//{Hit your first note.}
-<<Act @ Fidel, f_oooh>>
-Fidel: W-woah! The heck! You've never- what was that?
-<<Act @ Piper, p_happy1>>
-Piper: Gonna try and figure the rest of this out.
+//{Hit your first note.} (Right now this isn't quite possible with the current system, will revisit in future)
+//<<Act @ Fidel, f_oooh>>
+//Fidel: W-woah! The heck! You've never- what was that?
+//<<Act @ Piper, p_happy1>>
+//Piper: Gonna try and figure the rest of this out.
 
+===
+title: Scene2bPuzzleFinish
+tags:
+colorID: 0
+position: 0,0
+parent:
+---
 //[Finish puzzle.]
+<<moveNPC Player PiperPoint3a>>
 <<Act @ Piper, p_happy2>>
 Piper: There.
 //[Piper gets back up.]
@@ -387,6 +401,7 @@ Fidel: Well, whatever you did was neat! You hungry?
 <<moveNPC Fidel FidelPoint4>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
+
 ===
 title: Scene3
 tags: 
@@ -564,7 +579,7 @@ Piper: I’m going to try something, okay?
 <<Set $startedRhythm to 1>>
 <<Set $waypoint to 7>>
 <<Set $completeRhythm to 0>>
-<<RhythmStart notePrefab>>
+<<rhythmGame GameManager>>
 
 
 ===

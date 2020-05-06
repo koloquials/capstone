@@ -58,6 +58,8 @@ namespace Yarn.Unity.Example
         private bool isMoving;
         private bool facingRight = true;
 
+        private bool moveable = true;
+
         void Start()
         {
             mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -140,7 +142,7 @@ namespace Yarn.Unity.Example
         //detect if the player pressed the mouse to move the character and move the character accordingly
         public void DetectMovement()
         {
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && moveable)
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 targetPosition.z = transform.position.z;
@@ -246,6 +248,29 @@ namespace Yarn.Unity.Example
             targetPosition = t;
             isMoving = false;
             facingRight = true;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "Puzzle" || collision.gameObject.tag == "environmentBall") //This should cause Piper to ignore colliders used for environment puzzles
+            {
+                Physics2D.IgnoreCollision(collision.collider, GetComponent<BoxCollider2D>());
+                GetComponent<Rigidbody2D>().velocity = Vector3.zero; //Ensures that the player can't be bumped by puzzle objects
+            }
+        }
+
+        public void setMovement(bool canMove) //Sets whether the player can move or not. Currently called by OverworldRhythm.
+        {
+            if(canMove)
+            {
+                moveable = true;
+            }
+            else
+            {
+                moveable = false;
+                targetPosition = transform.position;
+                isMoving = false;
+            }
         }
     }
 }
