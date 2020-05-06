@@ -72,7 +72,8 @@ namespace Yarn.Unity.Example {
             }
 
             minPosition = transform.position.x;
-            maxPosition = -35f;                         //hard-coded values, oof, but (camera.transform.position.x + Screen.Width/2) should NOT exceed wall1.transform.position.x;
+            //maxPosition = -35f;                         //hard-coded values, oof, but (camera.transform.position.x + Screen.Width/2) should NOT exceed wall1.transform.position.x;
+            maxPosition = 40f; //Currently Fidel's last position
 
             minMaxDistance = Mathf.Abs(minPosition - maxPosition);
 
