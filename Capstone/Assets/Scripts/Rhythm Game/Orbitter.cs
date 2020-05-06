@@ -8,20 +8,11 @@ using UnityEngine;
 
 public class Orbitter : MonoBehaviour
 {
-    public conductorScript script;
-    public float r = 1;
-
     private Vector3 startPos;
 
     public bool rotating = false;
 
-	public Transform rotationCenter;
-
-	public float rotationRadius;
     private float angularSpeed;
-	float posX;
-    float posY;
-    float angle = 0f;
 
     private ScaleObject objectScalerScript;
 
@@ -35,7 +26,6 @@ public class Orbitter : MonoBehaviour
 
     void Start() {
         startPos = this.transform.position;
-        script = gameObject.GetComponent<conductorScript>();
         Debug.Log("angular speed will be: " + angularSpeed);
         objectScalerScript = gameObject.GetComponent<ScaleObject>();
 
@@ -45,10 +35,9 @@ public class Orbitter : MonoBehaviour
     }
 
     void Update() { 
-        angularSpeed = SimpleClock.BeatLength() * 2;
+        angularSpeed = (SimpleClock.BeatLength() * 2);
 
         if (rotating) {
-            
             child.transform.localPosition = PointOnCircle(rotationTime * ((2 * Mathf.PI) / angularSpeed)) * radius;
             
             rotationTime += Time.deltaTime;
@@ -69,7 +58,7 @@ public class Orbitter : MonoBehaviour
 
     public void ResetPosition() {
         transform.position = startPos;
-        angle = 0f;
+        rotationTime = 0f;
     }
 
     public void ScaleOrbitter(float time, Vector3 scaleToSize) {

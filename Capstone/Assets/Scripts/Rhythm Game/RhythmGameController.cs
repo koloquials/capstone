@@ -109,7 +109,7 @@ public class RhythmGameController : MonoBehaviour {
     //generate the entire list of combinations first
     //so much SPAGHETT
     private void GenerateCombinations() {
-        int combosToGenerate = 154 - 10;            //oof, hard coded values
+        int combosToGenerate = 154 - notesCombinations.Count;            //oof, hard coded values
         string thisNotesCombo = "";
 
         for (int i = 0; i < combosToGenerate; i++) {
@@ -637,7 +637,7 @@ public class RhythmGameController : MonoBehaviour {
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     CameraFollow.Instance.ScreenShake();
-                    Context.RestartRhythmGame(); 
+                    // Context.RestartRhythmGame(); 
                 }
                 else {
                     Context.Context.CallCoroutine("FretPulse");
@@ -655,7 +655,7 @@ public class RhythmGameController : MonoBehaviour {
                     
                     //restart the game if more than 5 strikes
                     if (Context.strikes > 5) {
-                        Context.RestartRhythmGame();
+                        // Context.RestartRhythmGame();
                     }
                     else {
                         Context.Context.CallCoroutine("FretPulse");
