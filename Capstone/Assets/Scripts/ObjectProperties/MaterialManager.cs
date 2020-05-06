@@ -10,29 +10,40 @@ using UnityEngine;
 public class MaterialManager : MonoBehaviour
 {
     public Material[] materials;
-    // public Material defaultMat;
-    // public Material alternateMat;
+    public Material dissolveMat;
     public InteractableHighlight highlightScript;
     public Dissolve dissolveScript;
+
+    public Explodable explodeScript;
+
+    public Texture mainTex;
 
     // Start is called before the first frame update
     void Start() {
         highlightScript = gameObject.GetComponent<InteractableHighlight>();
         dissolveScript = gameObject.GetComponent<Dissolve>();
-        // materials = new Material[] {defaultMat, alternateMat};
-    // {
-    //     spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    //     spriteRenderer.material = defaultMat;
-    //     materials[0] = defaultMat;
-    //     materials[1] = dissolveMat;
-    //     materials[2] = glowMat;
+        explodeScript = gameObject.GetComponent<Explodable>();
 
-        // dissolveScript = gameObject.GetComponent<Dissolve>();
+
+        foreach (Transform shard in transform) {
+            MeshRenderer shardRenderer = shard.gameObject.GetComponent<MeshRenderer>();
+
+            // Destroy(shardRenderer);
+            shard.gameObject.AddComponent<Dissolve>();
+
+            Dissolve shardDissolve = shard.gameObject.GetComponent<Dissolve>();
+            shardDissolve.dissolveMat = this.dissolveMat;
+            shardDissolve.mainTex = this.mainTex;
+        }
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.B)) {
             Dissolve();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T)) {
+            explodeScript.explode();
         }
     }
 

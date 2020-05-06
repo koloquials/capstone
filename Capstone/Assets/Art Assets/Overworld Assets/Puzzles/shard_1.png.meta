@@ -1,0 +1,571 @@
+fileFormatVersion: 2
+guid: 9a72e71fa0114471f90b99df79d8dc71
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 132148423870962957
+    second: shard_1_0
+  - first:
+      213: 2430565496980928073
+    second: shard_1_1
+  - first:
+      213: 4502517388338183147
+    second: shard_1_2
+  - first:
+      213: 8082432584706058281
+    second: shard_1_3
+  - first:
+      213: -5776080581593363162
+    second: shard_1_4
+  - first:
+      213: 5515930742891022021
+    second: shard_1_5
+  - first:
+      213: 5082757556101691743
+    second: shard_1_6
+  - first:
+      213: 3396650464425596511
+    second: shard_1_7
+  - first:
+      213: -5338437724162872976
+    second: shard_1_8
+  - first:
+      213: -3661578853061719719
+    second: shard_1_9
+  - first:
+      213: 3861746635651963044
+    second: shard_1_10
+  - first:
+      213: -7581262640336835289
+    second: shard_1_11
+  - first:
+      213: -74162664015208683
+    second: shard_1_12
+  - first:
+      213: -7096639928140075848
+    second: shard_1_13
+  - first:
+      213: -6121151069734931456
+    second: shard_1_14
+  - first:
+      213: 8878108992977103781
+    second: shard_1_15
+  - first:
+      213: 1284103365700298955
+    second: shard_1_16
+  - first:
+      213: 7606830417617383552
+    second: shard_1_17
+  - first:
+      213: -3500293624503275004
+    second: shard_1_18
+  - first:
+      213: 3044139430615190473
+    second: shard_1_19
+  - first:
+      213: -7043299562591186893
+    second: shard_1_20
+  - first:
+      213: 6361212048352396539
+    second: shard_1_21
+  - first:
+      213: -7568625670006306551
+    second: shard_1_22
+  - first:
+      213: 2753291797036060842
+    second: shard_1_23
+  - first:
+      213: 5345818012847413707
+    second: shard_1_24
+  - first:
+      213: 1491600175307574721
+    second: shard_1_25
+  - first:
+      213: 3738527896013779345
+    second: shard_1_26
+  - first:
+      213: -2118923366439197093
+    second: shard_1_27
+  - first:
+      213: 5698656216648500045
+    second: shard_1_28
+  - first:
+      213: -3195368993958898142
+    second: shard_1_29
+  - first:
+      213: 7233936382914105184
+    second: shard_1_30
+  - first:
+      213: -2857628363805809605
+    second: shard_1_31
+  - first:
+      213: 1954735217588997522
+    second: shard_1_32
+  - first:
+      213: 5575860572873286639
+    second: shard_1_33
+  - first:
+      213: -7329278754339503519
+    second: shard_1_34
+  - first:
+      213: -3690188583378924121
+    second: shard_1_35
+  - first:
+      213: 1734170404207984048
+    second: shard_1_36
+  - first:
+      213: 5559087813258165592
+    second: shard_1_37
+  - first:
+      213: 4440237727418362932
+    second: shard_1_38
+  - first:
+      213: -8814904591031063683
+    second: shard_1_39
+  - first:
+      213: 4946809437231415109
+    second: shard_1_0
+  - first:
+      213: 414093974396811849
+    second: shard_1_1
+  - first:
+      213: 4244448201164759712
+    second: shard_1_2
+  - first:
+      213: 6359475838550081472
+    second: shard_1_3
+  - first:
+      213: -1516032963329733084
+    second: shard_1_4
+  - first:
+      213: 5455295798122847206
+    second: shard_1_5
+  - first:
+      213: -905126882892034868
+    second: shard_1_6
+  - first:
+      213: -6290672144997827984
+    second: shard_1_7
+  - first:
+      213: 2680806612416243549
+    second: shard_1_8
+  - first:
+      213: 1661869491945863137
+    second: shard_1_9
+  - first:
+      213: -3344831420505212315
+    second: shard_1_10
+  - first:
+      213: -5927530771261301361
+    second: shard_1_11
+  - first:
+      213: -2072989596101744415
+    second: shard_1_12
+  - first:
+      213: 7597489110335839564
+    second: shard_1_13
+  - first:
+      213: 3661392308668449499
+    second: shard_1_14
+  - first:
+      213: 954036493712942985
+    second: shard_1_15
+  - first:
+      213: 1984175813038942046
+    second: shard_1_16
+  - first:
+      213: 3828265290986347276
+    second: shard_1_17
+  - first:
+      213: 2568056195294369517
+    second: shard_1_18
+  - first:
+      213: 7839157209379858125
+    second: shard_1_19
+  - first:
+      213: -3232020387064192908
+    second: shard_1_20
+  - first:
+      213: 6487049978544588436
+    second: shard_1_21
+  - first:
+      213: 1642393700620866760
+    second: shard_1_22
+  - first:
+      213: 2270277853452528934
+    second: shard_1_23
+  - first:
+      213: -5221570989125864872
+    second: shard_1_24
+  - first:
+      213: 3878654957054765845
+    second: shard_1_25
+  - first:
+      213: 8904155969168323664
+    second: shard_1_26
+  - first:
+      213: -8717243032997414646
+    second: shard_1_27
+  - first:
+      213: 416023620186055864
+    second: shard_1_28
+  - first:
+      213: 1128965252235810399
+    second: shard_1_29
+  - first:
+      213: 256330571842210444
+    second: shard_1_30
+  - first:
+      213: 9058589562093280751
+    second: shard_1_31
+  - first:
+      213: 4135284697533342381
+    second: shard_1_32
+  - first:
+      213: 7383106434962703796
+    second: shard_1_33
+  - first:
+      213: 6674088156116830641
+    second: shard_1_34
+  - first:
+      213: -4873533187232863557
+    second: shard_1_35
+  - first:
+      213: 926209581878560821
+    second: shard_1_36
+  - first:
+      213: -7651810743900594783
+    second: shard_1_37
+  - first:
+      213: -8634117568223739775
+    second: shard_1_38
+  - first:
+      213: 3651799826973526998
+    second: shard_1_39
+  - first:
+      213: 8016006399781341717
+    second: shard_1_40
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shard_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f7abd49f896a440800000000000000
+      internalID: 4946809437231415109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a3d8796482fb500800000000000000
+      internalID: 414093974396811849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_2
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2a8f1a62f47ea30800000000000000
+      internalID: 4244448201164759712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_3
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cff47ac495614850800000000000000
+      internalID: 6359475838550081472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_4
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ec2f85d08f5fae0800000000000000
+      internalID: -1516032963329733084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_5
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c60da739c58c8c40800000000000000
+      internalID: 5515930742891022021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_6
+      rect:
+        serializedVersion: 2
+        x: 1002
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59bfd25115998640800000000000000
+      internalID: 5082757556101691743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_7
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f56d046e993532f20800000000000000
+      internalID: 3396650464425596511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shard_1_8
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 0
+        width: 167
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0792ab39c2f0ae5b0800000000000000
+      internalID: -5338437724162872976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

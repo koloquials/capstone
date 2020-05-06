@@ -58,13 +58,10 @@ namespace Yarn.Unity.Example
         private bool isMoving;
         private bool facingRight = true;
 
-        public AudioSource footstepsSrc;
-
         void Start()
         {
             mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             myAnimator = gameObject.GetComponent<Animator>();
-            footstepsSrc = gameObject.GetComponent<AudioSource>();
         }
 
         /// Draw the range at which we'll start talking to people.
@@ -164,21 +161,19 @@ namespace Yarn.Unity.Example
                 if (!isMoving)
                 {
                     isMoving = true;
+                    StartCoroutine(this.gameObject.GetComponent<PlayFootsteps>().Footsteps(0.4f));
                 }
             }
 
             if (isMoving)
             {
-                if (!footstepsSrc.isPlaying) 
-                    footstepsSrc.Play();
-
                 myAnimator.SetBool("isRunning", true);
                 SetDirection();
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
             if (!isMoving) {
-                footstepsSrc.Stop();
+                this.gameObject.GetComponent<PlayFootsteps>().StopAllCoroutines();
                 myAnimator.SetBool("isRunning", false);
                 mySpriteRenderer.sprite = p_idle;
             }
@@ -191,7 +186,7 @@ namespace Yarn.Unity.Example
                 isMoving = false;
             }
         }
-        
+
         //check which side character is walking towards to flip the sprite accordingly 
         public void SetDirection()
         {
@@ -237,6 +232,7 @@ namespace Yarn.Unity.Example
             {
                 // Kick off the dialogue at this node.
                 FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
+                StopAllCoroutines();                    //stop the walking sound
             }
         }
 

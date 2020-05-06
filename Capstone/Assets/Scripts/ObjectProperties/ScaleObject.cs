@@ -21,21 +21,11 @@ public class ScaleObject : MonoBehaviour
         Vector3 originalScale = gameObject.transform.localScale;
         Vector3 destinationScale = scaleToSize;
 
-        // if (destinationScale.x > originalScale.x) {
-        //     scaleUp = true;
-        // }
-        // else {
-        //     scaleUp = false;
-        // }
-
-        // Color spriteColour = spriteRenderer.color;
-
         float currTime = 0f;
 
         do
         {
             gameObject.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currTime / time);
-            
             //scale to max alpha or min alpha depending on which direction we are scaling in 
             // if (scaleUp) {
             //     spriteColour.a = (currTime / time);

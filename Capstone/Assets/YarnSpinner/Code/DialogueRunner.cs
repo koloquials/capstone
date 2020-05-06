@@ -72,6 +72,8 @@ namespace Yarn.Unity
 
         public bool automaticCommands = true;
 
+        public AudioManager audioManager;
+
         /// Our conversation engine
         /** Automatically created on first access
          */
@@ -97,6 +99,7 @@ namespace Yarn.Unity
         /// Start the dialogue
         void Start ()
         {
+            audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
             // Ensure that we have our Implementation object
             if (dialogueUI == null) {
                 Debug.LogError ("Implementation was not set! Can't run the dialogue!");
@@ -137,6 +140,16 @@ namespace Yarn.Unity
                 }
             }
 
+        }
+
+        void Update() {
+            // if (isDialogueRunning) {
+            //     // audioManager.DialogueRunning(true);
+            //     AudioManager.Instance.PlayDialogueSound(true);
+            // }
+            // else 
+            //     // audioManager.DialogueRunning(false);
+            //     AudioManager.Instance.PlayDialogueSound(false);
         }
 
         /// Add a string of text to a script
