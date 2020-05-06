@@ -58,16 +58,18 @@ namespace Yarn.Unity.Example {
         float vertExtent;
         float horzExtent;
 
+        ShakeBehaviour shakeScript;
+
         // Update is called once per frame
 
         void Awake() {
             //singleton pattern
-            if (_instance != null && _instance != this) 
+            if (_instance != null && _instance != this) {
                 Destroy(this.gameObject);
-            else 
+            }
+            else {
                 _instance = this;
-
-                
+            }
 
             minPosition = transform.position.x;
             maxPosition = -35f;                         //hard-coded values, oof, but (camera.transform.position.x + Screen.Width/2) should NOT exceed wall1.transform.position.x;
@@ -76,6 +78,8 @@ namespace Yarn.Unity.Example {
 
             vertExtent = Camera.main.orthographicSize;   
             horzExtent = vertExtent * Screen.width / Screen.height;
+
+            shakeScript = this.gameObject.GetComponent<ShakeBehaviour>();
         }
 
         void Update () {
@@ -97,6 +101,10 @@ namespace Yarn.Unity.Example {
 
                 transform.position = newPosition;
             }
+
+            if (Input.GetKeyDown(KeyCode.T)) {
+                ScreenShake();
+            }
         }
 
         public void setGame(bool g)
@@ -109,6 +117,10 @@ namespace Yarn.Unity.Example {
         public void SetNewRoom() {
             minPosition = transform.position.x;
             maxPosition = minPosition + minMaxDistance;
+        }
+
+        public void ScreenShake() {
+            shakeScript.TriggerShake(0.1f, 0.5f);
         }
     }
 }
