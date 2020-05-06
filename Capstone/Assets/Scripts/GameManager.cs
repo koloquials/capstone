@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity.Example;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }        //GameManager can be accessed by any script in the scene via GameManager.Instance.(...)
+
     public Yarn.Unity.Example.CameraFollow cam;
     public Yarn.Unity.Example.PlayerCharacter player;   //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
 
@@ -12,6 +16,16 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
 
     FiniteStateMachine<GameManager> gameManagerStateMachine;
+
+    void Awake() {
+        //singleton pattern
+        if (_instance != null && _instance != this) {
+            Destroy(this.gameObject);
+        }
+        else {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +71,8 @@ public class GameManager : MonoBehaviour
         public override void OnEnter() {
             Debug.Log("Entering rhythm game state. Deactivating player movement");
             Context.player.motionControl(false); 
-            Context.cam.setGame(true);
+            CameraFollow.Instance.setGame(true);
+            // Context.cam.setGame(true);
             Context.rhythmGameController.gameObject.SetActive(true);
 
             Context.audioManager.ControlAmbience(false);            //turn overworld ambience off
