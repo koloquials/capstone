@@ -35,7 +35,7 @@ public class Orbitter : MonoBehaviour
     }
 
     void Update() { 
-        angularSpeed = SimpleClock.Instance.(SimpleClock.BeatLength() * 2);
+        angularSpeed = (SimpleClock.BeatLength() * 2);
 
         if (rotating) {
             child.transform.localPosition = PointOnCircle(rotationTime * ((2 * Mathf.PI) / angularSpeed)) * radius;
