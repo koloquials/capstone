@@ -46,7 +46,7 @@ public class OverworldRhythm : MonoBehaviour
     float primeCool = 0f; //How long you can keep one key pressed for before it registers an incorrect hit.
     float pcN = 0.1f; //Default value for pcNS
 
-    bool active = false; //Whether the environment rhythm is active and tracking keypresses.
+   public bool active = false; //Whether the environment rhythm is active and tracking keypresses.
 
     EnvironmentController ec; //The environment controller, which contains references to all the interactable objects
 

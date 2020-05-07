@@ -14,17 +14,12 @@ public class Dissolve : MonoBehaviour
 
     public Texture mainTex;
 
-    // public SpriteRenderer spriteRenderer;
-    public MeshRenderer meshRenderer;
-
+    public SpriteRenderer spriteRenderer;
     void OnEnable() {
-        // spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        // mainTex = spriteRenderer.sprite.texture;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        mainTex = spriteRenderer.sprite.texture;
         dissolveMat.SetTexture("_MainTex", mainTex);
-        // spriteRenderer.material = dissolveMat;
-
-        meshRenderer.material = dissolveMat;
+        spriteRenderer.material = dissolveMat;
 
         StartCoroutine(DissolveObject(0.5f));
     }
@@ -37,8 +32,8 @@ public class Dissolve : MonoBehaviour
 
         do
         {
-            meshRenderer.material.SetFloat("_Fade", Mathf.Lerp(originalFadeValue, 0f, currTime/time));
-            // spriteRenderer.material.SetFloat("_Fade", Mathf.Lerp(originalFadeValue, 0f, currTime/time));
+            // meshRenderer.material.SetFloat("_Fade", Mathf.Lerp(originalFadeValue, 0f, currTime/time));
+            spriteRenderer.material.SetFloat("_Fade", Mathf.Lerp(originalFadeValue, 0f, currTime/time));
             //spriteColour.a = 1 - (currTime / time);
             //mySpriteRenderer.color = spriteColour;
             yield return null;

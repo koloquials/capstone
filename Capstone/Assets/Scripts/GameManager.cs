@@ -18,6 +18,8 @@ namespace Yarn.Unity.Example {
 
         FiniteStateMachine<GameManager> gameManagerStateMachine;
 
+        public GameObject overworldRhythmController;
+
         void Awake() {
             //singleton pattern
             if (_instance != null && _instance != this) {
@@ -31,6 +33,8 @@ namespace Yarn.Unity.Example {
         // Start is called before the first frame update
         void Start()
         {
+            overworldRhythmController = GameObject.Find("OverworldRhythm");
+
             gameManagerStateMachine = new FiniteStateMachine<GameManager>(this);
             gameManagerStateMachine.TransitionTo<Overworld>();
 
@@ -39,7 +43,7 @@ namespace Yarn.Unity.Example {
 
         // Update is called once per frame
         void Update()
-        {
+        {  
             gameManagerStateMachine.Update();
 
             //remove these later. Here for debugging purposes. Start 
@@ -49,11 +53,17 @@ namespace Yarn.Unity.Example {
             }
         }
 
-        [YarnCommand("rhythmGame")]
+        [YarnCommand("rhythmGame")]                 //enter the rythm game state
         public void RhythmGameState() {
             gameManagerStateMachine.TransitionTo<RhythmGame>();
         }
 
+        [YarnCommand("overworldPuzzle")]            //enter overworld puzzle state 
+        public void OverworldPuzzleState() {
+            gameManagerStateMachine.TransitionTo<OverworldPuzzle>();
+        }
+
+        //the machine's resting state, nothing much special handled here. 
         public void OverworldState() {
             gameManagerStateMachine.TransitionTo<Overworld>();
         }
@@ -93,6 +103,28 @@ namespace Yarn.Unity.Example {
                 Context.rhythmGameController.gameObject.SetActive(false);
                 
                 Context.audioManager.ControlAmbience(true);             //turn overworld ambience back on
+            }
+        }
+
+        private class OverworldPuzzle : FiniteStateMachine<GameManager>.State {
+            public GameObject environmentSensorObj;
+
+            public override void OnEnter() {
+                Debug.Log("Entering puzzle state");
+                Context.overworldRhythmController.active = true;
+                environmentSensorObj = GameObject.Find("BallSensor");
+            }
+
+            public override void Update() {
+                if (!environmentSensorObj.gameObject.GetComponent<environmentSensor>().GetStatus()) {    //exit back out to overworld state when the gate has been unlocked
+                    Debug.Log("environment senor unlocked. Exiting");
+                    TransitionTo<Overworld>();
+                }
+            }
+
+            public override void OnExit() {
+                Debug.Log("exiting puzzle state");
+                Context.overworldRhythmController.active = false;
             }
         }
     }
