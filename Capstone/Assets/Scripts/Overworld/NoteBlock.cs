@@ -44,6 +44,7 @@ public class NoteBlock : MonoBehaviour
             transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
             noteSprite.sprite = note2;
             activeCode = code2;
+            AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
             pos = 2;
         }
         else if (pos == 2)
@@ -51,6 +52,7 @@ public class NoteBlock : MonoBehaviour
             transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f    ));
             noteSprite.sprite = note1;
             activeCode = code1;
+            AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
             pos = 1;
         }
     }

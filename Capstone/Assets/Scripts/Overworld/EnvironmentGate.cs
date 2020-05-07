@@ -24,6 +24,7 @@ public class EnvironmentGate : EnvironmentObject //A gate that obstructs the pla
     {
         //Note, if a scene contains more than one puzzle, could replace "$completedRhythm" with a constructed string that has the number of what puzzle was completed
         varStor.SetValue("$completedPuzzle", new Yarn.Value(1)); //Tell yarn that the puzzle was completed
-        gameObject.SetActive(false);
+        this.gameObject.GetComponent<Dissolve>().enabled = true;
+        // gameObject.SetActive(false);
     }
 }

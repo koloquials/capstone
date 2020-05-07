@@ -352,6 +352,7 @@ Piper: I have an itch to try something.
 //[Piper kneels down.]
 //SPRITES: p_crouch
 //<<changeNPC Player p_crouch>>
+<<overworldPuzzle GameManager>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
 
