@@ -46,6 +46,8 @@ public class OverworldRhythm : MonoBehaviour
     float primeCool = 0f; //How long you can keep one key pressed for before it registers an incorrect hit.
     float pcN = 0.1f; //Default value for pcNS
 
+    public float range = 15f;
+
    public bool active = false; //Whether the environment rhythm is active and tracking keypresses.
 
     EnvironmentController ec; //The environment controller, which contains references to all the interactable objects
@@ -81,7 +83,8 @@ public class OverworldRhythm : MonoBehaviour
     {
         if (!active && !beat && Input.GetKeyDown(KeyCode.R))
         {
-            active = true;
+            toggleActive(true);
+            /*active = true;
             sr.color = vis;
             Debug.Log("Turning on");
             beat = true;
@@ -112,7 +115,7 @@ public class OverworldRhythm : MonoBehaviour
                     //n.inRange(true);
                     //Right now there isn't a highlight for spinners in range
                 }
-            }
+            }*/
         }
 
         if (active)
@@ -121,7 +124,8 @@ public class OverworldRhythm : MonoBehaviour
 
             if (!beat && Input.GetKeyDown(KeyCode.R)) //Closes the rhythm game.
             {
-                active = false;
+                toggleActive(false);
+                /*active = false;
                 sr.color = invis;
                 Debug.Log("Turning off");
                 beat = true;
@@ -136,7 +140,7 @@ public class OverworldRhythm : MonoBehaviour
                 localLocks.Clear();
                 localBlocks.Clear();
                 localSpinners.Clear();
-                player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(true);
+                player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(true);*/
             }
 
             //Code for pressing keys
@@ -377,7 +381,63 @@ public class OverworldRhythm : MonoBehaviour
                 }
             }
         }
+    }
 
-        //Interacting with note blocks
+    public void toggleActive(bool setActive)
+    {
+        if(setActive)
+        {
+            active = true;
+            sr.color = vis;
+            Debug.Log("Turning on");
+            beat = true;
+            //playerPos = player.transform.position;
+            player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(false); //Stops the player from moving
+
+            foreach (NoteLock n in ec.lockList) //Interacting with locks
+            {
+                if (Vector3.Distance(transform.position, n.transform.position) < range) //If the note is within a certain range. May wish to edit this to get a good range.
+                {
+                    localLocks.Add(n);
+                    n.inRange(true);
+                }
+            }
+            foreach (NoteBlock n in ec.blockList) //Interacting with locks
+            {
+                if (Vector3.Distance(transform.position, n.transform.position) < range) //If the note is within a certain range. May wish to edit this to get a good range.
+                {
+                    localBlocks.Add(n);
+                    n.inRange(true);
+                }
+            }
+            foreach (NoteSpinner n in ec.spinnerList)
+            {
+                if (Vector3.Distance(transform.position, n.transform.position) < range) //If the note is within a certain range. May wish to edit this to get a good range.
+                {
+                    localSpinners.Add(n);
+                    //n.inRange(true);
+                    //Right now there isn't a highlight for spinners in range
+                }
+            }
+        }
+        else
+        {
+            active = false;
+            sr.color = invis;
+            Debug.Log("Turning off");
+            beat = true;
+            foreach (NoteLock n in localLocks)
+            {
+                n.inRange(false);
+            }
+            foreach (NoteBlock n in localBlocks)
+            {
+                n.inRange(false);
+            }
+            localLocks.Clear();
+            localBlocks.Clear();
+            localSpinners.Clear();
+            player.GetComponent<Yarn.Unity.Example.PlayerCharacter>().setMovement(true);
+        }
     }
 }

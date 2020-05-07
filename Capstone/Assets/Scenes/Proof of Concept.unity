@@ -1766,6 +1766,7 @@ MonoBehaviour:
   RD: {fileID: -6920566913003040957, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RL: {fileID: -5872608217444871084, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
   RR: {fileID: 4075531425138720280, guid: 704ba3e019a9ae447941f0a8f1312ade, type: 3}
+  range: 15
   active: 0
 --- !u!212 &53272894
 SpriteRenderer:
@@ -8737,6 +8738,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &471851924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471851925}
+  m_Layer: 0
+  m_Name: PiperPoint3b
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471851925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471851924}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -13.08, y: -0.74, z: -6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2049530758}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &499789044
 GameObject:
   m_ObjectHideFlags: 0
@@ -10570,7 +10601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919240743}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.48, y: -0.74, z: -6}
+  m_LocalPosition: {x: -8.47, y: -0.74, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2049530758}
@@ -16160,6 +16191,7 @@ MonoBehaviour:
   - {fileID: 1977910459}
   - {fileID: 1971680149}
   - {fileID: 919240743}
+  - {fileID: 471851924}
   movementTime: 0.5
   flippy: 1
   reverseFlip: 0
@@ -19099,6 +19131,7 @@ Transform:
   - {fileID: 1977910460}
   - {fileID: 1971680150}
   - {fileID: 919240744}
+  - {fileID: 471851925}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
