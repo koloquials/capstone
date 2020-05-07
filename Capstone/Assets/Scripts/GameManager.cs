@@ -19,6 +19,7 @@ namespace Yarn.Unity.Example {
         FiniteStateMachine<GameManager> gameManagerStateMachine;
 
         public GameObject overworldRhythmController;
+        OverworldRhythm or;
 
         void Awake() {
             //singleton pattern
@@ -34,6 +35,7 @@ namespace Yarn.Unity.Example {
         void Start()
         {
             overworldRhythmController = GameObject.Find("OverworldRhythm");
+            or = overworldRhythmController.GetComponent<OverworldRhythm>();
 
             gameManagerStateMachine = new FiniteStateMachine<GameManager>(this);
             gameManagerStateMachine.TransitionTo<Overworld>();
@@ -111,7 +113,8 @@ namespace Yarn.Unity.Example {
 
             public override void OnEnter() {
                 Debug.Log("Entering puzzle state");
-                Context.overworldRhythmController.active = true;
+                //Context.overworldRhythmController.active = true;
+                Context.or.toggleActive(true);
                 environmentSensorObj = GameObject.Find("BallSensor");
             }
 
@@ -124,7 +127,8 @@ namespace Yarn.Unity.Example {
 
             public override void OnExit() {
                 Debug.Log("exiting puzzle state");
-                Context.overworldRhythmController.active = false;
+                //Context.overworldRhythmController.active = false;
+                Context.or.toggleActive(false);
             }
         }
     }

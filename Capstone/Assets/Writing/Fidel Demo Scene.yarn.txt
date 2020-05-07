@@ -349,6 +349,7 @@ Fidel: How are we supposed to get through now?
 <<Act @ Piper, p_neutral>>
 Piper: I wonder… can I do something about it?
 Piper: I have an itch to try something.
+<<moveNPC Player PiperPoint3b>>
 //[Piper kneels down.]
 //SPRITES: p_crouch
 //<<changeNPC Player p_crouch>>
