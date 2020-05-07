@@ -111,6 +111,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPuzzleSound(string clipName) {
         AudioClip clipToPlay = puzzleSoundsDict[clipName];          //get desired sound from dictionary
 
+        puzzleSoundSrc.pitch = Random.Range(0.75f, 2f);
         puzzleSoundSrc.PlayOneShot(clipToPlay);                     //play it once
     }
 }

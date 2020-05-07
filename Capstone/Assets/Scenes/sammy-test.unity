@@ -704,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 224510685833636184, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.447258
+      value: 7.4472656
       objectReference: {fileID: 0}
     - target: {fileID: 224592722099872366, guid: 9e0841b82a4ebcd438730d23886e17e6,
         type: 3}
@@ -7714,11 +7714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c523bfc4b398f4ed1ac2b6166665c3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
-  r: 1
   rotating: 0
-  rotationCenter: {fileID: 1741137383}
-  rotationRadius: 0.75
   pivot: {fileID: 1741137383}
   child: {fileID: 393319408}
   radius: 0

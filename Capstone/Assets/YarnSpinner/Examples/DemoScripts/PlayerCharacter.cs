@@ -34,8 +34,8 @@ namespace Yarn.Unity.Example
     {
 
         //sprites 
-        private SpriteRenderer mySpriteRenderer;
-        private Animator myAnimator;
+        private SpriteRenderer spriteRenderer;
+        private Animator animator;
 
         public Sprite p_idle;
         public Sprite p_run;
@@ -62,8 +62,8 @@ namespace Yarn.Unity.Example
 
         void Start()
         {
-            mySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            myAnimator = gameObject.GetComponent<Animator>();
+            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            animator = gameObject.GetComponent<Animator>();
         }
 
         /// Draw the range at which we'll start talking to people.
@@ -169,21 +169,21 @@ namespace Yarn.Unity.Example
 
             if (isMoving)
             {
-                myAnimator.SetBool("isRunning", true);
+                animator.SetBool("isRunning", true);
                 SetDirection();
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition, maxPosition);
             }
             if (!isMoving) {
                 this.gameObject.GetComponent<PlayFootsteps>().StopAllCoroutines();
-                myAnimator.SetBool("isRunning", false);
-                mySpriteRenderer.sprite = p_idle;
+                animator.SetBool("isRunning", false);
+                spriteRenderer.sprite = p_idle;
             }
 
             //if player is where they pressed to be
             if (targetPosition == transform.position)
             {
-                myAnimator.SetBool("isRunning", false);
+                animator.SetBool("isRunning", false);
                 CheckForNearbyNPC();
                 isMoving = false;
             }
@@ -194,11 +194,11 @@ namespace Yarn.Unity.Example
         {
             if (!facingRight)
             {
-                mySpriteRenderer.flipX = true;
+                spriteRenderer.flipX = true;
             }
             else
             {
-                mySpriteRenderer.flipX = false;
+                spriteRenderer.flipX = false;
             }
         }
 
@@ -234,7 +234,7 @@ namespace Yarn.Unity.Example
             {
                 // Kick off the dialogue at this node.
                 FindObjectOfType<DialogueRunner>().StartDialogue(target.talkToNode);
-                StopAllCoroutines();                    //stop the walking sound
+                this.gameObject.GetComponent<PlayFootsteps>().StopAllCoroutines();                    //stop the walking sound
             }
         }
 

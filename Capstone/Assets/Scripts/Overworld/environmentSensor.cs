@@ -8,6 +8,10 @@ public class environmentSensor : MonoBehaviour //A gameobject that activates an 
 
     private SpriteRenderer sr; //The spriterenderer. Changes the sensor when it is triggered.
 
+    public Sprite completed;
+
+    private bool locked = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +28,15 @@ public class environmentSensor : MonoBehaviour //A gameobject that activates an 
     {
         if(collision.gameObject.tag == "environmentBall")
         {
+            AudioManager.Instance.PlayPuzzleSound("MuffledClunk");
             target.Activate();
-            sr.color = Color.green;
+            // sr.color = Color.green;
+            sr.sprite = completed;
+            locked = false;
         }
+    }
+
+    public bool GetStatus() {
+        return locked;
     }
 }

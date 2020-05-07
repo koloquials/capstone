@@ -56,12 +56,14 @@ public class NoteLock : MonoBehaviour
                 lock1.transform.position = new Vector2(lock1.transform.position.x, lock1.transform.position.y + moveAmount);
                 active = 2;
                 activeCode = code2;
+                AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
             }
             else if (active == 2)
             {
                 lock2.transform.position = new Vector2(lock2.transform.position.x, lock2.transform.position.y + moveAmount);
                 active = 3;
                 activeCode = code3;
+                AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
             }
             else if (active == 3) //If all locks are open, keep the gate open
             {

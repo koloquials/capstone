@@ -84,9 +84,9 @@ public class RhythmGameController : MonoBehaviour {
             rhythmGameStateMachine.TransitionTo<IntroAnimation>();
         }
 
-        foreach (GameObject lifeSprite in lifeSprites) {
-            lifeSprite.SetActive(false);
-        }
+        // foreach (GameObject lifeSprite in lifeSprites) {
+        //     lifeSprite.SetActive(false);
+        // }
     }
 
     void OnDisable() {
@@ -480,7 +480,9 @@ public class RhythmGameController : MonoBehaviour {
 
         //function to handle strikes
         public void StrikeCheck() {
-            Context.lifeSprites[strikes].SetActive(false);
+            // Context.lifeSprites[strikes].SetActive(false);
+            // Context.StartCoroutine(Context.lifeSprites[strikes].GetComponent<HPShatter>().PlayShatterAnim());
+            Context.lifeSprites[strikes].GetComponent<HPShatter>().CallShatterAnim();
         }
 
         //function that resets all variables and restarts the rhythm game
