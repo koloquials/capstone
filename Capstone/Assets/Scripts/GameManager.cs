@@ -13,12 +13,14 @@ namespace Yarn.Unity.Example {
         public Yarn.Unity.Example.PlayerCharacter player;   //The script for moving the player. Used to stop being able to move and interact during the rhythm game.
 
         public GameObject rhythmGameController;
+        public GameObject environmentPuzzle;
 
-        public AudioManager audioManager;
+        private AudioManager audioManager;
 
         FiniteStateMachine<GameManager> gameManagerStateMachine;
 
-        public GameObject overworldRhythmController;
+        private GameObject overworldRhythmController;
+        
         OverworldRhythm or;
 
         void Awake() {
@@ -86,6 +88,7 @@ namespace Yarn.Unity.Example {
                 Debug.Log("Entering rhythm game state. Deactivating player movement");
                 Context.player.motionControl(false); 
                 CameraFollow.Instance.setGame(true);
+                Context.environmentPuzzle.SetActive(false);
                 // Context.cam.setGame(true);
                 Context.rhythmGameController.gameObject.SetActive(true);
 

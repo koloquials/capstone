@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpriteGlow;
 
 public class NoteBlock : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class NoteBlock : MonoBehaviour
     {
         if (pos == 1)
         {
+            transform.GetChild(0).gameObject.GetComponent<SpriteGlowEffect>().OutlineWidth = 0;
             transform.position = new Vector2(transform.position.x + xTransform, transform.position.y + yTransform);
             noteSprite.sprite = note2;
             activeCode = code2;
@@ -49,6 +51,7 @@ public class NoteBlock : MonoBehaviour
         }
         else if (pos == 2)
         {
+            transform.GetChild(0).gameObject.GetComponent<SpriteGlowEffect>().OutlineWidth = 1;
             transform.position = new Vector2(transform.position.x + (xTransform * -1f), transform.position.y + (yTransform * -1f    ));
             noteSprite.sprite = note1;
             activeCode = code1;

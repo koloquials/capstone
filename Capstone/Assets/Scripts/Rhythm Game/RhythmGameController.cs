@@ -48,7 +48,7 @@ public class RhythmGameController : MonoBehaviour {
     public ScaleObject backgroundScaler;
 
     public GameObject[] lifeSprites;
-    public Transform lifeSpritesParent;
+    public Transform lifeSpritesController;
 
     public AudioSource clockSrc;
     public AudioSource[] audioSources;
@@ -62,7 +62,7 @@ public class RhythmGameController : MonoBehaviour {
         rhythmGameStateMachine.TransitionTo<IntroAnimation>();
 
         noteObjectsParent = transform.GetChild(3).gameObject.GetComponent<Transform>();
-        lifeSpritesParent = transform.GetChild(5).gameObject.GetComponent<Transform>();
+        lifeSpritesController = transform.GetChild(5).gameObject.GetComponent<Transform>();
 
         //visual utility and feedback scripts
         fretFeedbackScript = transform.GetChild(0).gameObject.GetComponent<NewFretFeedback>();
@@ -296,7 +296,7 @@ public class RhythmGameController : MonoBehaviour {
         foreach(GameObject lifeSprite in lifeSprites) 
             lifeSprite.SetActive(true);
 
-        StartCoroutine(lifeSpritesParent.gameObject.GetComponent<ScaleObject>().Scale(0.75f, new Vector3(0.4f, 0.4f, 1f)));
+        StartCoroutine(lifeSpritesController.gameObject.GetComponent<ScaleObject>().Scale(0.75f, new Vector3(0.4f, 0.4f, 1f)));
     }
 
     //Intro Animation. Scale all Rhythm Game UI components up. Orbitter scales to full size before the fret starts
@@ -313,6 +313,7 @@ public class RhythmGameController : MonoBehaviour {
     public IEnumerator ClosingAnim() {
         fretFeedbackScript.ScaleFret(2f, new Vector3(0f, 0f, 2f));
         StartCoroutine(backgroundScaler.Scale(4.25f, new Vector3(0f, 0f, 1f)));
+        StartCoroutine(lifeSpritesController.gameObject.GetComponent<ScaleObject>().Scale(2f, new Vector3(0f, 0f, 2f)));
 
         yield return new WaitForSeconds(2.25f);
 
@@ -382,12 +383,12 @@ public class RhythmGameController : MonoBehaviour {
         }
         
         else if (inWindow) {
-            Color inWindowColour = Color.blue;
-            inWindowColour.a = 0.65f;
+            Color inWindowColour = Color.black;
+            inWindowColour.a = 0.55f;
             background.color = inWindowColour;
         } else {
             Color outOfWindowColour = Color.black;
-            outOfWindowColour.a = 0.65f;
+            outOfWindowColour.a = 0.8f;
             background.color = outOfWindowColour;
         }
     }
@@ -639,7 +640,7 @@ public class RhythmGameController : MonoBehaviour {
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     CameraFollow.Instance.ScreenShake();
-                    // Context.RestartRhythmGame(); 
+                    Context.RestartRhythmGame(); 
                 }
                 else {
                     Context.Context.CallCoroutine("FretPulse");
@@ -657,7 +658,7 @@ public class RhythmGameController : MonoBehaviour {
                     
                     //restart the game if more than 5 strikes
                     if (Context.strikes > 5) {
-                        // Context.RestartRhythmGame();
+                        Context.RestartRhythmGame();
                     }
                     else {
                         Context.Context.CallCoroutine("FretPulse");
