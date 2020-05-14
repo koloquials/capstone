@@ -1980,6 +1980,7 @@ GameObject:
   - component: {fileID: 133296675}
   - component: {fileID: 133296680}
   - component: {fileID: 133296679}
+  - component: {fileID: 133296681}
   m_Layer: 0
   m_Name: Fidel
   m_TagString: Untagged
@@ -1999,6 +2000,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f10db5bed5ea844a40aa9a7e165271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingAnimator: 1
+  animator: {fileID: 0}
+  idle: {fileID: 0}
+  run: {fileID: 0}
   pointArray:
   - {fileID: 260523196}
   - {fileID: 1072900644}
@@ -2025,6 +2030,7 @@ MonoBehaviour:
   - {fileID: -3703496427938476140, guid: 33c2d76f0c6e9d648a51cfe262afac56, type: 3}
   - {fileID: 21300000, guid: 919c61101e8b0dd4d8966af28c6ed816, type: 3}
   - {fileID: 21300000, guid: 2633919fcc8c7435ebd93e9e1a78ae99, type: 3}
+  animManager: {fileID: 0}
 --- !u!114 &133296671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2199,6 +2205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSrc: {fileID: 0}
   footstepsSound: {fileID: 8300000, guid: fd1af89ab2ecd415b8f6768320042e66, type: 3}
+  animator: {fileID: 0}
 --- !u!82 &133296680
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2295,6 +2302,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &133296681
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133296669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc03c309038574d9ab7ef8b8c5f53bf8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &133969367
 GameObject:
   m_ObjectHideFlags: 0
@@ -16172,6 +16198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSrc: {fileID: 0}
   footstepsSound: {fileID: 8300000, guid: 16848ff0146f34e57959074781054498, type: 3}
+  animator: {fileID: 0}
 --- !u!114 &1100603066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16236,6 +16263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f10db5bed5ea844a40aa9a7e165271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingAnimator: 0
+  animator: {fileID: 0}
+  idle: {fileID: 0}
+  run: {fileID: 0}
   pointArray:
   - {fileID: 1250925526}
   - {fileID: 708112930}
@@ -16254,6 +16285,7 @@ MonoBehaviour:
   - {fileID: 3605789484828217869, guid: d55247b3294934f45853ec1d845c4a61, type: 3}
   - {fileID: -734355633995466465, guid: d55247b3294934f45853ec1d845c4a61, type: 3}
   - {fileID: 21300000, guid: ed39ceb362da675459dc598615a1b190, type: 3}
+  animManager: {fileID: 0}
 --- !u!50 &1100603070
 Rigidbody2D:
   serializedVersion: 4
@@ -16744,6 +16776,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f10db5bed5ea844a40aa9a7e165271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingAnimator: 0
+  animator: {fileID: 0}
+  idle: {fileID: 0}
+  run: {fileID: 0}
   pointArray: []
   movementTime: 5
   flippy: 1
@@ -16751,6 +16787,7 @@ MonoBehaviour:
   standingSprite: {fileID: 0}
   motionSprite: {fileID: 0}
   spriteArray: []
+  animManager: {fileID: 0}
 --- !u!212 &1157080179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17240,6 +17277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f10db5bed5ea844a40aa9a7e165271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  usingAnimator: 0
+  animator: {fileID: 0}
+  idle: {fileID: 0}
+  run: {fileID: 0}
   pointArray:
   - {fileID: 1072900644}
   movementTime: 5
@@ -17248,6 +17289,7 @@ MonoBehaviour:
   standingSprite: {fileID: 21300000, guid: 35efec34006fcd24d97cc0e119679778, type: 3}
   motionSprite: {fileID: 0}
   spriteArray: []
+  animManager: {fileID: 0}
 --- !u!212 &1324716360
 SpriteRenderer:
   m_ObjectHideFlags: 0

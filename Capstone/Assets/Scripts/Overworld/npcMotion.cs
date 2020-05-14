@@ -6,6 +6,12 @@ namespace Yarn.Unity.Example
 {
     public class npcMotion : MonoBehaviour
     {
+        public bool usingAnimator;      //set this in the INSPECTOR. Some objects do not need this script to be accessing
+                                        //the animator because another script (that takes priority) already is)
+        public Animator animator;
+
+        public Sprite idle;
+        public Sprite run;
         public GameObject[] pointArray; //Invisible gameobjects that the npc moves to. For consistency's sake, waypoint 0 should be their starting position.
         Dictionary<string, GameObject> waypoints; //New format. String corresponds to waypoint's name.
 
@@ -38,9 +44,19 @@ namespace Yarn.Unity.Example
         public Sprite[] spriteArray; //List and dictionary of all the sprites used. Dictionary enables easier lookup, while the public array of sprites is necessary to assign things to the dictionary in the inspector
         public Dictionary<string, Sprite> spriteList;
 
+        public PlayFootsteps animManager;
+
         // Start is called before the first frame update
         void Start()
         {
+            // animManager = this.gameObject.GetComponent<PlayFootsteps>();    //note: this may be null in some situations
+            if (usingAnimator) {
+                animator = this.gameObject.GetComponent<Animator>();
+            }
+            else {
+                animator = null;
+            }
+            
             spriteList = new Dictionary<string, Sprite>();
             foreach(Sprite s in spriteArray)
             {
@@ -64,6 +80,9 @@ namespace Yarn.Unity.Example
         {
             if(moving)
             {
+                if (animator != null)
+                    animator.SetBool("isRunning", true);
+
                 if (motionType == 0) //Normal movement
                 {
                     if (Mathf.Abs(transform.position.x - waypoints[point].transform.position.x) > 0.1)
@@ -114,6 +133,19 @@ namespace Yarn.Unity.Example
                             sr.sprite = standingSprite;
                         }
                     }
+                }
+            }
+            else {
+                if (animator != null)
+                    animator.SetBool("isRunning", false);
+            }
+
+            if(animator != null) {
+                if (Input.GetKeyDown(KeyCode.P)) {
+                    animator.SetBool("isRunning", true);
+                }
+                if (Input.GetKeyDown(KeyCode.O)) {
+                    animator.SetBool("isRunning", false);
                 }
             }
         }
