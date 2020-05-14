@@ -8,15 +8,21 @@ using UnityEngine;
 
 //every object that has this script needs an AudioSource
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(Animator))]
 public class PlayFootsteps : MonoBehaviour
 {
     public AudioSource footstepsSrc;
     public AudioClip footstepsSound;
+
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         footstepsSrc = gameObject.GetComponent<AudioSource>();
         footstepsSrc.clip = footstepsSound;
+
+        animator = this.gameObject.GetComponent<Animator>();
 
         footstepsSrc.playOnAwake = false;
     }
@@ -30,5 +36,10 @@ public class PlayFootsteps : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         StartCoroutine(Footsteps(waitTime));
+    }
+
+    //overloading time!! 
+    public void PlayAnimation(string boolToSet, bool status) {
+        animator.SetBool(boolToSet, status);
     }
 }
