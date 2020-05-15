@@ -65,7 +65,7 @@ namespace Yarn.Unity.Example
             spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             animator = gameObject.GetComponent<Animator>();
 
-            Cursor.visible = false;
+            // Cursor.visible = false;
         }
 
         /// Draw the range at which we'll start talking to people.

@@ -539,10 +539,11 @@ public class RhythmGameController : MonoBehaviour {
                 }
             }
 
+            //reset hp sprites
+            Context.lifeSpritesController.localScale = new Vector3(0f, 0f, 1f);
+
             foreach(GameObject lifeSprite in Context.lifeSprites) {
-                //set the parent transform back to 0 and make all lifesprites activate again
-                lifeSprite.transform.localScale = new Vector3(0f, 0f, 0f);
-                lifeSprite.SetActive(true);
+                lifeSprite.gameObject.SetActive(true);
             }
 
             Context.ChangeBackground(false, true);
@@ -667,7 +668,7 @@ public class RhythmGameController : MonoBehaviour {
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     CameraFollow.Instance.ScreenShake();
-                    Context.RestartRhythmGame(); 
+                    // Context.RestartRhythmGame(); 
                 }
                 else {
                     Context.Context.CallCoroutine("FretPulse");
