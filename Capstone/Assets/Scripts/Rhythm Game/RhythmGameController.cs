@@ -53,6 +53,12 @@ public class RhythmGameController : MonoBehaviour {
     public AudioSource clockSrc;
     public AudioSource[] audioSources;
 
+    public Canvas rhythmGameCanvas;
+
+    public RhythmGameDialogue rhythmGameDialogue;
+    
+    int i = 0;
+
     void Start() {
         audioSources = gameObject.GetComponents<AudioSource>();
         clockSrc = audioSources[1];
@@ -70,6 +76,8 @@ public class RhythmGameController : MonoBehaviour {
         background = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
         backgroundScaler = background.gameObject.GetComponent<ScaleObject>();
 
+        rhythmGameDialogue = this.gameObject.GetComponent<RhythmGameDialogue>();
+
         //generate the random combination for the second phase of the song and make the song into one string
         GenerateCombinations();
 
@@ -84,13 +92,16 @@ public class RhythmGameController : MonoBehaviour {
             rhythmGameStateMachine.TransitionTo<IntroAnimation>();
         }
 
-        // foreach (GameObject lifeSprite in lifeSprites) {
-        //     lifeSprite.SetActive(false);
-        // }
+        foreach (GameObject lifeSprite in lifeSprites) {
+            lifeSprite.SetActive(false);
+        }
+
+        rhythmGameCanvas.gameObject.SetActive(true);
     }
 
     void OnDisable() {
         gameEnded = false;          //reset to be able to relaunch the rhythm game
+        rhythmGameCanvas.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -104,6 +115,13 @@ public class RhythmGameController : MonoBehaviour {
         rhythmGameStateMachine.Update();
 
         // Test();
+
+        if (Input.GetKeyDown(KeyCode.L)) {
+            Debug.Log("being pressed with " + i);
+            rhythmGameDialogue.ShowDialogue(i);
+            i++;
+            // rhythmGameCanvas.gameObject.SetActive(true);
+        }
     }
 
     //generate the entire list of combinations first
@@ -425,12 +443,15 @@ public class RhythmGameController : MonoBehaviour {
 
         private bool phase1 = true;
         private bool phase2 = false;
+        private int phase1DialogueChoices; 
 
         private int strikes = 0;
 
         private int noteCounter;
 
         public override void OnEnter() {
+            phase1DialogueChoices = Context.rhythmGameDialogue.GetLineCount();
+
             noteCounter = 0;
             phase1 = true;
             phase2 = false;
@@ -457,6 +478,7 @@ public class RhythmGameController : MonoBehaviour {
                 Context.CallCoroutine("ScaleAllNotesUp");
                 phase1 = false;
                 phase2 = true;
+                Context.rhythmGameCanvas.gameObject.SetActive(false);
             }
 
             //if in the window and state machine already is not in InWindow state, transition to the state
@@ -518,14 +540,14 @@ public class RhythmGameController : MonoBehaviour {
             }
 
             foreach(GameObject lifeSprite in Context.lifeSprites) {
+                //set the parent transform back to 0 and make all lifesprites activate again
                 lifeSprite.transform.localScale = new Vector3(0f, 0f, 0f);
-                lifeSprite.SetActive(false);
+                lifeSprite.SetActive(true);
             }
 
             Context.ChangeBackground(false, true);
 
             started = false;
-
             //reset the phaseWindow to Resting, restart with the special case
             TransitionTo<Phase1>();
 
@@ -624,6 +646,11 @@ public class RhythmGameController : MonoBehaviour {
             }
 
             public override void OnExit() {
+                //be careful not to go out of bounds. 
+                if (Context.noteCounter < Context.phase1DialogueChoices)
+                    Context.Context.rhythmGameDialogue.ShowDialogue(Context.noteCounter);
+
+
                 pressedCombo = pressedArrow + pressedWASD;
 
                 Debug.Log ("this is what was expected: " + expectedCombo + "this was what was pressed: " + pressedCombo);

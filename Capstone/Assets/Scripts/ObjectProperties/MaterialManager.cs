@@ -14,15 +14,12 @@ public class MaterialManager : MonoBehaviour
     public InteractableHighlight highlightScript;
     public Dissolve dissolveScript;
 
-    public Explodable explodeScript;
-
     public Texture mainTex;
 
     // Start is called before the first frame update
     void Start() {
         highlightScript = gameObject.GetComponent<InteractableHighlight>();
         dissolveScript = gameObject.GetComponent<Dissolve>();
-        explodeScript = gameObject.GetComponent<Explodable>();
 
 
         foreach (Transform shard in transform) {
@@ -41,13 +38,9 @@ public class MaterialManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B)) {
             Dissolve();
         }
-
-        if (Input.GetKeyDown(KeyCode.T)) {
-            explodeScript.explode();
-        }
     }
 
-    void Dissolve() {
+    public void Dissolve() {
         if (highlightScript != null) 
             highlightScript.enabled = false;
             
