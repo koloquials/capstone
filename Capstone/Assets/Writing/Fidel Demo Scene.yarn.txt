@@ -218,9 +218,9 @@ Fidel: These are. Soheavy.
 
 //[Fidel stops once they're close enough to Piper and motions at them!]
 // SPRITES: micequinns still there. f_stand_1 + p_stand_1 once they're close. They might have to stand in front of the mice sprite to get the angle right.
-<<warpNPC micequinns>>
-<<warpNPC Fidel>>
-<<setNPCMove Fidel normal>>
+//<<warpNPC micequinns>>
+//<<warpNPC Fidel>>
+//<<setNPCMove Fidel normal>>
 <<changeNPC Fidel f_stand_1>>
 <<changeNPC Player p_stand_1>>
 
@@ -277,6 +277,7 @@ Fidel: It's been weird.
 //[[Scene2b]]
 //you have to change stuff in start to account for the new scenes
 <<set $waypoint to 3>>
+<<setNPCMove Fidel normal>>
 <<moveNPC Fidel FidelPoint3>>
 <<Hide @ Piper>>
 <<Hide @ Fidel>>
