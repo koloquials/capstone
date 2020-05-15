@@ -12,6 +12,10 @@ public class RhythmGameDialogue : MonoBehaviour
 
     public Text showDialogue; 
 
+    void OnEnable() {
+        showDialogue.text = "";
+    }
+
     void Start() {
         Parse();
     }
