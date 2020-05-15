@@ -371,12 +371,14 @@ namespace Ropework {
                         if (spr != highlightedSprite)
                         { // set back to normal
                             spr.transform.localScale = Vector3.MoveTowards(spr.transform.localScale, regularScalePreserveXFlip, Time.deltaTime);
-                            spr.color = Color.Lerp(spr.color, defaultTint, Time.deltaTime * 5f);
+                            //spr.color = Color.Lerp(spr.color, defaultTint, Time.deltaTime * 5f);
+                            spr.color = defaultTint; //CHANGED! This should prevent sprites from gradually fading out when the actor changes. To restore that feature, re-implement the line above and comment out this one.
                         }
                         else
                         { // a little bit bigger / brighter
                             spr.transform.localScale = Vector3.MoveTowards(spr.transform.localScale, regularScalePreserveXFlip * 1.05f, Time.deltaTime);
-                            spr.color = Color.Lerp(spr.color, highlightTint, Time.deltaTime * 5f);
+                            //spr.color = Color.Lerp(spr.color, highlightTint, Time.deltaTime * 5f);
+                            spr.color = highlightTint; //Same as the above instance, this causes the actor sprites to change instantly instead of fading.
                         }
                     }
 				}
@@ -395,7 +397,7 @@ namespace Ropework {
 		}
 
 		IEnumerator FadeCoroutine(Color fadeColor, float startAlpha, float endAlpha, float fadeTime) {
-			Color startColor = fadeColor;
+            Color startColor = fadeColor;
 			if ( startAlpha >= 0f ) { // if startAlpha is -1f, that means just use whatever's there
 				startColor.a = startAlpha;
 			} else {
