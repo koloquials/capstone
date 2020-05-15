@@ -194,13 +194,47 @@ namespace Yarn.Unity.Example
         [YarnCommand("changeNPC")]
         public void spriteChange(string spriteName) //Sets the overworld sprite of the npc
         {
-            if(spriteList.ContainsKey(spriteName))
+            if (animator != null) //NOTE! The following code is very specific to Fidel. May want to rework this in the future, or else have a variable that identifies what code to use with who
             {
-                if(!moving) //If the sprite isn't moving, set the new sprite right away
+                if(spriteName.Equals("f_stand_0"))
                 {
-                    sr.sprite = spriteList[spriteName];
+                    animator.SetInteger("Standing", 0);
                 }
-                standingSprite = spriteList[spriteName]; //In case the sprite is moving, set it so that it reverts to this sprite when done moving
+                else if (spriteName.Equals("f_stand_1"))
+                {
+                    animator.SetInteger("Standing", 1);
+                }
+                else if (spriteName.Equals("f_nug_0"))
+                {
+                    animator.SetInteger("Standing", 2);
+                }
+                else if (spriteName.Equals("f_nug_1"))
+                {
+                    animator.SetInteger("Standing", 3);
+                }
+                else if (spriteName.Equals("f_counter_0"))
+                {
+                    animator.SetInteger("Standing", 4);
+                }
+                else if (spriteName.Equals("f_sadbat"))
+                {
+                    animator.SetInteger("Standing", 5);
+                }
+                else if (spriteName.Equals("f_sadbat2"))
+                {
+                    animator.SetInteger("Standing", 6);
+                }
+            }
+            else
+            {
+                if (spriteList.ContainsKey(spriteName))
+                {
+                    if (!moving) //If the sprite isn't moving, set the new sprite right away
+                    {
+                        sr.sprite = spriteList[spriteName];
+                    }
+                    standingSprite = spriteList[spriteName]; //In case the sprite is moving, set it so that it reverts to this sprite when done moving
+                }
             }
         }
 
