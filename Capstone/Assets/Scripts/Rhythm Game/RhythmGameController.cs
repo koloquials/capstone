@@ -57,7 +57,7 @@ public class RhythmGameController : MonoBehaviour {
 
     public RhythmGameDialogue rhythmGameDialogue;
     
-    // int i = 0;
+    int i = 0;
 
     void Start() {
         audioSources = gameObject.GetComponents<AudioSource>();
@@ -116,11 +116,12 @@ public class RhythmGameController : MonoBehaviour {
 
         // Test();
 
-        // if (Input.GetKeyDown(KeyCode.L)) {
-        //     // rhythmGameDialogue.ShowDialogue(i);
-        //     // i++;
-        //     rhythmGameCanvas.gameObject.SetActive(true);
-        // }
+        if (Input.GetKeyDown(KeyCode.L)) {
+            Debug.Log("being pressed with " + i);
+            rhythmGameDialogue.ShowDialogue(i);
+            i++;
+            // rhythmGameCanvas.gameObject.SetActive(true);
+        }
     }
 
     //generate the entire list of combinations first
@@ -442,12 +443,15 @@ public class RhythmGameController : MonoBehaviour {
 
         private bool phase1 = true;
         private bool phase2 = false;
+        private int phase1DialogueChoices; 
 
         private int strikes = 0;
 
         private int noteCounter;
 
         public override void OnEnter() {
+            phase1DialogueChoices = Context.rhythmGameDialogue.GetLineCount();
+
             noteCounter = 0;
             phase1 = true;
             phase2 = false;
@@ -474,6 +478,7 @@ public class RhythmGameController : MonoBehaviour {
                 Context.CallCoroutine("ScaleAllNotesUp");
                 phase1 = false;
                 phase2 = true;
+                Context.rhythmGameCanvas.gameObject.SetActive(false);
             }
 
             //if in the window and state machine already is not in InWindow state, transition to the state
@@ -535,14 +540,14 @@ public class RhythmGameController : MonoBehaviour {
             }
 
             foreach(GameObject lifeSprite in Context.lifeSprites) {
+                //set the parent transform back to 0 and make all lifesprites activate again
                 lifeSprite.transform.localScale = new Vector3(0f, 0f, 0f);
-                lifeSprite.SetActive(false);
+                lifeSprite.SetActive(true);
             }
 
             Context.ChangeBackground(false, true);
 
             started = false;
-
             //reset the phaseWindow to Resting, restart with the special case
             TransitionTo<Phase1>();
 
@@ -642,7 +647,7 @@ public class RhythmGameController : MonoBehaviour {
 
             public override void OnExit() {
                 //be careful not to go out of bounds. 
-                if (Context.noteCounter >= 6)
+                if (Context.noteCounter < Context.phase1DialogueChoices)
                     Context.Context.rhythmGameDialogue.ShowDialogue(Context.noteCounter);
 
 

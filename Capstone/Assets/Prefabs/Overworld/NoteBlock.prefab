@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 196374395031291537}
   - component: {fileID: 196374395031291536}
   - component: {fileID: 60763878242870780}
+  - component: {fileID: 6879404300311387020}
+  - component: {fileID: 362993708097176680}
   m_Layer: 0
   m_Name: ArrowSpritesheet_0
   m_TagString: Untagged
@@ -101,6 +103,38 @@ MonoBehaviour:
   alphaThreshold: 0.6
   drawOutside: 1
   enableInstancing: 0
+--- !u!114 &6879404300311387020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196374395031291538}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a291007aa50824435a03c46431a514e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveMat: {fileID: 2100000, guid: c27cf60204fa74664a0b59b4ebf47dcd, type: 2}
+  mainTex: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+--- !u!114 &362993708097176680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196374395031291538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1202b884c863048ab9de1d2fd3d8981f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials: []
+  dissolveMat: {fileID: 0}
+  highlightScript: {fileID: 0}
+  dissolveScript: {fileID: 0}
+  mainTex: {fileID: 0}
 --- !u!1 &196374395438169543
 GameObject:
   m_ObjectHideFlags: 0

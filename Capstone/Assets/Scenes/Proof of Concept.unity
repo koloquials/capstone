@@ -2043,7 +2043,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133296669}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1202b884c863048ab9de1d2fd3d8981f, type: 3}
   m_Name: 
@@ -2052,7 +2052,6 @@ MonoBehaviour:
   dissolveMat: {fileID: 0}
   highlightScript: {fileID: 0}
   dissolveScript: {fileID: 0}
-  explodeScript: {fileID: 0}
   mainTex: {fileID: 0}
 --- !u!114 &133296672
 MonoBehaviour:
@@ -16133,7 +16132,6 @@ MonoBehaviour:
   dissolveMat: {fileID: 0}
   highlightScript: {fileID: 0}
   dissolveScript: {fileID: 0}
-  explodeScript: {fileID: 0}
   mainTex: {fileID: 0}
 --- !u!114 &1100603069
 MonoBehaviour:
@@ -16593,7 +16591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.100006, y: -138.2}
+  m_AnchoredPosition: {x: 3.0999756, y: -138.19998}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155816856
