@@ -18,7 +18,7 @@ public class SoundFxDictionary : MonoBehaviour
     public string[] keys;
     public AudioClip[] soundClips;
 
-    [SerializeField]private Dictionary<string, AudioClip> puzzleSoundsDict;
+    private Dictionary<string, AudioClip> puzzleSoundsDict;
 
     // Start is called before the first frame update
     void Awake()

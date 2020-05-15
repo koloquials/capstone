@@ -22,6 +22,8 @@ public class NoteBlock : MonoBehaviour
 
     SpriteRenderer sr;
 
+    private MaterialManager matManager;
+
     SpriteRenderer noteSprite; //The spriterenderer of the child sprite, which indicates the note.
 
     // Start is called before the first frame update
@@ -30,12 +32,12 @@ public class NoteBlock : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         activeCode = code1;
         noteSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        matManager = transform.GetChild(0).gameObject.GetComponent<MaterialManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void keyed() //Called when the block's note is played.
