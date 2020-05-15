@@ -53,6 +53,12 @@ public class RhythmGameController : MonoBehaviour {
     public AudioSource clockSrc;
     public AudioSource[] audioSources;
 
+    public Canvas rhythmGameCanvas;
+
+    public RhythmGameDialogue rhythmGameDialogue;
+    
+    // int i = 0;
+
     void Start() {
         audioSources = gameObject.GetComponents<AudioSource>();
         clockSrc = audioSources[1];
@@ -70,6 +76,8 @@ public class RhythmGameController : MonoBehaviour {
         background = transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>();
         backgroundScaler = background.gameObject.GetComponent<ScaleObject>();
 
+        rhythmGameDialogue = this.gameObject.GetComponent<RhythmGameDialogue>();
+
         //generate the random combination for the second phase of the song and make the song into one string
         GenerateCombinations();
 
@@ -84,13 +92,16 @@ public class RhythmGameController : MonoBehaviour {
             rhythmGameStateMachine.TransitionTo<IntroAnimation>();
         }
 
-        // foreach (GameObject lifeSprite in lifeSprites) {
-        //     lifeSprite.SetActive(false);
-        // }
+        foreach (GameObject lifeSprite in lifeSprites) {
+            lifeSprite.SetActive(false);
+        }
+
+        rhythmGameCanvas.gameObject.SetActive(true);
     }
 
     void OnDisable() {
         gameEnded = false;          //reset to be able to relaunch the rhythm game
+        rhythmGameCanvas.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -104,6 +115,12 @@ public class RhythmGameController : MonoBehaviour {
         rhythmGameStateMachine.Update();
 
         // Test();
+
+        // if (Input.GetKeyDown(KeyCode.L)) {
+        //     // rhythmGameDialogue.ShowDialogue(i);
+        //     // i++;
+        //     rhythmGameCanvas.gameObject.SetActive(true);
+        // }
     }
 
     //generate the entire list of combinations first
@@ -624,6 +641,11 @@ public class RhythmGameController : MonoBehaviour {
             }
 
             public override void OnExit() {
+                //be careful not to go out of bounds. 
+                if (Context.noteCounter >= 6)
+                    Context.Context.rhythmGameDialogue.ShowDialogue(Context.noteCounter);
+
+
                 pressedCombo = pressedArrow + pressedWASD;
 
                 Debug.Log ("this is what was expected: " + expectedCombo + "this was what was pressed: " + pressedCombo);
