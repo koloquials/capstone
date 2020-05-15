@@ -13,7 +13,6 @@ public class HPShatter : MonoBehaviour
     void Start()
     {
         animator = this.gameObject.GetComponent<Animator>();
-        // animator.runtimeAnimatorController = Resources.Load("path_to_your_controller") as RuntimeAnimatorController;
     }
 
     public void CallShatterAnim() {
@@ -22,12 +21,10 @@ public class HPShatter : MonoBehaviour
     }
 
     public IEnumerator PlayShatterAnim() {
-        Debug.Log("Starting the animation clip");
         animator.Play("Slice_Split", -1, 0f);
 
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
-        Debug.Log("Clip completed, setting inactive");
         this.gameObject.SetActive(false);
     }
 }
