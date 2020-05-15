@@ -24,6 +24,8 @@ public class NoteBlock : MonoBehaviour
 
     private MaterialManager matManager;
 
+    private BoxCollider2D col;
+
     SpriteRenderer noteSprite; //The spriterenderer of the child sprite, which indicates the note.
 
     // Start is called before the first frame update
@@ -33,6 +35,7 @@ public class NoteBlock : MonoBehaviour
         activeCode = code1;
         noteSprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         matManager = transform.GetChild(0).gameObject.GetComponent<MaterialManager>();
+        col = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -42,6 +45,11 @@ public class NoteBlock : MonoBehaviour
 
     public void keyed() //Called when the block's note is played.
     {
+        //For now, just remove it
+        col.enabled = false;
+        AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
+        matManager.Dissolve();
+        /*
         if (pos == 1)
         {
             transform.GetChild(0).gameObject.GetComponent<SpriteGlowEffect>().OutlineWidth = 0;
@@ -59,7 +67,7 @@ public class NoteBlock : MonoBehaviour
             activeCode = code1;
             AudioManager.Instance.PlayPuzzleSound("SoftGlassBreak");
             pos = 1;
-        }
+        }*/
     }
 
     public void inRange(bool on) //Locks will light up if in range
