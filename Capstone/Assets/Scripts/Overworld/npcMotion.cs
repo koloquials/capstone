@@ -56,7 +56,7 @@ namespace Yarn.Unity.Example
             else {
                 animator = null;
             }
-            
+
             spriteList = new Dictionary<string, Sprite>();
             foreach(Sprite s in spriteArray)
             {
@@ -140,14 +140,14 @@ namespace Yarn.Unity.Example
                     animator.SetBool("isRunning", false);
             }
 
-            if(animator != null) {
-                if (Input.GetKeyDown(KeyCode.P)) {
-                    animator.SetBool("isRunning", true);
-                }
-                if (Input.GetKeyDown(KeyCode.O)) {
-                    animator.SetBool("isRunning", false);
-                }
-            }
+            // if(animator != null) {
+            //     if (Input.GetKeyDown(KeyCode.P)) {
+            //         animator.SetBool("isRunning", true);
+            //     }
+            //     if (Input.GetKeyDown(KeyCode.O)) {
+            //         animator.SetBool("isRunning", false);
+            //     }
+            // }
         }
 
         [YarnCommand("moveNPC")]
