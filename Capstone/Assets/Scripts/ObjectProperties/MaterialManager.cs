@@ -35,9 +35,9 @@ public class MaterialManager : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.B)) {
-            Dissolve();
-        }
+        // if (Input.GetKeyDown(KeyCode.B)) {
+        //     Dissolve();
+        // }
     }
 
     public void Dissolve() {
