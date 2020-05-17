@@ -81,9 +81,9 @@ public class OverworldRhythm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!active && !beat && Input.GetKeyDown(KeyCode.R))
-        {
-            toggleActive(true);
+        // if (!active && !beat && Input.GetKeyDown(KeyCode.R))
+        // {
+        //     toggleActive(true);
             /*active = true;
             sr.color = vis;
             Debug.Log("Turning on");
@@ -116,7 +116,7 @@ public class OverworldRhythm : MonoBehaviour
                     //Right now there isn't a highlight for spinners in range
                 }
             }*/
-        }
+        // }
 
         if (active)
         {

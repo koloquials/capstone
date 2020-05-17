@@ -103,9 +103,9 @@ namespace Yarn.Unity.Example {
                 transform.position = newPosition;
             }
 
-            if (Input.GetKeyDown(KeyCode.T)) {
-                ScreenShake();
-            }
+            // if (Input.GetKeyDown(KeyCode.T)) {
+            //     ScreenShake();
+            // }
         }
 
         public void setGame(bool g)
