@@ -668,7 +668,7 @@ public class RhythmGameController : MonoBehaviour {
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     CameraFollow.Instance.ScreenShake();
-                    // Context.RestartRhythmGame(); 
+                    Context.RestartRhythmGame(); 
                 }
                 else {
                     Context.Context.CallCoroutine("FretPulse");
