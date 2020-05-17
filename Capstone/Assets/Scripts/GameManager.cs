@@ -51,10 +51,10 @@ namespace Yarn.Unity.Example {
             gameManagerStateMachine.Update();
 
             //remove these later. Here for debugging purposes. Start 
-            if (Input.GetKeyDown(KeyCode.C) && (gameManagerStateMachine.CurrentState.GetType() != typeof(RhythmGame))) {
-                Debug.Log("Entering the rhythm game");
-                gameManagerStateMachine.TransitionTo<RhythmGame>();
-            }
+            // if (Input.GetKeyDown(KeyCode.C) && (gameManagerStateMachine.CurrentState.GetType() != typeof(RhythmGame))) {
+            //     Debug.Log("Entering the rhythm game");
+            //     gameManagerStateMachine.TransitionTo<RhythmGame>();
+            // }
         }
 
         [YarnCommand("rhythmGame")]                 //enter the rythm game state
@@ -89,7 +89,6 @@ namespace Yarn.Unity.Example {
                 Context.player.motionControl(false); 
                 CameraFollow.Instance.setGame(true);
                 Context.environmentPuzzle.SetActive(false);
-                // Context.cam.setGame(true);
                 Context.rhythmGameController.gameObject.SetActive(true);
 
                 Context.audioManager.ControlAmbience(false);            //turn overworld ambience off

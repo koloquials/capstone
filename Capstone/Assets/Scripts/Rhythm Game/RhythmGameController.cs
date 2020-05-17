@@ -116,12 +116,12 @@ public class RhythmGameController : MonoBehaviour {
 
         // Test();
 
-        if (Input.GetKeyDown(KeyCode.L)) {
-            Debug.Log("being pressed with " + i);
-            rhythmGameDialogue.ShowDialogue(i);
-            i++;
-            // rhythmGameCanvas.gameObject.SetActive(true);
-        }
+        // if (Input.GetKeyDown(KeyCode.L)) {
+        //     Debug.Log("being pressed with " + i);
+        //     rhythmGameDialogue.ShowDialogue(i);
+        //     i++;
+        //     // rhythmGameCanvas.gameObject.SetActive(true);
+        // }
     }
 
     //generate the entire list of combinations first
