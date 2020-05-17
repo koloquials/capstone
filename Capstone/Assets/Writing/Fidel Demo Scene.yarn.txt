@@ -5,53 +5,54 @@ colorID: 0
 position: -21,45
 parent: 
 ---
-<<if $waypoint is 2>>
-	[[Scene2]]
-<<elseif $waypoint is 3>>
-	[[Scene2b]]
-<<elseif $waypoint is 4 and $completedPuzzle is 0>>
-	[[Scene2bPuzzle]]
-<<elseif $waypoint is 4 and $completedPuzzle is 1>>
-	[[Scene2bPuzzleFinish]]
-<<elseif $waypoint is 5>>
-	[[Scene3b]]
-<<elseif $waypoint is 6>>
-	[[Scene4]]
-<<elseif $waypoint is 7 and $completedRhythm is 1>>
-	[[EndScene]]
-<<elseif $waypoint is 7 and $completedRhythm is 0>>
-	<<Act @ Fidel, f_upset1>>
-	Fidel: Am I really worth it to you?
-	<<Hide @ Fidel>>
-	<<RhythmStart notePrefab>>
-//<<elseif $waypoint is 5>>
-	//<<if $completedRhythm is 0>>
-		//<<Act @ Fidel, fidel_disappointed>>
-		//Fidel: Am I really worth it to you?
-		//<<Hide @ Fidel>>
-		//<<RhythmStart notePrefab>>
-	//<<endif>>
-	//<<if $completedRhythm is 1>>
-		//[[EndScene]]
-	//<<endif>>
-<<endif>>
-
-
-//<<if $startedRhythm is 1>>
-<<if visited("Scene4")>>
-	<<if $completedRhythm is 0>>
+<<if visited("Start")>>
+	<<if $waypoint is 2>>
+		[[Scene2]]
+	<<elseif $waypoint is 3>>
+		[[Scene2b]]
+	<<elseif $waypoint is 4 and $completedPuzzle is 0>>
+		[[Scene2bPuzzle]]
+	<<elseif $waypoint is 4 and $completedPuzzle is 1>>
+		[[Scene2bPuzzleFinish]]
+	<<elseif $waypoint is 5>>
+		[[Scene3b]]
+	<<elseif $waypoint is 6>>
+		[[Scene4]]
+	<<elseif $waypoint is 7 and $completedRhythm is 1>>
+		[[EndScene]]
+	<<elseif $waypoint is 7 and $completedRhythm is 0>>
 		<<Act @ Fidel, f_upset1>>
 		Fidel: Am I really worth it to you?
 		<<Hide @ Fidel>>
 		<<RhythmStart notePrefab>>
+	//<<elseif $waypoint is 5>>
+		//<<if $completedRhythm is 0>>
+			//<<Act @ Fidel, fidel_disappointed>>
+			//Fidel: Am I really worth it to you?
+			//<<Hide @ Fidel>>
+			//<<RhythmStart notePrefab>>
+		//<<endif>>
+		//<<if $completedRhythm is 1>>
+			//[[EndScene]]
+		//<<endif>>
 	<<endif>>
-	<<if $completedRhythm is 1>>
-		[[EndScene]]
+//<<if $startedRhythm is 1>>
+	<<if visited("Scene4")>>
+		<<if $completedRhythm is 0>>
+			<<Act @ Fidel, f_upset1>>
+			Fidel: Am I really worth it to you?
+			<<Hide @ Fidel>>
+			<<RhythmStart notePrefab>>
+		<<endif>>
+		<<if $completedRhythm is 1>>
+			[[EndScene]]
+		<<endif>>
 	<<endif>>
-<<endif>>
-<<if not visited("Scene4")>>
+	<<if not visited("Scene4")>>
+		[[Scene1]]
+	<<endif>>
+<<else>>
 	//{Start of the Fidel Tour Scene (demo)}
-
 	//[BLACK]
 	<<Act @ Fidel, f_neutral>>
 	<<moveNPC Player PiperPoint1>>
@@ -63,10 +64,9 @@ parent:
 	//<<Act @ Piper, p_neutral, 0.5, 0.5, #6764f7>>
 	<<Act @ Piper, p_neutral>>
 	Piper: ‘kay.
-
-	[[Scene1]]
-	//[[Scene4]]
-	//[[EndScene]]
+	<<FadeIn @ 2>>
+	<<Hide @ Piper>>
+	<<Hide @ Fidel>>
 <<endif>>
 
 ===
@@ -78,6 +78,7 @@ parent:
 ---
 //{Continue from before.}
 //[Still black.]
+<<moveNPC Player PiperPoint1>>
 <<Act @ Fidel, f_smirk>>
 Fidel: Surpriseee! 
 
