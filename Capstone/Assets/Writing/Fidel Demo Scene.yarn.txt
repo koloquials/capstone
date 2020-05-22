@@ -55,7 +55,6 @@ parent:
 	//{Start of the Fidel Tour Scene (demo)}
 	//[BLACK]
 	<<Act @ Fidel, f_neutral>>
-	<<moveNPC Player PiperPoint1>>
 	//<<Act @ Fidel, fidel_happy, 0.5, 0.5, #226677>>
 	Fidel: -and that’s my theory on how all seagulls are just acoustic pelicans.
 	Fidel: Oh, just in time. Here we are… our first stop!

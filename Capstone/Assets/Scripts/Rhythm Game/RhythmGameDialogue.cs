@@ -43,4 +43,9 @@ public class RhythmGameDialogue : MonoBehaviour
         if (!dialogue[index].Equals("")) 
             showDialogue.text = dialogue[index];
     }
+
+    public void ClearDialogue()
+    {
+        showDialogue.text = "";
+    }
 }

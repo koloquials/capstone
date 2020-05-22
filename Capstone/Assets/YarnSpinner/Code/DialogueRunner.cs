@@ -99,6 +99,11 @@ namespace Yarn.Unity
         /// Start the dialogue
         void Start ()
         {
+            if (startAutomatically)
+            {
+                StartDialogue();
+            }
+
             audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
             // Ensure that we have our Implementation object
             if (dialogueUI == null) {
@@ -121,10 +126,6 @@ namespace Yarn.Unity
                     // load and compile the text
                     dialogue.LoadString (source.text, source.name);
                 }
-            }
-
-            if (startAutomatically) {
-                StartDialogue();
             }
 
             if (stringGroups != null) {

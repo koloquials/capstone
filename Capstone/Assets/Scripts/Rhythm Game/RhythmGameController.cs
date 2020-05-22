@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
 using UnityEngine;
 using Yarn.Unity.Example;
 
@@ -13,6 +14,8 @@ using Yarn.Unity.Example;
 public class RhythmGameController : MonoBehaviour {
 
     FiniteStateMachine<RhythmGameController> rhythmGameStateMachine;
+
+    public ExampleVariableStorage varStor;
 
     public GameObject notePrefab;
 
@@ -58,6 +61,8 @@ public class RhythmGameController : MonoBehaviour {
     public RhythmGameDialogue rhythmGameDialogue;
     
     int i = 0;
+
+    private bool completed = false;
 
     void Start() {
         audioSources = gameObject.GetComponents<AudioSource>();
@@ -394,13 +399,7 @@ public class RhythmGameController : MonoBehaviour {
 
     //debugging function to see when we are in and out of the window. blue background means in window, black means out of window
     private void ChangeBackground(bool inWindow, bool restarted) {
-        if (restarted) {
-            Color inWindowColour = Color.red;
-            inWindowColour.a = 0.65f;
-            background.color = inWindowColour;
-        }
-        
-        else if (inWindow) {
+        if (inWindow) {
             Color inWindowColour = Color.black;
             inWindowColour.a = 0.55f;
             background.color = inWindowColour;
@@ -468,6 +467,7 @@ public class RhythmGameController : MonoBehaviour {
 
             //exit out of the rhythm game 
             if (Input.GetKeyDown(KeyCode.Escape)) {
+                RestartRhythmGame();        //reset all the variables when closing the rhythm game, just to be safe! 
                 Debug.Log("Exiting via escape");
                 TransitionTo<ClosingAnimation>();
             } 
@@ -497,6 +497,8 @@ public class RhythmGameController : MonoBehaviour {
             if (SimpleClock.Instance.Measures > 78)  {
                 Context.orbitterScript.StopRotation();
                 Context.orbitterScript.ResetPosition();
+                Context.completed = true;           //player beat the rhythm game
+                RestartRhythmGame();        //reset all the variables when closing the rhythm game, just to be safe! 
                 TransitionTo<ClosingAnimation>();
             }
         }
@@ -548,12 +550,15 @@ public class RhythmGameController : MonoBehaviour {
 
             Context.ChangeBackground(false, true);
 
-            started = false;
-            //reset the phaseWindow to Resting, restart with the special case
-            TransitionTo<Phase1>();
-
             Context.orbitterScript.StopRotation();
             Context.orbitterScript.ResetPosition();
+
+            started = false;
+
+            Context.rhythmGameDialogue.ClearDialogue();
+
+            //reset the phaseWindow to Resting, restart with the special case
+            TransitionTo<Phase1>();
         }
 
         public override void OnExit() {
@@ -580,24 +585,58 @@ public class RhythmGameController : MonoBehaviour {
 
             bool firstComboPressed;
 
+            float bufferTimer;
+
             public override void OnEnter() {
                 pressedCombo = "";
                 expectedCombo = Context.Context.thisSongSequence[0];
                 pressedArrow = "";
                 pressedWASD = "";
                 firstComboPressed = false;
+                bufferTimer = 1f;
                 // Context.Context.ChangeBackground(false, true);
             }
             public override void Update() {
-                pressedArrow = Context.Context.GetArrowKeys();
-                pressedWASD = Context.Context.GetWASD();
+                if (!pressedArrow.Equals("") && bufferTimer >= 0)
+                {
+                    bufferTimer -= Time.deltaTime;
+                    pressedWASD = Context.Context.GetWASD();
+                }
+
+                else if (!pressedArrow.Equals("") && bufferTimer >= 0)
+                {
+                    bufferTimer -= Time.deltaTime;
+                    pressedArrow = Context.Context.GetArrowKeys();
+                }
+                else
+                {
+                    pressedWASD = Context.Context.GetWASD();
+                    pressedArrow = Context.Context.GetArrowKeys();
+                }
 
                 pressedCombo = pressedArrow + pressedWASD;
+
+                if (bufferTimer < 0)
+                {
+                    pressedArrow = "";
+                    pressedWASD = "";
+                    pressedCombo = "";
+                    bufferTimer = 1f;
+                }
 
                 //first combination was pressed correctly, game will otherwise stay resting the entire time.
                 if (expectedCombo.Equals(pressedCombo) && !firstComboPressed) {
                     StartRhythmGame();
                 }
+
+                if (pressedCombo.Length == 2 && !expectedCombo.Equals(pressedCombo))
+                {
+                    Debug.Log("Resetting");
+                    pressedArrow = "";
+                    pressedWASD = "";
+                    pressedCombo = "";
+                }
+                    
 
                 if (firstComboPressed && !Context.Context.WindowCheck()) {
                     Debug.Log("First case handled and transitioning to Out of Window at : " + SimpleClock.Instance.Beats + " and this tick: " + SimpleClock.Instance.Ticks);
@@ -618,6 +657,7 @@ public class RhythmGameController : MonoBehaviour {
 
             public override void OnExit() { 
                 Context.started = true;
+                firstComboPressed = false;
             }
         }
 
@@ -668,7 +708,7 @@ public class RhythmGameController : MonoBehaviour {
                 //phase 1 handling: if an incorrect combination was pressed, restart the rhythm game
                 if (!Context.Context.CombinationCheck(pressedCombo, expectedCombo) && Context.phase1) {
                     CameraFollow.Instance.ScreenShake();
-                    Context.RestartRhythmGame(); 
+                    //Context.RestartRhythmGame(); 
                 }
                 else {
                     Context.Context.CallCoroutine("FretPulse");
@@ -686,7 +726,7 @@ public class RhythmGameController : MonoBehaviour {
                     
                     //restart the game if more than 5 strikes
                     if (Context.strikes > 5) {
-                        Context.RestartRhythmGame();
+                        //Context.RestartRhythmGame();
                     }
                     else {
                         Context.Context.CallCoroutine("FretPulse");
@@ -713,8 +753,18 @@ public class RhythmGameController : MonoBehaviour {
     
     private class ClosingAnimation : FiniteStateMachine<RhythmGameController>.State {
         public override void OnEnter() {
-            Debug.Log("Closing the rhythm game");
+            //Debug.Log("Closing the rhythm game");
             Context.CallCoroutine("ClosingAnimation");
+        }
+
+
+        public override void OnExit()
+        {
+            //only set yarn variable to completed it player actually beat the rhythm game
+            //this catches the situation that player pressed esc to close rhythm game 
+            if (Context.completed) 
+            //Debug.Log("Closing rhythm game entering final dialogue");
+                Context.varStor.SetValue("$completedRhythm", new Yarn.Value(1));
         }
     }
 }

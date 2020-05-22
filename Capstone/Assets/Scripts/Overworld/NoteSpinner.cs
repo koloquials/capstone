@@ -19,7 +19,7 @@ public class NoteSpinner : MonoBehaviour //Spins rapidly until a note is played,
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(countdown > 0) //If stopped, count down the time stopped
         {

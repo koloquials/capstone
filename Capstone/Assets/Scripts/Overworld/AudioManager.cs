@@ -34,6 +34,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] audioSources; 
     public AudioClip[] individualAudioClips;              //set array size and assign clips via inspector. AudioClips can be dragged in in any order
 
+    public AudioClip rhythmCompletedSong;
+
     private Dictionary<string, AudioClip> puzzleSoundsDict;     //all sound effects for the puzzles will be stored and accessed via a dictionary
 
     void Awake() {
@@ -113,5 +115,10 @@ public class AudioManager : MonoBehaviour
 
         puzzleSoundSrc.pitch = Random.Range(0.75f, 2f);
         puzzleSoundSrc.PlayOneShot(clipToPlay);                     //play it once
+    }
+
+    public void CompletedRhythm()
+    {
+        masterAmbienceSrc.clip = rhythmCompletedSong;
     }
 }
